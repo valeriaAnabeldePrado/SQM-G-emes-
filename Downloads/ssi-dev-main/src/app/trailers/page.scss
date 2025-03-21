@@ -1,0 +1,64 @@
+@import "../globals.scss";
+
+.trailers-container {
+  background-color: $colorBlanco;
+  overflow: hidden;
+  width: 100vw;
+  .scene-container {
+    min-height: 100vh;
+  }
+  .video {
+    position: relative;
+    width: 100%;
+  }
+}
+.cont-hero-trailer {
+  position: relative;
+  width: 100vw;
+  overflow: hidden;
+  .trailer-hero-title {
+    @include heroPages;
+  }
+}
+.cont-hero-class {
+  position: fixed;
+  z-index: 99;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  justify-content: center;
+  padding: 0.8rem 1rem;
+  background-color: rgba($color: #000000, $alpha: 0.4);
+  color: white;
+  transition: all 0.5s;
+}
+.cont-hero-class:hover {
+  position: fixed;
+  z-index: 99;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1rem;
+  background-color: black;
+  color: white;
+}
+.contenedor-transportable {
+  width: 100vw;
+  overflow: hidden;
+}
+.video-trailer {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+.cont-3d {
+  padding: $paddingconTop;
+}
+@media (max-width: 600px) {
+  .cont-hero-trailer {
+    height: 30vh;
+  }
+  .contenedor-transportable {
+    height: 30vh;
+  }
+}

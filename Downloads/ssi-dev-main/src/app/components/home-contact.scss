@@ -1,0 +1,97 @@
+@import "../globals.scss";
+.contact-container {
+  border-radius: 7% 7% 0 0;
+  padding: 12% 8% 12% 8%;
+  display: flex;
+  flex-direction: column;
+  gap: 2em;
+  background-color: $colorBlanco;
+  justify-content: center;
+  .contact-box {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap: 2em;
+    width: 100%;
+    align-self: flex-start;
+  }
+  .contact-box1 {
+    flex: 1;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    align-items: center;
+    flex-direction: row;
+    justify-content: space-around;
+    min-width: 250px;
+  }
+  .contact-box2 {
+    flex: 1;
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: column;
+
+    min-width: 250px;
+  }
+  .contact-form {
+    background-color: $colorBlanco;
+    min-width: 250px;
+  }
+  .contact-h2 {
+    margin: 0;
+
+    h2 {
+      text-align: end;
+      font-size: $fuenteContact;
+      margin: 0;
+      line-height: 1;
+      @media screen and (max-width: 950px) {
+        font-size: 13vw;
+      }
+    }
+  }
+  .contact-p {
+    text-align: center;
+    display: flex;
+    justify-content: flex-end;
+
+    p {
+      text-align: end;
+    }
+  }
+  .contact-box3 {
+    flex: 1;
+    max-height: 150px;
+    display: flex;
+    justify-content: center;
+
+    gap: 3em;
+    > img {
+      max-height: 50px;
+      max-width: 50px;
+      object-fit: contain;
+    }
+  }
+}
+.text-contact-box {
+  font-size: 1.5rem;
+}
+@media screen and (max-width: 664px) {
+  .contact-box1 {
+    order: 2;
+  }
+  .contact-h2 {
+    display: flex;
+    h2:nth-child(3) {
+      margin: 0 1rem;
+    }
+  }
+}
+.buttonEnv {
+  padding: 0.5rem 2rem;
+  margin: 2rem 0;
+  border: 2px solid;
+  border-radius: 10px;
+  font-weight: 600;
+  cursor: pointer;
+}

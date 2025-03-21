@@ -1,0 +1,208 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+// TAMAÑOS DE FUENTES CON RESPONSIVE
+$fuenteMenu: clamp(
+  16px,
+  16px + ((50px - 16px) * (1000px - 500px) / (2500px - 500px)),
+  50px
+); //solo fuente del menu
+$fuenteDesplaz: clamp(2.5em, 5em, 13vw);
+$fuenteSubtitulos: 7vw;
+$fuenteSubtitulosMayus: 6vw;
+$fuenteSubtMayusRESIZE: 3.5em;
+
+//$contactoFuente:  // SOLO para la parte de contacto FALTA VER
+$fuenteTexto: clamp(
+  1em,
+  1.6em,
+  2vw
+); // para las que se escriben con el scroll. Tambien para las que dicen descubre.
+$fuenteStroke: clamp(
+  8em,
+  15em,
+  25vw
+); // para las fuentes extra grandes solo SSI o numero
+$fuenteContact: clamp(4em, 10em, 18vw);
+
+$fontTamnio: clamp(1em, 3vw, 1.4em);
+
+//TIPOS DE FUENTES-----> dos tipos
+@import url("https://fonts.cdnfonts.com/css/avenir");
+$fuenteMenuTipo: "Avenir", sans-serif;
+
+@import url("https://fonts.cdnfonts.com/css/neue-haas-grotesk-display-pro");
+$fuenteTitulos: "Neue Haas Grotesk Display Pro", sans-serif;
+$titulosWeightt: 900;
+
+$mayuscula: uppercase; // para todos los titulos y sub titulos
+
+$weightComun: 600; // para todas las fuentes regulares
+
+//FUENTE CENTRADA
+
+//COLORES
+$colorNegro: #1c1f24;
+$colorRojo: #e7324b;
+$colorBlanco: #fff;
+$colorMarfil: #cdcccc;
+
+//LINEAS
+
+$lineaAncho: clamp(3px, calc(0.15vw + 1px), 6px);
+
+// MARGENES LATERALES BODY PARA CENTRAR TODO
+
+$paddingBodyCenter: 0 8% 0 8%;
+$paddingBodyCenterLaterales: 0 8% 0 13%;
+$paddingconTop: 5% 8%;
+//MARGENES BAJOS DE TITULOS GRANDES
+
+$margenBajoTitulo: 7.5rem; // ver en pantalla depende del largo y ancho para el responsivo, pasar a %
+//-------------------------------------MIXIN------------------------------------------
+
+//FUENTE STROKE
+@mixin fuenteStoke($parametroColor) {
+  -webkit-text-stroke: clamp(3px, calc(0.15vw + 1px), 6px) $parametroColor;
+}
+
+//ESPACIOS DIV
+
+@mixin divEspacio($parametroLado) {
+  display: flex;
+  flex-direction: column;
+  text-align: ($parametroLado);
+  height: auto;
+}
+
+@mixin fuenteCentrada {
+  text-align: center;
+}
+
+@mixin divGenerico {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+@mixin heroPages {
+  opacity: 0;
+  text-align: end;
+  position: absolute;
+  width: 70%;
+  bottom: 15%;
+  right: 10%;
+  z-index: 2;
+  color: $colorBlanco;
+  h1 {
+    font-size: $fuenteSubtitulosMayus;
+    font-weight: bold;
+    text-transform: uppercase;
+  }
+  h2 {
+    font-size: $fuenteSubtitulosMayus;
+    font-weight: 300;
+  }
+  @media (max-width: 1324px) {
+    h1 {
+      -webkit-text-stroke: 2px rgb(255, 255, 255);
+    }
+  }
+  @media (max-width: 750px) {
+    right: 15%;
+    bottom: 18%;
+    h1 {
+      -webkit-text-stroke: 1px rgb(255, 255, 255);
+    }
+  }
+  @media (max-width: 400px) {
+    width: 80%;
+    h1 {
+      font-size: $fuenteSubtitulos;
+    }
+    h2 {
+      font-size: $fuenteSubtitulos;
+    }
+  }
+}
+
+* {
+  box-sizing: border-box;
+}
+
+h2 {
+  font-family: $fuenteTitulos;
+  font-weight: bold;
+}
+
+body {
+  background-color: $colorNegro;
+}
+//---------Laterales-------------//
+@mixin lateralMain {
+  position: relative;
+  flex-wrap: wrap;
+  width: 100vw;
+  height: 100vh;
+  padding: 0;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  background-color: $colorNegro;
+  @media (max-width: 750px) {
+    background-color: transparent;
+  }
+}
+@mixin h2-Laterales {
+  line-height: 1;
+  top: 10%;
+  position: absolute;
+  z-index: 1;
+  font-size: $fuenteSubtitulos;
+  text-align: center;
+  color: $colorBlanco;
+  @media (max-width: 750px) {
+    text-align: end;
+    right: 12%;
+    top: 15%;
+    font-size: $fuenteSubtMayusRESIZE;
+  }
+  @media (max-width: 450px) {
+    right: 10%;
+  }
+}
+@mixin btnLateral {
+  border: solid 3px #fff;
+  border-radius: 10px;
+  color: $colorBlanco;
+  padding: 1rem 2rem;
+}
+@mixin mitadIzq($imagenFondo, $margen-A, $margen-B, $margen-C) {
+  flex: 1;
+  color: white;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  margin-top: $margen-A;
+  @media (max-width: 900px) {
+    margin-top: $margen-B;
+  }
+  @media (max-width: 750px) {
+    background: url($imagenFondo) no-repeat center/cover;
+    padding: 0 5% 0 8%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin-top: $margen-C;
+    height: 100%;
+  }
+}
+@mixin parrafo-lateral {
+  flex: 1;
+  display: flex;
+  text-align: end;
+  align-items: flex-end;
+  padding: $paddingBodyCenterLaterales;
+}

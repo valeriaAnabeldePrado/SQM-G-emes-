@@ -1,0 +1,92 @@
+@import "../globals.scss";
+.intro-container {
+  position: relative;
+  min-height: 40vw;
+  display: flex;
+  padding: $paddingBodyCenter;
+  @media (max-width: 850px) {
+    min-height: 50vw;
+  }
+  @media (max-width: 600px) {
+    min-height: 70vw;
+    padding: 10% 8%;
+  }
+}
+
+.intro-frutas {
+  width: 40%;
+  display: grid;
+  position: relative;
+  grid-template-columns: repeat(2, 20vw);
+  grid-template-rows: repeat(4, auto);
+  gap: 10px;
+  @media (max-width: 600px) {
+    width: 20%;
+  }
+  @media (max-width: 500px) {
+    display: none;
+  }
+}
+
+.intro-frutas img {
+  height: 30vh;
+  width: auto;
+  position: absolute;
+}
+
+.intro-frutas img[alt="unafrutita"] {
+  height: clamp(80px, 20vw, 60vh);
+  top: -30%;
+  left: 1%;
+  @media (max-width: 600px) {
+    top: -10%;
+  }
+}
+
+.intro-frutas img[alt="picante"] {
+  height: clamp(80px, 15vw, 50vh);
+  top: -10%;
+  right: -150%;
+  @media (max-width: 600px) {
+    display: none;
+  }
+}
+
+.intro-frutas img[alt="palta"] {
+  height: 5vw;
+  left: -5%;
+  bottom: 8%;
+  @media (max-width: 600px) {
+    display: none;
+  }
+}
+
+.intro-frutas img[alt="laranja"] {
+  height: 35vw;
+  bottom: 15%;
+  right: 0;
+  @media (max-width: 600px) {
+    bottom: 20%;
+  }
+}
+
+.intro-box {
+  h2 {
+    font-size: $fuenteMenu;
+    padding-bottom: 2%;
+  }
+  color: #f0f0f0;
+  padding: 20px;
+  @media (max-width: 500px) {
+    padding: 0;
+    text-align: center;
+  }
+}
+.intro-p {
+  font-size: $fuenteTexto;
+  flex: 1;
+  color: $colorBlanco;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}

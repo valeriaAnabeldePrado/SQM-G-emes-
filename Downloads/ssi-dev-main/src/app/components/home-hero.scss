@@ -1,0 +1,26 @@
+#background-video {
+  height: 100vh;
+  width: 100vw;
+  object-fit: cover;
+  position: fixed;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  z-index: -1;
+}
+.gif {
+  position: absolute;
+}
+.video-hero-container {
+  position: relative;
+  width: 100%;
+  padding-top: 56.25%; /* Esto mantiene el aspecto de relación 16:9 (9 / 16 * 100) */
+}
+.contenido {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100;
+}

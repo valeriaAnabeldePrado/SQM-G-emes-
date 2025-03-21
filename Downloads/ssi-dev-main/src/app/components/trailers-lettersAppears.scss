@@ -1,0 +1,37 @@
+@import "../globals.scss";
+.letters-main {
+  @include divEspacio(center);
+  padding: $paddingconTop;
+  justify-content: center;
+  height: 110vh;
+  @media screen and (max-width: 900px) {
+    height: 80vh;
+  }
+  @media (max-width: 600px) {
+    height: 60vh;
+  }
+  @media (max-width: 400px) {
+    height: 45vh;
+  }
+
+  .letters-ap-title {
+    font-size: 4vw;
+    text-align: start;
+    padding: 1rem 0;
+  }
+}
+
+.apperas {
+  width: 90%;
+  display: flex;
+  flex-wrap: wrap;
+}
+.apperas p {
+  font-size: 3.5vw;
+  margin: 0px;
+  margin-right: 0.5vw;
+  font-weight: 500;
+}
+.apperas span {
+  opacity: 0.1;
+}

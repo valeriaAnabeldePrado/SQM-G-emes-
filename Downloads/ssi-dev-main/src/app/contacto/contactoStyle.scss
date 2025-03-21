@@ -1,0 +1,85 @@
+@import "../globals.scss";
+.contacto-fondo {
+  position: relative;
+  background-color: #8f949c;
+  height: 100vh;
+  overflow: hidden;
+  padding: 10% 20%;
+  @media (max-width: 700px) {
+    padding: 10% 10%;
+  }
+  @media (max-width: 450px) {
+    padding: 10% 10%;
+    height: 120vh;
+  }
+  .svg-shapeUno {
+    position: absolute;
+    top: -5%;
+    left: -5%;
+    z-index: 1;
+    @media (max-width: 1300px) {
+      top: -15%;
+      left: -15%;
+    }
+    @media (max-width: 600px) {
+      top: -35%;
+      left: -35%;
+    }
+  }
+  .svg-shapeDos {
+    position: absolute;
+    top: 30%;
+    left: 60%;
+    z-index: 1;
+  }
+}
+.svg-shapeTres {
+  position: absolute;
+  bottom: -30%;
+  right: -10%;
+}
+.svg-shapeCuatro {
+  position: absolute;
+  right: -10%;
+  top: -10%;
+  @media (max-width: 900px) {
+    right: -20%;
+    top: -20%;
+  }
+}
+.svg-shapeCinco {
+  position: absolute;
+  bottom: -10%;
+  left: 10%;
+  transform: rotate(90deg);
+  @media (max-width: 1300px) {
+    bottom: -25%;
+    left: -10%;
+  }
+  @media (max-width: 900px) {
+    bottom: -30%;
+    left: -20%;
+  }
+}
+.infoContacto-box {
+  background-color: $colorNegro;
+  position: absolute;
+  border-radius: 20px;
+  z-index: 1;
+  padding: 3rem;
+  width: 60%;
+
+  @media (max-width: 700px) {
+    margin-top: 5%;
+    width: 80%;
+  }
+  @media (max-width: 430px) {
+    margin-top: 10%;
+    padding: 0 2rem;
+  }
+  .infoContacto-h2 {
+    font-size: $fuenteMenu;
+    padding: 2rem 0;
+    color: #fff;
+  }
+}

@@ -1,0 +1,21 @@
+@import "../globals.scss";
+.resta-container {
+  position: absolute;
+  right: 0;
+  padding: 2rem;
+  background-color: $colorRojo;
+  border-radius: 20px;
+  color: #fff;
+  .resta-h2 {
+    letter-spacing: 2px;
+  }
+  -webkit-box-shadow: 10px 10px 91px -9px rgba(0, 0, 0, 0.75);
+  -moz-box-shadow: 10px 10px 91px -9px rgba(0, 0, 0, 0.75);
+  box-shadow: 10px 10px 91px -9px rgba(0, 0, 0, 0.75);
+  @media (max-width: 500px) {
+    -webkit-box-shadow: 10px 10px 91px 74px rgba(0, 0, 0, 0.75);
+    -moz-box-shadow: 10px 10px 91px 74px rgba(0, 0, 0, 0.75);
+    box-shadow: 10px 10px 91px 74px rgba(0, 0, 0, 0.75);
+    top: 0;
+  }
+}

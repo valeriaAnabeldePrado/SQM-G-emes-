@@ -1,0 +1,83 @@
+@import "../globals.scss";
+
+.contenedor-catering {
+  position: relative;
+  flex-wrap: wrap;
+  width: 100vw;
+  height: clamp(50vh, 60vw, 100vh);
+  padding: 0;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  background-color: $colorNegro;
+  h2 {
+    position: absolute;
+    z-index: 1;
+    font-size: $fuenteSubtitulosMayus;
+    text-align: flex-end;
+    color: $colorBlanco;
+    max-width: 75%;
+    @media (max-width: 950px) {
+      top: 10%;
+    }
+    @media (max-width: 600px) {
+      top: 25%;
+    }
+  }
+  > div {
+    min-width: 300px;
+  }
+}
+
+.mitad-der-catering {
+  width: 100%;
+  height: 100%;
+  flex: 1;
+}
+
+/* Estilo para el lado izq */
+
+.mitad-izq-catering {
+  flex: 1;
+  color: white;
+  display: flex;
+  @media (max-width: 600px) {
+    position: absolute;
+  }
+}
+
+.img-catering {
+  height: 100%;
+  width: 100%;
+  object-fit: cover;
+  overflow: hidden;
+}
+.section-p-cautiva {
+  font-size: $fuenteTexto;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  justify-content: center;
+  width: 100%;
+  text-align: end;
+  margin-top: 20%;
+  padding: $paddingBodyCenter;
+  @media (max-width: 1350px) {
+    margin-top: 30%;
+  }
+  @media (max-width: 600px) {
+    text-align: center;
+    margin-top: 45%;
+  }
+  @media (max-width: 450px) {
+    margin-top: 48%;
+  }
+}
+@media only screen and (max-width: 600px) {
+  .contenedor-catering {
+    height: 100%;
+    h2 {
+      top: 5%;
+    }
+  }
+}

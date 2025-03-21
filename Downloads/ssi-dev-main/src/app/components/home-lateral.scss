@@ -1,0 +1,24 @@
+@import "../globals.scss";
+.scroll-section-outer {
+  overflow: hidden;
+  font-size: $fuenteTexto;
+}
+
+.scroll-section-inner {
+  height: 100vh;
+  width: 400vw;
+  display: flex;
+  flex-direction: row;
+  position: relative;
+}
+.scroll-section {
+  height: 100vh;
+  width: 100vw;
+  display: flex;
+}
+@media screen and (max-width: 750px) {
+  .scroll-section {
+    display: flex;
+    flex-direction: column;
+  }
+}

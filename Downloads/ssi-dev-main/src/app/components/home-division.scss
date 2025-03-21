@@ -1,0 +1,37 @@
+@import "../globals.scss";
+
+.division-container {
+  width: 4em;
+  background-color: $colorBlanco;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  height: 100%;
+  justify-content: space-around;
+  .division-number {
+    font-size: $fuenteTexto;
+    font-weight: 600;
+  }
+  .division-p {
+    writing-mode: vertical-lr;
+    transform: rotate(180deg);
+    font-size: $fuenteTexto;
+    font-weight: 600;
+  }
+}
+@media screen and (max-width: 750px) {
+  .division-container {
+    width: 100%;
+    padding: 2rem;
+    height: auto;
+    font-size: $fuenteMenu;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+
+    .division-p {
+      writing-mode: horizontal-tb;
+      transform: rotate(0);
+    }
+  }
+}

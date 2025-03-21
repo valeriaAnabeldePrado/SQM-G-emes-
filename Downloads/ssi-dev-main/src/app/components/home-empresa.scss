@@ -1,0 +1,119 @@
+@import "../globals.scss";
+
+.empresa-contenedor {
+  color: $colorBlanco;
+  padding: $paddingBodyCenter;
+  display: flex;
+  flex-direction: column;
+  gap: 3rem;
+}
+
+.nuestra_h2 {
+  padding-bottom: 3rem;
+  @media (max-width: 500px) {
+    padding-bottom: 1.5rem;
+  }
+}
+
+.empresa-first {
+  flex: 1;
+  display: flex;
+  text-align: end;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-end;
+  @media (max-width: 500px) {
+    text-align: center;
+    align-items: center;
+    max-width: 100%;
+  }
+  h2 {
+    font-size: $fuenteSubtitulos;
+  }
+  flex: 1;
+  max-width: 70%;
+  margin-left: auto;
+  font-size: $fuenteTexto;
+}
+.empresa-second {
+  flex: 1;
+  display: flex;
+  flex-direction: row;
+  padding: 2rem;
+  flex-wrap: wrap;
+  height: auto;
+  justify-content: space-around;
+}
+.empresa-second-section {
+  gap: 10px;
+  width: 400px;
+  width: 400px;
+}
+.empresa-second-svg {
+  width: 30vw;
+  position: relative;
+  .mapita {
+    height: 20vw;
+    object-fit: contain;
+  }
+  @media (max-width: 850px) {
+    display: none;
+  }
+}
+
+// ---------------------
+.home-servicios-contenedor2 {
+  position: relative;
+  flex-wrap: wrap;
+  width: 100vw;
+  height: 100vh;
+  padding: $paddingBodyCenter;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  color: $colorBlanco;
+  background-color: $colorNegro;
+
+  > div {
+    flex: 1;
+    display: flex;
+    text-align: end;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-end;
+    .first {
+      display: flex;
+      flex-direction: column;
+      text-align: center;
+      margin-left: auto;
+      max-width: 70%;
+      font-size: $fuenteSubtitulos;
+
+      p {
+        font-size: $fuenteTexto;
+      }
+    }
+    .home-servicios-first {
+      display: flex;
+      flex-direction: column;
+      text-align: right;
+      align-items: flex-end;
+      line-height: 1;
+      @media (max-width: 400px) {
+        align-items: flex-end;
+      }
+      p {
+        overflow: hidden;
+      }
+    }
+  }
+}
+.home-nuestros-h2 {
+  font-size: $fuenteSubtitulos;
+  line-height: 1;
+
+  @media (max-width: 700px) {
+    text-align: end;
+    font-size: $fuenteSubtMayusRESIZE;
+  }
+}

@@ -1,0 +1,54 @@
+@import "../globals.scss";
+.imageClass {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  width: 100vw;
+  background-color: transparent;
+  overflow: hidden;
+  @media (max-width: 900px) {
+    height: 70vh;
+  }
+  .videoAcordion {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    @media (max-width: 900px) {
+      height: 70vh;
+    }
+    @media (max-width: 600px) {
+      height: 60vh;
+    }
+  }
+}
+.acordion {
+  position: absolute;
+  width: 40%;
+  z-index: 9;
+  @media (max-width: 900px) {
+    > div {
+      font-size: medium;
+      span {
+        font-size: medium;
+      }
+    }
+  }
+  @media (max-width: 600px) {
+    width: 70%;
+  }
+}
+@media (max-width: 768px) {
+  .imageClass {
+    background-color: black;
+    overflow: hidden;
+  }
+}
+.p-font {
+  font-size: $fontTamnio;
+  padding: 0.5rem 0;
+  @media (max-width: 900px) {
+    font-size: 1rem;
+  }
+}

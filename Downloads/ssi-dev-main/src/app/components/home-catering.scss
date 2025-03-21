@@ -1,0 +1,151 @@
+@import "../globals.scss";
+
+.home-contenedor-catering {
+  @include lateralMain;
+  .h2-laterales-cat {
+    @include h2-Laterales;
+  }
+  > div {
+    min-width: 300px;
+  }
+}
+
+.mitad-der-home-cat {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+  flex: 1;
+  background: url("/images/catering.jpg") no-repeat center/cover;
+  @media (max-width: 750px) {
+    display: none;
+  }
+}
+
+.buton-lateral {
+  @include btnLateral;
+}
+.visualizacion {
+  display: none;
+  @media (max-width: 750px) {
+    display: inline;
+    margin: 5% 8% 0% 8%;
+    align-self: flex-end;
+  }
+}
+/* Estilo para el lado izq */
+
+.mitad-izq-cat {
+  @include mitadIzq("/images/catering.jpg", 30vh, 20vh, 0);
+  //-----para ancho y alto----------//
+  @media screen and (max-width: 700px) and (max-height: 700px) {
+    padding-top: 10vh;
+  }
+}
+.div-izq-cat {
+  display: flex;
+  flex-direction: column;
+}
+
+.section-p-lateralesHome-cat {
+  @include parrafo-lateral;
+}
+
+.section-svg {
+  flex: 1;
+  position: relative;
+  display: flex;
+  flex-wrap: wrap;
+  transition: all ease 3s;
+  padding: 4% 0;
+  :nth-child(1) {
+    //cebolla
+    transform: translate(5%, 0%);
+    transition: all ease 3s;
+    &:hover {
+      scale: 1.2;
+      rotate: 20deg;
+    }
+  }
+  :nth-child(2) {
+    //chaucha
+    transform: translate(300%, 140%);
+    transition: all ease 3s;
+    &:hover {
+      scale: 1.2;
+      rotate: -20deg;
+    }
+    @media (max-width: 900px) {
+      transform: translate(200%, 200%);
+      &:hover {
+        rotate: -5deg;
+      }
+    }
+  }
+  :nth-child(3) {
+    //ensalada
+    transform: translate(190%, 180%);
+    transition: all ease 3s;
+    &:hover {
+      scale: 1.2;
+      transform: translate(100%, 120%);
+    }
+    @media (max-width: 900px) {
+      display: none;
+    }
+  }
+  :nth-child(4) {
+    //palta
+    transform: translate(80%, 100%);
+    transition: all ease 3s;
+    &:hover {
+      scale: 1.2;
+      transform: translate(80%, 100%);
+    }
+    @media (max-width: 900px) {
+      transform: translate(80%, 230%);
+      scale: 1.4;
+      &:hover {
+        scale: 1.5;
+        rotate: 25deg;
+      }
+    }
+  }
+  :nth-child(5) {
+    //pimiento
+    transform: translate(230%, 0%);
+    transition: all ease 1s;
+    &:hover {
+      scale: 1.2;
+      transform: translate(200%, 20%);
+    }
+    @media (max-width: 900px) {
+      scale: 1.5;
+      transform: translate(230%, 130%);
+      &:hover {
+        scale: 1.6;
+        transform: translate(200%, 120%);
+      }
+    }
+    @media (max-width: 400px) {
+      display: none;
+    }
+  }
+  :nth-child(6) {
+    //tomate
+    transform: translate(150%, 50%);
+    transition: all ease 3s;
+    &:hover {
+      scale: 1.2;
+      transform: translate(200%, 100%);
+    }
+  }
+
+  > img {
+    margin: 0;
+    position: absolute;
+    width: 35%;
+    z-index: 1;
+  }
+}

@@ -11,18 +11,18 @@ Este proyecto es una **landing page interactiva** desarrollada con **React y Vit
 - [GSAP]
 - [Three.js]
 - [React Three Fiber]
-
-✨ Características
+---
+## ✨ Características
 Landing one-page con diseño responsive
 Recorrido 3D en tiempo real del departamento modelo
 Animaciones con GSAP
 Interfaz moderna basada en Tailwind CSS
 Galería de renders, formulario de contacto y más
-
-🏗️ En desarrollo
+---
+## 🏗️ En desarrollo
 Versión optimizada para móviles del recorrido 3D
 Mejora de accesibilidad (a11y)
-
-🤝 Contacto
-Desarrollado por SmartCloud Studio
+---
+## 🤝 Contacto
+Desarrollado por SmartCloud Studio https://www.smartcloudstudio.com/
 Para consultas: contacto@smartcloudstudio.com

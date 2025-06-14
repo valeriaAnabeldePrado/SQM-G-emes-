@@ -1,0 +1,41 @@
+@import "tailwindcss";
+
+@theme {
+  --font-coco: "Coco Gothic", "Coco Gothic Alternate", sans-serif;
+  --font-poppins: "Poppins", sans-serif;
+  --font-weight-light: 300;
+  --font-weight-normal: 400;
+  --font-weight-medium: 500;
+  --font-weight-bold: 700;
+  --font-weight-black: 900;
+  
+  /* Colors */
+  --color-beige-ligth: #FFFCF9;
+  --color-beige: #E2D8CE;
+  --color-beige-int: #F9F0E2;
+  --color-two: #FFC46A;
+  --color-one: #CA493E;
+  --color-darck: #131F28;
+  --color-three: #483B2B;
+  --color-border: rgba(179, 175, 171, 0.2);
+  
+
+  --gradient-nav: linear-gradient(90deg, #E2D8CE4D 0%, #D8BCA04D 100%); /* 30% opacidad */
+  --gradient-alt: linear-gradient(90deg, #F6F0EB80 0%, #B3AFAB80 100%); /* 50% opacidad */
+  --border-gradient: linear-gradient(90deg, #F6F0EB80 0%, #B3AFAB80 100%);
+
+  --text-title-huge: clamp(4rem, 10vw, 12.5rem);     /* 200px */
+  --text-menu: clamp(1.5rem, 4vw, 2.2rem);           /* 35px */
+  --text-button: clamp(1rem, 2vw, 1.6rem);           /* 26px */
+  --text-body: clamp(1.2rem, 3vw, 2rem);             /* 32px */
+  --text-subtitle: clamp(2rem, 5vw, 4rem);           /* 64px */
+  --text-subtitle-small: clamp(1.2rem, 3vw, 2.5rem); /* 40px */
+
+/* Padding variables */
+  --spacing-xxxxl: 150px;
+  --spacing-xxxl: 100px;
+  --spacing-xxl: 80px;
+  --spacing-xl: 60px;
+  --spacing-lg: 40px;
+  --spacing-md: 30px;
+}

@@ -24,18 +24,25 @@
   --gradient-alt: linear-gradient(90deg, #F6F0EB80 0%, #B3AFAB80 100%); /* 50% opacidad */
   --border-gradient: linear-gradient(90deg, #F6F0EB80 0%, #B3AFAB80 100%);
 
-  --text-title-huge: clamp(4rem, 10vw, 12.5rem);     /* 200px */
-  --text-menu: clamp(1.5rem, 4vw, 2.2rem);           /* 35px */
-  --text-button: clamp(1rem, 2vw, 1.6rem);           /* 26px */
-  --text-body: clamp(1.2rem, 3vw, 2rem);             /* 32px */
-  --text-subtitle: clamp(2rem, 5vw, 4rem);           /* 64px */
-  --text-subtitle-small: clamp(1.2rem, 3vw, 2.5rem); /* 40px */
+  --text-title-huge: clamp(4rem, 10vw, 12.5rem);    
+  --text-menu: clamp(1.2rem, 4vw, 1.8rem);
+  --text-menu-sub: clamp(1rem, 3vw, 1.2rem);           
+  --text-button: clamp(1rem, 2vw, 1.6rem);          
+  --text-body: clamp(1.2rem, 3vw, 2rem);             
+  --text-subtitle: clamp(2rem, 5vw, 4rem);           
+  --text-subtitle-small: clamp(1.2rem, 3vw, 2.5rem); 
 
-/* Padding variables */
-  --spacing-xxxxl: 150px;
-  --spacing-xxxl: 100px;
-  --spacing-xxl: 80px;
-  --spacing-xl: 60px;
-  --spacing-lg: 40px;
-  --spacing-md: 30px;
+/* Body variables */
+--padding-body: clamp(1.2rem, 4vw, 9.375rem);
+
+/*Border radius*/
+ --border-radius-desktop: 60px;
+ --border-radius-tablet: 30px;
+ --border-radius-phone: 15px;
+
+/*Gaps*/
+--generic-gap-desktop: 30px;
+--generic-gap-tablet: 20px;
+--generic-gap-phone: 15px;
+
 }

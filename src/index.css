@@ -19,20 +19,27 @@
   --color-three: #483b2b;
   --color-border: rgba(179, 175, 171, 0.2);
 
-  --gradient-nav: linear-gradient(90deg, #e2d8ce4d 0%, #d8bca04d 100%); /* 30% opacidad */
+  --gradient-card: linear-gradient(90deg, #e2d8ce4d 0%, #d8bca04d 100%); /* 30% opacidad */
   --gradient-alt: linear-gradient(90deg, #f6f0eb80 0%, #b3afab80 100%); /* 50% opacidad */
   --border-gradient: linear-gradient(90deg, #f6f0eb80 0%, #b3afab80 100%);
+
+  /* Para el tamano se usa asi  */
+  /* text-(length:--text-title-huge) */
 
   --text-title-huge: clamp(4rem, 10vw, 12.5rem);
   --text-menu: clamp(1.2rem, 4vw, 1.8rem);
   --text-menu-sub: clamp(1rem, 3vw, 1.1rem);
   --text-button: clamp(1rem, 2vw, 1.6rem);
   --text-body: clamp(1.2rem, 3vw, 2rem);
+  --text-p: clamp(1.2rem, 2vw, 1rem);
   --text-subtitle: clamp(2rem, 5vw, 4rem);
   --text-subtitle-small: clamp(1.2rem, 3vw, 2.5rem);
 
   /* Body variables */
-  --padding-body: clamp(1.2rem, 4vw, 9.375rem);
+  /* se deja como container de tailwind */
+  /* --padding-body: clamp(1.2rem, 4vw, 9.375rem); */
+  --pading-y: clamp(1.2rem, 4vw, 9.375rem);
+  --padding-cards: clamp(1.2rem, 4vw, 9.375rem);
 
   /*Border radius*/
   --border-radius-desktop: 60px;
@@ -40,11 +47,10 @@
   --border-radius-phone: 15px;
 
   /*Gaps*/
-  --generic-gap-desktop: 30px;
-  --generic-gap-tablet: 20px;
-  --generic-gap-phone: 15px;
+  --generic-gap-desktop: 28px;
+  --generic-gap-tablet: 16px;
 
   /*Breakpoints*/
-  --breakpoint-tablet: 1000px;
+  --breakpoint-d: 1000px;
   /* Atencion!, este es un breakpoint: min-tablet:max-w-[numero] max-tablet:max-w-[nuemro] */
 }

@@ -49,16 +49,15 @@ const NavBar = () => {
   return (
     <div>
       <nav
-        className="backdrop-blur-lg fixed top-7 min-tablet:w-[85vw] min-tablet:left-[7.5vw]  max-tablet:max-w-[10%] max-tablet:right-7"
+        className="backdrop-blur-lg fixed top-7 min-tablet:w-[85vw] min-tablet:left-[7.5vw]  max-tablet:max-w-[10%] max-tablet:right-7 rounded-full "
         style={{
           border: '2px solid var(--color-border)',
-          background: 'var(--gradient-nav)',
-          borderRadius: '999px',
+          background: 'var(--gradient-card)',
           padding: '2rem 4.5rem',
           height: '130px'
         }}
       >
-        <div className="flex items-center  min-tablet:justify-between max-tablet:justify-center h-16">
+        <div className="flex items-center min-tablet:justify-between max-tablet:justify-center h-16">
           <div className="flex items-center">
             <div className="text-xl font-bold text-[var(--color-dark)] min-tablet:flex max-tablet:hidden">
               LOGO

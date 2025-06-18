@@ -1,5 +1,6 @@
 import './App.css'
-import Header from './components/web-sections/header/Header'
+import Header from './components/web-sections/home/header/Header'
+
 import SectionSeven from './components/web-sections/home/section-seven'
 import SectionTwo from './components/web-sections/home/section-two'
 function App() {

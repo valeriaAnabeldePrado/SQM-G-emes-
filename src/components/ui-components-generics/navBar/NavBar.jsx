@@ -47,9 +47,9 @@ const NavBar = () => {
   ]
 
   return (
-    <div>
+    <div className="fixed w-full h-[130px] flex items-center justify-center pt-10 z-50">
       <nav
-        className="backdrop-blur-lg fixed top-7 min-tablet:w-[85vw] min-tablet:left-[7.5vw]  max-tablet:max-w-[10%] max-tablet:right-7 rounded-full "
+        className="container mx-4 px-4  flex items-center justify-between rounded-full backdrop-blur-lg "
         style={{
           border: '2px solid var(--color-border)',
           background: 'var(--gradient-card)',
@@ -57,15 +57,13 @@ const NavBar = () => {
           height: '130px'
         }}
       >
-        <div className="flex items-center min-tablet:justify-between max-tablet:justify-center h-16">
+        <div className="flex items-center justify-between  h-16 w-full">
           <div className="flex items-center">
-            <div className="text-xl font-bold text-[var(--color-dark)] min-tablet:flex max-tablet:hidden">
-              LOGO
-            </div>
+            <div className="text-xl font-bold text-[var(--color-dark)] min-d:flex ">LOGO</div>
           </div>
 
           {/* DESKTOP MENU */}
-          <div className="hidden tablet:flex space-x-16 font-bold text-[var(--color-three)] text-menu">
+          <div className="hidden d:flex space-x-16 font-bold text-[var(--color-three)] text-menu">
             {routes.map((route) =>
               typeof route.name === 'string' ? (
                 <a
@@ -82,7 +80,7 @@ const NavBar = () => {
           </div>
 
           {/* MOBILE TOGGLE */}
-          <div className="tablet:hidden">
+          <div className="d:hidden">
             <button onClick={toggleMenu} className="  text-[var(--color-three)] transition">
               {isOpen ? (
                 <IoClose className="text-4xl transition-transform rotate-90" />
@@ -103,7 +101,7 @@ const NavBar = () => {
           leaveFrom="opacity-100"
           leaveTo="opacity-0"
         >
-          <div className="tablet:hidden mt-4 flex flex-col space-y-4 font-bold text-[var(--color-three)] text-menu">
+          <div className="d:hidden mt-4 flex flex-col space-y-4 font-bold text-[var(--color-three)] text-menu">
             {routes.map((route) =>
               typeof route.name === 'string' ? (
                 <a

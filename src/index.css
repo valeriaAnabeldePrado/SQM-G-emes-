@@ -23,16 +23,16 @@
   --gradient-alt: linear-gradient(90deg, #f6f0eb80 0%, #b3afab80 100%); /* 50% opacidad */
   --border-gradient: linear-gradient(90deg, #f6f0eb80 0%, #b3afab80 100%);
 
-  /* Para el tamano se usa asi  */
-  /* text-(length:--text-title-huge) */
+  --height-card: 500px;
 
-  --text-title-huge: clamp(4rem, 10vw, 12.5rem);
+  /* Para el tamano se usa asi  */ /* text-(length:--text-title-huge) */
+  --text-title-huge: clamp(3rem, 7vw, 10rem);
   --text-menu: clamp(1.2rem, 4vw, 1.8rem);
   --text-menu-sub: clamp(1rem, 3vw, 1.1rem);
   --text-button: clamp(1rem, 2vw, 1.6rem);
   --text-body: clamp(1.2rem, 3vw, 2rem);
   --text-p: clamp(1.2rem, 2vw, 1rem);
-  --text-subtitle: clamp(2rem, 5vw, 4rem);
+  --text-subtitle: clamp(2rem, 4vw, 4rem);
   --text-subtitle-small: clamp(1.2rem, 3vw, 2.5rem);
 
   /* Body variables */

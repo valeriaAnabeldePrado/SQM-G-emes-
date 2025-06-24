@@ -1,14 +1,61 @@
+'use client'
+import { useEffect, useRef } from 'react'
+import gsap from 'gsap'
+import { ScrollTrigger } from 'gsap/ScrollTrigger'
 import { Card } from './components/card'
 
-// Componente principal con cards componentizadas
+gsap.registerPlugin(ScrollTrigger)
+
 export default function SectionTwo() {
+  const sectionRef = useRef(null)
+
+  useEffect(() => {
+    // Pequeño delay para que el DOM esté completamente listo
+    const timer = setTimeout(() => {
+      const ctx = gsap.context(() => {
+        // Inicializar las cards como ocultas
+        gsap.set('.animated-card', {
+          opacity: 0,
+          y: 50
+        })
+
+        // Crear la animación SIN scrub para que duration y stagger funcionen
+        gsap.to('.animated-card', {
+          scrollTrigger: {
+            trigger: sectionRef.current,
+            start: 'top 80%',
+            end: 'top 50%',
+            toggleActions: 'play none none reverse',
+            markers: true,
+            onToggle: (self) => {
+              console.log('SectionTwo trigger:', self.isActive)
+            }
+          },
+          opacity: 1,
+          y: 0,
+          duration: 1,
+          ease: 'power2.out',
+          stagger: 0.2
+        })
+      }, sectionRef)
+
+      return () => ctx.revert()
+    }, 200)
+
+    return () => clearTimeout(timer)
+  }, [])
+
   return (
-    <div className="flex flex-col min-d:flex-row items-stretch gap-[var(--generic-gap-tablet)] min-d:gap-[var(--generic-gap-desktop)] py-[var(--pading-y)]">
+    <div
+      ref={sectionRef}
+      className="flex flex-col min-d:flex-row items-stretch gap-[var(--generic-gap-tablet)] min-d:gap-[var(--generic-gap-desktop)] py-[var(--pading-y)]"
+      // Agregamos un ID único para mejor identificación
+      id="section-two"
+    >
       {/* Container de las 3 cards pequeñas */}
-      <div className="w-full  flex gap-[var(--generic-gap-tablet)] min-d:gap-[var(--generic-gap-desktop)] flex-col basis-1/2 ">
-        {/* Sección superior con 2 cards horizontales */}
-        <section className=" flex  md:flex-row gap-[var(--generic-gap-tablet)] min-d:gap-[var(--generic-gap-desktop)] sm:flex-row basis-1/2">
-          <Card className="flex-1 flex-col " hasGradient={true}>
+      <div className="w-full flex gap-[var(--generic-gap-tablet)] min-d:gap-[var(--generic-gap-desktop)] flex-col basis-1/2">
+        <section className="flex md:flex-row gap-[var(--generic-gap-tablet)] min-d:gap-[var(--generic-gap-desktop)] sm:flex-row basis-1/2">
+          <Card className="animated-card flex-1 flex-col" hasGradient>
             <h2 className="text-(length:--text-title-huge) font-[var(--font-weight-bold)] leading-none text-[var(--color-one)]">
               46
             </h2>
@@ -18,7 +65,7 @@ export default function SectionTwo() {
             </div>
           </Card>
           <Card
-            className="flex-1 font-[var(--font-weight-bold)] flex-col w-full min-d:items-start   "
+            className="animated-card flex-1 font-[var(--font-weight-bold)] flex-col w-full min-d:items-start"
             hasGradient
           >
             <div className="flex-1/2 items-center justify-center align-middle flex"></div>
@@ -29,9 +76,8 @@ export default function SectionTwo() {
             </div>
           </Card>
         </section>
-        {/* Sección inferior con 1 card */}
-        <section className="basis-1/2 ">
-          <Card className="w-full  bg-[var(--color-two)] flex-col">
+        <section className="basis-1/2">
+          <Card className="animated-card w-full bg-[var(--color-two)] flex-col">
             <div className="flex-1/2"></div>
             <div>
               <p>Ubicado en</p>
@@ -45,14 +91,15 @@ export default function SectionTwo() {
 
       {/* Card principal grande */}
       <div className="basis-1/2">
-        <Card className="w-full min-d:flex-1 bg-red-500 flex-col h-full " hasGradient>
+        <Card
+          className="animated-card cardita w-full min-d:flex-1 bg-red-500 flex-col h-full"
+          hasGradient
+        >
           <div className="flex-1"></div>
-          <div className="">
+          <div>
             <p>
               En SQM Güemes, convergen estilo, funcionalidad y ubicación. Un proyecto moderno que
-              redefine la forma de habitar y trabajar, integrando un bloque residencial con unidades
-              de 1 y 2 dormitorios, microviviendas y dúplex, más un bloque corporativo ideal para
-              oficinas y locales comerciales.
+              redefine la forma de habitar y trabajar...
             </p>
           </div>
         </Card>

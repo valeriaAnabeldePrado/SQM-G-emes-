@@ -1,0 +1,34 @@
+import { FaArrowDown } from 'react-icons/fa'
+
+export const CardArrow = ({
+  children,
+  className = '',
+  hasGradient = false,
+  hideGradientOnHover = false
+}) => {
+  const baseClasses = `
+    rounded-[var(--border-radius-tablet)] 
+    min-d:rounded-[var(--border-radius-desktop)] 
+     p-[var(--padding-cards)]
+    transition-all duration-300 relative group
+  `
+
+  const gradientStyle = hasGradient
+    ? {
+        background: 'var(--gradient-card)',
+        transition: 'background 0.3s ease'
+      }
+    : {}
+
+  // Agregar el hover style para cambiar a --color-one
+  const hoverClass = hideGradientOnHover ? 'hover:[background:var(--color-two)!important]' : ''
+
+  return (
+    <div className={`${baseClasses} ${className} ${hoverClass}`} style={gradientStyle}>
+      <div className="hidden min-d:block min-d:absolute top-4 right-4 p-4 transition-transform duration-300 transform -rotate-45 group-hover:-rotate-135 z-10">
+        <FaArrowDown size="2em" className="" color="var(--color-one)" />
+      </div>
+      {children}
+    </div>
+  )
+}

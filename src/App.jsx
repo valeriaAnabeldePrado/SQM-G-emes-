@@ -1,14 +1,23 @@
 import './App.css'
-import Header from './components/web-sections/header/Header'
+import Header from './components/web-sections/home/header/Header'
+
 import SectionSeven from './components/web-sections/home/section-seven'
+import SectionSix from './components/web-sections/home/section-six'
+import SectionThree from './components/web-sections/home/section-three'
 import SectionTwo from './components/web-sections/home/section-two'
 function App() {
   return (
     <>
       {/* Aca va un padding generico */}
-      <Header />
       <div className="container mx-auto px-4">
+        <Header />
+
+        <SectionBanner />
         <SectionTwo />
+        <SectionThree />
+        <SectionFour />
+        <SectionFive />
+        <SectionSix />
         <SectionSeven />
       </div>
     </>

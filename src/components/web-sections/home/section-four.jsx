@@ -1,6 +1,7 @@
 import React from 'react'
 import { CardArrow } from './components/card-arrow'
-import bano from '/public/section-four/bano.png'
+import bano from '/src/assets/section-four/bano.png'
+import pisos from '/src/assets/section-four/pisos.png'
 
 export default function SectionFour() {
   return (
@@ -48,7 +49,7 @@ export default function SectionFour() {
 
         <CardArrow className="flex-1 min-w-0 overflow-hidden transition-all duration-300 min-d:hover:flex-[2] flex flex-col h-[500px] relative">
           <img
-            src={bano}
+            src={pisos}
             alt="bano"
             className="
               absolute inset-0 object-cover
@@ -59,14 +60,14 @@ export default function SectionFour() {
             style={{ pointerEvents: 'none', objectPosition: 'center' }}
           />
 
-          <div className="opacity-100 min-d:opacity-0 min-d:group-hover:opacity-100 min-d:group-hover:delay-300 min-d:group-hover:transition-opacity min-d:group-hover:duration-100 min-d:transition-opacity min-d:duration-75 z-10 flex flex-col h-full justify-end gap-[var(--generic-gap-tablet)] min-d:gap-[var(--generic-gap-desktop)] p-4">
+          <div className="opacity-100 min-d:opacity-0 min-d:group-hover:opacity-100 min-d:group-hover:delay-300 min-d:group-hover:transition-opacity min-d:group-hover:duration-100 min-d:transition-opacity min-d:duration-75 z-10 flex flex-col h-full justify-end gap-[var(--generic-gap-tablet)] min-d:gap-[var(--generic-gap-desktop)]   ">
             <div>
-              <p className="font-bold text-white">Baños listos para usar</p>
+              <p className="font-bold text-white">Pisos vinílicos flotantes</p>
             </div>
             <div>
               <p className="text-white">
-                Baños totalmente equipados con vanitory, griferías de cierre cerámico y platos de
-                ducha modernos.
+                En interiores de departamentos y oficinas, piso vinílico flotante tono roble
+                arenado, que aporta calidez, confort y una estética moderna y acogedora.
               </p>
             </div>
           </div>

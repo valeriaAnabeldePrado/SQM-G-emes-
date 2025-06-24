@@ -5,9 +5,45 @@ export default function SectionSix() {
   return (
     <div className="flex  items-stretch gap-[var(--generic-gap-tablet)] min-d:gap-[var(--generic-gap-desktop)] py-[var(--pading-y)] min-d:flex-col bg-gray-400 p-4">
       {/*--------------------- Sector render del edificio */}
-      <Card className="h-96" hasGradient />
+      <Card className="" hasGradient />
       {/*---------------------Sector una propuesta... */}
-      <Card className="h-96" hasGradient />
+      <div
+        className="h-screen rounded-[var(--border-radius-tablet)] 
+  min-d:rounded-[var(--border-radius-desktop)] p-[var(--padding-cards)] bg-[url('/src/assets/section-six/depto-main.png')] flex justify-center gap-[var(--generic-gap-tablet)] min-d:gap-[var(--generic-gap-desktop)] w-full bg-cover"
+      >
+        <div className="flex-1"></div>
+        <div className="flex-1 flex items-center justify-center gap-[var(--generic-gap-tablet)] min-d:gap-[var(--generic-gap-desktop)] md:flex-col h-full">
+          <Card className="flex-1 w-full relative overflow-hidden">
+            {/* Fondo translúcido */}
+            <div
+              className="absolute inset-0 bg-gray-200"
+              style={{ opacity: 0.3, zIndex: 0 }}
+              aria-hidden="true"
+            />
+            {/* Contenido encima */}
+            <div className="relative z-10 p-4">
+              <h3 className="text-(length:--text-menu) text-white">
+                Una propuesta <strong>estetica y habitable</strong>
+              </h3>
+            </div>
+          </Card>
+          <Card className="flex-1/2 w-full relative overflow-hidden">
+            {/* Fondo con opacidad */}
+            <div
+              className="absolute inset-0 bg-gray-200"
+              style={{ opacity: 0.3, zIndex: 0 }}
+              aria-hidden="true"
+            />
+            {/* Contenido encima */}
+            <div className="relative z-10 p-4">
+              <h3 className="text-(length:--text-menu)  text-white">
+                Cada imagen representa el equilibrio entre lo moderno y lo atemporal. Materialidades
+                nobles, iluminación cuidada y proporciones pensadas al detalle.
+              </h3>
+            </div>
+          </Card>
+        </div>
+      </div>
       {/*---------------------  Sector numero 3 */}
       <div className="flex flex-col min-d:flex-row items-stretch gap-[var(--generic-gap-tablet)] min-d:gap-[var(--generic-gap-desktop)] h-full">
         {/* Card principal - full width en mobile, flex-1 en desktop */}

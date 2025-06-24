@@ -159,6 +159,7 @@ const SectionBanner = () => {
         end: `+=${frameCount * 200 + 400 + 800}`, // Agregamos 800px más de scroll
         scrub: 1.2,
         pin: true,
+        markers: true,
         onUpdate: (self) => {
           // Ajustamos los porcentajes para que las animaciones terminen antes
           const imageAnimEndProgress = 0.5 // Las imágenes terminan al 50%
@@ -212,6 +213,9 @@ const SectionBanner = () => {
               visibility: 'visible'
             })
           }
+        },
+        onLeave: () => {
+          ScrollTrigger.refresh()
         }
       }
     })
@@ -283,7 +287,6 @@ const SectionBanner = () => {
                   Ver departamento
                 </Button>
                 <Button className={'w-80 justify-between'} icon={<FaBuilding />}>
-                  {' '}
                   VIsta general del edificio
                 </Button>
               </div>

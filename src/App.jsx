@@ -1,5 +1,9 @@
 import './App.css'
-import Header from './components/web-sections/home/header/Header'
+import NavBar from './components/ui-components-generics/navBar/NavBar'
+import SectionBanner from './components/web-sections/home/section-banner'
+import SectionFive from './components/web-sections/home/section-five'
+import SectionFooter from './components/web-sections/home/section-footer'
+import SectionFour from './components/web-sections/home/section-four'
 
 import SectionSeven from './components/web-sections/home/section-seven'
 import SectionSix from './components/web-sections/home/section-six'
@@ -8,10 +12,8 @@ import SectionTwo from './components/web-sections/home/section-two'
 function App() {
   return (
     <>
-      {/* Aca va un padding generico */}
-      <div className="container mx-auto px-4">
-        <Header />
-
+      <NavBar />
+      <div className="custom-container mx-auto px-4  ">
         <SectionBanner />
         <SectionTwo />
         <SectionThree />
@@ -20,6 +22,7 @@ function App() {
         <SectionSix />
         <SectionSeven />
       </div>
+      <SectionFooter />
     </>
   )
 }

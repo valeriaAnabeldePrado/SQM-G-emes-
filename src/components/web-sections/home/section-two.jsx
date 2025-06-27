@@ -59,7 +59,7 @@ export default function SectionTwo() {
             <h2 className="text-(length:--text-title-huge) font-[var(--font-weight-bold)] leading-none text-[var(--color-one)]">
               46
             </h2>
-            <div className="min-d:items-start w-full items-center justify-center align-middle flex flex-col">
+            <div className="min-d:items-start text-[var(--color-three)] text-body w-full items-center justify-center align-middle flex flex-col">
               <p>Unidades</p>
               <p>Disponibles</p>
             </div>
@@ -69,7 +69,7 @@ export default function SectionTwo() {
             hasGradient
           >
             <div className="flex-1/2 items-center justify-center align-middle flex"></div>
-            <div>
+            <div className="text-[var(--color-three)] text-body">
               <p>Bloque</p>
               <p>Coorporativo</p>
               <p>Comercial</p>
@@ -79,7 +79,7 @@ export default function SectionTwo() {
         <section className="basis-1/2">
           <Card className="animated-card w-full bg-[var(--color-two)] flex-col">
             <div className="flex-1/2"></div>
-            <div>
+            <div className="text-[var(--color-three)] pt-16">
               <p>Ubicado en</p>
               <h2 className="font-[var(--font-weight-bold)] text-(length:--text-menu)">
                 Av. Pueyrredón 387
@@ -97,9 +97,11 @@ export default function SectionTwo() {
         >
           <div className="flex-1"></div>
           <div>
-            <p>
+            <p className="text-body text-[var(--color-three)]">
               En SQM Güemes, convergen estilo, funcionalidad y ubicación. Un proyecto moderno que
-              redefine la forma de habitar y trabajar...
+              redefine la forma de habitar y trabajar, integrando un bloque residencial con unidades
+              de 1 y 2 dormitorios, microviviendas y dúplex, más un bloque corporativo ideal para
+              oficinas y locales comerciales.
             </p>
           </div>
         </Card>

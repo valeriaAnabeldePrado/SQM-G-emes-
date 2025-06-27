@@ -11,48 +11,19 @@ const NavBar = () => {
 
   const routes = [
     { id: 1, name: 'Home', path: '/' },
-    {
-      id: 2,
-      name: (
-        <Menu as="div" className="relative inline-block text-left">
-          <MenuButton className="flex items-center gap-x-2 cursor-pointer outline-none focus:outline-none hover:text-[var(--color-one)] transition-colors">
-            <span className="pb-1 ">Inmersivo</span>
-            <MdKeyboardArrowDown />
-          </MenuButton>
-          <MenuItems className="absolute z-10 mt-2 w-64 origin-top-right rounded-md bg-white shadow-lg ring-1 ring-black/5 focus:outline-none">
-            <div className="py-1">
-              <MenuItem>
-                <a
-                  href="/inmersive-apartament"
-                  className="block px-4 py-2 font-normal text-menu-sub text-[var(--color-three)] hover:bg-[var(--color-beige-int)]"
-                >
-                  Explora el departamento
-                </a>
-              </MenuItem>
-              <MenuItem>
-                <a
-                  href="/inmersive-build"
-                  className="block px-4 py-2 font-normal text-menu-sub text-[var(--color-three)] hover:bg-[var(--color-beige-int)]"
-                >
-                  Explora el edificio
-                </a>
-              </MenuItem>
-            </div>
-          </MenuItems>
-        </Menu>
-      )
-    },
+    { id: 2, name: 'Edificio', path: '/inmersive-apartament' },
+    { id: 3, name: 'Departamento', path: '/inmersive-build' },
     { id: 3, name: 'Galería', path: '#gallery' },
     { id: 4, name: 'Contacto', path: '#contact' }
   ]
 
   return (
-    <div className="fixed w-full h-[130px] flex items-center justify-center pt-10 z-50">
+    <div className="fixed custom-container w-full h-[130px] flex items-center justify-center  z-50 top-7 px-20">
       <nav
-        className="container mx-4 px-4  flex items-center justify-between rounded-full backdrop-blur-lg "
+        className="w-full px-4  flex items-center justify-between rounded-full backdrop-blur-lg "
         style={{
           border: '2px solid var(--color-border)',
-          background: 'var(--gradient-card)',
+          background: 'var(--gradient-alt)',
           padding: '2rem 4.5rem',
           height: '130px'
         }}

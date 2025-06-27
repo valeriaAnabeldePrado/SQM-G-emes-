@@ -1,10 +1,10 @@
 import { useEffect, useRef, useState } from 'react'
 import { gsap } from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
-import './canvas.css' // Make sure this CSS is loaded for any global styles
+import './canvas.css'
 import Button from './components/button'
-import { FaBuilding } from 'react-icons/fa'
-import { BsBox } from 'react-icons/bs'
+import { RiBuilding2Line } from 'react-icons/ri'
+import { FiBox } from 'react-icons/fi'
 
 gsap.registerPlugin(ScrollTrigger)
 
@@ -156,7 +156,7 @@ const SectionBanner = () => {
         trigger: containerRef.current,
         start: 'top top',
         // Incrementamos el end para incluir más scroll después de las animaciones
-        end: `+=${frameCount * 200 + 400 + 800}`, // Agregamos 800px más de scroll
+        end: `+=${frameCount * 100 + 400 + 800}`, // Agregamos 800px más de scroll
         scrub: 1.2,
         pin: true,
         markers: true,
@@ -246,14 +246,14 @@ const SectionBanner = () => {
     <>
       <div
         ref={containerRef}
-        className="overflow-hidden relative flex"
+        className="overflow-hidden relative flex mt-24"
         style={{ width: '100%', height: '100vh' }}
       >
         <canvas
           ref={canvasRef}
           style={{
             display: 'block',
-            zIndex: 1, // Canvas is always at z-index 1
+            zIndex: 1,
             position: 'absolute',
             top: 0,
             left: 0,
@@ -263,30 +263,26 @@ const SectionBanner = () => {
 
         <div
           ref={contentRef}
-          className="inset-0 flex items-center justify-end w-full"
+          className="inset-0 flex items-center justify-end w-full "
           style={{
             pointerEvents: 'auto'
           }}
         >
-          {/* Adjusted max-width to allow more space, added padding */}
-          <div className="max-w-[600px] w-full  p-6 rounded-4xl relative overflow-hidden">
-            {/* Contenido encima */}
-            <div className="relative z-10 text-[var(--color-one)]">
+          <div className="max-w-[720px] w-auto min-d:mt-45  relative overflow-hidden ">
+            <div className="relative z-10 text-[var(--color-three)] flex flex-col">
               <h1 className="text-(length:--text-title-huge) font-bold  leading-none ">SQM</h1>
-              <h1 className="text-(length:--text-title-huge) font-bold text-gray-800 leading-none ">
-                GÜEMES
-              </h1>
-              <p className=" text-gray-700 mb-8">
+              <h1 className="text-(length:--text-title-huge) font-bold  leading-none ">GÜEMES</h1>
+              <p className=" text-gray-700 mb-8 mt-5 max-w-[80%] text-body">
                 Un proyecto que combina diseño contemporáneo, calidad constructiva y ubicación
                 estratégica
               </p>
               {/* Botones */}
-              <div className="space-y-4">
-                <Button className={'w-80 justify-between'} icon={<BsBox />}>
+              <div className="space-y-4 self-end">
+                <Button className={'w-90 justify-between'} icon={<FiBox size={23} />}>
                   {' '}
                   Ver departamento
                 </Button>
-                <Button className={'w-80 justify-between'} icon={<FaBuilding />}>
+                <Button className={'w-90 justify-between'} icon={<RiBuilding2Line size={23} />}>
                   VIsta general del edificio
                 </Button>
               </div>
@@ -294,8 +290,6 @@ const SectionBanner = () => {
           </div>
         </div>
       </div>
-
-      {/* Sección buffer invisible para scroll adicional */}
     </>
   )
 }

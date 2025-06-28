@@ -35,8 +35,8 @@ export default function SectionSeven() {
             </div>
             <div className="min-d:block hidden flex-grow-0 flex-shrink-0 basis-1/3 w-full"></div>
             <div className="flex-1 w-full">
-              <h3 className="text-white min-note:text-body text-button">Experiencia</h3>
-              <h3 className="text-white min-note:text-body text-button">Inmersiva del edificio</h3>
+              <h3 className="text-white  min-note:text-body text-menu">Experiencia</h3>
+              <h3 className="text-white   min-note:text-body text-menu">Inmersiva del edificio</h3>
             </div>
           </Card>
         </section>
@@ -49,8 +49,8 @@ export default function SectionSeven() {
             </div>
             <div className="flex-grow-0 flex-shrink-0 basis-1/3 w-full"></div>
             <div className="flex-1 w-full">
-              <h3 className="text-white min-note:text-body text-button">Visita Nuestro</h3>
-              <h3 className="text-white min-note:text-body text-button">departamento modelo</h3>
+              <h3 className="text-white min-note:text-body text-menu">Visita Nuestro</h3>
+              <h3 className="text-white min-note:text-body text-menu">departamento modelo</h3>
             </div>
           </Card>
         </section>

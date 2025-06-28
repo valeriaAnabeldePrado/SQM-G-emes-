@@ -232,7 +232,6 @@ const SectionBanner = () => {
     }
   }, [imagesLoaded, images, frameCount])
 
-  // Cleanup on component unmount
   useEffect(() => {
     return () => {
       ScrollTrigger.getAll().forEach((trigger) => trigger.kill())
@@ -251,6 +250,7 @@ const SectionBanner = () => {
       >
         <canvas
           ref={canvasRef}
+          className="min-d: block"
           style={{
             display: 'block',
             zIndex: 1,

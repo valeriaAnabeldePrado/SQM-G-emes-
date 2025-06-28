@@ -8,10 +8,12 @@ export const CardArrow = ({
   isRed = false
 }) => {
   const baseClasses = `
-    rounded-[var(--border-radius-tablet)] 
-    min-d:rounded-[var(--border-radius-desktop)] 
-     p-[var(--padding-cards)]
-    transition-all duration-300 relative group
+   rounded-[var(--border-radius-phone)] 
+   min-d:rounded-[var(--border-radius-tablet)]
+   min-extra:rounded-[var(--border-radius-note)]
+   min-note:rounded-[var(--border-radius-desktop)] 
+   p-[var(--padding-cards)]
+   transition-all duration-300 relative group
   `
 
   const gradientStyle = hasGradient

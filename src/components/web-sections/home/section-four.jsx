@@ -37,7 +37,7 @@ const SectionFour = () => {
   return (
     <div className="py-[var(--pading-y)]">
       <div>
-        <h3 className="text-(length:--text-subtitle) leading-20 text-[var(--color-three)]">
+        <h3 className="text-(length:--text-subtitle) min-node:leading-20 text-[var(--color-three)]">
           Detalles que definen{' '}
           <span className="inline-block font-bold rounded-full text-(lenght:--color-one)">
             la calidad

@@ -10,10 +10,8 @@ export default function SectionTwo() {
   const sectionRef = useRef(null)
 
   useEffect(() => {
-    // Pequeño delay para que el DOM esté completamente listo
     const timer = setTimeout(() => {
       const ctx = gsap.context(() => {
-        // Inicializar las cards como ocultas
         gsap.set('.animated-card', {
           opacity: 0,
           y: 50
@@ -49,10 +47,8 @@ export default function SectionTwo() {
     <div
       ref={sectionRef}
       className="flex flex-col min-d:flex-row items-stretch gap-[var(--generic-gap-tablet)] min-d:gap-[var(--generic-gap-desktop)] py-[var(--pading-y)]"
-      // Agregamos un ID único para mejor identificación
       id="section-two"
     >
-      {/* Container de las 3 cards pequeñas */}
       <div className="w-full flex gap-[var(--generic-gap-tablet)] min-d:gap-[var(--generic-gap-desktop)] flex-col basis-1/2">
         <section className="flex md:flex-row gap-[var(--generic-gap-tablet)] min-d:gap-[var(--generic-gap-desktop)] sm:flex-row basis-1/2">
           <Card className="animated-card flex-1 flex-col" hasGradient>

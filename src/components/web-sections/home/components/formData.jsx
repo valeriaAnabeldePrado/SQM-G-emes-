@@ -61,8 +61,8 @@ const ContactForm = () => {
         className="bg-transparent border-b-2 border-[var(--color-three)] outline-none placeholder-[var(--color-three)] text-p font-medium py-2 resize-none"
         rows={3}
       ></textarea>
-      <Button type="submit" className={'mt-4 min-note:mt-10'}>
-        Enviar formulario
+      <Button type="submit" className={'mt-4 min-note:mt-10 '}>
+        <p className="m-auto">Enviar formulario</p>
       </Button>
     </form>
   )

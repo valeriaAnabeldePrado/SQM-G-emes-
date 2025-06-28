@@ -10,7 +10,7 @@ const SectionFooter = () => {
     <footer className="bg-[var(--color-three)] w-full">
       <div className="flex flex-col min-d:flex-row  items-stretch  gap-[var(--generic-gap-tablet)] min-d:gap-[var(--generic-gap-desktop)] py-[var(--pading-y)] min-d:h-[100vh] custom-container mx-auto px-4">
         {/* Container de las dos cards pequeñas */}
-        <div className="w-full min-d:flex-1 min-d:mt-28 min-note:h-[90%] h-full flex flex-col gap-[var(--generic-gap-tablet)] min-d:gap-[var(--generic-gap-desktop)] ">
+        <div className="w-full  min-d:flex-1 mt-0 min-note:mt-28 min-note:h-[90%] h-full flex flex-col gap-[var(--generic-gap-tablet)] min-d:gap-[var(--generic-gap-desktop)] ">
           {/* Primera card pequeña */}
           <section className="flex  h-[30%] gap-[var(--generic-gap-tablet)] min-d:gap-[var(--generic-gap-desktop)] min-d:flex-1">
             <Card hasGradient className="w-full min-d:flex-1flex flex-col">
@@ -55,8 +55,8 @@ const SectionFooter = () => {
             </Card>
           </section>
         </div>
-        <div className="w-full min-d:flex-1 flex min-d:mt-28 h-[90%] flex-col gap-[var(--generic-gap-tablet)] min-d:gap-[var(--generic-gap-desktop)]">
-          <Card className="w-full bg-[var(--color-two)] flex-col min-d:h-full ">
+        <div className="w-full min-d:flex-1 flex mt-0 min-note:mt-28 h-[90%] flex-col gap-[var(--generic-gap-tablet)] min-d:gap-[var(--generic-gap-desktop)]">
+          <Card className="w-full bg-[var(--color-two)] flex-col min-note:h-full ">
             <div>
               <h3 className="text-[var(--color-three)] min-note:text-body text-button">
                 Estamos a disposición para responder tus preguntas, contarte más sobre el proceso y

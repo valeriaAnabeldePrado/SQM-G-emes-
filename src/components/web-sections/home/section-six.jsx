@@ -41,7 +41,7 @@ export default function SectionSix() {
       >
         <div className="flex-1"></div>
         <div className="flex-1 flex items-center justify-center gap-[var(--generic-gap-tablet)] min-d:gap-[var(--generic-gap-desktop)] md:flex-col h-full">
-          <Card className="flex-1 w-full relative overflow-hidden">
+          <Card className="flex-1 w-full relative flex justify-start items-start overflow-hidden">
             <div
               className="absolute inset-0 bg-[var(--color-three)]"
               style={{ zIndex: 0 }}
@@ -49,7 +49,7 @@ export default function SectionSix() {
             />
             {/* Contenido encima */}
             <div className="relative z-10 p-4">
-              <h3 className="text-(length:--text-subtitleS) text-white">
+              <h3 className="min-note:(length:--text-subtitleS) text-button text-white">
                 Una propuesta <strong>estetica y habitable</strong>
               </h3>
             </div>

@@ -51,7 +51,10 @@
 
   /*Breakpoints*/
   --breakpoint-d: 1024px;
+  --breakpoint-extra: 1150px;
   --breakpoint-note: 1550px;
+  /*Solo banner*/
+  --breakpoint-bannerT: 1500px;
   /* Atencion!, este es un breakpoint: min-tablet:max-w-[numero] max-tablet:max-w-[nuemro] */
 }
 body {

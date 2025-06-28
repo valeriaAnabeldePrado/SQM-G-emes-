@@ -27,7 +27,7 @@ const ContactForm = () => {
   return (
     <form
       onSubmit={handleSubmit}
-      className="w-full  mx-auto min-note:pt-10 pt-4 flex flex-col gap-4 rounded"
+      className="w-full  mx-auto min-note:pt-10 pt-4 flex flex-col gap-2 min-note:gap-4 rounded"
     >
       <input
         type="text"

@@ -25,22 +25,18 @@ const cardsData = [
 ]
 export default function SectionSix() {
   return (
-    <div className="flex  items-stretch gap-[var(--generic-gap-tablet)] min-d:gap-[var(--generic-gap-desktop)] py-[var(--pading-y)] min-d:flex-col">
+    <div className="flex flex-col  items-stretch gap-[var(--generic-gap-tablet)] min-d:gap-[var(--generic-gap-desktop)] py-[var(--pading-y)] min-d:flex-col">
       <div className="relative w-full h-screen ">
         <img
           src={imageBanner}
           alt="bannerRender"
-          className="absolute top-0 left-0 w-full object-cover h-full rounded-[var(--border-radius-tablet)] 
-                min-d:rounded-[var(--border-radius-desktop)]"
+          className="absolute top-0 left-0 w-full object-cover h-full rounded-[var(--border-radius-phone)] min-d:rounded-[var(--border-radius-tablet)] min-extra:rounded-[var(--border-radius-note)] min-note:rounded-[var(--border-radius-desktop)]"
         />
       </div>
 
-      <div
-        className="h-screen rounded-[var(--border-radius-tablet)] 
-                min-d:rounded-[var(--border-radius-desktop)] p-[var(--padding-cards)] bg-[url('/src/assets/section-six/depto-main.png')] flex justify-center gap-[var(--generic-gap-tablet)] min-d:gap-[var(--generic-gap-desktop)] w-full bg-cover"
-      >
+      <div className="h-screen rounded-[var(--border-radius-phone)] min-d:rounded-[var(--border-radius-tablet)] min-extra:rounded-[var(--border-radius-note)] min-note:rounded-[var(--border-radius-desktop)] p-[var(--padding-cards)] bg-[url('/src/assets/section-six/depto-main.png')] flex justify-center gap-[var(--generic-gap-tablet)] min-d:gap-[var(--generic-gap-desktop)] w-full bg-cover">
         <div className="flex-1"></div>
-        <div className="flex-1 flex items-center justify-center gap-[var(--generic-gap-tablet)] min-d:gap-[var(--generic-gap-desktop)] md:flex-col h-full">
+        <div className="min-d:flex-1 h-[65%] flex flex-col items-center justify-center gap-[var(--generic-gap-tablet)] min-d:gap-[var(--generic-gap-desktop)] md:flex-col min-d:h-full">
           <Card className="flex-1 w-full relative flex justify-start items-start overflow-hidden">
             <div
               className="absolute inset-0 bg-[var(--color-three)]"
@@ -49,7 +45,7 @@ export default function SectionSix() {
             />
             {/* Contenido encima */}
             <div className="relative z-10 p-4">
-              <h3 className="min-note:(length:--text-subtitleS) text-button text-white">
+              <h3 className="text-(length:--text-menu) text-white">
                 Una propuesta <strong>estetica y habitable</strong>
               </h3>
             </div>
@@ -79,8 +75,7 @@ export default function SectionSix() {
             <img
               src={imageBanner}
               alt="bannerRender"
-              className="absolute top-0 left-0 w-full object-cover h-full rounded-[var(--border-radius-tablet)] 
-                min-d:rounded-[var(--border-radius-desktop)]"
+              className="absolute top-0 left-0 w-full object-cover h-full rounded-[var(--border-radius-phone)] min-d:rounded-[var(--border-radius-tablet)] min-extra:rounded-[var(--border-radius-note)] min-note:rounded-[var(--border-radius-desktop)]"
             />
           </div>
         </div>
@@ -93,8 +88,7 @@ export default function SectionSix() {
               <img
                 src={imageBanner}
                 alt="bannerRender"
-                className="absolute top-0 left-0 w-full object-cover h-full rounded-[var(--border-radius-tablet)] 
-                min-d:rounded-[var(--border-radius-desktop)]"
+                className="absolute top-0 left-0 w-full object-cover h-full rounded-[var(--border-radius-phone)] min-d:rounded-[var(--border-radius-tablet)] min-extra:rounded-[var(--border-radius-note)] min-note:rounded-[var(--border-radius-desktop)]"
               />
             </div>
           </section>

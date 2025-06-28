@@ -18,14 +18,12 @@ const NavBar = () => {
   ]
 
   return (
-    <div className="fixed custom-container w-full h-[130px] flex items-center justify-center  z-50 top-7 px-20">
+    <div className="fixed custom-container w-full min-d:h-[130px]  flex items-center justify-center  z-50 top-4 px-20">
       <nav
-        className="w-full px-4  flex items-center justify-between rounded-full backdrop-blur-lg "
+        className="w-full px-10 min-d:py-[3rem] py-[2rem] min-d:h-[100px] h-[90px] flex items-center  justify-between rounded-full backdrop-blur-lg "
         style={{
           border: '2px solid var(--color-border)',
-          background: 'var(--gradient-alt)',
-          padding: '2rem 4.5rem',
-          height: '130px'
+          background: 'var(--gradient-alt)'
         }}
       >
         <div className="flex items-center justify-between  h-16 w-full">

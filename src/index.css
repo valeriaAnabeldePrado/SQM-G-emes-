@@ -32,18 +32,20 @@
   --text-body: clamp(1.2rem, 3vw, 2rem);
   --text-p: clamp(1.2rem, 2vw, 1rem);
   --text-subtitle: clamp(2rem, 4vw, 4rem);
-  --text-subtitleS: clamp(1.2rem, 3vw, 2.5rem);
+  --text-subtitleS: clamp(1.5rem, 3vw, 2.5rem);
 
   /* Body variables */
   /* se deja como container de tailwind */
   /* --padding-body: clamp(1.2rem, 4vw, 9.375rem); */
   --pading-y: clamp(1.2rem, 4vw, 9.375rem);
   --padding-cards: clamp(1.2rem, 3vw, 9.375rem);
+  --padding-cards-small: clamp(1.2rem, 3vw, 4rem);
 
   /*Border radius*/
   --border-radius-desktop: 60px;
-  --border-radius-tablet: 30px;
-  --border-radius-phone: 15px;
+  --border-radius-note: 50px;
+  --border-radius-tablet: 35px;
+  --border-radius-phone: 25px;
 
   /*Gaps*/
   --generic-gap-desktop: 28px;
@@ -62,11 +64,11 @@ body {
     width: 100%;
     margin-left: auto;
     margin-right: auto;
-    padding-left: 14px;
-    padding-right: 14px;
+    padding-left: 20px;
+    padding-right: 20px;
   }
 
-  @media (min-width: 640px) {
+  @media (min-width: 540px) {
     .custom-container {
       padding-left: 32px;
       padding-right: 32px;

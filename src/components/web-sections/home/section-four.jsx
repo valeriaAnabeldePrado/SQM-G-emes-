@@ -1,15 +1,17 @@
 import React from 'react'
 import { CardArrow } from './components/card-arrow'
-import bano from '/src/assets/section-four/bano.png'
-import pisos from '/src/assets/section-four/pisos.png'
+import bano from '/src/assets/characteristics/bano.png'
+import pisos from '/src/assets/characteristics/pisos.png'
+import balcony from '/src/assets/characteristics/balcony.png'
+import details from '/src/assets/characteristics/details.png'
 
 const cardsData = [
   {
-    img: bano,
-    alt: 'bano',
-    title: 'Baños listos para usar',
+    img: details,
+    alt: 'details',
+    title: 'Eficiencia térmica inteligente',
     description:
-      'Baños totalmente equipados con vanitory, griferías de cierre cerámico y platos de ducha modernos.'
+      ' Cerramientos exteriores con muro doble que mejoran el aislamiento térmico: ladrillo Corblock "Ceniza" al exterior y tabique cerámico interior con terminación en yeso proyectado.'
   },
   {
     img: pisos,
@@ -26,11 +28,11 @@ const cardsData = [
       'Baños totalmente equipados con vanitory, griferías de cierre cerámico y platos de ducha modernos.'
   },
   {
-    img: bano,
-    alt: 'bano',
-    title: 'Baños listos para usar',
+    img: balcony,
+    alt: 'balcony',
+    title: 'Detalles que generan valor',
     description:
-      'Baños totalmente equipados con vanitory, griferías de cierre cerámico y platos de ducha modernos.'
+      'Balcones terminados en hormigón visto con placas laminadas para un acabado elegante.'
   }
 ]
 const SectionFour = () => {
@@ -53,7 +55,7 @@ const SectionFour = () => {
         {cardsData.map(({ img, alt, title, description }, index) => (
           <CardArrow
             key={index}
-            className="flex-1 min-w-0 overflow-hidden transition-all duration-300 min-d:hover:flex-[3] flex flex-col h-[650px] relative"
+            className=" flex-1 min-w-0 overflow-hidden transition-all duration-300 min-d:hover:flex-[3] flex flex-col min-d:h-[650px]  relative"
           >
             <img
               src={img}
@@ -61,6 +63,7 @@ const SectionFour = () => {
               className="absolute inset-0 object-cover min-d:scale-105 min-d:group-hover:scale-125 min-d:transition-transform min-d:duration-100 min-d:ease-in-out w-full h-full z-0"
               style={{ pointerEvents: 'none', objectPosition: 'center' }}
             />
+            <div className="min-d:hidden h-[45vh]"></div>
             <div className="opacity-100 min-d:opacity-0 min-d:group-hover:opacity-100 min-d:group-hover:delay-300 min-d:group-hover:transition-opacity min-d:group-hover:duration-100 min-d:transition-opacity min-d:duration-75 z-10 flex flex-col h-full justify-end gap-[var(--generic-gap-tablet)] min-d:gap-[var(--generic-gap-desktop)] p-4">
               <div>
                 <h3 className=" text-white text-subtitleS">{title}</h3>

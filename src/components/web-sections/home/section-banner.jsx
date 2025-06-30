@@ -159,7 +159,7 @@ const SectionBanner = () => {
         end: `+=${frameCount * 100 + 400 + 800}`, // Agregamos 800px más de scroll
         scrub: 1.2,
         pin: true,
-        markers: true,
+        markers: false,
         onUpdate: (self) => {
           // Ajustamos los porcentajes para que las animaciones terminen antes
           const imageAnimEndProgress = 0.5 // Las imágenes terminan al 50%

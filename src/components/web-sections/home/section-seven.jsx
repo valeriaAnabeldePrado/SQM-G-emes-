@@ -26,7 +26,7 @@ export default function SectionSeven() {
       </div>
 
       {/* Container de las dos cards pequeñas */}
-      <div className="w-full min-d:flex-1 flex flex-col gap-[var(--generic-gap-tablet)] min-d:gap-[var(--generic-gap-desktop)] ">
+      <div className="w-full min-d:flex min-d:flex-1 min-d:flex-col hidden gap-[var(--generic-gap-tablet)] min-d:gap-[var(--generic-gap-desktop)] ">
         {/* Primera card pequeña */}
         <section className="flex  gap-[var(--generic-gap-tablet)] min-d:gap-[var(--generic-gap-desktop)] min-d:flex-1">
           <Card className="w-full min-d:flex-1 bg-[var(--color-one)] flex flex-col ">

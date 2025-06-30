@@ -23,8 +23,9 @@ export default function SectionTwo() {
             trigger: sectionRef.current,
             start: 'top 80%',
             end: 'top 50%',
+            scrub: 2,
             toggleActions: 'play none none reverse',
-            markers: true,
+            markers: false,
             onToggle: (self) => {
               console.log('SectionTwo trigger:', self.isActive)
             }
@@ -72,7 +73,7 @@ export default function SectionTwo() {
             </div>
           </Card>
         </section>
-        <section className="basis-1/2">
+        <section id="location" className="basis-1/2">
           <Card className="animated-card w-full bg-[var(--color-two)] flex-col">
             <div className="flex-1/2"></div>
             <div className="text-[var(--color-three)] pt-16">

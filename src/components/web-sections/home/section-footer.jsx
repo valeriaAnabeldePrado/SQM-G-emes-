@@ -57,7 +57,10 @@ const SectionFooter = () => {
             </Card>
           </section>
         </div>
-        <div className="w-full min-d:flex-1 flex mt-0 min-note:mt-28 min-note:h-[90%] h-full flex-col gap-[var(--generic-gap-tablet)] min-d:gap-[var(--generic-gap-desktop)]">
+        <div
+          id="contact"
+          className="w-full min-d:flex-1 flex mt-0 min-note:mt-28 min-note:h-[90%] h-full flex-col gap-[var(--generic-gap-tablet)] min-d:gap-[var(--generic-gap-desktop)]"
+        >
           <Card className="w-full bg-[var(--color-two)] flex-col h-full ">
             <div>
               <h3 className="text-[var(--color-three)] min-note:text-body min-d:text-button text-menu">

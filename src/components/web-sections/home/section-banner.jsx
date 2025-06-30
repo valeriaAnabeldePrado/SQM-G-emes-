@@ -32,7 +32,7 @@ const SectionBanner = () => {
           img.onerror = reject
         })
 
-        img.src = `/src/assets/banner/${String(i).padStart(4, '0')}.png`
+        img.src = `/banner/${String(i).padStart(4, '0')}.png`
         imgArray.push(img)
         loadPromises.push(loadPromise)
       }

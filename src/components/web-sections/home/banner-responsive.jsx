@@ -30,11 +30,11 @@ const BannerResponsive = () => {
         className="absolute bottom-0 left-0 h-[95%] object-cover z-0"
       />
 
-      <Card className="containerAnimationOne animationPhone min-[450px]:bg-transparent bg-[var(--color-two)] flex flex-col justify-end items-end absolute z-10 right-3 px-6 pb-4 text-[var(--color-three)] w-[350px] min-[450px]:w-[400px] backdrop-blur-2xl">
-        <h1 className="min-[450px]:text-[5.5rem] text-7xl font-bold leading-none text-end self-end">
+      <Card className="containerAnimationOne animationPhone min-[450px]:bg-transparent bg-[var(--color-two)] flex flex-col justify-end mr-4 items-end absolute z-10 right-0 px-6 pb-4 text-[var(--color-three)] w-[300px] min-[450px]:w-[400px] backdrop-blur-2xl">
+        <h1 className="min-[450px]:text-[5.5rem] text-6xl font-bold leading-none text-end self-end">
           SQM
         </h1>
-        <h1 className="min-[450px]:text-[5.5rem] text-7xl font-bold leading-none text-end">
+        <h1 className="min-[450px]:text-[5.5rem] text-6xl font-bold leading-none text-end self-end">
           GÜEMES
         </h1>
 

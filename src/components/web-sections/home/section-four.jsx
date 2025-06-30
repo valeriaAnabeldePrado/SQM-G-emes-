@@ -1,36 +1,33 @@
-import React, { useRef, useEffect } from 'react'
+import React, { useRef } from 'react'
 import { CardArrow } from './components/card-arrow'
-import bano from '/src/assets/characteristics/bano.png'
-import pisos from '/src/assets/characteristics/pisos.png'
-import balcony from '/src/assets/characteristics/balcony.png'
-import details from '/src/assets/characteristics/details.png'
 import gsap from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
+import { useGSAP } from '@gsap/react'
 
 const cardsData = [
   {
-    img: details,
+    img: '/characteristics/details.png',
     alt: 'details',
     title: 'Eficiencia térmica inteligente',
     description:
       ' Cerramientos exteriores con muro doble que mejoran el aislamiento térmico: ladrillo Corblock "Ceniza" al exterior y tabique cerámico interior con terminación en yeso proyectado.'
   },
   {
-    img: pisos,
+    img: '/characteristics/pisos.png',
     alt: 'pisos',
     title: 'Pisos vinílicos flotantes',
     description:
       'En interiores de departamentos y oficinas, piso vinílico flotante tono roble arenado, que aporta calidez, confort y una estética moderna y acogedora.'
   },
   {
-    img: bano,
+    img: '/characteristics/bano.png',
     alt: 'bano',
     title: 'Baños listos para usar',
     description:
       'Baños totalmente equipados con vanitory, griferías de cierre cerámico y platos de ducha modernos.'
   },
   {
-    img: balcony,
+    img: '/characteristics/balcony.png',
     alt: 'balcony',
     title: 'Detalles que generan valor',
     description:
@@ -43,57 +40,186 @@ gsap.registerPlugin(ScrollTrigger)
 const SectionFour = () => {
   const sectionRef = useRef(null)
 
-  useEffect(() => {
-    const ctx = gsap.context(() => {
-      gsap.set('.section-four-title span', { opacity: 0, y: 20 })
-      gsap.set('.section-four-card', { opacity: 0, x: 100 })
+  const wrapWords = (element) => {
+    const originalText = element.textContent
+    element.textContent = ''
 
+    const words = originalText.split(/(\s+)/).map((word) => {
+      const span = document.createElement('span')
+      span.textContent = word
+      span.style.display = word.trim() === '' ? 'inline' : 'inline-block'
+      span.style.opacity = word.trim() === '' ? '1' : '0'
+      span.style.transform = word.trim() === '' ? 'none' : 'translateY(20px)'
+      element.appendChild(span)
+      return span
+    })
+
+    return words
+  }
+
+  useGSAP(
+    () => {
       const title = sectionRef.current.querySelector('.section-four-title')
-      const originalText = title.textContent
-      title.textContent = ''
+      const cards = sectionRef.current.querySelectorAll('.section-four-card')
+      const words = wrapWords(title)
 
-      const words = originalText.split(/(\s+)/).map((word) => {
-        const span = document.createElement('span')
-        span.textContent = word
-        span.style.display = word.trim() === '' ? 'inline' : 'inline-block'
-        span.style.opacity = word.trim() === '' ? '1' : '0'
-        span.style.transform = word.trim() === '' ? 'none' : 'translateY(20px)'
-        title.appendChild(span)
-        return span
+      console.log('Section Four - Words found:', words.length)
+      console.log('Section Four - Cards found:', cards.length)
+
+      // Create matchMedia instance
+      let mm = gsap.matchMedia()
+
+      // Desktop
+      mm.add('(min-width: 1024px)', () => {
+        gsap.set(cards, { opacity: 0, x: 100 })
+
+        gsap
+          .timeline({
+            scrollTrigger: {
+              trigger: sectionRef.current,
+              start: 'top bottom',
+              end: 'center center',
+              scrub: 1,
+              markers: false,
+              id: 'section-four-desktop',
+              refreshPriority: -1,
+              onToggle: (self) => {
+                console.log('Section Four Desktop trigger toggle:', self.isActive)
+              }
+            }
+          })
+          .to(words, {
+            opacity: 1,
+            y: 0,
+            stagger: 0.01,
+            duration: 0.5,
+            ease: 'power2.out'
+          })
+          .to(
+            cards,
+            {
+              opacity: 1,
+              x: 0,
+              duration: 0.8,
+              stagger: 0.1,
+              ease: 'power3.out'
+            },
+            '-=0.3'
+          )
+
+        return () => {
+          // Cleanup específico para desktop si es necesario
+        }
       })
 
-      gsap
-        .timeline({
-          scrollTrigger: {
-            trigger: sectionRef.current,
-            start: 'top center',
-            scrub: 1,
-            end: '50% 80%',
-            markers: true
+      // Mobile/Tablet
+      mm.add('(max-width: 1023px)', () => {
+        gsap.set(cards, {
+          opacity: 0,
+          y: 60,
+          scale: 0.85,
+          rotationX: 15,
+          transformOrigin: 'center bottom'
+        })
+
+        // Estado inicial para las imágenes en mobile
+        cards.forEach((card) => {
+          const img = card.querySelector('img')
+          if (img) {
+            gsap.set(img, {
+              scale: 1.2,
+              filter: 'blur(3px)'
+            })
           }
         })
-        .to(words, {
-          opacity: 1,
-          y: 0,
-          stagger: 0.05,
-          duration: 0.5,
-          ease: 'power2.out'
-        })
-        .to(
-          '.section-four-card',
-          {
-            opacity: 1,
-            x: 0,
-            duration: 0.8,
-            stagger: 0.2,
-            ease: 'power3.out'
-          },
-          '+=0.3'
-        )
-    }, sectionRef)
 
-    return () => ctx.revert()
-  }, [])
+        // Timeline principal para el título
+        gsap
+          .timeline({
+            scrollTrigger: {
+              trigger: sectionRef.current,
+              start: '2% center',
+              end: '7% center',
+              scrub: 1,
+              markers: true,
+              id: 'section-four-mobile-title',
+              refreshPriority: -1,
+              onToggle: (self) => {
+                console.log('Section Four Mobile Title trigger toggle:', self.isActive)
+              }
+            }
+          })
+          .to(words, {
+            opacity: 1,
+            y: 0,
+            stagger: 0.01,
+            duration: 0.5,
+            ease: 'power2.out'
+          })
+
+        // Timeline progresivo para cada card individual
+        cards.forEach((card, index) => {
+          gsap
+            .timeline({
+              scrollTrigger: {
+                trigger: card,
+                start: 'top 60%',
+                end: 'top 80%',
+                scrub: 1.5,
+                markers: false,
+                id: `section-four-mobile-card-${index}`,
+                refreshPriority: -1,
+                onToggle: (self) => {
+                  console.log(`Section Four Mobile Card ${index} trigger toggle:`, self.isActive)
+                }
+              }
+            })
+            .fromTo(
+              card,
+              {
+                opacity: 0,
+                y: 60,
+                scale: 0.85,
+                rotationX: 15,
+                transformOrigin: 'center bottom'
+              },
+              {
+                opacity: 1,
+                y: 0,
+                scale: 1,
+                rotationX: 0,
+                duration: 1,
+                ease: 'bounce'
+              }
+            )
+            .fromTo(
+              card.querySelector('img'),
+              {
+                scale: 1.2,
+                filter: 'blur(3px)'
+              },
+              {
+                scale: 1,
+                filter: 'blur(0px)',
+                duration: 0.8,
+                ease: 'bounce'
+              },
+              '-=0.7'
+            )
+        })
+
+        return () => {
+          // Cleanup específico para mobile si es necesario
+        }
+      })
+
+      // Cleanup function que se ejecuta cuando el componente se desmonta
+      return () => {
+        mm.revert()
+      }
+    },
+    { scope: sectionRef, revertOnUpdate: true }
+  )
 
   return (
     <div id="characte" ref={sectionRef} className="py-[var(--pading-y)]">

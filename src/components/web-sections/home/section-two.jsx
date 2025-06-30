@@ -1,7 +1,8 @@
 'use client'
-import { useEffect, useRef } from 'react'
+import { useRef } from 'react'
 import gsap from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
+import { useGSAP } from '@gsap/react'
 import { Card } from './components/card'
 
 gsap.registerPlugin(ScrollTrigger)
@@ -9,25 +10,29 @@ gsap.registerPlugin(ScrollTrigger)
 export default function SectionTwo() {
   const sectionRef = useRef(null)
 
-  useEffect(() => {
-    const timer = setTimeout(() => {
-      const ctx = gsap.context(() => {
-        gsap.set('.animated-card', {
-          opacity: 0,
-          y: 50
-        })
+  useGSAP(
+    () => {
+      const cards = sectionRef.current.querySelectorAll('.animated-card')
+      console.log('Section Two - Cards found:', cards.length)
 
-        // Crear la animación SIN scrub para que duration y stagger funcionen
-        gsap.to('.animated-card', {
+      gsap.set(cards, {
+        opacity: 0,
+        y: 50
+      })
+
+      // Pequeño delay para asegurar que el DOM esté completamente renderizado
+      gsap.delayedCall(0.1, () => {
+        gsap.to(cards, {
           scrollTrigger: {
             trigger: sectionRef.current,
-            start: 'top 80%',
-            end: 'top 50%',
+            start: 'top bottom', // Empieza cuando la sección toca el fondo del viewport
+            end: 'bottom 60%',
             scrub: 2,
             toggleActions: 'play none none reverse',
-            markers: true,
+            id: 'section-two',
+            refreshPriority: -1, // Prioridad baja para que se actualice después del banner
             onToggle: (self) => {
-              console.log('SectionTwo trigger:', self.isActive)
+              console.log('Section Two trigger toggle:', self.isActive)
             }
           },
           opacity: 1,
@@ -36,13 +41,13 @@ export default function SectionTwo() {
           ease: 'power2.out',
           stagger: 0.2
         })
-      }, sectionRef)
 
-      return () => ctx.revert()
-    }, 200)
-
-    return () => clearTimeout(timer)
-  }, [])
+        // Forzar refresh después de crear el trigger
+        ScrollTrigger.refresh()
+      })
+    },
+    { scope: sectionRef, revertOnUpdate: true }
+  )
 
   return (
     <div

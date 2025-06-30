@@ -46,15 +46,23 @@ export default function SectionThree() {
       wrapWords(textEl)
 
       const spans = textEl.querySelectorAll('span')
+      console.log('Section Three - Spans found:', spans.length)
+
+      gsap.set(buttonRef.current, { y: -50, opacity: 0 })
 
       gsap
         .timeline({
           scrollTrigger: {
             trigger: containerRef.current,
-            start: 'top 80%',
-            end: 'bottom 80%',
+            start: 'top center', // Empieza cuando la sección toca el fondo del viewport
+            markers: false,
+            end: '60% bottom',
             scrub: 1,
-            markers: false
+            id: 'section-three',
+            refreshPriority: -1,
+            onToggle: (self) => {
+              console.log('Section Three trigger toggle:', self.isActive)
+            }
           }
         })
         .to(spans, {
@@ -64,15 +72,15 @@ export default function SectionThree() {
           duration: 1,
           ease: 'power2.out'
         })
-        .fromTo(
+        .to(
           buttonRef.current,
-          { y: -50, opacity: 0 },
           {
             y: 0,
             opacity: 1,
             duration: 0.6,
             ease: 'back.out'
-          }
+          },
+          '-=0.5'
         )
     },
     { scope: containerRef, revertOnUpdate: true }

@@ -37,7 +37,7 @@ const cardsData = [
 ]
 const SectionFour = () => {
   return (
-    <div className="py-[var(--pading-y)]">
+    <div id="characte" className="py-[var(--pading-y)]">
       <div>
         <h3 className="text-(length:--text-subtitle) min-node:leading-20 text-[var(--color-three)]">
           Detalles que definen{' '}

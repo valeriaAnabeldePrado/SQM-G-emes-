@@ -29,7 +29,10 @@ const cardsData = [
 ]
 export default function SectionSix() {
   return (
-    <div className="flex flex-col  items-stretch gap-[var(--generic-gap-tablet)] min-d:gap-[var(--generic-gap-desktop)] py-[var(--pading-y)] min-d:flex-col">
+    <div
+      id="gallery"
+      className="flex flex-col  items-stretch gap-[var(--generic-gap-tablet)] min-d:gap-[var(--generic-gap-desktop)] py-[var(--pading-y)] min-d:flex-col"
+    >
       <div className="relative w-full h-screen ">
         <img
           src={buildE}

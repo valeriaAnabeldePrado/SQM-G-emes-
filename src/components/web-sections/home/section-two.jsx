@@ -25,7 +25,7 @@ export default function SectionTwo() {
             end: 'top 50%',
             scrub: 2,
             toggleActions: 'play none none reverse',
-            markers: false,
+            markers: true,
             onToggle: (self) => {
               console.log('SectionTwo trigger:', self.isActive)
             }

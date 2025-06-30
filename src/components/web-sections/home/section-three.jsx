@@ -12,14 +12,12 @@ export default function SectionThree() {
   const textRef = useRef(null)
   const buttonRef = useRef(null)
 
-  // Función para dividir texto en spans palabra por palabra
   const wrapWords = (element) => {
     const nodes = Array.from(element.childNodes)
 
     nodes.forEach((node) => {
       if (node.nodeType === Node.TEXT_NODE) {
-        const parts = node.textContent.split(/(\s+)/) // incluye espacios
-
+        const parts = node.textContent.split(/(\s+)/)
         parts.forEach((part) => {
           const span = document.createElement('span')
           span.textContent = part
@@ -77,7 +75,7 @@ export default function SectionThree() {
           }
         )
     },
-    { scope: containerRef }
+    { scope: containerRef, revertOnUpdate: true }
   )
 
   return (

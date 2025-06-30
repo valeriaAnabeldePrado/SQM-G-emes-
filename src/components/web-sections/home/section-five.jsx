@@ -1,20 +1,21 @@
 import React from 'react'
 import { CardArrow } from './components/card-arrow'
-export const featuresData = [
+
+const featuresData = [
   {
     title: 'Pisos de porcelanato Eliane Town',
     description:
       'En palieres, áreas comunes y baños se utiliza porcelanato rectificado símil cemento, brindando durabilidad, estilo contemporáneo y fácil mantenimiento.'
   },
   {
-    title: 'Eficiencia térmica inteligente',
-    description:
-      'Cerramientos exteriores con muro doble que mejoran el aislamiento térmico: ladrillo Corblock "Ceniza" al exterior y tabique cerámico interior con terminación en yeso proyectado.'
-  },
-  {
     title: 'Confort sostenible',
     description:
-      'Sistema centralizado de agua caliente sanitaria que optimiza el consumo energético de cada unidad'
+      ' Sistema centralizado de agua caliente sanitaria que optimiza el consumo energético de cada unidad.'
+  },
+  {
+    title: 'Cocinas funcionales y modernas',
+    description:
+      'Muebles bajo mesada de diseño contemporáneo, equipadas con anafe eléctrico, herrajes de cierre suave y mesadas de granito natural.'
   }
 ]
 const SectionFive = () => {

@@ -32,7 +32,7 @@ const SectionBanner = () => {
           img.onerror = reject
         })
 
-        img.src = `src/assets/banner/${String(i).padStart(4, '0')}.png`
+        img.src = `/src/assets/banner/${String(i).padStart(4, '0')}.png`
         imgArray.push(img)
         loadPromises.push(loadPromise)
       }
@@ -268,7 +268,7 @@ const SectionBanner = () => {
             pointerEvents: 'auto'
           }}
         >
-          <div className="w-[300px] min-d:w-[530px] min-bannerT:w-[720px]  min-d:mt-36  relative overflow-hidden ">
+          <div className="w-[300px] min-d:w-[530px] min-bannerT:w-[720px]  min-d:mt-24 min-note:mt-38  relative overflow-hidden ">
             <div className="relative z-10 text-[var(--color-three)] flex flex-col min-d:justify-end min-d:items-end min-bannerT:justify-start min-bannerT:items-start">
               <h1 className="text-(length:--text-title-huge) font-bold  leading-none ">SQM</h1>
               <h1 className="text-(length:--text-title-huge) font-bold  leading-none ">GÜEMES</h1>

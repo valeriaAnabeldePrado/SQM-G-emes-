@@ -23,7 +23,7 @@ const NavBar = () => {
   return (
     <div className="fixed custom-container w-full z-50 min-d:top-4 top-8 px-6">
       <nav
-        className="w-full px-6 py-[1.6rem] min-d:py-[3rem] min-d:px-12 flex items-center justify-between rounded-full backdrop-blur-lg"
+        className="w-full px-6 py-[1.6rem] min-d:py-[2rem] min-d:px-12 flex items-center justify-between rounded-full backdrop-blur-lg"
         style={{
           border: '2px solid var(--color-border)',
           background: 'var(--gradient-alt)'

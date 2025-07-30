@@ -26,7 +26,7 @@
 
   /* Para el tamano se usa asi  */ /* text-(length:--text-title-huge) */
   --text-title-huge: clamp(3rem, 8vw, 10rem);
-  --text-menu: clamp(1.2rem, 4vw, 1.5rem);
+  --text-menu: clamp(1.2rem, 4vw, 1.3rem);
   --text-menu-sub: clamp(1rem, 3vw, 1.1rem);
   --text-button: clamp(1rem, 2vw, 1.6rem);
   --text-body: clamp(1.2rem, 3vw, 2rem);

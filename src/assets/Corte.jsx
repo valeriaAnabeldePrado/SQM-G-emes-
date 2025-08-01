@@ -4,22 +4,21 @@ const PlanoEdificio = ({ onEvent, selectedFloor }) => (
   <div style={{ width: '100%', height: 'auto' }}>
     <style>{`
       .plantaAlta, .pisoDoce, .ingresoOfi, .pisoOnce, .pisoDiez, .pisoNueve, .pisoOcho, .pisoSiete, .pisoSeis, .pisoCinco, .pisoCuatro, .pisoTres, .pisoDos, .pisoUno, .subsuelo, .ingreso, .ofiBalcon, .ofiTres, .ofiDos, .ofiUno, .ingresoOfi {
-    fill: transparent;
-    transition: fill 600ms;
-    cursor: pointer;
-  }
-    .yellowC{
-      fill: #ffc46a;
-    }
-    .plantaAlta:hover,.ingresoOfi:hover, .pisoDoce:hover, .pisoOnce:hover, .pisoDiez:hover, .pisoNueve:hover, .pisoOcho:hover, .pisoSiete:hover, .pisoSeis:hover, .pisoCinco:hover, .pisoCuatro:hover, .pisoTres:hover, .pisoDos:hover, .pisoUno:hover, .subsuelo:hover, .ingreso:hover, .ofiBalcon:hover, .ofiTres:hover, .ofiDos:hover, .ofiUno:hover, .ingresoOfi:hover {
+        fill: transparent;
+        transition: fill 600ms;
+        cursor: pointer;
+        pointer-events: all;
+      }      .plantaAlta:hover,.ingresoOfi:hover, .pisoDoce:hover, .pisoOnce:hover, .pisoDiez:hover, .pisoNueve:hover, .pisoOcho:hover, .pisoSiete:hover, .pisoSeis:hover, .pisoCinco:hover, .pisoCuatro:hover, .pisoTres:hover, .pisoDos:hover, .pisoUno:hover, .subsuelo:hover, .ingreso:hover, .ofiBalcon:hover, .ofiTres:hover, .ofiDos:hover, .ofiUno:hover, .ingresoOfi:hover {
         fill: #ffc46a;
       }
+      
       #Capa_2 {
         height: 650px;
       }
-      @media (max-width: 1100px) {
+      @media (max-width: 1600px) {
         #Capa_2 {
           height: 560px;
+          
        
         }
       }
@@ -42,14 +41,11 @@ const PlanoEdificio = ({ onEvent, selectedFloor }) => (
           
         }
       }
-
-      /* Estilos para pisos seleccionados */
-      .floor-selected {
-        fill: #ffc46a !important;
-      }
       .yellowC {
         fill: #ffc46a !important;
       }
+     
+      
     `}</style>
     <svg id="Capa_2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 574.5 623.2">
       <defs>
@@ -2539,192 +2535,452 @@ const PlanoEdificio = ({ onEvent, selectedFloor }) => (
         </g>
       </g>
       <g
+        id="Asador"
+        onClick={(e) => {
+          e.stopPropagation()
+          onEvent('asador')
+        }}
+      >
+        <rect
+          x="314.4"
+          y="52"
+          width="33.8"
+          height="20"
+          rx="3.4"
+          ry="3.4"
+          fill={selectedFloor === 'asador' ? '#ffc46a' : 'transparent'}
+          style={{ cursor: 'pointer', transition: 'fill 600ms' }}
+        />
+        <rect
+          x="394.4"
+          y="47"
+          width="59.9"
+          height="25.2"
+          rx="3.4"
+          ry="3.4"
+          fill={selectedFloor === 'asador' ? '#ffc46a' : 'transparent'}
+          style={{ cursor: 'pointer', transition: 'fill 600ms' }}
+        />
+      </g>
+      <g
         id="PlantaAlta"
-        className={`plantaAlta ${selectedFloor === 'plantaAlta' ? 'floor-selected yellowC' : ''}`}
         onClick={(e) => {
           e.stopPropagation()
           onEvent('plantaAlta')
         }}
       >
-        <rect x="314.4" y="79.9" width="33.8" height="25.2" rx="3.4" ry="3.4" />
-        <rect x="394.4" y="79.7" width="59.9" height="25.2" rx="3.4" ry="3.4" />
-      </g>
-
-      <g
-        id="PisoDoce"
-        className={`pisoDoce ${selectedFloor === 'pisoDoce' ? 'floor-selected yellowC' : ''}`}
-        onClick={(e) => {
-          e.stopPropagation()
-          onEvent('pisoDoce')
-        }}
-      >
-        <rect x="280" y="114.4" width="67.9" height="25.2" rx="3.4" ry="3.4" />
-        <rect x="394.2" y="114.2" width="94.3" height="25.2" rx="3.4" ry="3.4" />
-      </g>
-
-      <g
-        id="PisoOnce"
-        className={`pisoOnce ${selectedFloor === 'pisoOnce' ? 'floor-selected yellowC' : ''}`}
-        onClick={(e) => {
-          e.stopPropagation()
-          onEvent('pisoOnce')
-        }}
-      >
-        <rect x="280.1" y="148" width="67.9" height="25.2" rx="3.4" ry="3.4" />
-        <rect x="394.3" y="147.8" width="94.3" height="25.2" rx="3.4" ry="3.4" />
-      </g>
-
-      <g
-        id="PisoDiez"
-        className={`pisoDiez ${selectedFloor === 'p07-p10-modelTen' ? 'floor-selected yellowC' : ''}`}
-        onClick={(e) => {
-          e.stopPropagation()
-          onEvent('p07-p10-modelTen')
-        }}
-      >
-        <rect x="280.1" y="181.8" width="67.9" height="25.2" rx="3.4" ry="3.4" />
-        <rect x="394.3" y="181.5" width="94.3" height="25.2" rx="3.4" ry="3.4" />
-      </g>
-
-      <g
-        id="PisoNueve"
-        className={`pisoNueve ${selectedFloor === 'p07-p10-modelTen' ? 'floor-selected yellowC' : ''}`}
-        onClick={(e) => {
-          e.stopPropagation()
-          onEvent('p07-p10-modelTen')
-        }}
-      >
-        <rect x="279.9" y="216.5" width="67.9" height="25.2" rx="3.4" ry="3.4" />
-        <rect x="394" y="216.3" width="94.3" height="25.2" rx="3.4" ry="3.4" />
-      </g>
-
-      <g
-        id="PisoOcho"
-        className={`pisoOcho ${selectedFloor === 'p07-p10-modelTen' ? 'floor-selected yellowC' : ''}`}
-        onClick={(e) => {
-          e.stopPropagation()
-          onEvent('p07-p10-modelTen')
-        }}
-      >
-        <rect x="279.9" y="250.3" width="67.9" height="25.2" rx="3.4" ry="3.4" />
-        <rect x="394" y="250" width="94.3" height="25.2" rx="3.4" ry="3.4" />
-      </g>
-
-      <g
-        id="PisoSiete"
-        className={`pisoSiete ${selectedFloor === 'p07-p10-modelTen' ? 'floor-selected yellowC' : ''}`}
-        onClick={(e) => {
-          e.stopPropagation()
-          onEvent('p07-p10-modelTen')
-        }}
-      >
-        <rect x="280.1" y="283.6" width="67.9" height="25.2" rx="3.4" ry="3.4" />
-        <rect x="394.3" y="283.3" width="94.3" height="25.2" rx="3.4" ry="3.4" />
-      </g>
-
-      <g
-        id="PisoSeis"
-        className={`pisoSeis ${selectedFloor === 'pisoSeis' ? 'floor-selected yellowC' : ''}`}
-        onClick={(e) => {
-          e.stopPropagation()
-          onEvent('p05-06-modelFive')
-        }}
-      >
-        <rect x="279.9" y="318.1" width="67.9" height="25.2" rx="3.4" ry="3.4" />
-        <rect x="394" y="317.9" width="94.3" height="25.2" rx="3.4" ry="3.4" />
-      </g>
-
-      <g
-        id="PisoCinco"
-        className={`pisoCinco ${selectedFloor === 'pisoCinco' ? 'floor-selected yellowC' : ''}`}
-        onClick={(e) => {
-          e.stopPropagation()
-          onEvent('p05-06-modelFive')
-        }}
-      >
-        <rect x="279.9" y="352.3" width="67.9" height="25.2" rx="3.4" ry="3.4" />
-        <rect x="394" y="352.1" width="94.3" height="25.2" rx="3.4" ry="3.4" />
-      </g>
-
-      <g
-        id="PisoCuatro"
-        className={`pisoCuatro ${selectedFloor === 'pisoCuatro' ? 'floor-selected yellowC' : ''}`}
-        onClick={(e) => {
-          e.stopPropagation()
-          onEvent('p04-modelX')
-        }}
-      >
-        <rect x="97.5" y="408.3" width="37.7" height="25.2" rx="3.4" ry="3.4" />
-        <rect x="280.1" y="385" width="67.9" height="25.2" rx="3.4" ry="3.4" />
-        <rect x="394.3" y="384.7" width="94.3" height="25.2" rx="3.4" ry="3.4" />
-      </g>
-
-      <g
-        id="PisoTres"
-        className={`pisoTres ${selectedFloor === 'pisoTres' ? 'floor-selected yellowC' : ''}`}
-        onClick={(e) => {
-          e.stopPropagation()
-          onEvent('p01-03-modelNine')
-        }}
-      >
-        <rect x="63.4" y="444.5" width="72" height="25.2" rx="3.4" ry="3.4" />
-        <rect x="255.6" y="419.5" width="92.1" height="25.2" rx="3.4" ry="3.4" />
-        <rect x="394" y="419.3" width="94.3" height="25.2" rx="3.4" ry="3.4" />
-      </g>
-
-      <g
-        id="PisoDos"
-        className={`pisoDos ${selectedFloor === 'pisoDos' ? 'floor-selected yellowC' : ''}`}
-        onClick={(e) => {
-          e.stopPropagation()
-          onEvent('p01-03-modelNine')
-        }}
-      >
-        <rect x="63.4" y="481.6" width="72" height="25.2" rx="3.4" ry="3.4" />
-        <rect x="255.1" y="453.5" width="91.9" height="25.2" rx="3.4" ry="3.4" />
-        <rect x="393.7" y="453.2" width="95.1" height="25.2" rx="3.4" ry="3.4" />
-      </g>
-
-      <g
-        id="pisoUno"
-        className={`pisoUno ${selectedFloor === 'pisoUno' ? 'floor-selected yellowC' : ''}`}
-        onClick={(e) => {
-          e.stopPropagation()
-          onEvent('p01-03-modelNine')
-        }}
-      >
-        <rect x="63.2" y="517.7" width="72" height="25.2" rx="3.4" ry="3.4" />
-        <rect x="254.6" y="487.4" width="93.3" height="25.2" rx="3.4" ry="3.4" />
-        <rect x="394.3" y="487.1" width="94.3" height="25.2" rx="3.4" ry="3.4" />
-      </g>
-
-      <g id="Subsuelo">
         <rect
-          className={`subsuelo ${selectedFloor === 'p00-modelOne' ? 'floor-selected yellowC' : ''}`}
-          onClick={(e) => {
-            e.stopPropagation()
-            onEvent('p00-modelOne')
-          }}
-          x="393.8"
-          y="588.7"
-          width="85.2"
-          height="27.9"
+          x="314.4"
+          y="79.9"
+          width="33.8"
+          height="25.2"
           rx="3.4"
           ry="3.4"
+          fill={selectedFloor === 'plantaAlta' ? '#ffc46a' : 'transparent'}
+          style={{ cursor: 'pointer', transition: 'fill 600ms' }}
+        />
+        <rect
+          x="394.4"
+          y="79.7"
+          width="59.9"
+          height="25.2"
+          rx="3.4"
+          ry="3.4"
+          fill={selectedFloor === 'plantaAlta' ? '#ffc46a' : 'transparent'}
+          style={{ cursor: 'pointer', transition: 'fill 600ms' }}
         />
       </g>
 
       <g
-        id="Ingreso"
-        className={`ingreso ${selectedFloor === 'ingreso' ? 'floor-selected yellowC' : ''}`}
+        id="PisoDoce"
         onClick={(e) => {
           e.stopPropagation()
-          onEvent('p00-modelOne')
+          onEvent('p12-modelSix')
         }}
       >
-        <rect x="77.2" y="553.3" width="58" height="25.2" rx="3.4" ry="3.4" />
-        <rect x="254.5" y="521" width="93.8" height="57" rx="3.4" ry="3.4" />
-        <rect x="393.8" y="521.2" width="85.7" height="57" rx="3.4" ry="3.4" />
+        <rect
+          x="280"
+          y="114.4"
+          width="67.9"
+          height="25.2"
+          rx="3.4"
+          ry="3.4"
+          fill={selectedFloor === 'p12-modelSix' ? '#ffc46a' : 'transparent'}
+          style={{ cursor: 'pointer', transition: 'fill 600ms' }}
+        />
+        <rect
+          x="394.2"
+          y="114.2"
+          width="94.3"
+          height="25.2"
+          rx="3.4"
+          ry="3.4"
+          fill={selectedFloor === 'p12-modelSix' ? '#ffc46a' : 'transparent'}
+          style={{ cursor: 'pointer', transition: 'fill 600ms' }}
+        />
+      </g>
+
+      <g
+        id="PisoOnce"
+        onClick={(e) => {
+          e.stopPropagation()
+          onEvent('p11-modelFive')
+        }}
+      >
+        <rect
+          x="280.1"
+          y="148"
+          width="67.9"
+          height="25.2"
+          rx="3.4"
+          ry="3.4"
+          fill={selectedFloor === 'p11-modelFive' ? '#ffc46a' : 'transparent'}
+          style={{ cursor: 'pointer', transition: 'fill 600ms' }}
+        />
+        <rect
+          x="394.3"
+          y="147.8"
+          width="94.3"
+          height="25.2"
+          rx="3.4"
+          ry="3.4"
+          fill={selectedFloor === 'p11-modelFive' ? '#ffc46a' : 'transparent'}
+          style={{ cursor: 'pointer', transition: 'fill 600ms' }}
+        />
+      </g>
+
+      <g
+        id="PisoDiez"
+        onClick={(e) => {
+          e.stopPropagation()
+          onEvent('p10-modelFour')
+        }}
+      >
+        <rect
+          x="280.1"
+          y="181.8"
+          width="67.9"
+          height="25.2"
+          rx="3.4"
+          ry="3.4"
+          fill={selectedFloor === 'p10-modelFour' ? '#ffc46a' : 'transparent'}
+          style={{ cursor: 'pointer', transition: 'fill 600ms' }}
+        />
+        <rect
+          x="394.3"
+          y="181.5"
+          width="94.3"
+          height="25.2"
+          rx="3.4"
+          ry="3.4"
+          fill={selectedFloor === 'p10-modelFour' ? '#ffc46a' : 'transparent'}
+          style={{ cursor: 'pointer', transition: 'fill 600ms' }}
+        />
+      </g>
+
+      <g
+        id="PisoNueve"
+        onClick={(e) => {
+          e.stopPropagation()
+          onEvent('p09-modelFour')
+        }}
+      >
+        <rect
+          x="279.9"
+          y="216.5"
+          width="67.9"
+          height="25.2"
+          rx="3.4"
+          ry="3.4"
+          fill={selectedFloor === 'p09-modelFour' ? '#ffc46a' : 'transparent'}
+          style={{ cursor: 'pointer', transition: 'fill 600ms' }}
+        />
+        <rect
+          x="394"
+          y="216.3"
+          width="94.3"
+          height="25.2"
+          rx="3.4"
+          ry="3.4"
+          fill={selectedFloor === 'p09-modelFour' ? '#ffc46a' : 'transparent'}
+          style={{ cursor: 'pointer', transition: 'fill 600ms' }}
+        />
+      </g>
+
+      <g
+        id="PisoOcho"
+        onClick={(e) => {
+          e.stopPropagation()
+          e.preventDefault()
+          onEvent('p08-modelFour')
+        }}
+      >
+        <rect
+          x="279.9"
+          y="250.3"
+          width="67.9"
+          height="25.2"
+          rx="3.4"
+          ry="3.4"
+          fill={selectedFloor === 'p08-modelFour' ? '#ffc46a' : 'transparent'}
+          style={{ cursor: 'pointer', transition: 'fill 600ms' }}
+        />
+        <rect
+          x="394"
+          y="250"
+          width="94.3"
+          height="25.2"
+          rx="3.4"
+          ry="3.4"
+          fill={selectedFloor === 'p08-modelFour' ? '#ffc46a' : 'transparent'}
+          style={{ cursor: 'pointer', transition: 'fill 600ms' }}
+        />
+      </g>
+
+      <g
+        id="PisoSiete"
+        onClick={(e) => {
+          e.stopPropagation()
+          onEvent('p07-modelFour')
+        }}
+      >
+        <rect
+          x="280.1"
+          y="283.6"
+          width="67.9"
+          height="25.2"
+          rx="3.4"
+          ry="3.4"
+          fill={selectedFloor === 'p07-modelFour' ? '#ffc46a' : 'transparent'}
+          style={{ cursor: 'pointer', transition: 'fill 600ms' }}
+        />
+        <rect
+          x="394.3"
+          y="283.3"
+          width="94.3"
+          height="25.2"
+          rx="3.4"
+          ry="3.4"
+          fill={selectedFloor === 'p07-modelFour' ? '#ffc46a' : 'transparent'}
+          style={{ cursor: 'pointer', transition: 'fill 600ms' }}
+        />
+      </g>
+
+      <g
+        id="PisoSeis"
+        onClick={(e) => {
+          e.stopPropagation()
+          onEvent('p06-modelThree')
+        }}
+      >
+        <rect
+          x="279.9"
+          y="318.1"
+          width="67.9"
+          height="25.2"
+          rx="3.4"
+          ry="3.4"
+          fill={selectedFloor === 'p06-modelThree' ? '#ffc46a' : 'transparent'}
+          style={{ cursor: 'pointer', transition: 'fill 600ms' }}
+        />
+        <rect
+          x="394"
+          y="317.9"
+          width="94.3"
+          height="25.2"
+          rx="3.4"
+          ry="3.4"
+          fill={selectedFloor === 'p06-modelThree' ? '#ffc46a' : 'transparent'}
+          style={{ cursor: 'pointer', transition: 'fill 600ms' }}
+        />
+      </g>
+
+      <g
+        id="PisoCinco"
+        onClick={(e) => {
+          e.stopPropagation()
+          onEvent('p05-modelThree')
+        }}
+      >
+        <rect
+          x="279.9"
+          y="352.3"
+          width="67.9"
+          height="25.2"
+          rx="3.4"
+          ry="3.4"
+          fill={selectedFloor === 'p05-modelThree' ? '#ffc46a' : 'transparent'}
+          style={{ cursor: 'pointer', transition: 'fill 600ms' }}
+        />
+        <rect
+          x="394"
+          y="352.1"
+          width="94.3"
+          height="25.2"
+          rx="3.4"
+          ry="3.4"
+          fill={selectedFloor === 'p05-modelThree' ? '#ffc46a' : 'transparent'}
+          style={{ cursor: 'pointer', transition: 'fill 600ms' }}
+        />
+      </g>
+
+      <g
+        id="PisoCuatro"
+        onClick={(e) => {
+          e.stopPropagation()
+          onEvent('p04-modelTwo')
+        }}
+      >
+        <rect
+          x="97.5"
+          y="408.3"
+          width="37.7"
+          height="25.2"
+          rx="3.4"
+          ry="3.4"
+          fill={selectedFloor === 'p04-modelTwo' ? '#ffc46a' : 'transparent'}
+          style={{ cursor: 'pointer', transition: 'fill 600ms' }}
+        />
+        <rect
+          x="280.1"
+          y="385"
+          width="67.9"
+          height="25.2"
+          rx="3.4"
+          ry="3.4"
+          fill={selectedFloor === 'p04-modelTwo' ? '#ffc46a' : 'transparent'}
+          style={{ cursor: 'pointer', transition: 'fill 600ms' }}
+        />
+        <rect
+          x="394.3"
+          y="384.7"
+          width="94.3"
+          height="25.2"
+          rx="3.4"
+          ry="3.4"
+          fill={selectedFloor === 'p04-modelTwo' ? '#ffc46a' : 'transparent'}
+          style={{ cursor: 'pointer', transition: 'fill 600ms' }}
+        />
+      </g>
+
+      <g
+        id="PisoTres"
+        onClick={(e) => {
+          e.stopPropagation()
+          onEvent('p03-modelOne')
+        }}
+      >
+        <rect
+          x="63.4"
+          y="444.5"
+          width="72"
+          height="25.2"
+          rx="3.4"
+          ry="3.4"
+          fill={selectedFloor === 'p03-modelOne' ? '#ffc46a' : 'transparent'}
+          style={{ cursor: 'pointer', transition: 'fill 600ms' }}
+        />
+        <rect
+          x="255.6"
+          y="419.5"
+          width="92.1"
+          height="25.2"
+          rx="3.4"
+          ry="3.4"
+          fill={selectedFloor === 'p03-modelOne' ? '#ffc46a' : 'transparent'}
+          style={{ cursor: 'pointer', transition: 'fill 600ms' }}
+        />
+        <rect
+          x="394"
+          y="419.3"
+          width="94.3"
+          height="25.2"
+          rx="3.4"
+          ry="3.4"
+          fill={selectedFloor === 'p03-modelOne' ? '#ffc46a' : 'transparent'}
+          style={{ cursor: 'pointer', transition: 'fill 600ms' }}
+        />
+      </g>
+
+      <g
+        id="PisoDos"
+        onClick={(e) => {
+          e.stopPropagation()
+          onEvent('p02-modelOne')
+        }}
+      >
+        <rect
+          x="63.4"
+          y="481.6"
+          width="72"
+          height="25.2"
+          rx="3.4"
+          ry="3.4"
+          fill={selectedFloor === 'p02-modelOne' ? '#ffc46a' : 'transparent'}
+          style={{ cursor: 'pointer', transition: 'fill 600ms' }}
+        />
+        <rect
+          x="255.1"
+          y="453.5"
+          width="91.9"
+          height="25.2"
+          rx="3.4"
+          ry="3.4"
+          fill={selectedFloor === 'p02-modelOne' ? '#ffc46a' : 'transparent'}
+          style={{ cursor: 'pointer', transition: 'fill 600ms' }}
+        />
+        <rect
+          x="393.7"
+          y="453.2"
+          width="95.1"
+          height="25.2"
+          rx="3.4"
+          ry="3.4"
+          fill={selectedFloor === 'p02-modelOne' ? '#ffc46a' : 'transparent'}
+          style={{ cursor: 'pointer', transition: 'fill 600ms' }}
+        />
+      </g>
+
+      <g
+        id="PisoUno"
+        onClick={(e) => {
+          e.stopPropagation()
+          onEvent('p01-modelOne')
+        }}
+      >
+        <rect
+          x="63.2"
+          y="517.7"
+          width="72"
+          height="25.2"
+          rx="3.4"
+          ry="3.4"
+          fill={selectedFloor === 'p01-modelOne' ? '#ffc46a' : 'transparent'}
+          style={{ cursor: 'pointer', transition: 'fill 600ms' }}
+        />
+        <rect
+          x="254.6"
+          y="487.4"
+          width="93.3"
+          height="25.2"
+          rx="3.4"
+          ry="3.4"
+          fill={selectedFloor === 'p01-modelOne' ? '#ffc46a' : 'transparent'}
+          style={{ cursor: 'pointer', transition: 'fill 600ms' }}
+        />
+        <rect
+          x="394.3"
+          y="487.1"
+          width="94.3"
+          height="25.2"
+          rx="3.4"
+          ry="3.4"
+          fill={selectedFloor === 'p01-modelOne' ? '#ffc46a' : 'transparent'}
+          style={{
+            cursor: 'pointer',
+            transition: 'fill 600ms'
+          }}
+        />
       </g>
     </svg>
   </div>

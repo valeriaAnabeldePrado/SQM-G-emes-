@@ -3,11 +3,14 @@ import PlanoEdificio from '../../../assets/Corte'
 import { Card } from '../home/components/card'
 import { useState } from 'react'
 
-// Importar los componentes de los modelos
 import ModelOne from '../../../assets/floors/ModelOne'
-import ModelNine from '../../../assets/floors/ModelNine'
+import ModelTwo from '../../../assets/floors/ModelTwo'
+import ModelFour from '../../../assets/floors/ModelFour'
 import ModelFive from '../../../assets/floors/ModelFive'
-import ModelTen from '../../../assets/floors/ModelTen'
+import ModelThree from '../../../assets/floors/ModelThree'
+import ModelSeven from '../../../assets/floors/ModelSeven'
+import ModelSix from '../../../assets/floors/ModelSix'
+import ModelEight from '../../../assets/floors/ModelEight'
 
 const Apartaments = () => {
   const [selectedFloor, setSelectedFloor] = useState(null)
@@ -20,64 +23,36 @@ const Apartaments = () => {
     setSelectedFloor(null)
   }
 
-  // Función para renderizar el componente según el piso seleccionado
-  const renderFloorComponent = (floorId) => {
-    switch (floorId) {
-      case 'p00-modelOne':
+  const renderFloorComponent = () => {
+    switch (selectedFloor) {
+      case 'p01-modelOne':
+      case 'p02-modelOne':
+      case 'p03-modelOne':
         return <ModelOne />
-      case 'p01-03-modelNine':
-        return <ModelNine />
-      case 'p05-06-modelFive':
+      case 'p04-modelTwo':
+        return <ModelTwo />
+      case 'p05-modelThree':
+      case 'p06-modelThree':
+        return <ModelThree />
+      case 'p07-modelFour':
+      case 'p08-modelFour':
+      case 'p09-modelFour':
+      case 'p10-modelFour':
+        return <ModelFour />
+      case 'p11-modelFive':
+      case 'p12-modelSix':
         return <ModelFive />
-      case 'p07-p10-modelTen':
-        return <ModelTen />
       case 'plantaAlta':
-        return (
-          <div className="p-4">
-            <h2 className="text-xl font-bold mb-2">Planta Alta</h2>
-            <p>Información de la planta alta...</p>
-          </div>
-        )
-      case 'pisoDoce':
-        return (
-          <div className="p-4">
-            <h2 className="text-xl font-bold mb-2">Piso 12</h2>
-            <p>Información del piso 12...</p>
-          </div>
-        )
-      case 'pisoOnce':
-        return (
-          <div className="p-4">
-            <h2 className="text-xl font-bold mb-2">Piso 11</h2>
-            <p>Información del piso 11...</p>
-          </div>
-        )
-      case 'pisoDiez':
-        return (
-          <div className="p-4">
-            <h2 className="text-xl font-bold mb-2">Piso 10</h2>
-            <p>Información del piso 10...</p>
-          </div>
-        )
-      case 'pisoNueve':
-        return (
-          <div className="p-4">
-            <h2 className="text-xl font-bold mb-2">Piso 9</h2>
-            <p>Información del piso 9...</p>
-          </div>
-        )
+        return <ModelSix />
+      case 'asador':
+        return <ModelSeven />
       default:
-        return (
-          <div className="p-4">
-            <h2 className="text-xl font-bold mb-2">Información del {selectedFloor}</h2>
-            <p>Contenido específico para {selectedFloor}</p>
-          </div>
-        )
+        return null
     }
   }
   return (
     <div className="custom-container mt-20 px-4 " onClick={handleContainerClick}>
-      <h2 className="h-[12vh] ">Conoce nuestras unidades disponibles </h2>
+      <h2 className="h-auto ">Conoce nuestras unidades disponibles </h2>
       <section className="flex max-md:flex-col h-full max-lg:mt-8  items-center justify-center gap-4 mt-2">
         <div className="h-[70vh] flex-1 " onClick={(e) => e.stopPropagation()}>
           <PlanoEdificio onEvent={handleFloorClick} selectedFloor={selectedFloor} />

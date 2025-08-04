@@ -18,8 +18,8 @@ function App() {
           <SectionBanner />
         </div>
         <BannerResponsive />
-        <SectionTwo />
         <SectionThree />
+        <SectionTwo />
         <SectionFour />
         <SectionFive />
         <SectionSix />

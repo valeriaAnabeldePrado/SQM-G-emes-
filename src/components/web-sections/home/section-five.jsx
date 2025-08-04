@@ -3,19 +3,34 @@ import { CardArrow } from './components/card-arrow'
 
 const featuresData = [
   {
-    title: 'Pisos de porcelanato Eliane Town',
+    title: 'Cocinas funcionales y modernas',
     description:
-      'En palieres, áreas comunes y baños se utiliza porcelanato rectificado símil cemento, brindando durabilidad, estilo contemporáneo y fácil mantenimiento.'
+      'Muebles bajo mesada de diseño contemporáneo, equipadas con anafe eléctrico, herrajes de cierre suave y mesadas de granito natural.'
   },
   {
     title: 'Confort sostenible',
     description:
-      ' Sistema centralizado de agua caliente sanitaria que optimiza el consumo energético de cada unidad.'
+      'Sistema centralizado de agua caliente sanitaria que optimiza el consumo energético de cada unidad.'
   },
   {
-    title: 'Cocinas funcionales y modernas',
+    title: 'Pisos de calidad superior',
     description:
-      'Muebles bajo mesada de diseño contemporáneo, equipadas con anafe eléctrico, herrajes de cierre suave y mesadas de granito natural.'
+      'En palieres y espacios comunes porcelanato rectificado. En interiores de departamentos, piso símil madera que aporta calidez al ambiente.'
+  },
+  {
+    title: 'Aberturas de aluminio anodizado',
+    description:
+      'Aberturas de alta calidad con aluminio anodizado que garantizan durabilidad y estética superior.'
+  },
+  {
+    title: 'Ascensores de última generación',
+    description:
+      'Ascensores con puertas automáticas de acero inoxidable, rápidos, modernos y con detalles de calidad.'
+  },
+  {
+    title: 'Seguridad y estructura',
+    description:
+      'Estructura sismorresistente según normas Cirsoc y sistema automatizado contra incendios.'
   }
 ]
 const SectionFive = () => {

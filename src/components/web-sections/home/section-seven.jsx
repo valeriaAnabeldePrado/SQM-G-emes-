@@ -16,8 +16,8 @@ export default function SectionSeven() {
           </div>
           <div>
             <p className="text-[var(--color-three)]">
-              SQM Güemes es más que arquitectura: es una propuesta que se adapta a nuevas formas de
-              habitar y trabajar. Su ubicación privilegiada, calidad constructiva y eficiencia
+              VIVRA Güemes es más que arquitectura: es una propuesta que se adapta a nuevas formas
+              de habitar y trabajar. Su ubicación privilegiada, calidad constructiva y eficiencia
               energética lo convierten en una opción atractiva para vivir o invertir con visión a
               futuro.
             </p>

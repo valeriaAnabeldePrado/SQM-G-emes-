@@ -41,39 +41,7 @@ export default function SectionSix() {
         />
       </div>
 
-      <div className="h-screen rounded-[var(--border-radius-phone)] min-d:rounded-[var(--border-radius-tablet)] min-extra:rounded-[var(--border-radius-note)] min-note:rounded-[var(--border-radius-desktop)] p-[var(--padding-cards)] bg-[url('/src/assets/section-six/dpto.png')] flex justify-center gap-[var(--generic-gap-tablet)] min-d:gap-[var(--generic-gap-desktop)] w-full bg-cover">
-        <div className="flex-1"></div>
-        <div className="min-d:flex-1 h-[65%] flex flex-col items-center justify-center gap-[var(--generic-gap-tablet)] min-d:gap-[var(--generic-gap-desktop)] md:flex-col min-d:h-full">
-          <Card className="flex-1 w-full relative flex justify-start items-start overflow-hidden">
-            <div
-              className="absolute inset-0 bg-[var(--color-beige)]"
-              style={{ zIndex: 0 }}
-              aria-hidden="true"
-            />
-            {/* Contenido encima */}
-            <div className="relative z-10 p-4">
-              <h3 className="text-(length:--text-menu) text-[var(color-three)]">
-                Una propuesta <strong>estetica y habitable</strong>
-              </h3>
-            </div>
-          </Card>
-          <Card className="flex-1/2 w-full relative overflow-hidden">
-            {/* Fondo con opacidad */}
-            <div
-              className="absolute inset-0 bg-[var(--color-beige)]"
-              style={{ zIndex: 0 }}
-              aria-hidden="true"
-            />
-            {/* Contenido encima */}
-            <div className="relative z-10 p-4 h-full flex justify-end items-end">
-              <h3 className="text-(length:--text-menu)  text-[var(color-three)]">
-                Cada imagen representa el equilibrio entre lo moderno y lo atemporal. Materialidades
-                nobles, iluminación cuidada y proporciones pensadas al detalle.
-              </h3>
-            </div>
-          </Card>
-        </div>
-      </div>
+      <div className="h-screen rounded-[var(--border-radius-phone)] min-d:rounded-[var(--border-radius-tablet)] min-extra:rounded-[var(--border-radius-note)] min-note:rounded-[var(--border-radius-desktop)] p-[var(--padding-cards)] bg-[url('/src/assets/section-six/dpto.png')] flex justify-center gap-[var(--generic-gap-tablet)] min-d:gap-[var(--generic-gap-desktop)] w-full bg-cover"></div>
       {/*---------------------  Sector numero 3 */}
       <div className="flex flex-col min-d:flex-row items-stretch gap-[var(--generic-gap-tablet)] min-d:gap-[var(--generic-gap-desktop)] h-full">
         {/* Card principal - full width en mobile, flex-1 en desktop */}

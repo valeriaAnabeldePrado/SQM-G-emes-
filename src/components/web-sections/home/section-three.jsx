@@ -46,23 +46,15 @@ export default function SectionThree() {
       wrapWords(textEl)
 
       const spans = textEl.querySelectorAll('span')
-      console.log('Section Three - Spans found:', spans.length)
-
-      gsap.set(buttonRef.current, { y: -50, opacity: 0 })
 
       gsap
         .timeline({
           scrollTrigger: {
             trigger: containerRef.current,
-            start: 'top center', // Empieza cuando la sección toca el fondo del viewport
-            markers: false,
-            end: '60% bottom',
+            start: 'top 80%',
+            end: 'bottom 80%',
             scrub: 1,
-            id: 'section-three',
-            refreshPriority: -1,
-            onToggle: (self) => {
-              console.log('Section Three trigger toggle:', self.isActive)
-            }
+            markers: false
           }
         })
         .to(spans, {
@@ -72,15 +64,15 @@ export default function SectionThree() {
           duration: 1,
           ease: 'power2.out'
         })
-        .to(
+        .fromTo(
           buttonRef.current,
+          { y: -50, opacity: 0 },
           {
             y: 0,
             opacity: 1,
             duration: 0.6,
             ease: 'back.out'
-          },
-          '-=0.5'
+          }
         )
     },
     { scope: containerRef, revertOnUpdate: true }
@@ -93,12 +85,12 @@ export default function SectionThree() {
           ref={textRef}
           className="text-(length:--text-subtitle) text-[var(--color-three)] pb-16 min-note:leading-20"
         >
-          Una zona de continua continua{' '}
+          Una zona de continua{' '}
           <span className="inline-block font-bold rounded-full text-(lenght:--color-one)">
             renovación urbana
           </span>
-          , próxima a Ciudad Universitaria y Plaza España, redeado de bares, restaurantes y vida
-          cultural.
+          , próximo a Ciudad Universitaria y Plaza España: a 5 minutos de Patio Olmos, a 5 minutos
+          del campus UNC y de Parque Sarmiento. Rodeado de bares, restaurantes y vida cultural.
         </h3>
         <div ref={buttonRef} className="opacity-0">
           <Button icon={<MdArrowOutward size={25} />}>Ver en mapas</Button>

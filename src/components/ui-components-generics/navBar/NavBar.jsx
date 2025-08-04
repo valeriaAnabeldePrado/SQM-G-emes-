@@ -1,16 +1,25 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import { Transition } from '@headlessui/react'
 import { IoClose, IoMenu } from 'react-icons/io5'
-import { useLocation } from 'react-router-dom'
 
 const NavBar = () => {
   const [isOpen, setIsOpen] = useState(false)
-  const location = useLocation()
-
-  const onlyMobileRoutes = ['/inmersive-apartament', '/apartments']
-  const showOnlyMobile = onlyMobileRoutes.includes(location.pathname)
+  const [isHomePage, setIsHomePage] = useState(true)
 
   const toggleMenu = () => setIsOpen(!isOpen)
+
+  // Detectar si estamos en la home o en otras secciones
+  useEffect(() => {
+    const checkCurrentPage = () => {
+      const currentPath = window.location.pathname
+      setIsHomePage(currentPath === '/' || currentPath === '')
+    }
+
+    checkCurrentPage()
+    // Escuchar cambios de ruta
+    window.addEventListener('popstate', checkCurrentPage)
+    return () => window.removeEventListener('popstate', checkCurrentPage)
+  }, [])
 
   const routes = [
     { id: 1, name: 'Edificio', path: '/inmersive-apartament' },
@@ -18,52 +27,60 @@ const NavBar = () => {
     { id: 3, name: 'Galería', path: '#gallery' },
     { id: 4, name: 'Contacto', path: '#contact' }
   ]
-  const routesPhone = [
-    { id: 1, name: 'Ubicación', path: '#location' },
-    { id: 2, name: 'Características', path: '#characte' },
-    { id: 3, name: 'Galería', path: '#gallery' },
-    { id: 4, name: 'Contacto', path: '#contact' }
+
+  // Rutas para el menú burger (usado en mobile siempre y en desktop solo en páginas no-home)
+  const routesBurger = [
+    { id: 1, name: 'Inicio', path: '/' },
+    { id: 2, name: 'Ubicación', path: '/#location' },
+    { id: 3, name: 'Departamentos', path: '/apartments' },
+    { id: 4, name: 'Características', path: '/#characte' },
+    { id: 5, name: 'Galería', path: '/#gallery' },
+    { id: 6, name: 'Contacto', path: '/#contact' },
+    { id: 7, name: 'Vista 3D Edificio', path: '/inmersive-build' },
+    { id: 8, name: 'Vista 3D Apartamento', path: '/inmersive-apartament' }
   ]
 
   return (
     <div
-      className={`fixed z-50 min-d:top-4 top-8 px-6 ${
-        showOnlyMobile
-          ? 'w-[400px] right-2 min-sm:right-[5%] flex flex-col items-end'
-          : 'custom-container w-full'
+      className={`fixed z-50 min-d:top-4 min-d:left-2 top-8 px-6 right-2 min-sm:right-[5%]  flex flex-col items-end ${
+        isHomePage
+          ? 'w-[00px] min-d:custom-container min-d:w-full min-d:items-stretch min-d:px-8'
+          : 'w-auto'
       }`}
     >
       <nav
-        className={`px-6 py-[1.2rem] min-note:py-[2rem] min-d:px-12 flex items-center justify-between rounded-full backdrop-blur-lg ${
-          showOnlyMobile ? 'w-[300px] justify-end' : 'w-full'
+        className={`px-6 py-[1.2rem] min-note:py-[2rem] flex items-center rounded-full backdrop-blur-lg ${
+          isHomePage
+            ? 'min-d:px-12 justify-end min-d:w-full min-d:justify-between'
+            : 'justify-center'
         }`}
         style={{
           border: '2px solid var(--color-border)',
           background: 'var(--gradient-alt)'
         }}
       >
-        {/* LOGO - Solo se muestra en rutas normales */}
-        {!showOnlyMobile && <div className="text-xl font-bold text-[var(--color-dark)]">LOGO</div>}
+        {/* LOGO - Solo se muestra en desktop cuando estamos en home */}
+        {isHomePage && (
+          <div className="hidden min-d:block text-xl font-bold text-[var(--color-dark)]">LOGO</div>
+        )}
 
-        {/* DESKTOP MENU - Solo se muestra en rutas normales (/) y pantallas grandes */}
-        <div
-          className={`${
-            showOnlyMobile ? 'hidden' : 'hidden min-d:flex'
-          } space-x-16 font-bold text-[var(--color-three)] text-menu`}
-        >
-          {routes.map((route) => (
-            <a
-              key={route.id}
-              href={route.path}
-              className="hover:text-[var(--color-one)] transition-colors"
-            >
-              {route.name}
-            </a>
-          ))}
-        </div>
+        {/* DESKTOP MENU - Solo se muestra en pantallas grandes Y solo en home */}
+        {isHomePage && (
+          <div className="hidden min-d:flex space-x-16 font-bold text-[var(--color-three)] text-menu">
+            {routes.map((route) => (
+              <a
+                key={route.id}
+                href={route.path}
+                className="hover:text-[var(--color-one)] transition-colors"
+              >
+                {route.name}
+              </a>
+            ))}
+          </div>
+        )}
 
-        {/* MOBILE TOGGLE - Se muestra en rutas especiales SIEMPRE o en rutas normales solo en mobile */}
-        <div className={`${showOnlyMobile ? 'flex' : 'flex min-d:hidden'}`}>
+        {/* MOBILE TOGGLE - Se muestra en mobile SIEMPRE, o en desktop cuando NO es home */}
+        <div className={`flex ${isHomePage ? 'min-d:hidden' : ''}`}>
           <button onClick={toggleMenu} className="text-[var(--color-three)] transition">
             {isOpen ? (
               <IoClose className="text-4xl transition-transform rotate-90" />
@@ -74,7 +91,7 @@ const NavBar = () => {
         </div>
       </nav>
 
-      {/* MOBILE DROPDOWN MENU - Se muestra en rutas especiales SIEMPRE o en rutas normales solo en mobile */}
+      {/* MOBILE DROPDOWN MENU - Se muestra en mobile SIEMPRE, o en desktop cuando NO es home */}
       <Transition
         show={isOpen}
         enter="transition ease-out duration-300"
@@ -85,15 +102,15 @@ const NavBar = () => {
         leaveTo="opacity-0 -translate-y-4"
       >
         <div
-          className={`${showOnlyMobile ? 'flex ' : 'flex min-d:hidden'} flex-col mt-2 rounded-[45px] px-8 py-6 text-right font-bold text-[var(--color-three)] text-menu backdrop-blur-lg z-40 relative ${
-            showOnlyMobile ? 'w-[300px] ml-auto' : ''
+          className={`flex flex-col mt-2 rounded-[45px] px-8 py-6 text-right font-bold text-[var(--color-three)] text-menu backdrop-blur-lg z-40 relative w-[300px] ml-auto ${
+            isHomePage ? 'min-d:hidden' : ''
           }`}
           style={{
             border: '2px solid var(--color-border)',
             background: 'var(--gradient-alt)'
           }}
         >
-          {routesPhone.map((route) => (
+          {routesBurger.map((route) => (
             <a
               key={route.id}
               href={route.path}

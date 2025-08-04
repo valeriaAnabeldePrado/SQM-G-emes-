@@ -31,7 +31,7 @@
   --text-button: clamp(1rem, 2vw, 1.6rem);
   --text-body: clamp(1.2rem, 3vw, 2rem);
   --text-p: clamp(1.2rem, 2vw, 1rem);
-  --text-subtitle: clamp(2rem, 4vw, 4rem);
+  --text-subtitle: clamp(2rem, 2vw, 2rem);
   --text-subtitleS: clamp(1.5rem, 3vw, 2.5rem);
 
   /* Body variables */
@@ -39,13 +39,13 @@
   /* --padding-body: clamp(1.2rem, 4vw, 9.375rem); */
   --pading-y: clamp(1.2rem, 4vw, 9.375rem);
   --padding-cards: clamp(1.2rem, 2vw, 8.375rem);
-  --padding-cards-small: clamp(1.2rem, 3vw, 4rem);
+  --padding-cards-small: clamp(1.2rem, 2vw, 2rem);
 
   /*Border radius*/
-  --border-radius-desktop: 60px;
-  --border-radius-note: 50px;
-  --border-radius-tablet: 35px;
-  --border-radius-phone: 25px;
+  --border-radius-desktop: 30px;
+  --border-radius-note: 20px;
+  --border-radius-tablet: 15px;
+  --border-radius-phone: 15px;
 
   /*Gaps*/
   --generic-gap-desktop: 28px;

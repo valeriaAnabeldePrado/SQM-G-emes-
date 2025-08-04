@@ -1,8 +1,7 @@
 'use client'
-import { useRef } from 'react'
+import { useEffect, useRef } from 'react'
 import gsap from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
-import { useGSAP } from '@gsap/react'
 import { Card } from './components/card'
 
 gsap.registerPlugin(ScrollTrigger)
@@ -10,29 +9,25 @@ gsap.registerPlugin(ScrollTrigger)
 export default function SectionTwo() {
   const sectionRef = useRef(null)
 
-  useGSAP(
-    () => {
-      const cards = sectionRef.current.querySelectorAll('.animated-card')
-      console.log('Section Two - Cards found:', cards.length)
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      const ctx = gsap.context(() => {
+        gsap.set('.animated-card', {
+          opacity: 0,
+          y: 50
+        })
 
-      gsap.set(cards, {
-        opacity: 0,
-        y: 50
-      })
-
-      // Pequeño delay para asegurar que el DOM esté completamente renderizado
-      gsap.delayedCall(0.1, () => {
-        gsap.to(cards, {
+        // Crear la animación SIN scrub para que duration y stagger funcionen
+        gsap.to('.animated-card', {
           scrollTrigger: {
             trigger: sectionRef.current,
-            start: 'top bottom', // Empieza cuando la sección toca el fondo del viewport
-            end: 'bottom 60%',
+            start: 'top 80%',
+            end: 'top 50%',
             scrub: 2,
             toggleActions: 'play none none reverse',
-            id: 'section-two',
-            refreshPriority: -1, // Prioridad baja para que se actualice después del banner
+            markers: true,
             onToggle: (self) => {
-              console.log('Section Two trigger toggle:', self.isActive)
+              console.log('SectionTwo trigger:', self.isActive)
             }
           },
           opacity: 1,
@@ -41,13 +36,13 @@ export default function SectionTwo() {
           ease: 'power2.out',
           stagger: 0.2
         })
+      }, sectionRef)
 
-        // Forzar refresh después de crear el trigger
-        ScrollTrigger.refresh()
-      })
-    },
-    { scope: sectionRef, revertOnUpdate: true }
-  )
+      return () => ctx.revert()
+    }, 200)
+
+    return () => clearTimeout(timer)
+  }, [])
 
   return (
     <div
@@ -59,7 +54,7 @@ export default function SectionTwo() {
         <section className="flex md:flex-row gap-[var(--generic-gap-tablet)] min-d:gap-[var(--generic-gap-desktop)] sm:flex-row basis-1/2">
           <Card className="animated-card flex-1 flex-col" hasGradient>
             <h2 className="text-(length:--text-title-huge) font-[var(--font-weight-bold)] leading-none text-[var(--color-one)]">
-              46
+              54
             </h2>
             <div className="min-d:items-start text-[var(--color-three)] text-body w-full items-center justify-center align-middle flex flex-col">
               <p>Unidades</p>
@@ -73,7 +68,7 @@ export default function SectionTwo() {
             <div className="flex-1/2 items-center justify-center align-middle flex"></div>
             <div className="text-[var(--color-three)] text-body">
               <p>Bloque</p>
-              <p>Coorporativo</p>
+              <p>Corporativo</p>
               <p>Comercial</p>
             </div>
           </Card>
@@ -100,10 +95,10 @@ export default function SectionTwo() {
           <div className="flex-1"></div>
           <div>
             <p className="text-body text-[var(--color-three)]">
-              En SQM Güemes, convergen estilo, funcionalidad y ubicación. Un proyecto moderno que
-              redefine la forma de habitar y trabajar, integrando un bloque residencial con unidades
-              de 1 y 2 dormitorios, microviviendas y dúplex, más un bloque corporativo ideal para
-              oficinas y locales comerciales.
+              En VIVRA Güemes, convergen estilo, funcionalidad y ubicación. Un proyecto moderno que
+              redefine la forma de habitar y trabajar, integrando un edificio residencial con
+              unidades de 1 y 2 dormitorios, dúplex y microviviendas, más un bloque corporativo
+              ideal para oficinas y locales comerciales.
             </p>
           </div>
         </Card>

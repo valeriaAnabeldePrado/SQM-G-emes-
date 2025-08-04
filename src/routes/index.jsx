@@ -5,12 +5,14 @@ import ApartmentDetail from '../components/web-sections/apartments/ApartmentDeta
 import ApartamentSection from '../components/web-sections/inmersive/apartament/ApartamentSection.jsx'
 import BuildSection from '../components/web-sections/inmersive/build/BuildSection.jsx'
 import Layout from '../components/layout/Layout.jsx'
+import NavBar from '../components/ui-components-generics/navBar/NavBar.jsx'
 
 export const router = createBrowserRouter([
   {
     path: '/',
     element: (
       <Layout>
+        <NavBar />
         <App />
       </Layout>
     )
@@ -19,6 +21,7 @@ export const router = createBrowserRouter([
     path: '/apartments',
     element: (
       <Layout>
+        <NavBar />
         <Apartaments />
       </Layout>
     )
@@ -27,6 +30,7 @@ export const router = createBrowserRouter([
     path: '/apartments/:apartmentId',
     element: (
       <Layout>
+        <NavBar />
         <ApartmentDetail />
       </Layout>
     )
@@ -35,7 +39,8 @@ export const router = createBrowserRouter([
     path: '/inmersive-apartament',
     element: (
       <Layout>
-        <Apartaments />
+        <NavBar />
+        <ApartamentSection />
       </Layout>
     )
   },
@@ -43,6 +48,7 @@ export const router = createBrowserRouter([
     path: '/inmersive-build',
     element: (
       <Layout>
+        <NavBar />
         <BuildSection />
       </Layout>
     )

@@ -7,70 +7,51 @@ import ContactForm from './components/formData'
 
 const SectionFooter = () => {
   return (
-    <footer className="bg-[var(--color-three)] w-full">
-      <div className="flex flex-col min-d:flex-row  items-stretch  gap-[var(--generic-gap-tablet)] min-d:gap-[var(--generic-gap-desktop)] py-[var(--pading-y)] min-note:h-[100vh] custom-container mx-auto px-4">
-        {/* Container de las dos cards pequeñas */}
-        <div className="w-full  min-d:flex-1 mt-0 min-note:mt-28 min-note:h-[90%] min-extra:h-[83vh]  flex flex-col gap-[var(--generic-gap-tablet)] min-d:gap-[var(--generic-gap-desktop)] ">
-          {/* Primera card pequeña */}
-          <section className="flex  h-[30%] gap-[var(--generic-gap-tablet)] min-d:gap-[var(--generic-gap-desktop)] min-d:flex-1">
-            <Card hasGradient className="w-full min-d:flex-1flex flex-col">
-              <div className="min-extra:block hidden flex-grow-0 flex-shrink-0 basis-1/3 w-full"></div>
-              <div className="flex-1 w-full">
-                <h3 className="min-note:text-body min-d:text-button text-menu  text-white">
-                  <strong>Conecta</strong> con quienes hacen realidad el proyecto
-                </h3>
-              </div>
-            </Card>
-          </section>
-
-          <section className="flex h-[15%] gap-[var(--generic-gap-tablet)] min-d:gap-[var(--generic-gap-desktop)] min-d:flex-1">
-            <Card hasGradient className="w-full min-d:flex-1flex flex-col ">
-              <div className="min-extra:block hidden flex-grow-0 flex-shrink-0 basis-1/3 w-full "></div>
-              <div className="flex items-center w-full gap-5">
-                <FaInstagram size="3em" color="white" />
-                <h3 className="text-white min-note:text-body min-d:text-button text-menu">
-                  Nuestro instagram
-                </h3>
-              </div>
-            </Card>
-          </section>
-          <section className="flex h-[15%] gap-[var(--generic-gap-tablet)] min-d:gap-[var(--generic-gap-desktop)] min-d:flex-1">
-            <Card hasGradient className="w-full min-d:flex-1flex flex-col ">
-              <div className="min-extra:block hidden flex-grow-0 flex-shrink-0 basis-1/3 w-full"></div>
-              <div className="flex gap-5 items-center w-full">
-                <RiMailOpenLine size="3em" color="white" />
-                <h3 className="text-white min-note:text-body min-d:text-button text-menu">
-                  Contacto
-                </h3>
-              </div>
-            </Card>
-          </section>
-          <section className="flex h-[15%] gap-[var(--generic-gap-tablet)] min-d:gap-[var(--generic-gap-desktop)] min-d:flex-1">
-            <Card hasGradient className="w-full min-d:flex-1flex flex-col ">
-              <div className="min-extra:block hidden flex-grow-0 flex-shrink-0 basis-1/3 w-full"></div>
-              <div className="flex gap-5 items-center w-full">
-                <LuMapPin size="3em" color="white" />
-                <h3 className="text-white min-note:text-body min-d:text-button text-menu">
-                  Ubicación
-                </h3>
-              </div>
-            </Card>
-          </section>
+    <footer className="bg-[var(--color-three)] w-full pt-12 pb-0">
+      <div className="custom-container mx-auto px-4 flex flex-col min-d:flex-row gap-12 min-d:gap-20 items-start">
+        {/* Columna izquierda: branding, texto, datos, redes */}
+        <div className="w-full min-d:w-1/2 flex flex-col gap-6 items-center min-d:items-start justify-center">
+          <div className="text-2xl font-extrabold text-white mb-2 tracking-wide">VIVRA Güemes</div>
+          <div className="text-white text-base opacity-90 mb-2 text-center min-d:text-left">
+            Av. Pueyrredón 387 · Córdoba Capital
+          </div>
+          <div className="text-white text-sm opacity-80 mb-4 text-center min-d:text-left">
+            ¿Querés saber más? Escribinos o seguinos en redes para conocer más sobre el proyecto.
+          </div>
+          <div className="flex flex-row gap-6 items-center justify-center min-d:justify-start">
+            <a
+              href="https://www.instagram.com/"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="hover:scale-110 transition-transform"
+            >
+              <FaInstagram size="2em" color="white" />
+            </a>
+            <a href="mailto:info@vivraguemes.com" className="hover:scale-110 transition-transform">
+              <RiMailOpenLine size="2em" color="white" />
+            </a>
+            <a
+              href="https://goo.gl/maps/xyz"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="hover:scale-110 transition-transform"
+            >
+              <LuMapPin size="2em" color="white" />
+            </a>
+          </div>
         </div>
-        <div
-          id="contact"
-          className="w-full min-d:flex-1 flex mt-0 min-note:mt-28 min-note:h-[90%] h-full flex-col gap-[var(--generic-gap-tablet)] min-d:gap-[var(--generic-gap-desktop)]"
-        >
-          <Card className="w-full bg-[var(--color-two)] flex-col h-full ">
-            <div>
-              <h3 className="text-[var(--color-three)] min-note:text-body min-d:text-button text-menu">
-                Estamos a disposición para responder tus preguntas, contarte más sobre el proceso y
-                brindarte toda la información que necesitás.
-              </h3>
-            </div>
+        {/* Columna derecha: formulario */}
+        <div id="contact" className="w-full min-d:w-1/2 flex flex-col justify-center">
+          <Card className="w-full bg-[var(--color-two)] flex-col p-8 rounded-2xl shadow-xl flex justify-center items-center">
+            <h3 className="text-[var(--color-three)] text-lg min-note:text-body min-d:text-button text-center font-semibold mb-6">
+              Escribinos y te contactamos
+            </h3>
             <ContactForm />
           </Card>
         </div>
+      </div>
+      <div className="w-full text-center text-white text-xs opacity-60 mt-10 pb-4">
+        © {new Date().getFullYear()} VIVRA Güemes. Todos los derechos reservados.
       </div>
     </footer>
   )

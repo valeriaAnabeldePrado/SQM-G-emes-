@@ -1,0 +1,188 @@
+.animatedIn {
+  animation: fadeIn 0.5s ease-in-out;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateX(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+#apartments-model {
+  min-height: 400px;
+}
+
+/* SVG responsivo */
+#plantaOne,
+#PlantaTwo,
+#PlantaThree,
+#PlantaFour,
+#PlantaFive,
+#PlantaSix,
+#PlantaSeven {
+  height: 600px;
+  width: 200px;
+  transition: all 0.3s ease;
+}
+
+/* 1164px y arriba - tamaño completo */
+@media (min-width: 1620px) {
+  #apartments-model .flex-2 {
+    flex: 2;
+  }
+
+  #apartments-model p {
+    font-size: 1rem;
+    line-height: 1.5;
+  }
+
+  #apartments-model button {
+    width: 250px;
+    font-size: 1rem;
+  }
+
+  #apartments-model {
+    gap: 2.5rem;
+  }
+}
+
+/* 1000px - 1163px */
+@media (max-width: 1600px) {
+  #plantaOne,
+  #PlantaTwo,
+  #PlantaThree,
+  #PlantaFour,
+  #PlantaFive,
+  #PlantaSix,
+  #PlantaSeven {
+    height: 450px;
+    width: 180px;
+  }
+
+  #apartments-model .flex-2 {
+    flex: 1.8;
+  }
+
+  #apartments-model p {
+    font-size: 0.9rem;
+    line-height: 1.4;
+  }
+
+  #apartments-model button {
+    width: 220px;
+    font-size: 0.9rem;
+  }
+
+  #apartments-model {
+    gap: 2rem;
+  }
+}
+
+/* 830px - 1000px */
+@media (max-width: 1090px) {
+  #plantaOne,
+  #PlantaTwo,
+  #PlantaThree,
+  #PlantaFour,
+  #PlantaFive,
+  #PlantaSix,
+  #PlantaSeven {
+    height: 400px;
+    width: 160px;
+  }
+
+  #apartments-model .flex-2 {
+    flex: 1.5;
+  }
+
+  #apartments-model p {
+    font-size: 0.85rem;
+    line-height: 1.3;
+  }
+
+  #apartments-model button {
+    width: 200px;
+    font-size: 0.85rem;
+    padding: 0.6rem 1.2rem;
+  }
+
+  #apartments-model {
+    gap: 1.5rem;
+  }
+}
+
+/* 500px - 830px */
+@media (max-width: 970px) {
+  #plantaOne,
+  #PlantaTwo,
+  #PlantaThree,
+  #PlantaFour,
+  #PlantaFive,
+  #PlantaSix,
+  #PlantaSeven {
+    height: 350px;
+    width: 140px;
+  }
+
+  #apartments-model .flex-2 {
+    flex: 1.2;
+  }
+
+  #apartments-model p {
+    font-size: 0.8rem;
+    line-height: 1.2;
+  }
+
+  #apartments-model button {
+    width: 180px;
+    font-size: 0.8rem;
+    padding: 0.5rem 1rem;
+  }
+
+  .text-modal {
+    font-size: 16px;
+  }
+}
+
+/* 500px y menor */
+@media (max-width: 830px) {
+  #plantaOne,
+  #PlantaTwo,
+  #PlantaThree,
+  #PlantaFour,
+  #PlantaFive,
+  #PlantaSix,
+  #PlantaSeven {
+    height: 300px;
+    width: 120px;
+  }
+
+  #apartments-model .flex-2 {
+    flex: 1;
+  }
+
+  #apartments-model p {
+    font-size: 0.75rem;
+    line-height: 1.1;
+  }
+
+  #apartments-model button {
+    width: 150px;
+    font-size: 0.75rem;
+    padding: 0.4rem 0.8rem;
+  }
+
+  #apartments-model {
+    gap: 0.75rem;
+    padding: 1rem;
+  }
+
+  #apartments-model .flex {
+    gap: 0.5rem;
+  }
+}

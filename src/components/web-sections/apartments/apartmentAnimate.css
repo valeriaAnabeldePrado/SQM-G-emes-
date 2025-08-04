@@ -185,4 +185,7 @@
   #apartments-model .flex {
     gap: 0.5rem;
   }
+  .text-modal {
+    font-size: 14px;
+  }
 }

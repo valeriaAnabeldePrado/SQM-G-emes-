@@ -3,7 +3,7 @@ import PlanoEdificio from '../../../assets/Corte'
 import { Card } from '../home/components/card'
 import { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
-
+import Footer from '../home/components/Footer'
 import ModelOne from '../../../assets/floors/ModelOne'
 import ModelTwo from '../../../assets/floors/ModelTwo'
 import ModelThree from '../../../assets/floors/ModelThree'
@@ -13,6 +13,7 @@ import ModelSix from '../../../assets/floors/ModelSix'
 import ModelSeven from '../../../assets/floors/ModelSeven'
 import Button from '../home/components/button'
 import { MdOutlineArrowOutward } from 'react-icons/md'
+
 import './apartmentAnimate.css'
 
 const Apartaments = () => {
@@ -81,56 +82,77 @@ const Apartaments = () => {
     }
   }
   return (
-    <div className="custom-container mt-20 px-4 " onClick={handleContainerClick}>
-      <h2 className="h-auto ">Conoce nuestras unidades disponibles </h2>
-      <section className="flex max-md:flex-col h-full max-lg:mt-8  items-center justify-center gap-4 mt-2">
-        <div className=" flex-1 " onClick={(e) => e.stopPropagation()}>
-          <PlanoEdificio onEvent={handleFloorClick} selectedFloor={selectedFloor} />
-        </div>
-        <div id="dinamic-card" className="flex-1 relative" onClick={(e) => e.stopPropagation()}>
-          {!selectedFloor ? (
-            <section className="flex flex-col gap-4 w-full justify-center items-center animatedIn  h-[74vh]">
-              <Card hasGradient className="h-[25vh]">
-                <h2>Selecciona un piso para ver información detallada</h2>
-                <p>Haz click en cualquier piso del edificio para conocer más detalles</p>
-              </Card>
-              <section className="flex flex-row gap-4">
-                <Card hasGradient className="flex-1 flex-col gap-6">
-                  <h3>Tipología</h3>
-                  <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod</p>
+    <>
+      <div className=" custom-container mt-14 px-4 " onClick={handleContainerClick}>
+        <h2 className=" text-(length:--text-subtitle) text-[var(--color-three)] pb-5 ">
+          Conoce nuestras{' '}
+          <span className="inline-block font-bold rounded-full text-(lenght:--color-one)">
+            unidades disponibles
+          </span>
+        </h2>
+
+        <section className="flex max-md:flex-col h-full max-lg:mt-8  items-center justify-center gap-4 mt-2">
+          <div className=" flex-1 " onClick={(e) => e.stopPropagation()}>
+            <PlanoEdificio onEvent={handleFloorClick} selectedFloor={selectedFloor} />
+          </div>
+          <div id="dinamic-card" className="flex-1 relative" onClick={(e) => e.stopPropagation()}>
+            {!selectedFloor ? (
+              <section className="flex flex-col gap-4 w-full justify-center items-center animatedIn  min-[768px]:h-[74vh]">
+                <Card hasGradient className="h-[25vh]">
+                  <p className="text-[var(--color-three)] text-modal">
+                    Conocé cada unidad del edificio.{' '}
+                    <span className="inline-block font-bold rounded-full text-(lenght:--color-one)">
+                      Hacé clic en el piso que quieras para ver su planta y los departamentos
+                      disponibles.
+                    </span>
+                  </p>
                 </Card>
-                <Card hasGradient className="flex-1 flex-col gap-6">
-                  <h3>Tipología</h3>
-                  <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod</p>
-                </Card>
+                <section className="flex flex-row gap-4">
+                  <Card hasGradient className="flex-1 flex-col gap-6 text-[var(--color-three)] ">
+                    <h3 className="text-modal">Tipología</h3>
+                    <p className="text-modal">
+                      {' '}
+                      Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
+                    </p>
+                  </Card>
+                  <Card hasGradient className="flex-1 flex-col gap-6 text-[var(--color-three)]">
+                    <h3 className="text-modal">Tipología</h3>
+                    <p className="text-modal">
+                      Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
+                    </p>
+                  </Card>
+                </section>
               </section>
-            </section>
-          ) : (
-            <Card
-              hasGradient
-              id="apartments-model"
-              className="overflow-auto flex flex-row min-xl:gap-10 gap-5 animatedIn"
-            >
-              <div className="flex-2 bg-white rounded-2xl p-4 flex items-start justify-center">
-                {renderFloorComponent(selectedFloor)}
-              </div>
-              <div className="flex flex-col justify-between min-sm:gap-16 gap-5">
-                <p className="text-modal">
-                  Lorem ipsum, dolor sit amet consectetur adipisicing elit. Suscipit exercitationem
-                  ducimus inventore quod nesciunt perspiciatis praesentium
-                </p>
-                <Button
-                  className="min-2xl:w-[250px] w-[160px] flex items-center justify-between"
-                  onClick={handleViewPlans}
-                >
-                  Ver planos <MdOutlineArrowOutward size="1.5em" color="white" />
-                </Button>
-              </div>
-            </Card>
-          )}
-        </div>
+            ) : (
+              <Card
+                hasGradient
+                id="apartments-model"
+                className="overflow-auto flex flex-row min-xl:gap-10 gap-5 animatedIn"
+              >
+                <div className="flex-2 bg-white rounded-2xl p-4 flex items-start justify-center">
+                  {renderFloorComponent(selectedFloor)}
+                </div>
+                <div className="flex flex-col justify-between gap-16">
+                  <p className="text-modal">
+                    Lorem ipsum, dolor sit amet consectetur adipisicing elit. Suscipit
+                    exercitationem ducimus inventore quod nesciunt perspiciatis praesentium
+                  </p>
+                  <Button
+                    className="min-2xl:w-[250px] w-[160px] flex items-center justify-between"
+                    onClick={handleViewPlans}
+                  >
+                    Ver planos <MdOutlineArrowOutward size="1.5em" color="white" />
+                  </Button>
+                </div>
+              </Card>
+            )}
+          </div>
+        </section>
+      </div>
+      <section className="custom-container mt-8">
+        <Footer />
       </section>
-    </div>
+    </>
   )
 }
 

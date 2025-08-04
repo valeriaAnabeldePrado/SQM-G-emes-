@@ -4,7 +4,6 @@
     "title": "Departamento A - Piso 1",
     "type": "2 Ambientes",
     "area": "45m²",
-    "price": "$85,000",
     "description": "Moderno departamento de 2 ambientes con excelente distribución. Cuenta con amplios espacios, cocina integrada y balcón con vista panorámica.",
     "features": [
       "1 Dormitorio",
@@ -14,99 +13,54 @@
       "Balcón",
       "Ventanas de doble vidrio"
     ],
-    "amenities": ["Ascensor", "Portero eléctrico", "Terraza común", "Parrilla", "Seguridad 24hs"],
-    "images": [
-      "/src/assets/section-six/galleryOne.jpg",
-      "/src/assets/section-six/galleryTwo.png",
-      "/src/assets/section-six/galleryThree.png",
-      "/src/assets/section-six/galleryFour.png"
-    ],
-    "floorPlan": "/src/assets/floors/plano-a.jpg"
+    "floorPlan": "/planos/planoMuestra.png"
   },
   "apartment_B_P1": {
     "id": "apartment_B_P1",
     "title": "Departamento B - Piso 1",
-    "type": "3 Ambientes",
-    "area": "65m²",
-    "price": "$120,000",
-    "description": "Espacioso departamento de 3 ambientes ideal para familias. Diseño moderno con excelente iluminación natural y acabados de primera calidad.",
+    "type": "2 Ambientes",
+    "area": "45m²",
+    "description": "Moderno departamento de 2 ambientes con excelente distribución. Cuenta con amplios espacios, cocina integrada y balcón con vista panorámica.",
     "features": [
-      "2 Dormitorios",
-      "2 Baños completos",
-      "Cocina con comedor diario",
-      "Living independiente",
-      "Balcón principal",
-      "Lavadero"
+      "1 Dormitorio",
+      "1 Baño completo",
+      "Cocina integrada",
+      "Living-comedor",
+      "Balcón",
+      "Ventanas de doble vidrio"
     ],
-    "amenities": [
-      "Ascensor",
-      "Portero eléctrico",
-      "Terraza común",
-      "Parrilla",
-      "Seguridad 24hs",
-      "Estacionamiento opcional"
-    ],
-    "images": [
-      "/src/assets/section-six/galleryTwo.png",
-      "/src/assets/section-six/galleryOne.jpg",
-      "/src/assets/section-six/galleryFour.png",
-      "/src/assets/section-six/galleryThree.png"
-    ],
-    "floorPlan": "/src/assets/floors/plano-b.jpg"
+    "floorPlan": "/planos/planoMuestra.png"
   },
   "apartment_C_P1": {
     "id": "apartment_C_P1",
     "title": "Departamento C - Piso 1",
-    "type": "2 Ambientes Premium",
-    "area": "52m²",
-    "price": "$95,000",
-    "description": "Departamento premium de 2 ambientes con terminaciones de lujo. Ubicación privilegiada con vista panorámica y excelente conectividad.",
+    "type": "2 Ambientes",
+    "area": "45m²",
+    "description": "Moderno departamento de 2 ambientes con excelente distribución. Cuenta con amplios espacios, cocina integrada y balcón con vista panorámica.",
     "features": [
-      "1 Dormitorio principal",
-      "1 Baño con hidromasaje",
-      "Cocina premium integrada",
-      "Living-comedor amplío",
-      "Balcón con vista",
-      "Walk-in closet"
+      "1 Dormitorio",
+      "1 Baño completo",
+      "Cocina integrada",
+      "Living-comedor",
+      "Balcón",
+      "Ventanas de doble vidrio"
     ],
-    "amenities": [
-      "Ascensor",
-      "Portero eléctrico",
-      "Terraza común",
-      "Parrilla",
-      "Seguridad 24hs",
-      "Gimnasio"
-    ],
-    "images": [
-      "/src/assets/section-six/galleryThree.png",
-      "/src/assets/section-six/galleryFour.png",
-      "/src/assets/section-six/galleryOne.jpg",
-      "/src/assets/section-six/galleryTwo.png"
-    ],
-    "floorPlan": "/src/assets/floors/plano-c.jpg"
+    "floorPlan": "/planos/planoMuestra.png"
   },
   "apartment_D_P1": {
     "id": "apartment_D_P1",
     "title": "Departamento D - Piso 1",
-    "type": "1 Ambiente",
-    "area": "35m²",
-    "price": "$65,000",
-    "description": "Acogedor departamento de 1 ambiente perfecto para jóvenes profesionales o inversión. Diseño inteligente que maximiza cada metro cuadrado.",
+    "type": "2 Ambientes",
+    "area": "45m²",
+    "description": "Moderno departamento de 2 ambientes con excelente distribución. Cuenta con amplios espacios, cocina integrada y balcón con vista panorámica.",
     "features": [
-      "Ambiente único",
+      "1 Dormitorio",
       "1 Baño completo",
-      "Kitchenette",
-      "Área de descanso",
-      "Balcón francés",
-      "Placard empotrado"
+      "Cocina integrada",
+      "Living-comedor",
+      "Balcón",
+      "Ventanas de doble vidrio"
     ],
-    "amenities": ["Ascensor", "Portero eléctrico", "Terraza común", "Parrilla", "Seguridad 24hs"],
-    "images": [
-      "/src/assets/section-six/galleryFour.png",
-      "/src/assets/section-six/galleryThree.png",
-      "/src/assets/section-six/galleryTwo.png",
-      "/src/assets/section-six/galleryOne.jpg"
-    ],
-    "floorPlan": "/src/assets/floors/plano-d.jpg"
+    "floorPlan": "/planos/planoMuestra.png"
   }
 }

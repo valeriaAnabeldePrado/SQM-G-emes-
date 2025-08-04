@@ -1,0 +1,33 @@
+.cls-3 {
+  fill: #c6c7c9;
+}
+
+.apartment-surface {
+  transition: fill 0.3s ease-in-out;
+  cursor: pointer;
+}
+
+.apartment-surface:hover {
+  fill: #ffdc9a !important;
+}
+
+.apartment-text {
+  transition: fill 0.3s ease-in-out;
+}
+
+.apartment-group {
+  cursor: pointer;
+}
+
+.animateInPlant {
+  animation: opacityIn 0.5s ease-in-out;
+}
+
+@keyframes opacityIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}

@@ -8,8 +8,23 @@ const PlanoEdificio = ({ onEvent, selectedFloor }) => (
         transition: fill 600ms;
         cursor: pointer;
         pointer-events: all;
-      }      .plantaAlta:hover,.ingresoOfi:hover, .pisoDoce:hover, .pisoOnce:hover, .pisoDiez:hover, .pisoNueve:hover, .pisoOcho:hover, .pisoSiete:hover, .pisoSeis:hover, .pisoCinco:hover, .pisoCuatro:hover, .pisoTres:hover, .pisoDos:hover, .pisoUno:hover, .subsuelo:hover, .ingreso:hover, .ofiBalcon:hover, .ofiTres:hover, .ofiDos:hover, .ofiUno:hover, .ingresoOfi:hover {
-        fill: #ffc46a;
+      }
+      
+      .floor-hover:hover rect,
+      .floor-hover:hover path,
+      .floor-hover:hover polygon,
+      .floor-hover:hover circle,
+      .floor-hover:hover ellipse {
+        fill: #ffc46a !important;
+        transition: fill 0.3s ease-in-out;
+      }
+      
+      .floor-selected rect,
+      .floor-selected path,
+      .floor-selected polygon,
+      .floor-selected circle,
+      .floor-selected ellipse {
+        fill: #ffc46a !important;
       }
       
       #Capa_2 {
@@ -17,25 +32,24 @@ const PlanoEdificio = ({ onEvent, selectedFloor }) => (
       }
       @media (max-width: 1600px) {
         #Capa_2 {
-          height: 560px;
-          
-       
+          height: 540px;
+
         }
       }
       
-      @media (max-width: 1000px) {
+      @media (max-width: 1090px) {
         #Capa_2 {
           height: 500px;
           margin-top:50px
         }
       }
-        @media (max-width: 830px) {
+        @media (max-width: 970px) {
         #Capa_2 {
           height: 450px;
           margin-top:0px
           
         }
-          @media (max-width: 500px) {
+          @media (max-width: 830px) {
         #Capa_2 {
           height: 380px;
           
@@ -44,7 +58,7 @@ const PlanoEdificio = ({ onEvent, selectedFloor }) => (
       .yellowC {
         fill: #ffc46a !important;
       }
-     
+    
       
     `}</style>
     <svg id="Capa_2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 574.5 623.2">
@@ -2536,6 +2550,7 @@ const PlanoEdificio = ({ onEvent, selectedFloor }) => (
       </g>
       <g
         id="Asador"
+        className={`floor-hover ${selectedFloor === 'asador' ? 'floor-selected' : ''}`}
         onClick={(e) => {
           e.stopPropagation()
           onEvent('asador')
@@ -2564,6 +2579,7 @@ const PlanoEdificio = ({ onEvent, selectedFloor }) => (
       </g>
       <g
         id="PlantaAlta"
+        className={`floor-hover ${selectedFloor === 'plantaAlta' ? 'floor-selected' : ''}`}
         onClick={(e) => {
           e.stopPropagation()
           onEvent('plantaAlta')
@@ -2593,6 +2609,7 @@ const PlanoEdificio = ({ onEvent, selectedFloor }) => (
 
       <g
         id="PisoDoce"
+        className={`floor-hover ${selectedFloor === 'p12-modelSix' ? 'floor-selected' : ''}`}
         onClick={(e) => {
           e.stopPropagation()
           onEvent('p12-modelSix')
@@ -2622,6 +2639,7 @@ const PlanoEdificio = ({ onEvent, selectedFloor }) => (
 
       <g
         id="PisoOnce"
+        className={`floor-hover ${selectedFloor === 'p11-modelFive' ? 'floor-selected' : ''}`}
         onClick={(e) => {
           e.stopPropagation()
           onEvent('p11-modelFive')
@@ -2651,6 +2669,7 @@ const PlanoEdificio = ({ onEvent, selectedFloor }) => (
 
       <g
         id="PisoDiez"
+        className={`floor-hover ${selectedFloor === 'p10-modelFour' ? 'floor-selected' : ''}`}
         onClick={(e) => {
           e.stopPropagation()
           onEvent('p10-modelFour')
@@ -2680,6 +2699,7 @@ const PlanoEdificio = ({ onEvent, selectedFloor }) => (
 
       <g
         id="PisoNueve"
+        className={`floor-hover ${selectedFloor === 'p09-modelFour' ? 'floor-selected' : ''}`}
         onClick={(e) => {
           e.stopPropagation()
           onEvent('p09-modelFour')
@@ -2709,6 +2729,7 @@ const PlanoEdificio = ({ onEvent, selectedFloor }) => (
 
       <g
         id="PisoOcho"
+        className={`floor-hover ${selectedFloor === 'p08-modelFour' ? 'floor-selected' : ''}`}
         onClick={(e) => {
           e.stopPropagation()
           e.preventDefault()
@@ -2739,6 +2760,7 @@ const PlanoEdificio = ({ onEvent, selectedFloor }) => (
 
       <g
         id="PisoSiete"
+        className={`floor-hover ${selectedFloor === 'p07-modelFour' ? 'floor-selected' : ''}`}
         onClick={(e) => {
           e.stopPropagation()
           onEvent('p07-modelFour')
@@ -2768,6 +2790,7 @@ const PlanoEdificio = ({ onEvent, selectedFloor }) => (
 
       <g
         id="PisoSeis"
+        className={`floor-hover ${selectedFloor === 'p06-modelThree' ? 'floor-selected' : ''}`}
         onClick={(e) => {
           e.stopPropagation()
           onEvent('p06-modelThree')
@@ -2797,6 +2820,7 @@ const PlanoEdificio = ({ onEvent, selectedFloor }) => (
 
       <g
         id="PisoCinco"
+        className={`floor-hover ${selectedFloor === 'p05-modelThree' ? 'floor-selected' : ''}`}
         onClick={(e) => {
           e.stopPropagation()
           onEvent('p05-modelThree')
@@ -2826,6 +2850,7 @@ const PlanoEdificio = ({ onEvent, selectedFloor }) => (
 
       <g
         id="PisoCuatro"
+        className={`floor-hover ${selectedFloor === 'p04-modelTwo' ? 'floor-selected' : ''}`}
         onClick={(e) => {
           e.stopPropagation()
           onEvent('p04-modelTwo')
@@ -2865,6 +2890,7 @@ const PlanoEdificio = ({ onEvent, selectedFloor }) => (
 
       <g
         id="PisoTres"
+        className={`floor-hover ${selectedFloor === 'p03-modelOne' ? 'floor-selected' : ''}`}
         onClick={(e) => {
           e.stopPropagation()
           onEvent('p03-modelOne')
@@ -2904,6 +2930,7 @@ const PlanoEdificio = ({ onEvent, selectedFloor }) => (
 
       <g
         id="PisoDos"
+        className={`floor-hover ${selectedFloor === 'p02-modelOne' ? 'floor-selected' : ''}`}
         onClick={(e) => {
           e.stopPropagation()
           onEvent('p02-modelOne')
@@ -2943,6 +2970,7 @@ const PlanoEdificio = ({ onEvent, selectedFloor }) => (
 
       <g
         id="PisoUno"
+        className={`floor-hover ${selectedFloor === 'p01-modelOne' ? 'floor-selected' : ''}`}
         onClick={(e) => {
           e.stopPropagation()
           onEvent('p01-modelOne')

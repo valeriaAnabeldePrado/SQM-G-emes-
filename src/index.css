@@ -38,7 +38,7 @@
   /* se deja como container de tailwind */
   /* --padding-body: clamp(1.2rem, 4vw, 9.375rem); */
   --pading-y: clamp(1.2rem, 4vw, 9.375rem);
-  --padding-cards: clamp(1.2rem, 3vw, 9.375rem);
+  --padding-cards: clamp(1.2rem, 2vw, 8.375rem);
   --padding-cards-small: clamp(1.2rem, 3vw, 4rem);
 
   /*Border radius*/

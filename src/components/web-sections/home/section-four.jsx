@@ -1,7 +1,7 @@
-import React, { useRef, useEffect } from 'react'
+import React, { useRef, useEffect, useState } from 'react'
 import { CardArrow } from './components/card-arrow'
-import bano from '/src/assets/characteristics/bano.png'
-import pisos from '/src/assets/characteristics/pisos.png'
+import bano from '/src/assets/characteristics/banos.jpg'
+import pisos from '/src/assets/characteristics/pisos.jpg'
 import balcony from '/src/assets/characteristics/balcony.png'
 import details from '/src/assets/characteristics/details.png'
 import gsap from 'gsap'
@@ -41,6 +41,15 @@ gsap.registerPlugin(ScrollTrigger)
 
 const SectionFour = () => {
   const sectionRef = useRef(null)
+  const [modalImage, setModalImage] = useState(null)
+
+  const openModal = (img) => {
+    setModalImage(img)
+  }
+
+  const closeModal = () => {
+    setModalImage(null)
+  }
 
   useEffect(() => {
     const ctx = gsap.context(() => {
@@ -69,8 +78,7 @@ const SectionFour = () => {
             trigger: sectionRef.current,
             start: isMobile ? 'top 85%' : 'top center',
             scrub: 1,
-            end: isMobile ? 'top 30%' : '50% 80%',
-            markers: false
+            end: isMobile ? 'top 30%' : '50% 80%'
           }
         })
         .to(words, {
@@ -120,8 +128,9 @@ const SectionFour = () => {
             <img
               src={img}
               alt={alt}
-              className="absolute inset-0 object-cover min-d:scale-105 min-d:group-hover:scale-125 min-d:transition-transform min-d:duration-100 min-d:ease-in-out w-full h-full z-0"
-              style={{ pointerEvents: 'none', objectPosition: 'center' }}
+              className="absolute inset-0 object-cover min-d:scale-105 min-d:group-hover:scale-125 min-d:transition-transform min-d:duration-100 min-d:ease-in-out w-full h-full z-0 cursor-pointer"
+              style={{ pointerEvents: 'auto', objectPosition: 'center' }}
+              onClick={() => openModal(img)}
             />
             <div className="min-d:hidden h-[45vh]"></div>
             <div className="opacity-100 min-d:opacity-0 min-d:group-hover:opacity-100 min-d:group-hover:delay-300 min-d:group-hover:transition-opacity min-d:group-hover:duration-100 min-d:transition-opacity min-d:duration-75 z-10 flex flex-col h-full justify-end gap-[var(--generic-gap-tablet)] min-d:gap-[var(--generic-gap-desktop)] p-4">
@@ -131,10 +140,42 @@ const SectionFour = () => {
               <div>
                 <p className="text-white">{description}</p>
               </div>
+              <div className="mt-4 hidden min-d:block">
+                <button
+                  onClick={() => openModal(img)}
+                  className=" bg-opacity-20 hover:bg-opacity-40 text-white px-4 py-2 rounded-lg text-sm font-medium transition-all duration-200 border border-white hover:border-[var(--color-one)] hover:bg-[var(--color-one)] cursor-pointer"
+                >
+                  Ver imagen completa
+                </button>
+              </div>
             </div>
           </CardArrow>
         ))}
       </div>
+
+      {/* Modal para mostrar imagen ampliada - Solo desktop */}
+      {modalImage && (
+        <div
+          className="fixed inset-0 bg-black bg-opacity-90 min-d:flex items-center justify-center z-50 hidden transition-opacity duration-300 ease-in-out"
+          style={{ backgroundColor: 'rgba(0, 0, 0, 0.8)' }}
+          onClick={closeModal}
+        >
+          <div className="relative w-[80vw] h-[80vh] flex items-center justify-center transform scale-95 transition-transform duration-300 ease-in-out hover:scale-100">
+            <img
+              src={modalImage}
+              alt="Imagen ampliada"
+              className="max-w-full max-h-full object-contain rounded-lg shadow-lg"
+              onClick={(e) => e.stopPropagation()}
+            />
+            <button
+              className="absolute top-4 right-4 text-white text-4xl bg-black bg-opacity-60 w-12 h-12 rounded-full flex items-center justify-center hover:bg-opacity-80 hover:scale-110 transition-all duration-200 ease-in-out"
+              onClick={closeModal}
+            >
+              ×
+            </button>
+          </div>
+        </div>
+      )}
     </div>
   )
 }

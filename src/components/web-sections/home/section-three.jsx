@@ -53,8 +53,7 @@ export default function SectionThree() {
             trigger: containerRef.current,
             start: 'top 80%',
             end: 'bottom 80%',
-            scrub: 1,
-            markers: false
+            scrub: 1
           }
         })
         .to(spans, {

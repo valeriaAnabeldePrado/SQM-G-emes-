@@ -32,7 +32,7 @@
   --text-body: clamp(1.2rem, 3vw, 2rem);
   --text-p: clamp(1.2rem, 2vw, 1rem);
   --text-subtitle: clamp(2rem, 2vw, 2rem);
-  --text-subtitleS: clamp(1.5rem, 3vw, 2.5rem);
+  --text-subtitleS: clamp(3rem, 4vw, 5rem);
 
   /* Body variables */
   /* se deja como container de tailwind */

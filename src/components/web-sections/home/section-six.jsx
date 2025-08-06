@@ -1,11 +1,10 @@
 import { Card } from './components/card'
 import { CardArrow } from './components/card-arrow'
-import buildE from '/src/assets/section-six/hori.png'
 import bed from '/src/assets/section-six/dormitorio.png'
 import dpto from '/src/assets/section-six/dpto.png'
 import galleryOne from '/src/assets/section-six/galleryOne.jpg'
 import galleryTwo from '/src/assets/section-six/galleryTwo.png'
-import galleryThree from '/src/assets/section-six/galleryThree.png'
+import deptoCompleto from '/src/assets/section-six/depa1.jpg'
 import galleryFour from '/src/assets/section-six/galleryFour.png'
 
 const cardsData = [
@@ -15,7 +14,7 @@ const cardsData = [
   },
 
   {
-    img: galleryThree,
+    img: deptoCompleto,
     alt: 'detailsThree'
   },
   {
@@ -35,7 +34,7 @@ export default function SectionSix() {
     >
       <div className="relative w-full h-screen ">
         <img
-          src={buildE}
+          src={deptoCompleto}
           alt="bannerRender"
           className="absolute top-0 left-0 w-full object-cover h-full rounded-[var(--border-radius-phone)] min-d:rounded-[var(--border-radius-tablet)] min-extra:rounded-[var(--border-radius-note)] min-note:rounded-[var(--border-radius-desktop)]"
         />

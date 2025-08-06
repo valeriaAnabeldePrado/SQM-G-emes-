@@ -8,7 +8,10 @@ flex items-start justify-center p-[var(--padding-cards-small)] min-extra:p-[var(
 `
 
   const style = hasGradient
-    ? { background: 'var(--gradient-card)', border: '2px solid var(--color-border)' }
+    ? {
+        background: 'var(--gradient-card)',
+        border: '2px solid var(--color-border)'
+      }
     : {}
 
   return (

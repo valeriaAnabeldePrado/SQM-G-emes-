@@ -156,7 +156,7 @@ const CustomLoader = () => {
             WebkitTextFillColor: 'transparent',
             backgroundClip: 'text',
             letterSpacing: '-1px',
-            fontFamily: "'Coco Gothic', 'Poppins', Arial, sans-serif"
+            fontFamily: " 'Poppins', Arial, sans-serif"
           }}
         >
           3D Show

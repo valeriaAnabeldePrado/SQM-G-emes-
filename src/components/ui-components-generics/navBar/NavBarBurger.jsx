@@ -20,9 +20,9 @@ const NavBarBurger = () => {
   ]
 
   return (
-    <div className="fixed z-50 top-8 px-6  right-2 min-sm:right-[5%] flex flex-col items-end">
+    <div className="fixed z-50  top-8 px-6  right-2 min-sm:right-[5%] flex flex-col items-end">
       <nav
-        className="px-6 py-[1.2rem] min-note:py-[2rem] min-d:px-12 flex items-center justify-end rounded-full backdrop-blur-lg "
+        className="px-6  py-[1.2rem] min-note:py-[2rem] min-d:px-12 flex items-center justify-end rounded-full backdrop-blur-lg "
         style={{
           border: '2px solid var(--color-border)',
           background: 'var(--gradient-alt)'
@@ -31,7 +31,7 @@ const NavBarBurger = () => {
         {/* Burger button */}
         <button
           onClick={toggleMenu}
-          className="p-2 rounded-md text-[var(--color-three)] hover:text-[var(--color-one)] focus:outline-none focus:ring-2 focus:ring-inset focus:ring-[var(--color-one)]"
+          className="p-2  rounded-md text-[var(--color-three)] hover:text-[var(--color-one)] focus:outline-none focus:ring-2 focus:ring-inset focus:ring-[var(--color-one)]"
         >
           {isMenuOpen ? <RiCloseLine className="h-6 w-6" /> : <RiMenu3Line className="h-6 w-6" />}
         </button>

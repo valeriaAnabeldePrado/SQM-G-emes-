@@ -22,29 +22,31 @@ const NavBar = () => {
   }, [])
 
   const routes = [
-    { id: 1, name: 'Edificio', path: '/inmersive-apartament' },
-    { id: 2, name: 'Departamentos', path: '/apartments' },
+    { id: 1, name: '3D inmersivo', path: '/inmersive-apartament' },
+    { id: 2, name: 'Planos', path: '/apartments' },
     { id: 3, name: 'Galería', path: '#gallery' },
-    { id: 4, name: 'Contacto', path: '#contact' }
+    { id: 4, name: 'Características', path: '/#characte' },
+    { id: 5, name: 'Contacto', path: '#contact' }
   ]
 
   // Rutas para el menú burger (usado en mobile siempre y en desktop solo en páginas no-home)
   const routesBurger = [
     { id: 1, name: 'Inicio', path: '/' },
-    { id: 2, name: 'Ubicación', path: '/#location' },
     { id: 3, name: 'Departamentos', path: '/apartments' },
     { id: 4, name: 'Características', path: '/#characte' },
+    { id: 2, name: 'Planos', path: '/apartments' },
     { id: 5, name: 'Galería', path: '/#gallery' },
-    { id: 6, name: 'Contacto', path: '/#contact' },
-    { id: 7, name: 'Vista 3D Edificio', path: '/inmersive-build' },
-    { id: 8, name: 'Vista 3D Apartamento', path: '/inmersive-apartament' }
+    { id: 6, name: 'Planos', path: '/apartments' },
+    { id: 7, name: 'Contacto', path: '/#contact' },
+    { id: 8, name: 'Vista 3D Edificio', path: '/inmersive-build' },
+    { id: 9, name: 'Vista 3D Apartamento', path: '/inmersive-apartament' }
   ]
 
   return (
     <div
-      className={`fixed z-50 min-d:top-4 min-d:left-2 top-8 px-6 right-2 min-sm:right-[5%]  flex flex-col items-end ${
+      className={`fixed z-70 min-d:top-4 min-d:left-2 top-8 px-6 right-2 min-sm:right-[5%]  flex flex-col items-end ${
         isHomePage
-          ? 'w-[00px] min-d:custom-container min-d:w-full min-d:items-stretch min-d:px-8'
+          ? ' min-d:custom-container min-d:w-full min-d:items-stretch min-d:px-8'
           : 'w-auto'
       }`}
     >
@@ -66,7 +68,7 @@ const NavBar = () => {
 
         {/* DESKTOP MENU - Solo se muestra en pantallas grandes Y solo en home */}
         {isHomePage && (
-          <div className="hidden min-d:flex space-x-16 font-bold text-[var(--color-three)] text-menu">
+          <div className="hidden min-d:flex  space-x-16 font-bold text-[var(--color-three)] text-menu">
             {routes.map((route) => (
               <a
                 key={route.id}
@@ -105,7 +107,7 @@ const NavBar = () => {
         leaveTo="opacity-0 translate-y-[-10px]"
       >
         <div
-          className={`flex flex-col mt-4 rounded-[45px] px-8 py-6 text-right font-bold text-[var(--color-three)] text-menu backdrop-blur-lg z-40 relative w-[300px] ml-auto ${
+          className={`flex flex-col mt-4 rounded-[45px] px-8 py-6 text-right font-bold text-[var(--color-three)] text-menu backdrop-blur-lg z-80 relative w-[300px] ml-auto ${
             isHomePage ? 'min-d:hidden' : ''
           }`}
           style={{

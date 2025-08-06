@@ -81,11 +81,14 @@ const NavBar = () => {
 
         {/* MOBILE TOGGLE - Se muestra en mobile SIEMPRE, o en desktop cuando NO es home */}
         <div className={`flex ${isHomePage ? 'min-d:hidden' : ''}`}>
-          <button onClick={toggleMenu} className="text-[var(--color-three)] transition">
+          <button
+            onClick={toggleMenu}
+            className="text-[var(--color-three)] hover:text-[var(--color-one)] transition-all duration-200 p-1"
+          >
             {isOpen ? (
-              <IoClose className="text-4xl transition-transform rotate-90" />
+              <IoClose className="text-4xl transition-all duration-300 rotate-90" />
             ) : (
-              <IoMenu className="text-4xl" />
+              <IoMenu className="text-4xl transition-all duration-300" />
             )}
           </button>
         </div>
@@ -95,14 +98,14 @@ const NavBar = () => {
       <Transition
         show={isOpen}
         enter="transition ease-out duration-300"
-        enterFrom="opacity-0 -translate-y-4"
+        enterFrom="opacity-0 translate-y-[-10px]"
         enterTo="opacity-100 translate-y-0"
         leave="transition ease-in duration-200"
         leaveFrom="opacity-100 translate-y-0"
-        leaveTo="opacity-0 -translate-y-4"
+        leaveTo="opacity-0 translate-y-[-10px]"
       >
         <div
-          className={`flex flex-col mt-2 rounded-[45px] px-8 py-6 text-right font-bold text-[var(--color-three)] text-menu backdrop-blur-lg z-40 relative w-[300px] ml-auto ${
+          className={`flex flex-col mt-4 rounded-[45px] px-8 py-6 text-right font-bold text-[var(--color-three)] text-menu backdrop-blur-lg z-40 relative w-[300px] ml-auto ${
             isHomePage ? 'min-d:hidden' : ''
           }`}
           style={{

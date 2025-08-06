@@ -15,7 +15,7 @@ const SectionBanner = () => {
     >
       {/* Contenido del banner */}
       <div className="w-full flex flex-col items-center justify-center text-center px-20 min-d:items-start  min-d:justify-between min-d:text-right">
-        <Card className="flex flex-col items-center max-w-md min-d:items-start p-10 rounded-3xl relative overflow-hidden">
+        <Card className="flex flex-col items-center max-w-md min-d:items-start  rounded-3xl relative overflow-hidden">
           <div
             className="absolute inset-0"
             style={{
@@ -38,9 +38,19 @@ const SectionBanner = () => {
           </div>
 
           {/* Botones */}
-          <div className="relative z-10 flex gap-4 mt-6 p-10 ">
-            <Button onClick={() => console.log('Ver planos')}>Ver planos</Button>
-            <Button onClick={() => console.log('Vista 3D')}>Vista 3D</Button>
+          <div className="relative z-10 md:flex gap-4 md:px-10 justify-center flex-col items-center md:flex-row hidden  ">
+            <button
+              className="md:w-[150px] w-[120px] p-4 rounded-full min-2xl:text-lg min-xl:text-md text-sm cursor-pointer font-medium bg-[var(--color-one)] text-white hover:brightness-90 transition-all duration-300 ease-in-out flex min-2xl:gap-8 gap-2 items-center justify-center"
+              onClick={() => console.log('Ver planos')}
+            >
+              Ver planos
+            </button>
+            <button
+              className="p-4 md:w-[150px] w-[120px] rounded-full min-2xl:text-lg min-xl:text-md text-sm cursor-pointer font-medium bg-[var(--color-one)] text-white hover:brightness-90 transition-all duration-300 ease-in-out flex min-2xl:gap-8 gap-2 items-center justify-center"
+              onClick={() => console.log('Vista 3D')}
+            >
+              Vista 3D
+            </button>
           </div>
         </Card>
       </div>

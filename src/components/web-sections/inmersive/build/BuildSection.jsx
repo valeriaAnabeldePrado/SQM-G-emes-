@@ -3,9 +3,8 @@ import { Canvas, useThree } from '@react-three/fiber'
 import { OrbitControls, useGLTF, Stats, Html, Environment, Sky } from '@react-three/drei'
 
 import gsap from 'gsap'
-
-import BackToHome from '../components/BackToHome'
 import { HOTSPOTS } from '../data'
+import BackToHome from '../components/BackToHome'
 
 // Componente simple para cargar el modelo 3D
 function Model3D({ position = [0, 0, 0], scale = 1 }) {

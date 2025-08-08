@@ -32,15 +32,9 @@ export default function SectionSix() {
       id="gallery"
       className="flex flex-col  items-stretch gap-[var(--generic-gap-tablet)] min-d:gap-[var(--generic-gap-desktop)] py-[var(--pading-y)] min-d:flex-col"
     >
-      <div className="relative w-full h-screen ">
-        <img
-          src={deptoCompleto}
-          alt="bannerRender"
-          className="absolute top-0 left-0 w-full object-cover h-full rounded-[var(--border-radius-phone)] min-d:rounded-[var(--border-radius-tablet)] min-extra:rounded-[var(--border-radius-note)] min-note:rounded-[var(--border-radius-desktop)]"
-        />
-      </div>
+      <div className="aspect-square w-full max-w-[90vw] max-h-[70vw] mx-auto rounded-[var(--border-radius-phone)] min-d:rounded-[var(--border-radius-tablet)] min-extra:rounded-[var(--border-radius-note)] min-note:rounded-[var(--border-radius-desktop)] p-[var(--padding-cards)] bg-[url('/src/assets/section-six/galeria1.jpg')] flex justify-center gap-[var(--generic-gap-tablet)] min-d:gap-[var(--generic-gap-desktop)] bg-cover"></div>
 
-      <div className="h-screen rounded-[var(--border-radius-phone)] min-d:rounded-[var(--border-radius-tablet)] min-extra:rounded-[var(--border-radius-note)] min-note:rounded-[var(--border-radius-desktop)] p-[var(--padding-cards)] bg-[url('/src/assets/section-six/dpto.png')] flex justify-center gap-[var(--generic-gap-tablet)] min-d:gap-[var(--generic-gap-desktop)] w-full bg-cover"></div>
+      <div className="aspect-square w-full max-w-[90vw] max-h-[70vw] mx-auto rounded-[var(--border-radius-phone)] min-d:rounded-[var(--border-radius-tablet)] min-extra:rounded-[var(--border-radius-note)] min-note:rounded-[var(--border-radius-desktop)] p-[var(--padding-cards)] bg-[url('/src/assets/section-six/depa2.jpg')] flex justify-center gap-[var(--generic-gap-tablet)] min-d:gap-[var(--generic-gap-desktop)] bg-cover"></div>
       {/*---------------------  Sector numero 3 */}
       <div className="flex flex-col min-d:flex-row items-stretch gap-[var(--generic-gap-tablet)] min-d:gap-[var(--generic-gap-desktop)] h-full">
         {/* Card principal - full width en mobile, flex-1 en desktop */}

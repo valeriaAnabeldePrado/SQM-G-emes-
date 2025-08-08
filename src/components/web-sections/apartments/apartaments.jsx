@@ -13,6 +13,7 @@ import ModelSix from '../../../assets/floors/ModelSix'
 import ModelSeven from '../../../assets/floors/ModelSeven'
 import Button from '../home/components/button'
 import { MdOutlineArrowOutward } from 'react-icons/md'
+import apartmentData from './utils/apartmentData.json'
 
 import './apartmentAnimate.css'
 
@@ -39,43 +40,131 @@ const Apartaments = () => {
     }
   }
 
-  console.log(selectedFloor)
+  // Función para obtener la letra del apartamento
+  const getApartmentLetter = (apartmentId) => {
+    if (!apartmentId) return null
+    const parts = apartmentId.split('_')
+    return parts[1] // apartment_A_P5 -> A
+  }
+
+  // Función para generar el mini SVG del apartamento seleccionado
+  const renderApartmentPreview = (apartmentId) => {
+    const letter = getApartmentLetter(apartmentId)
+    if (!letter) return null
+
+    // Obtener información del apartamento desde el JSON
+    const apartmentInfo = apartmentData[apartmentId]
+
+    return (
+      <div className="flex items-center gap-3 bg-white/20 rounded-lg p-3">
+        <div className="w-12 h-12 flex items-center justify-center">
+          <svg width="48" height="48" viewBox="0 0 48 48" xmlns="http://www.w3.org/2000/svg">
+            <rect
+              x="2"
+              y="2"
+              width="44"
+              height="44"
+              fill="#ffc46a"
+              stroke="#483b2b"
+              strokeWidth="2"
+              rx="4"
+            />
+            <circle cx="24" cy="24" r="12" fill="none" stroke="#483b2b" strokeWidth="2" />
+            <text
+              x="24"
+              y="28"
+              textAnchor="middle"
+              fontSize="14"
+              fontWeight="bold"
+              fill="#483b2b"
+              fontFamily="Arial, sans-serif"
+            >
+              {letter}
+            </text>
+          </svg>
+        </div>
+        <div>
+          <p className="text-sm font-semibold text-[var(--color-three)]">Departamento {letter}</p>
+          <p className="text-xs text-[var(--color-three)]/70">
+            {apartmentInfo?.title || `${apartmentInfo?.type || 'Información disponible'}`}
+          </p>
+        </div>
+      </div>
+    )
+  }
+
   const renderFloorComponent = () => {
     switch (selectedFloor) {
+      // Pisos 1-3: ModelOne
       case 'p01-modelOne':
       case 'p02-modelOne':
       case 'p03-modelOne':
         return (
-          <ModelOne onEventApartment={handlerApartment} selectedApartment={selectedApartment} />
+          <ModelOne
+            onEventApartment={handlerApartment}
+            selectedApartment={selectedApartment}
+            selectedFloor={selectedFloor}
+          />
         )
+      // Piso 4: ModelTwo
       case 'p04-modelTwo':
         return (
-          <ModelTwo onEventApartment={handlerApartment} selectedApartment={selectedApartment} />
+          <ModelTwo
+            onEventApartment={handlerApartment}
+            selectedApartment={selectedApartment}
+            selectedFloor={selectedFloor}
+          />
         )
+      // Pisos 5-6: ModelThree
       case 'p05-modelThree':
       case 'p06-modelThree':
         return (
-          <ModelThree onEventApartment={handlerApartment} selectedApartment={selectedApartment} />
+          <ModelThree
+            onEventApartment={handlerApartment}
+            selectedApartment={selectedApartment}
+            selectedFloor={selectedFloor}
+          />
         )
+      // Pisos 7-10: ModelFour
       case 'p07-modelFour':
       case 'p08-modelFour':
       case 'p09-modelFour':
       case 'p10-modelFour':
         return (
-          <ModelFour onEventApartment={handlerApartment} selectedApartment={selectedApartment} />
+          <ModelFour
+            onEventApartment={handlerApartment}
+            selectedApartment={selectedApartment}
+            selectedFloor={selectedFloor}
+          />
         )
+      // Pisos 11-13: ModelFive
       case 'p11-modelFive':
-      case 'p12-modelSix':
+      case 'p12-modelFive':
+      case 'p13-modelFive':
         return (
-          <ModelFive onEventApartment={handlerApartment} selectedApartment={selectedApartment} />
+          <ModelFive
+            onEventApartment={handlerApartment}
+            selectedApartment={selectedApartment}
+            selectedFloor={selectedFloor}
+          />
         )
+      // Planta Alta: ModelSix
       case 'plantaAlta':
         return (
-          <ModelSix onEventApartment={handlerApartment} selectedApartment={selectedApartment} />
+          <ModelSix
+            onEventApartment={handlerApartment}
+            selectedApartment={selectedApartment}
+            selectedFloor={selectedFloor}
+          />
         )
+      // Asador: ModelSeven
       case 'asador':
         return (
-          <ModelSeven onEventApartment={handlerApartment} selectedApartment={selectedApartment} />
+          <ModelSeven
+            onEventApartment={handlerApartment}
+            selectedApartment={selectedApartment}
+            selectedFloor={selectedFloor}
+          />
         )
       default:
         return null
@@ -127,19 +216,31 @@ const Apartaments = () => {
               <Card
                 hasGradient
                 id="apartments-model"
-                className="overflow-auto flex flex-row min-xl:gap-10 gap-5 animatedIn"
+                className="overflow-hidden flex flex-col lg:flex-row min-xl:gap-6 gap-4 animatedIn min-h-[500px]"
               >
-                <div className="flex-2 bg-white rounded-2xl p-4 flex items-start justify-center">
+                <div className="flex-1 lg:flex-2 bg-white rounded-2xl p-6 flex items-center justify-center min-h-[400px]">
                   {renderFloorComponent(selectedFloor)}
                 </div>
-                <div className="flex flex-col justify-between gap-16">
-                  <p className="text-modal">
-                    Lorem ipsum, dolor sit amet consectetur adipisicing elit. Suscipit
-                    exercitationem ducimus inventore quod nesciunt perspiciatis praesentium
-                  </p>
+                <div className="flex-1 flex flex-col justify-between gap-8 lg:gap-16 p-2">
+                  <div className="space-y-4">
+                    <p className="text-modal text-[var(--color-three)]">
+                      Selecciona un departamento para ver más detalles y acceder a los planos
+                      completos.
+                    </p>
+                    {selectedApartment ? (
+                      renderApartmentPreview(selectedApartment)
+                    ) : (
+                      <div className="bg-white/10 rounded-lg p-3">
+                        <p className="text-sm text-[var(--color-three)]/80">
+                          Ningún departamento seleccionado
+                        </p>
+                      </div>
+                    )}
+                  </div>
                   <Button
-                    className="min-2xl:w-[250px] w-[160px] flex items-center justify-between"
+                    className="w-full lg:w-auto flex items-center justify-center lg:justify-between gap-2"
                     onClick={handleViewPlans}
+                    disabled={!selectedApartment}
                   >
                     Ver planos <MdOutlineArrowOutward size="1.5em" color="white" />
                   </Button>

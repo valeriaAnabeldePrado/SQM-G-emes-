@@ -3,7 +3,7 @@ import { CardArrow } from './components/card-arrow'
 import bano from '/src/assets/characteristics/banos.jpg'
 import pisos from '/src/assets/characteristics/pisos.jpg'
 import balcony from '/src/assets/characteristics/balcony.png'
-import details from '/src/assets/characteristics/details.png'
+import details from '/src/assets/characteristics/details.jpg'
 import gsap from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
 
@@ -109,7 +109,7 @@ const SectionFour = () => {
       <div>
         <h3 className="section-four-title text-(length:--text-subtitle) min-node:leading-20 text-[var(--color-three)]">
           Detalles que definen{' '}
-          <span className="inline-block font-bold rounded-full text-(lenght:--color-one)">
+          <span className="inline-block font-bold rounded-full text-[var(--color-one)]">
             la calidad
           </span>
           , elevando cada espacio en{' '}
@@ -135,7 +135,7 @@ const SectionFour = () => {
             <div className="min-d:hidden h-[45vh]"></div>
             <div className="opacity-100 min-d:opacity-0 min-d:group-hover:opacity-100 min-d:group-hover:delay-300 min-d:group-hover:transition-opacity min-d:group-hover:duration-100 min-d:transition-opacity min-d:duration-75 z-10 flex flex-col h-full justify-end gap-[var(--generic-gap-tablet)] min-d:gap-[var(--generic-gap-desktop)] p-4">
               <div>
-                <h3 className="text-white text-subtitleS">{title}</h3>
+                <h3 className="text-white text-subtitleS leading-14">{title}</h3>
               </div>
               <div>
                 <p className="text-white">{description}</p>

@@ -1,66 +1,698 @@
 {
+  "local_comercial_PB": {
+    "id": "local_comercial_PB",
+    "title": "Local Comercial - Planta Baja",
+    "type": "Local Comercial",
+    "area": "89,33m²",
+    "description": "Amplio local comercial ubicado en la planta baja, ideal para diversos rubros comerciales.",
+    "features": ["Planta libre", "Acceso directo desde la calle"],
+    "floorPlan": "/planos/PB/local.png"
+  },
+  "duplex_A_PB": {
+    "id": "duplex_A_PB",
+    "title": "Duplex A - Planta Baja",
+    "type": "DUPLEX - 2 Ambientes",
+    "area": "49,71m²",
+    "description": "Moderno duplex de 2 ambientes con patio. Excelente distribución en dos niveles.",
+    "features": ["1 Dormitorio", "Patio de 12,00m²", "Cocina integrada", "Living-comedor"],
+    "floorPlan": "/planos/123/A.png"
+  },
+  "estudio_B_PB": {
+    "id": "estudio_B_PB",
+    "title": "Estudio-Loft B - Planta Baja",
+    "type": "Estudio-Loft",
+    "area": "32,10m²",
+    "description": "Funcional estudio-loft con patio. Espacio moderno y versátil.",
+    "features": ["Ambiente único", "Patio de 12,00m²", "Cocina integrada"],
+    "floorPlan": "/planos/123/B.png"
+  },
+  "duplex_C_PB": {
+    "id": "duplex_C_PB",
+    "title": "Duplex C - Planta Baja",
+    "type": "DUPLEX - 2 Ambientes",
+    "area": "49,54m²",
+    "description": "Moderno duplex de 2 ambientes con patio. Excelente distribución en dos niveles.",
+    "features": ["1 Dormitorio", "Patio de 12,00m²", "Cocina integrada", "Living-comedor"],
+    "floorPlan": "/planos/PB/C.png"
+  },
   "apartment_A_P1": {
     "id": "apartment_A_P1",
     "title": "Departamento A - Piso 1",
     "type": "2 Ambientes",
-    "area": "45m²",
-    "description": "Moderno departamento de 2 ambientes con excelente distribución. Cuenta con amplios espacios, cocina integrada y balcón con vista panorámica.",
+    "area": "48,01m²",
+    "description": "Moderno departamento de 2 ambientes con excelente distribución. Cuenta con amplios espacios, cocina integrada y balcón.",
     "features": [
       "1 Dormitorio",
       "1 Baño completo",
       "Cocina integrada",
       "Living-comedor",
-      "Balcón",
-      "Ventanas de doble vidrio"
+      "Balcón de 4,76m²"
     ],
-    "floorPlan": "/planos/planoMuestra.png"
+    "floorPlan": "/planos/123/A.png"
   },
   "apartment_B_P1": {
     "id": "apartment_B_P1",
     "title": "Departamento B - Piso 1",
     "type": "2 Ambientes",
-    "area": "45m²",
-    "description": "Moderno departamento de 2 ambientes con excelente distribución. Cuenta con amplios espacios, cocina integrada y balcón con vista panorámica.",
+    "area": "48,01m²",
+    "description": "Moderno departamento de 2 ambientes con excelente distribución. Cuenta con amplios espacios, cocina integrada y balcón.",
     "features": [
       "1 Dormitorio",
       "1 Baño completo",
       "Cocina integrada",
       "Living-comedor",
-      "Balcón",
-      "Ventanas de doble vidrio"
+      "Balcón de 4,76m²"
     ],
-    "floorPlan": "/planos/planoMuestra.png"
+    "floorPlan": "/planos/123/B.png"
   },
   "apartment_C_P1": {
     "id": "apartment_C_P1",
     "title": "Departamento C - Piso 1",
     "type": "2 Ambientes",
-    "area": "45m²",
-    "description": "Moderno departamento de 2 ambientes con excelente distribución. Cuenta con amplios espacios, cocina integrada y balcón con vista panorámica.",
+    "area": "45,46m²",
+    "description": "Moderno departamento de 2 ambientes con excelente distribución. Cuenta con amplios espacios, cocina integrada y balcón.",
     "features": [
       "1 Dormitorio",
       "1 Baño completo",
       "Cocina integrada",
       "Living-comedor",
-      "Balcón",
-      "Ventanas de doble vidrio"
+      "Balcón de 3,85m²"
     ],
-    "floorPlan": "/planos/planoMuestra.png"
+    "floorPlan": "/planos/123/C.png"
   },
   "apartment_D_P1": {
     "id": "apartment_D_P1",
     "title": "Departamento D - Piso 1",
     "type": "2 Ambientes",
-    "area": "45m²",
-    "description": "Moderno departamento de 2 ambientes con excelente distribución. Cuenta con amplios espacios, cocina integrada y balcón con vista panorámica.",
+    "area": "45,26m²",
+    "description": "Moderno departamento de 2 ambientes con excelente distribución. Cuenta con amplios espacios, cocina integrada y balcón.",
     "features": [
       "1 Dormitorio",
       "1 Baño completo",
       "Cocina integrada",
       "Living-comedor",
-      "Balcón",
-      "Ventanas de doble vidrio"
+      "Balcón de 3,85m²"
     ],
-    "floorPlan": "/planos/planoMuestra.png"
+    "floorPlan": "/planos/123/D.png"
+  },
+  "apartment_A_P2": {
+    "id": "apartment_A_P2",
+    "title": "Departamento A - Piso 2",
+    "type": "2 Ambientes",
+    "area": "48,01m²",
+    "description": "Moderno departamento de 2 ambientes en el segundo piso con excelente distribución. Cuenta con amplios espacios, cocina integrada y balcón.",
+    "features": [
+      "1 Dormitorio",
+      "1 Baño completo",
+      "Cocina integrada",
+      "Living-comedor",
+      "Balcón de 4,76m²"
+    ],
+    "floorPlan": "/planos/123/A.png"
+  },
+  "apartment_B_P2": {
+    "id": "apartment_B_P2",
+    "title": "Departamento B - Piso 2",
+    "type": "2 Ambientes",
+    "area": "48,01m²",
+    "description": "Moderno departamento de 2 ambientes en el segundo piso con excelente distribución. Cuenta con amplios espacios, cocina integrada y balcón.",
+    "features": [
+      "1 Dormitorio",
+      "1 Baño completo",
+      "Cocina integrada",
+      "Living-comedor",
+      "Balcón de 4,76m²"
+    ],
+    "floorPlan": "/planos/123/B.png"
+  },
+  "apartment_C_P2": {
+    "id": "apartment_C_P2",
+    "title": "Departamento C - Piso 2",
+    "type": "2 Ambientes",
+    "area": "45,46m²",
+    "description": "Moderno departamento de 2 ambientes en el segundo piso con excelente distribución. Cuenta con amplios espacios, cocina integrada y balcón.",
+    "features": [
+      "1 Dormitorio",
+      "1 Baño completo",
+      "Cocina integrada",
+      "Living-comedor",
+      "Balcón de 3,85m²"
+    ],
+    "floorPlan": "/planos/123/C.png"
+  },
+  "apartment_D_P2": {
+    "id": "apartment_D_P2",
+    "title": "Departamento D - Piso 2",
+    "type": "2 Ambientes",
+    "area": "45,26m²",
+    "description": "Moderno departamento de 2 ambientes en el segundo piso con excelente distribución. Cuenta con amplios espacios, cocina integrada y balcón.",
+    "features": [
+      "1 Dormitorio",
+      "1 Baño completo",
+      "Cocina integrada",
+      "Living-comedor",
+      "Balcón de 3,85m²"
+    ],
+    "floorPlan": "/planos/123/D.png"
+  },
+  "apartment_A_P3": {
+    "id": "apartment_A_P3",
+    "title": "Departamento A - Piso 3",
+    "type": "2 Ambientes",
+    "area": "48,01m²",
+    "description": "Moderno departamento de 2 ambientes en el tercer piso con excelente distribución. Cuenta con amplios espacios, cocina integrada y balcón.",
+    "features": [
+      "1 Dormitorio",
+      "1 Baño completo",
+      "Cocina integrada",
+      "Living-comedor",
+      "Balcón de 4,76m²"
+    ],
+    "floorPlan": "/planos/123/A.png"
+  },
+  "apartment_B_P3": {
+    "id": "apartment_B_P3",
+    "title": "Departamento B - Piso 3",
+    "type": "2 Ambientes",
+    "area": "48,01m²",
+    "description": "Moderno departamento de 2 ambientes en el tercer piso con excelente distribución. Cuenta con amplios espacios, cocina integrada y balcón.",
+    "features": [
+      "1 Dormitorio",
+      "1 Baño completo",
+      "Cocina integrada",
+      "Living-comedor",
+      "Balcón de 4,76m²"
+    ],
+    "floorPlan": "/planos/123/B.png"
+  },
+  "apartment_C_P3": {
+    "id": "apartment_C_P3",
+    "title": "Departamento C - Piso 3",
+    "type": "2 Ambientes",
+    "area": "45,46m²",
+    "description": "Moderno departamento de 2 ambientes en el tercer piso con excelente distribución. Cuenta con amplios espacios, cocina integrada y balcón.",
+    "features": [
+      "1 Dormitorio",
+      "1 Baño completo",
+      "Cocina integrada",
+      "Living-comedor",
+      "Balcón de 3,85m²"
+    ],
+    "floorPlan": "/planos/123/C.png"
+  },
+  "apartment_D_P3": {
+    "id": "apartment_D_P3",
+    "title": "Departamento D - Piso 3",
+    "type": "2 Ambientes",
+    "area": "45,26m²",
+    "description": "Moderno departamento de 2 ambientes en el tercer piso con excelente distribución. Cuenta con amplios espacios, cocina integrada y balcón.",
+    "features": [
+      "1 Dormitorio",
+      "1 Baño completo",
+      "Cocina integrada",
+      "Living-comedor",
+      "Balcón de 3,85m²"
+    ],
+    "floorPlan": "/planos/123/D.png"
+  },
+  "apartment_A_P4": {
+    "id": "apartment_A_P4",
+    "title": "Departamento A - Piso 4",
+    "type": "2 Ambientes",
+    "area": "48,01m²",
+    "description": "Moderno departamento de 2 ambientes en el cuarto piso con excelente distribución. Cuenta con amplios espacios, cocina integrada y balcón.",
+    "features": [
+      "1 Dormitorio",
+      "1 Baño completo",
+      "Cocina integrada",
+      "Living-comedor",
+      "Balcón de 4,76m²"
+    ],
+    "floorPlan": "/planos/123/A.png"
+  },
+  "apartment_B_P4": {
+    "id": "apartment_B_P4",
+    "title": "Departamento B - Piso 4",
+    "type": "2 Ambientes",
+    "area": "48,01m²",
+    "description": "Moderno departamento de 2 ambientes en el cuarto piso con excelente distribución. Cuenta con amplios espacios, cocina integrada y balcón.",
+    "features": [
+      "1 Dormitorio",
+      "1 Baño completo",
+      "Cocina integrada",
+      "Living-comedor",
+      "Balcón de 4,76m²"
+    ],
+    "floorPlan": "/planos/123/B.png"
+  },
+  "apartment_C_P4": {
+    "id": "apartment_C_P4",
+    "title": "Departamento C - Piso 4",
+    "type": "Estudio-Loft",
+    "area": "34,00m²",
+    "description": "Funcional estudio-loft en el cuarto piso. Espacio moderno y versátil con balcón.",
+    "features": ["Ambiente único", "Cocina integrada", "Balcón de 11,50m²"],
+    "floorPlan": "/planos/4/C.png"
+  },
+  "apartment_D_P4": {
+    "id": "apartment_D_P4",
+    "title": "Departamento D - Piso 4",
+    "type": "Estudio-Loft",
+    "area": "33,80m²",
+    "description": "Funcional estudio-loft en el cuarto piso. Espacio moderno y versátil con balcón.",
+    "features": ["Ambiente único", "Cocina integrada", "Balcón de 11,50m²"],
+    "floorPlan": "/planos/4/D.png"
+  },
+  "apartment_A_P5": {
+    "id": "apartment_A_P5",
+    "title": "Departamento A - Piso 5",
+    "type": "2 Ambientes",
+    "area": "48,01m²",
+    "description": "Moderno departamento de 2 ambientes en el quinto piso con excelente distribución y balcón.",
+    "features": [
+      "1 Dormitorio",
+      "1 Baño completo",
+      "Cocina integrada",
+      "Living-comedor",
+      "Balcón de 4,76m²"
+    ],
+    "floorPlan": "/planos/123/A.png"
+  },
+  "apartment_B_P5": {
+    "id": "apartment_B_P5",
+    "title": "Departamento B - Piso 5",
+    "type": "2 Ambientes",
+    "area": "48,01m²",
+    "description": "Moderno departamento de 2 ambientes en el quinto piso con excelente distribución y balcón.",
+    "features": [
+      "1 Dormitorio",
+      "1 Baño completo",
+      "Cocina integrada",
+      "Living-comedor",
+      "Balcón de 4,76m²"
+    ],
+    "floorPlan": "/planos/123/B.png"
+  },
+  "apartment_C_P5": {
+    "id": "apartment_C_P5",
+    "title": "Departamento C - Piso 5",
+    "type": "Estudio-Loft",
+    "area": "36,83m²",
+    "description": "Funcional estudio-loft en el quinto piso. Espacio moderno y versátil con balcón.",
+    "features": ["Ambiente único", "Cocina integrada", "Balcón de 2,83m²"],
+    "floorPlan": "/planos/56/C.png"
+  },
+  "apartment_D_P5": {
+    "id": "apartment_D_P5",
+    "title": "Departamento D - Piso 5",
+    "type": "Estudio-Loft",
+    "area": "36,63m²",
+    "description": "Funcional estudio-loft en el quinto piso. Espacio moderno y versátil con balcón.",
+    "features": ["Ambiente único", "Cocina integrada", "Balcón de 2,83m²"],
+    "floorPlan": "/planos/56/D.png"
+  },
+  "apartment_A_P6": {
+    "id": "apartment_A_P6",
+    "title": "Departamento A - Piso 6",
+    "type": "2 Ambientes",
+    "area": "48,01m²",
+    "description": "Moderno departamento de 2 ambientes en el sexto piso con excelente distribución y balcón.",
+    "features": [
+      "1 Dormitorio",
+      "1 Baño completo",
+      "Cocina integrada",
+      "Living-comedor",
+      "Balcón de 4,76m²"
+    ],
+    "floorPlan": "/planos/123/A.png"
+  },
+  "apartment_B_P6": {
+    "id": "apartment_B_P6",
+    "title": "Departamento B - Piso 6",
+    "type": "2 Ambientes",
+    "area": "48,01m²",
+    "description": "Moderno departamento de 2 ambientes en el sexto piso con excelente distribución y balcón.",
+    "features": [
+      "1 Dormitorio",
+      "1 Baño completo",
+      "Cocina integrada",
+      "Living-comedor",
+      "Balcón de 4,76m²"
+    ],
+    "floorPlan": "/planos/123/B.png"
+  },
+  "apartment_C_P6": {
+    "id": "apartment_C_P6",
+    "title": "Departamento C - Piso 6",
+    "type": "Estudio-Loft",
+    "area": "36,83m²",
+    "description": "Funcional estudio-loft en el sexto piso. Espacio moderno y versátil con balcón.",
+    "features": ["Ambiente único", "Cocina integrada", "Balcón de 2,83m²"],
+    "floorPlan": "/planos/56/C.png"
+  },
+  "apartment_D_P6": {
+    "id": "apartment_D_P6",
+    "title": "Departamento D - Piso 6",
+    "type": "Estudio-Loft",
+    "area": "36,63m²",
+    "description": "Funcional estudio-loft en el sexto piso. Espacio moderno y versátil con balcón.",
+    "features": ["Ambiente único", "Cocina integrada", "Balcón de 2,83m²"],
+    "floorPlan": "/planos/56/D.png"
+  },
+  "apartment_A_P7": {
+    "id": "apartment_A_P7",
+    "title": "Departamento A - Piso 7",
+    "type": "2 Ambientes",
+    "area": "48,01m²",
+    "description": "Moderno departamento de 2 ambientes en el séptimo piso con excelente distribución y balcón.",
+    "features": [
+      "1 Dormitorio",
+      "1 Baño completo",
+      "Cocina integrada",
+      "Living-comedor",
+      "Balcón de 4,76m²"
+    ],
+    "floorPlan": "/planos/123/A.png"
+  },
+  "apartment_B_P7": {
+    "id": "apartment_B_P7",
+    "title": "Departamento B - Piso 7",
+    "type": "2 Ambientes",
+    "area": "48,01m²",
+    "description": "Moderno departamento de 2 ambientes en el séptimo piso con excelente distribución y balcón.",
+    "features": [
+      "1 Dormitorio",
+      "1 Baño completo",
+      "Cocina integrada",
+      "Living-comedor",
+      "Balcón de 4,76m²"
+    ],
+    "floorPlan": "/planos/123/B.png"
+  },
+  "apartment_C_P7": {
+    "id": "apartment_C_P7",
+    "title": "Departamento C - Piso 7",
+    "type": "3 Ambientes",
+    "area": "73,30m²",
+    "description": "Amplio departamento de 3 ambientes en el séptimo piso con excelente distribución y balcón.",
+    "features": ["2 Dormitorios", "Baño completo", "Cocina", "Living-comedor", "Balcón de 5,66m²"],
+    "floorPlan": "/planos/78910/C.png"
+  },
+  "apartment_A_P8": {
+    "id": "apartment_A_P8",
+    "title": "Departamento A - Piso 8",
+    "type": "2 Ambientes",
+    "area": "48,01m²",
+    "description": "Moderno departamento de 2 ambientes en el octavo piso con excelente distribución y balcón.",
+    "features": [
+      "1 Dormitorio",
+      "1 Baño completo",
+      "Cocina integrada",
+      "Living-comedor",
+      "Balcón de 4,76m²"
+    ],
+    "floorPlan": "/planos/123/A.png"
+  },
+  "apartment_B_P8": {
+    "id": "apartment_B_P8",
+    "title": "Departamento B - Piso 8",
+    "type": "2 Ambientes",
+    "area": "48,01m²",
+    "description": "Moderno departamento de 2 ambientes en el octavo piso con excelente distribución y balcón.",
+    "features": [
+      "1 Dormitorio",
+      "1 Baño completo",
+      "Cocina integrada",
+      "Living-comedor",
+      "Balcón de 4,76m²"
+    ],
+    "floorPlan": "/planos/123/B.png"
+  },
+  "apartment_C_P8": {
+    "id": "apartment_C_P8",
+    "title": "Departamento C - Piso 8",
+    "type": "3 Ambientes",
+    "area": "73,30m²",
+    "description": "Amplio departamento de 3 ambientes en el octavo piso con excelente distribución y balcón.",
+    "features": ["2 Dormitorios", "Baño completo", "Cocina", "Living-comedor", "Balcón de 5,66m²"],
+    "floorPlan": "/planos/78910/C.png"
+  },
+  "apartment_A_P9": {
+    "id": "apartment_A_P9",
+    "title": "Departamento A - Piso 9",
+    "type": "2 Ambientes",
+    "area": "48,01m²",
+    "description": "Moderno departamento de 2 ambientes en el noveno piso con excelente distribución y balcón.",
+    "features": [
+      "1 Dormitorio",
+      "1 Baño completo",
+      "Cocina integrada",
+      "Living-comedor",
+      "Balcón de 4,76m²"
+    ],
+    "floorPlan": "/planos/123/A.png"
+  },
+  "apartment_B_P9": {
+    "id": "apartment_B_P9",
+    "title": "Departamento B - Piso 9",
+    "type": "2 Ambientes",
+    "area": "48,01m²",
+    "description": "Moderno departamento de 2 ambientes en el noveno piso con excelente distribución y balcón.",
+    "features": [
+      "1 Dormitorio",
+      "1 Baño completo",
+      "Cocina integrada",
+      "Living-comedor",
+      "Balcón de 4,76m²"
+    ],
+    "floorPlan": "/planos/123/B.png"
+  },
+  "apartment_C_P9": {
+    "id": "apartment_C_P9",
+    "title": "Departamento C - Piso 9",
+    "type": "3 Ambientes",
+    "area": "73,30m²",
+    "description": "Amplio departamento de 3 ambientes en el noveno piso con excelente distribución y balcón.",
+    "features": ["2 Dormitorios", "Baño completo", "Cocina", "Living-comedor", "Balcón de 5,66m²"],
+    "floorPlan": "/planos/78910/C.png"
+  },
+  "apartment_A_P10": {
+    "id": "apartment_A_P10",
+    "title": "Departamento A - Piso 10",
+    "type": "2 Ambientes",
+    "area": "48,01m²",
+    "description": "Moderno departamento de 2 ambientes en el décimo piso con excelente distribución y balcón.",
+    "features": [
+      "1 Dormitorio",
+      "1 Baño completo",
+      "Cocina integrada",
+      "Living-comedor",
+      "Balcón de 4,76m²"
+    ],
+    "floorPlan": "/planos/123/A.png"
+  },
+  "apartment_B_P10": {
+    "id": "apartment_B_P10",
+    "title": "Departamento B - Piso 10",
+    "type": "2 Ambientes",
+    "area": "48,01m²",
+    "description": "Moderno departamento de 2 ambientes en el décimo piso con excelente distribución y balcón.",
+    "features": [
+      "1 Dormitorio",
+      "1 Baño completo",
+      "Cocina integrada",
+      "Living-comedor",
+      "Balcón de 4,76m²"
+    ],
+    "floorPlan": "/planos/123/B.png"
+  },
+  "apartment_C_P10": {
+    "id": "apartment_C_P10",
+    "title": "Departamento C - Piso 10",
+    "type": "3 Ambientes",
+    "area": "73,30m²",
+    "description": "Amplio departamento de 3 ambientes en el décimo piso con excelente distribución y balcón.",
+    "features": ["2 Dormitorios", "Baño completo", "Cocina", "Living-comedor", "Balcón de 5,66m²"],
+    "floorPlan": "/planos/78910/C.png"
+  },
+  "apartment_A_P11": {
+    "id": "apartment_A_P11",
+    "title": "Departamento A - Piso 11",
+    "type": "2 Ambientes",
+    "area": "48,01m²",
+    "description": "Moderno departamento de 2 ambientes en el piso 11 con excelente distribución y balcón.",
+    "features": [
+      "1 Dormitorio",
+      "1 Baño completo",
+      "Cocina integrada",
+      "Living-comedor",
+      "Balcón de 4,76m²"
+    ],
+    "floorPlan": "/planos/123/A.png"
+  },
+  "apartment_B_P11": {
+    "id": "apartment_B_P11",
+    "title": "Departamento B - Piso 11",
+    "type": "2 Ambientes",
+    "area": "48,01m²",
+    "description": "Moderno departamento de 2 ambientes en el piso 11 con excelente distribución y balcón.",
+    "features": [
+      "1 Dormitorio",
+      "1 Baño completo",
+      "Cocina integrada",
+      "Living-comedor",
+      "Balcón de 4,76m²"
+    ],
+    "floorPlan": "/planos/123/B.png"
+  },
+  "apartment_C_P11": {
+    "id": "apartment_C_P11",
+    "title": "Departamento C - Piso 11",
+    "type": "Estudio-Loft",
+    "area": "36,83m²",
+    "description": "Funcional estudio-loft en el piso 11. Espacio moderno y versátil con balcón.",
+    "features": ["Ambiente único", "Cocina integrada", "Balcón de 2,83m²"],
+    "floorPlan": "/planos/1112/C.png"
+  },
+  "apartment_D_P11": {
+    "id": "apartment_D_P11",
+    "title": "Departamento D - Piso 11",
+    "type": "Estudio-Loft",
+    "area": "36,63m²",
+    "description": "Funcional estudio-loft en el piso 11. Espacio moderno y versátil con balcón.",
+    "features": ["Ambiente único", "Cocina integrada", "Balcón de 2,83m²"],
+    "floorPlan": "/planos/1112/D.png"
+  },
+  "apartment_A_P12": {
+    "id": "apartment_A_P12",
+    "title": "Departamento A - Piso 12",
+    "type": "2 Ambientes",
+    "area": "45,27m²",
+    "description": "Moderno departamento de 2 ambientes en el piso 12 con excelente distribución y terraza.",
+    "features": [
+      "1 Dormitorio",
+      "1 Baño completo",
+      "Cocina integrada",
+      "Living-comedor",
+      "Terraza de 2,75m²"
+    ],
+    "floorPlan": "/planos/123/A.png"
+  },
+  "apartment_B_P12": {
+    "id": "apartment_B_P12",
+    "title": "Departamento B - Piso 12",
+    "type": "2 Ambientes",
+    "area": "45,27m²",
+    "description": "Moderno departamento de 2 ambientes en el piso 12 con excelente distribución y terraza.",
+    "features": [
+      "1 Dormitorio",
+      "1 Baño completo",
+      "Cocina integrada",
+      "Living-comedor",
+      "Terraza de 2,75m²"
+    ],
+    "floorPlan": "/planos/123/B.png"
+  },
+  "apartment_C_P12": {
+    "id": "apartment_C_P12",
+    "title": "Departamento C - Piso 12",
+    "type": "Estudio-Loft",
+    "area": "34,00m²",
+    "description": "Funcional estudio-loft en el piso 12. Espacio moderno y versátil con balcón.",
+    "features": ["Ambiente único", "Cocina integrada", "Balcón de 2,83m²"],
+    "floorPlan": "/planos/1112/C.png"
+  },
+  "apartment_D_P12": {
+    "id": "apartment_D_P12",
+    "title": "Departamento D - Piso 12",
+    "type": "Estudio-Loft",
+    "area": "33,80m²",
+    "description": "Funcional estudio-loft en el piso 12. Espacio moderno y versátil con balcón.",
+    "features": ["Ambiente único", "Cocina integrada", "Balcón de 2,83m²"],
+    "floorPlan": "/planos/1112/D.png"
+  },
+  "apartment_A_P13": {
+    "id": "apartment_A_P13",
+    "title": "Departamento A - Piso 13",
+    "type": "3 Ambientes",
+    "area": "60,28m²",
+    "description": "Espectacular departamento de 3 ambientes en el piso 13 con amplia terraza.",
+    "features": [
+      "2 Dormitorios",
+      "Baño completo",
+      "Cocina",
+      "Living-comedor",
+      "Terraza de 30,25m²"
+    ],
+    "floorPlan": "/planos/123/A.png"
+  },
+  "apartment_B_P13": {
+    "id": "apartment_B_P13",
+    "title": "Departamento B - Piso 13",
+    "type": "3 Ambientes",
+    "area": "36,08m²",
+    "description": "Espectacular departamento de 3 ambientes en el piso 13 con amplia terraza.",
+    "features": [
+      "2 Dormitorios",
+      "Baño completo",
+      "Cocina",
+      "Living-comedor",
+      "Terraza de 31,52m²"
+    ],
+    "floorPlan": "/planos/123/B.png"
+  },
+  "quincho_A_P14": {
+    "id": "quincho_A_P14",
+    "title": "Quincho - Piso 14",
+    "type": "Quincho",
+    "area": "30,00m²",
+    "description": "Quincho de uso común en el piso 14, con parrilla y terraza.",
+    "features": ["Parrilla", "Salón de usos múltiples", "Terraza de 30,25m²"],
+    "floorPlan": "/planos/123/A.png"
+  },
+  "oficina_A_P00": {
+    "id": "oficina_A_P00",
+    "title": "Oficina A - Planta Baja",
+    "type": "Oficina",
+    "area": "45,60m²",
+    "description": "Oficina en Planta Baja con espacio descubierto.",
+    "features": ["Planta libre", "Espacio descubierto de 53,94m²"],
+    "floorPlan": "/planos/123/A.png"
+  },
+  "oficina_B_P01": {
+    "id": "oficina_B_P01",
+    "title": "Oficina B - Piso 1",
+    "type": "Oficina",
+    "area": "61,88m²",
+    "description": "Amplia oficina en el primer piso.",
+    "features": ["Planta libre", "Luminosa"],
+    "floorPlan": "/planos/123/B.png"
+  },
+  "oficina_C_P02": {
+    "id": "oficina_C_P02",
+    "title": "Oficina C - Piso 2",
+    "type": "Oficina",
+    "area": "61,88m²",
+    "description": "Amplia oficina en el segundo piso.",
+    "features": ["Planta libre", "Luminosa"],
+    "floorPlan": "/planos/123/oficinaC.png"
+  },
+  "oficina_D_P03": {
+    "id": "oficina_D_P03",
+    "title": "Oficina D - Piso 3",
+    "type": "Oficina",
+    "area": "61,88m²",
+    "description": "Amplia oficina en el tercer piso.",
+    "features": ["Planta libre", "Luminosa"],
+    "floorPlan": "/planos/123/oficinaD.png"
+  },
+  "oficina_D_P04": {
+    "id": "oficina_D_P04",
+    "title": "Oficina D - Piso 4",
+    "type": "Oficina",
+    "area": "32,75m²",
+    "description": "Oficina en el cuarto piso con espacio descubierto.",
+    "features": ["Planta libre", "Espacio descubierto de 33,00m²"],
+    "floorPlan": "/planos/4/oficinaD.png"
   }
 }

@@ -161,6 +161,10 @@
     height: 300px;
     width: 120px;
   }
+  #asador {
+    height: 200px;
+    width: 120px;
+  }
 
   #apartments-model .flex-2 {
     flex: 1;

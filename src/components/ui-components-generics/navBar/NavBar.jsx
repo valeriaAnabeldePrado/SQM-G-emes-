@@ -44,14 +44,14 @@ const NavBar = () => {
 
   return (
     <div
-      className={`fixed z-70 min-d:top-4 min-d:left-2 top-8 px-6 right-2 min-sm:right-[5%]  flex flex-col items-end ${
+      className={`fixed z-70 min-d:top-4 min-d:left-2 top-8 px-6 right-2 min-sm:right-[5%] flex flex-col items-end pointer-events-none ${
         isHomePage
           ? ' min-d:custom-container min-d:w-full min-d:items-stretch min-d:px-8'
           : 'w-auto'
       }`}
     >
       <nav
-        className={`px-6 py-[1.2rem] min-note:py-[2rem] flex items-center rounded-full backdrop-blur-lg ${
+        className={`px-6 py-[1.2rem] min-note:py-[2rem] flex items-center rounded-full backdrop-blur-lg pointer-events-auto ${
           isHomePage
             ? 'min-d:px-12 justify-end min-d:w-full min-d:justify-between'
             : 'justify-center'
@@ -107,7 +107,7 @@ const NavBar = () => {
         leaveTo="opacity-0 translate-y-[-10px]"
       >
         <div
-          className={`flex flex-col mt-4 rounded-[45px] px-8 py-6 text-right font-bold text-[var(--color-three)] text-menu backdrop-blur-lg z-80 relative w-[300px] ml-auto ${
+          className={`flex flex-col mt-4 rounded-[45px] px-8 py-6 text-right font-bold text-[var(--color-three)] text-menu backdrop-blur-lg z-80 relative w-[300px] ml-auto pointer-events-auto ${
             isHomePage ? 'min-d:hidden' : ''
           }`}
           style={{

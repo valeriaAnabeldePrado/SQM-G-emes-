@@ -11,6 +11,7 @@ import ModelFour from '../../../assets/floors/ModelFour'
 import ModelFive from '../../../assets/floors/ModelFive'
 import ModelSix from '../../../assets/floors/ModelSix'
 import ModelSeven from '../../../assets/floors/ModelSeven'
+import ModelDuplex from '../../../assets/floors/ModelDuplex'
 import Button from '../home/components/button'
 import { MdOutlineArrowOutward } from 'react-icons/md'
 import apartmentData from './utils/apartmentData.json'
@@ -96,6 +97,15 @@ const Apartaments = () => {
   const renderFloorComponent = () => {
     console.log('selectedFloor en renderFloorComponent:', selectedFloor)
     switch (selectedFloor) {
+      // Duplex (Planta Baja): ModelDuplex
+      case 'p-duplex':
+        return (
+          <ModelDuplex
+            onEventApartment={handlerApartment}
+            selectedApartment={selectedApartment}
+            selectedFloor={selectedFloor}
+          />
+        )
       // Pisos 1-3: ModelOne
       case 'p01-modelOne':
       case 'p02-modelOne':
@@ -195,38 +205,81 @@ const Apartaments = () => {
           </div>
           <div id="dinamic-card" className="flex-1 relative" onClick={(e) => e.stopPropagation()}>
             {!selectedFloor ? (
-              <section className="flex flex-col gap-4 w-full justify-center items-center animatedIn  min-[768px]:h-[74vh]">
-                <Card hasGradient className="h-[25vh]">
+              <section className="flex flex-col gap-3 w-full justify-center items-center animatedIn min-[768px]:h-[74vh]">
+                {/* Card más compacta arriba */}
+                <Card hasGradient className=" w-full">
                   <p className="text-[var(--color-three)] text-modal">
-                    Conocé cada unidad del edificio.{' '}
                     <span className="inline-block font-bold rounded-full text-(lenght:--color-one)">
-                      Hacé clic en el piso que quieras para ver su planta y los departamentos
-                      disponibles.
-                    </span>
+                      Conocé cada unidad del edificio.{' '}
+                    </span>{' '}
+                    Hacé clic en el piso que quieras para ver su planta y los departamentos
+                    disponibles.
                   </p>
                 </Card>
-                <section className="flex flex-row gap-4">
-                  <Card hasGradient className="flex-1 flex-col gap-6 text-[var(--color-three)]">
-                    <h3 className="text-modal font-bold"> Tipos de Unidades</h3>
-                    <div className="space-y-2">
-                      <p className="text-sm">• Estudios y 1 ambiente</p>
-                      <p className="text-sm">• Departamentos 2 y 3 ambientes</p>
-                      <p className="text-sm">• Duplex con patio</p>
-                      <p className="text-sm">• Local comercial</p>
-                      <p className="text-sm">• Quincho con terraza</p>
+
+                {/* Sección de tipologías mejorada */}
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-2 w-full">
+                  {/* Tipologías de Unidades */}
+                  <Card hasGradient className="flex-col gap-1 text-[var(--color-three)] ">
+                    <div className="flex items-center gap-2 mb-2">
+                      <h3 className="text-base font-bold">Tipologías Disponibles</h3>
+                    </div>
+                    <div className="space-y-1">
+                      <div className="flex items-center gap-2  bg-white/10 rounded-lg backdrop-blur-sm border border-white/20">
+                        <div className="w-1.5 h-1.5 bg-gradient-to-r from-[var(--color-one)] to-orange-400 rounded-full"></div>
+                        <p className="text-xs font-medium">Estudios y Microviviendas</p>
+                      </div>
+                      <div className="flex items-center gap-2 bg-white/10 rounded-lg backdrop-blur-sm border border-white/20">
+                        <div className="w-1.5 h-1.5 bg-gradient-to-r from-[var(--color-one)] to-orange-400 rounded-full"></div>
+                        <p className="text-xs font-medium">1 Dormitorio</p>
+                      </div>
+                      <div className="flex items-center gap-2 bg-white/10 rounded-lg backdrop-blur-sm border border-white/20">
+                        <div className="w-1.5 h-1.5 bg-gradient-to-r from-[var(--color-one)] to-orange-400 rounded-full"></div>
+                        <p className="text-xs font-medium">2 Dormitorios</p>
+                      </div>
+                      <div className="flex items-center gap-2 bg-white/10 rounded-lg backdrop-blur-sm border border-white/20">
+                        <div className="w-1.5 h-1.5 bg-gradient-to-r from-[var(--color-one)] to-orange-400 rounded-full"></div>
+                        <p className="text-xs font-medium">Duplex 2 Dormitorios con Patio</p>
+                      </div>
+                      <div className="flex items-center gap-2 bg-white/10 rounded-lg backdrop-blur-sm border border-white/20">
+                        <div className="w-1.5 h-1.5 bg-gradient-to-r from-[var(--color-one)] to-orange-400 rounded-full"></div>
+                        <p className="text-xs font-medium">Quincho con Terraza</p>
+                      </div>
                     </div>
                   </Card>
-                  <Card hasGradient className="flex-1 flex-col gap-6 text-[var(--color-three)]">
-                    <h3 className="text-modal font-bold"> Características</h3>
-                    <div className="space-y-2">
-                      <p className="text-sm">• Desde 32m² hasta 89m²</p>
-                      <p className="text-sm">• Balcones y terrazas</p>
-                      <p className="text-sm">• Cocinas integradas</p>
-                      <p className="text-sm">• Baños completos</p>
-                      <p className="text-sm">• Espacios optimizados</p>
+
+                  {/* Características y Superficies */}
+                  <Card
+                    hasGradient
+                    className="flex-col gap-1 text-[var(--color-three)] justify-items-start"
+                  >
+                    <div className="flex items-center gap-2 mb-2">
+                      <h3 className="text-base font-bold">Superficies y Amenities</h3>
+                    </div>
+                    <div className="space-y-1">
+                      <div className="flex items-center gap-2 bg-white/10 rounded-lg backdrop-blur-sm border border-white/20">
+                        <div className="w-1.5 h-1.5 bg-gradient-to-r from-blue-500 to-purple-500 rounded-full"></div>
+                        <p className="text-xs font-medium">Desde 32m² hasta 89m²</p>
+                      </div>
+                      <div className="flex items-center gap-2 bg-white/10 rounded-lg backdrop-blur-sm border border-white/20">
+                        <div className="w-1.5 h-1.5 bg-gradient-to-r from-blue-500 to-purple-500 rounded-full"></div>
+                        <p className="text-xs font-medium">Balcones y Terrazas Privadas</p>
+                      </div>
+                      <div className="flex items-center gap-2  bg-white/10 rounded-lg backdrop-blur-sm border border-white/20">
+                        <div className="w-1.5 h-1.5 bg-gradient-to-r from-blue-500 to-purple-500 rounded-full"></div>
+                        <p className="text-xs font-medium">Cocinas Integradas Premium</p>
+                      </div>
+                      <div className="flex items-center gap-2 bg-white/10 rounded-lg backdrop-blur-sm border border-white/20">
+                        <div className="w-1.5 h-1.5 bg-gradient-to-r from-blue-500 to-purple-500 rounded-full"></div>
+                        <p className="text-xs font-medium">Baños Completos Revestidos</p>
+                      </div>
+                      <div className="flex items-center gap-2  bg-white/10 rounded-lg backdrop-blur-sm border border-white/20">
+                        <div className="w-1.5 h-1.5 bg-gradient-to-r from-blue-500 to-purple-500 rounded-full"></div>
+                        <p className="text-xs font-medium">Espacios Optimizados</p>
+                      </div>
                     </div>
                   </Card>
-                </section>
+                </div>
               </section>
             ) : (
               <Card

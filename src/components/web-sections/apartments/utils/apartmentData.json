@@ -15,7 +15,8 @@
     "area": "49,71m²",
     "description": "Moderno duplex de 2 ambientes con patio. Excelente distribución en dos niveles.",
     "features": ["1 Dormitorio", "Patio de 12,00m²", "Cocina integrada", "Living-comedor"],
-    "floorPlan": "/planos/123/A.png"
+    "floorPlan": "/planos/0/A.png",
+    "floorPlan-extra": "/planos/0/AE.png"
   },
   "estudio_B_PB": {
     "id": "estudio_B_PB",
@@ -24,7 +25,7 @@
     "area": "32,10m²",
     "description": "Funcional estudio-loft con patio. Espacio moderno y versátil.",
     "features": ["Ambiente único", "Patio de 12,00m²", "Cocina integrada"],
-    "floorPlan": "/planos/123/B.png"
+    "floorPlan": "/planos/0/B.png"
   },
   "duplex_C_PB": {
     "id": "duplex_C_PB",
@@ -33,7 +34,8 @@
     "area": "49,54m²",
     "description": "Moderno duplex de 2 ambientes con patio. Excelente distribución en dos niveles.",
     "features": ["1 Dormitorio", "Patio de 12,00m²", "Cocina integrada", "Living-comedor"],
-    "floorPlan": "/planos/PB/C.png"
+    "floorPlan": "/planos/PB/C.png",
+    "floorPlan-extra": "/planos/0/CE.png"
   },
   "apartment_A_P1": {
     "id": "apartment_A_P1",

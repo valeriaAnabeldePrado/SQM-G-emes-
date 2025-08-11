@@ -3010,6 +3010,49 @@ const PlanoEdificio = ({ onEvent, selectedFloor }) => (
           }}
         />
       </g>
+
+      <g
+        id="PlantaBaja"
+        className={`floor-hover ${selectedFloor === 'p-duplex' ? 'floor-selected' : ''}`}
+        onClick={(e) => {
+          e.stopPropagation()
+          onEvent('p-duplex')
+        }}
+      >
+        <rect
+          x="63.2"
+          y="545"
+          width="72"
+          height="25.2"
+          rx="3.4"
+          ry="3.4"
+          fill={selectedFloor === 'p-duplex' ? '#ffc46a' : 'transparent'}
+          style={{ cursor: 'pointer', transition: 'fill 600ms' }}
+        />
+        <rect
+          x="254.6"
+          y="515"
+          width="93.3"
+          height="25.2"
+          rx="3.4"
+          ry="3.4"
+          fill={selectedFloor === 'p-duplex' ? '#ffc46a' : 'transparent'}
+          style={{ cursor: 'pointer', transition: 'fill 600ms' }}
+        />
+        <rect
+          x="394.3"
+          y="515"
+          width="94.3"
+          height="25.2"
+          rx="3.4"
+          ry="3.4"
+          fill={selectedFloor === 'p-duplex' ? '#ffc46a' : 'transparent'}
+          style={{
+            cursor: 'pointer',
+            transition: 'fill 600ms'
+          }}
+        />
+      </g>
     </svg>
   </div>
 )

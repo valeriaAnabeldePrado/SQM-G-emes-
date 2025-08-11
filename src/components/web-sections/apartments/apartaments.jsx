@@ -206,18 +206,25 @@ const Apartaments = () => {
                   </p>
                 </Card>
                 <section className="flex flex-row gap-4">
-                  <Card hasGradient className="flex-1 flex-col gap-6 text-[var(--color-three)] ">
-                    <h3 className="text-modal">Tipología</h3>
-                    <p className="text-modal">
-                      {' '}
-                      Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
-                    </p>
+                  <Card hasGradient className="flex-1 flex-col gap-6 text-[var(--color-three)]">
+                    <h3 className="text-modal font-bold"> Tipos de Unidades</h3>
+                    <div className="space-y-2">
+                      <p className="text-sm">• Estudios y 1 ambiente</p>
+                      <p className="text-sm">• Departamentos 2 y 3 ambientes</p>
+                      <p className="text-sm">• Duplex con patio</p>
+                      <p className="text-sm">• Local comercial</p>
+                      <p className="text-sm">• Quincho con terraza</p>
+                    </div>
                   </Card>
                   <Card hasGradient className="flex-1 flex-col gap-6 text-[var(--color-three)]">
-                    <h3 className="text-modal">Tipología</h3>
-                    <p className="text-modal">
-                      Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
-                    </p>
+                    <h3 className="text-modal font-bold">📐 Características</h3>
+                    <div className="space-y-2">
+                      <p className="text-sm">• Desde 32m² hasta 89m²</p>
+                      <p className="text-sm">• Balcones y terrazas</p>
+                      <p className="text-sm">• Cocinas integradas</p>
+                      <p className="text-sm">• Baños completos</p>
+                      <p className="text-sm">• Espacios optimizados</p>
+                    </div>
                   </Card>
                 </section>
               </section>

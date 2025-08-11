@@ -51,9 +51,9 @@ const ApartmentDetail = () => {
     // Para ModelFour (pisos 7-10) que solo tiene A, B, C
     if (layout === 'modelFour') {
       return (
-        <div className="w-full max-w-[180px] mx-auto">
-          <div className="bg-white rounded-lg border border-gray-200 p-3">
-            <h4 className="text-sm font-semibold text-[var(--color-three)] mb-2 text-center">
+        <div className="w-full max-w-[140px] lg:max-w-[180px] mx-auto">
+          <div className="bg-white rounded-lg border border-gray-200 p-2 lg:p-3">
+            <h4 className="text-xs lg:text-sm font-semibold text-[var(--color-three)] mb-2 text-center">
               Ubicación en planta
             </h4>
             <svg
@@ -63,7 +63,7 @@ const ApartmentDetail = () => {
               style={{
                 width: '100%',
                 height: 'auto',
-                maxHeight: '200px'
+                maxHeight: '150px'
               }}
             >
               <defs>
@@ -189,9 +189,9 @@ const ApartmentDetail = () => {
     // Para ModelSix (piso 13) que solo tiene A y B
     if (layout === 'modelSix') {
       return (
-        <div className="w-full max-w-[180px] mx-auto">
-          <div className="bg-white rounded-lg border border-gray-200 p-3">
-            <h4 className="text-sm font-semibold text-[var(--color-three)] mb-2 text-center">
+        <div className="w-full max-w-[140px] lg:max-w-[180px] mx-auto">
+          <div className="bg-white rounded-lg border border-gray-200 p-2 lg:p-3">
+            <h4 className="text-xs lg:text-sm font-semibold text-[var(--color-three)] mb-2 text-center">
               Ubicación en planta
             </h4>
             <svg
@@ -202,7 +202,7 @@ const ApartmentDetail = () => {
               style={{
                 width: '100%',
                 height: 'auto',
-                maxHeight: '200px'
+                maxHeight: '150px'
               }}
             >
               <defs>
@@ -299,9 +299,9 @@ const ApartmentDetail = () => {
     // Para ModelSeven (piso 14 - quincho/asador)
     if (layout === 'modelSeven') {
       return (
-        <div className="w-full max-w-[180px] mx-auto">
-          <div className="bg-white rounded-lg border border-gray-200 p-3">
-            <h4 className="text-sm font-semibold text-[var(--color-three)] mb-2 text-center">
+        <div className="w-full max-w-[140px] lg:max-w-[180px] mx-auto">
+          <div className="bg-white rounded-lg border border-gray-200 p-2 lg:p-3">
+            <h4 className="text-xs lg:text-sm font-semibold text-[var(--color-three)] mb-2 text-center">
               Ubicación en planta
             </h4>
             <svg
@@ -312,7 +312,7 @@ const ApartmentDetail = () => {
               style={{
                 width: '100%',
                 height: 'auto',
-                maxHeight: '200px'
+                maxHeight: '150px'
               }}
             >
               <defs>
@@ -366,9 +366,9 @@ const ApartmentDetail = () => {
 
     // Para otros layouts (ModelThree con A, B, C, D) - layout original
     return (
-      <div className="w-full max-w-[180px] mx-auto">
-        <div className="bg-white rounded-lg border border-gray-200 p-3">
-          <h4 className="text-sm font-semibold text-[var(--color-three)] mb-2 text-center">
+      <div className="w-full max-w-[140px] lg:max-w-[180px] mx-auto">
+        <div className="bg-white rounded-lg border border-gray-200 p-2 lg:p-3">
+          <h4 className="text-xs lg:text-sm font-semibold text-[var(--color-three)] mb-2 text-center">
             Ubicación en planta
           </h4>
           <svg
@@ -378,7 +378,7 @@ const ApartmentDetail = () => {
             style={{
               width: '100%',
               height: 'auto',
-              maxHeight: '200px'
+              maxHeight: '150px'
             }}
           >
             <defs>
@@ -582,17 +582,22 @@ const ApartmentDetail = () => {
           <div className="min-[768px]:row-span-3 min-[768px]:col-span-1">
             <Card hasGradient className="flex flex-col h-full">
               <h3 className="text-xl font-bold text-[var(--color-three)] mb-4">Características</h3>
-              <div className="space-y-3 flex-1">
-                {apartment.features.map((characteristic, index) => (
-                  <p key={index} className="text-[var(--color-three)] mb-1">
-                    {characteristic}
-                  </p>
-                ))}
-              </div>
+              
+              {/* Layout horizontal: características a la izquierda, ubicación a la derecha */}
+              <div className="flex flex-row gap-4 flex-1">
+                {/* Características */}
+                <div className="flex-1 space-y-3 min-w-0">
+                  {apartment.features.map((characteristic, index) => (
+                    <p key={index} className="text-[var(--color-three)] mb-1 text-sm lg:text-base">
+                      {characteristic}
+                    </p>
+                  ))}
+                </div>
 
-              {/* SVG de referencia de ubicación */}
-              <div className="mt-6 pt-4 border-t border-white/20">
-                {renderApartmentReference(apartmentId)}
+                {/* SVG de referencia de ubicación */}
+                <div className="flex-shrink-0 w-[140px] lg:w-[180px]">
+                  {renderApartmentReference(apartmentId)}
+                </div>
               </div>
             </Card>
           </div>

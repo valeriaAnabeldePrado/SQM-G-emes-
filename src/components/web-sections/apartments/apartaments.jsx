@@ -217,7 +217,7 @@ const Apartaments = () => {
                     </div>
                   </Card>
                   <Card hasGradient className="flex-1 flex-col gap-6 text-[var(--color-three)]">
-                    <h3 className="text-modal font-bold">📐 Características</h3>
+                    <h3 className="text-modal font-bold"> Características</h3>
                     <div className="space-y-2">
                       <p className="text-sm">• Desde 32m² hasta 89m²</p>
                       <p className="text-sm">• Balcones y terrazas</p>

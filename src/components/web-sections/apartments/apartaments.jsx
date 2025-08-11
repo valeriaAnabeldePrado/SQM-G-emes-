@@ -94,6 +94,7 @@ const Apartaments = () => {
   }
 
   const renderFloorComponent = () => {
+    console.log('selectedFloor en renderFloorComponent:', selectedFloor)
     switch (selectedFloor) {
       // Pisos 1-3: ModelOne
       case 'p01-modelOne':
@@ -137,10 +138,9 @@ const Apartaments = () => {
             selectedFloor={selectedFloor}
           />
         )
-      // Pisos 11-13: ModelFive
+      // Pisos 11-12: ModelFive
       case 'p11-modelFive':
       case 'p12-modelFive':
-      case 'p13-modelFive':
         return (
           <ModelFive
             onEventApartment={handlerApartment}
@@ -152,6 +152,15 @@ const Apartaments = () => {
       case 'plantaAlta':
         return (
           <ModelSix
+            onEventApartment={handlerApartment}
+            selectedApartment={selectedApartment}
+            selectedFloor={selectedFloor}
+          />
+        )
+      // Piso 14: ModelSeven
+      case 'p14-modelSeven':
+        return (
+          <ModelSeven
             onEventApartment={handlerApartment}
             selectedApartment={selectedApartment}
             selectedFloor={selectedFloor}

@@ -624,7 +624,7 @@
       "Living-comedor",
       "Terraza de 30,25m²"
     ],
-    "floorPlan": "/planos/123/A.png"
+    "floorPlan": "/planos/13/A.png"
   },
   "apartment_B_P13": {
     "id": "apartment_B_P13",
@@ -639,7 +639,7 @@
       "Living-comedor",
       "Terraza de 31,52m²"
     ],
-    "floorPlan": "/planos/123/B.png"
+    "floorPlan": "/planos/13/B.png"
   },
   "quincho_A_P14": {
     "id": "quincho_A_P14",
@@ -648,7 +648,7 @@
     "area": "30,00m²",
     "description": "Quincho de uso común en el piso 14, con parrilla y terraza.",
     "features": ["Parrilla", "Salón de usos múltiples", "Terraza de 30,25m²"],
-    "floorPlan": "/planos/123/A.png"
+    "floorPlan": "/planos/14/planta.png"
   },
   "oficina_A_P00": {
     "id": "oficina_A_P00",

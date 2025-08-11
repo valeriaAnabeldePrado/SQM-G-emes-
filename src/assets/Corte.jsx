@@ -2609,10 +2609,10 @@ const PlanoEdificio = ({ onEvent, selectedFloor }) => (
 
       <g
         id="PisoDoce"
-        className={`floor-hover ${selectedFloor === 'p12-modelSix' ? 'floor-selected' : ''}`}
+        className={`floor-hover ${selectedFloor === 'p12-modelFive' ? 'floor-selected' : ''}`}
         onClick={(e) => {
           e.stopPropagation()
-          onEvent('p12-modelSix')
+          onEvent('p12-modelFive')
         }}
       >
         <rect
@@ -2622,7 +2622,7 @@ const PlanoEdificio = ({ onEvent, selectedFloor }) => (
           height="25.2"
           rx="3.4"
           ry="3.4"
-          fill={selectedFloor === 'p12-modelSix' ? '#ffc46a' : 'transparent'}
+          fill={selectedFloor === 'p12-modelFive' ? '#ffc46a' : 'transparent'}
           style={{ cursor: 'pointer', transition: 'fill 600ms' }}
         />
         <rect
@@ -2632,7 +2632,7 @@ const PlanoEdificio = ({ onEvent, selectedFloor }) => (
           height="25.2"
           rx="3.4"
           ry="3.4"
-          fill={selectedFloor === 'p12-modelSix' ? '#ffc46a' : 'transparent'}
+          fill={selectedFloor === 'p12-modelFive' ? '#ffc46a' : 'transparent'}
           style={{ cursor: 'pointer', transition: 'fill 600ms' }}
         />
       </g>

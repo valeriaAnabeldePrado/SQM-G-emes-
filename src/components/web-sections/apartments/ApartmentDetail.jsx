@@ -11,6 +11,7 @@ const ApartmentDetail = () => {
   const navigate = useNavigate()
 
   const apartment = apartmentData[apartmentId]
+  console.log(apartment)
 
   // Función para obtener la letra del apartamento
   const getApartmentLetter = (apartmentId) => {
@@ -31,13 +32,13 @@ const ApartmentDetail = () => {
   const getFloorLayout = (apartmentId) => {
     const floorNumber = getFloorNumber(apartmentId)
     if (!floorNumber) return 'modelThree' // default
-
     if (floorNumber >= 1 && floorNumber <= 3) return 'modelOne'
     if (floorNumber === 4) return 'modelTwo'
     if (floorNumber >= 5 && floorNumber <= 6) return 'modelThree'
     if (floorNumber >= 7 && floorNumber <= 10) return 'modelFour'
-    if (floorNumber >= 11 && floorNumber <= 13) return 'modelFive'
-
+    if (floorNumber >= 11 && floorNumber <= 12) return 'modelFive'
+    if (floorNumber === 13) return 'modelSix'
+    if (floorNumber === 14) return 'modelSeven'
     return 'modelThree' // default
   }
 
@@ -174,6 +175,184 @@ const ApartmentDetail = () => {
                         fill="#483b2b"
                       >
                         C
+                      </text>
+                    </g>
+                  )}
+                </g>
+              </g>
+            </svg>
+          </div>
+        </div>
+      )
+    }
+
+    // Para ModelSix (piso 13) que solo tiene A y B
+    if (layout === 'modelSix') {
+      return (
+        <div className="w-full max-w-[180px] mx-auto">
+          <div className="bg-white rounded-lg border border-gray-200 p-3">
+            <h4 className="text-sm font-semibold text-[var(--color-three)] mb-2 text-center">
+              Ubicación en planta
+            </h4>
+            <svg
+              id="PlantaSix"
+              data-name="Capa 2"
+              xmlns="http://www.w3.org/2000/svg"
+              viewBox="0 0 218.16 349.44"
+              style={{
+                width: '100%',
+                height: 'auto',
+                maxHeight: '200px'
+              }}
+            >
+              <defs>
+                <style>{`
+                  .apartment-text {
+                    font-family: Arial, sans-serif;
+                    font-size: 16px;
+                    font-weight: bold;
+                  }
+                `}</style>
+              </defs>
+              <g id="Capa_1-2" data-name="Capa 1">
+                {/* Rectángulo central transparente */}
+                <rect
+                  y="168.24"
+                  width="180.48"
+                  height="54.36"
+                  fill="#f0f0f0"
+                  stroke="#ddd"
+                  strokeWidth="1"
+                />
+
+                {/* Departamento A */}
+                <g className="apartment-group">
+                  <rect
+                    fill={letter === 'A' ? '#ffc46a' : '#e8e8e8'}
+                    stroke="#999"
+                    strokeWidth="1"
+                    width="218.16"
+                    height="165.24"
+                  />
+                  {letter === 'A' && (
+                    <g>
+                      <circle
+                        cx="110"
+                        cy="80"
+                        r="22"
+                        fill="none"
+                        stroke="#483b2b"
+                        strokeWidth="2"
+                      />
+                      <text
+                        x="110"
+                        y="86"
+                        textAnchor="middle"
+                        className="apartment-text"
+                        fill="#483b2b"
+                      >
+                        A
+                      </text>
+                    </g>
+                  )}
+                </g>
+
+                {/* Departamento B */}
+                <g className="apartment-group">
+                  <rect
+                    fill={letter === 'B' ? '#ffc46a' : '#e8e8e8'}
+                    stroke="#999"
+                    strokeWidth="1"
+                    y="225.6"
+                    width="218.16"
+                    height="123.84"
+                  />
+                  {letter === 'B' && (
+                    <g>
+                      <circle
+                        cx="110"
+                        cy="287"
+                        r="22"
+                        fill="none"
+                        stroke="#483b2b"
+                        strokeWidth="2"
+                      />
+                      <text
+                        x="110"
+                        y="293"
+                        textAnchor="middle"
+                        className="apartment-text"
+                        fill="#483b2b"
+                      >
+                        B
+                      </text>
+                    </g>
+                  )}
+                </g>
+              </g>
+            </svg>
+          </div>
+        </div>
+      )
+    }
+
+    // Para ModelSeven (piso 14 - quincho/asador)
+    if (layout === 'modelSeven') {
+      return (
+        <div className="w-full max-w-[180px] mx-auto">
+          <div className="bg-white rounded-lg border border-gray-200 p-3">
+            <h4 className="text-sm font-semibold text-[var(--color-three)] mb-2 text-center">
+              Ubicación en planta
+            </h4>
+            <svg
+              id="PlantaSeven"
+              data-name="Capa 2"
+              xmlns="http://www.w3.org/2000/svg"
+              viewBox="0 0 218.45 238.14"
+              style={{
+                width: '100%',
+                height: 'auto',
+                maxHeight: '200px'
+              }}
+            >
+              <defs>
+                <style>{`
+                  .apartment-text {
+                    font-family: Arial, sans-serif;
+                    font-size: 12px;
+                    font-weight: bold;
+                  }
+                `}</style>
+              </defs>
+              <g id="Capa_1-2" data-name="Capa 1">
+                {/* Quincho/Asador - área completa */}
+                <g className="apartment-group">
+                  <rect
+                    fill={letter === 'A' ? '#ffc46a' : '#e8e8e8'}
+                    stroke="#999"
+                    strokeWidth="1"
+                    width="218.45"
+                    height="238.14"
+                  />
+                  {letter === 'A' && (
+                    <g>
+                      <circle
+                        cx="109"
+                        cy="119"
+                        r="30"
+                        fill="none"
+                        stroke="#483b2b"
+                        strokeWidth="2"
+                      />
+                      <text
+                        x="109"
+                        y="127"
+                        textAnchor="middle"
+                        className="apartment-text"
+                        fill="#483b2b"
+                        fontSize="12"
+                      >
+                        QUINCHO
                       </text>
                     </g>
                   )}

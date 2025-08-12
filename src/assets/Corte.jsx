@@ -49,7 +49,7 @@ const PlanoEdificio = ({ onEvent, selectedFloor }) => (
           margin-top:0px
           
         }
-          @media (max-width: 830px) {
+          @media (max-width: 500px) {
         #Capa_2 {
           height: 380px;
           

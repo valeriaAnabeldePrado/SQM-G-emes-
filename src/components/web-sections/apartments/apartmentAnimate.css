@@ -17,8 +17,26 @@
   min-height: 400px;
 }
 
-/* SVG responsivo */
-#plantaOne,
+.apartmentSVGcontainer {
+  width: 100%;
+  height: 200px;
+  padding: 0.25rem;
+}
+
+.apartmentSVGcontainer > div {
+  width: 100%;
+  height: 100%;
+}
+.textApartmentC {
+  font-size: clamp(1rem, 1.5vw, 1.2rem) !important;
+}
+.apartmentSVGcontainer > div > div {
+  width: 100% !important;
+  height: 100% !important;
+  max-width: 100% !important;
+  max-height: 100% !important;
+}
+responsivo */ #plantaOne,
 #PlantaTwo,
 #PlantaThree,
 #PlantaFour,
@@ -29,7 +47,66 @@
   width: 200px;
   transition: all 0.3s ease;
 }
+.apartmentSVGcontainer {
+  width: 50%;
+  height: 100%;
+  background-color: #f8f9fa;
+  border-radius: 12px;
+  padding: 0.25rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
 
+.apartmentSVGcontainer svg {
+  width: 100%;
+  height: 100%;
+  max-height: 100%;
+}
+
+.apartmentSVGcontainer > div {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.apartmentSVGcontainer > div > div {
+  width: 100% !important;
+  height: 100% !important;
+  max-width: 100% !important;
+  max-height: 100% !important;
+}
+
+/* Estilos específicos para cardInfo */
+#cardInfo {
+  min-height: 400px;
+}
+
+#cardInfo header h3 {
+  font-size: clamp(1.25rem, 2.5vw, 2rem);
+}
+
+#cardInfo .characteristics-list {
+  max-height: 300px;
+  overflow-y: auto;
+  scrollbar-width: thin;
+  scrollbar-color: rgba(255, 255, 255, 0.3) transparent;
+}
+
+#cardInfo .characteristics-list::-webkit-scrollbar {
+  width: 4px;
+}
+
+#cardInfo .characteristics-list::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+#cardInfo .characteristics-list::-webkit-scrollbar-thumb {
+  background-color: rgba(255, 255, 255, 0.3);
+  border-radius: 2px;
+}
 /* 1164px y arriba - tamaño completo */
 @media (min-width: 1620px) {
   #apartments-model .flex-2 {
@@ -191,5 +268,36 @@
   }
   .text-modal {
     font-size: 14px;
+  }
+
+  /* Ajustes específicos para cardInfo en móviles */
+  #cardInfo {
+    flex-direction: column;
+    gap: 1rem;
+    padding: 1rem;
+  }
+
+  .apartmentSVGcontainer {
+    height: 300px;
+    padding: 0.25rem;
+  }
+
+  .apartmentSVGcontainer > div > div {
+    width: 100% !important;
+    height: 100% !important;
+    max-width: 100% !important;
+    max-height: 100% !important;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  #cardInfo header {
+    margin-bottom: 1rem;
+    padding-bottom: 0.5rem;
+  }
+
+  #cardInfo header h3 {
+    font-size: 1.25rem;
   }
 }

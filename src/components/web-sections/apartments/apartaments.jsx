@@ -36,8 +36,7 @@ const Apartaments = () => {
     'Desde 32m² hasta 89m²',
     'Balcones y Terrazas Privadas',
     'Cocinas Integradas Premium',
-    'Baños Completos Revestidos',
-    'Espacios Optimizados'
+    'Baños Completos Revestidos'
   ]
 
   const handleFloorClick = (floorId) => {
@@ -215,7 +214,7 @@ const Apartaments = () => {
           </span>
         </h2>
 
-        <section className="flex max-md:flex-col h-full max-lg:mt-8  items-center justify-center gap-4 mt-2">
+        <section className="flex max-[895px]:flex-col h-full max-lg:mt-8  items-center justify-center gap-4 mt-2">
           <div className=" flex-1 " onClick={(e) => e.stopPropagation()}>
             <PlanoEdificio onEvent={handleFloorClick} selectedFloor={selectedFloor} />
           </div>
@@ -238,7 +237,7 @@ const Apartaments = () => {
                   {/* Tipologías de Unidades */}
                   <Card hasGradient className="flex-col gap-1 text-[var(--color-three)] ">
                     <div className="flex items-center gap-2 mb-2">
-                      <p className="text-md font-bold">Tipologías Disponibles</p>
+                      <p className="textApartmentC  font-bold">Tipologías Disponibles</p>
                     </div>
                     <div className="space-y-1">
                       {tipologiesData.map((tipology, index) => (
@@ -246,7 +245,7 @@ const Apartaments = () => {
                           key={index}
                           className="flex items-center gap-2 bg-white/10 rounded-lg backdrop-blur-sm border border-white/20"
                         >
-                          <p className="text-xs font-normal">• {tipology}</p>
+                          <p className="textApartmentC  font-normal">• {tipology}</p>
                         </div>
                       ))}
                     </div>
@@ -258,7 +257,7 @@ const Apartaments = () => {
                     className="flex-col gap-1 text-[var(--color-three)] justify-items-start"
                   >
                     <div className="flex items-center gap-2 mb-2">
-                      <p className="text-md font-bold">Superficies y Amenities</p>
+                      <p className="textApartmentC  font-bold">Superficies y Amenities</p>
                     </div>
                     <div className="space-y-1">
                       {amenitiesData.map((amenity, index) => (
@@ -266,7 +265,7 @@ const Apartaments = () => {
                           key={index}
                           className="flex items-center gap-2 bg-white/10 rounded-lg backdrop-blur-sm border border-white/20"
                         >
-                          <p className="text-xs font-normal">• {amenity}</p>
+                          <p className="textApartmentC  font-normal">• {amenity}</p>
                         </div>
                       ))}
                     </div>

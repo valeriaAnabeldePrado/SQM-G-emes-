@@ -71,48 +71,48 @@ const ApartmentDetail = () => {
       featureLower.includes('habitación') ||
       featureLower.includes('bedroom')
     ) {
-      return <MdBed size={40} />
+      return <MdBed size={16} />
     }
     if (
       featureLower.includes('baño') ||
       featureLower.includes('bathroom') ||
       featureLower.includes('toilette')
     ) {
-      return <MdBathtub size={30} />
+      return <MdBathtub size={16} />
     }
     if (
       featureLower.includes('m²') ||
       featureLower.includes('metro') ||
       featureLower.includes('superficie')
     ) {
-      return <MdSquareFoot size={30} />
+      return <MdSquareFoot size={16} />
     }
     if (
       featureLower.includes('balcón') ||
       featureLower.includes('terraza') ||
       featureLower.includes('balcony')
     ) {
-      return <MdBalcony size={40} />
+      return <MdBalcony size={16} />
     }
     if (featureLower.includes('cocina') || featureLower.includes('kitchen')) {
-      return <MdKitchen size={40} />
+      return <MdKitchen size={16} />
     }
     if (
       featureLower.includes('estacionamiento') ||
       featureLower.includes('parking') ||
       featureLower.includes('cochera')
     ) {
-      return <MdLocalParking size={40} />
+      return <MdLocalParking size={16} />
     }
     if (
       featureLower.includes('ambiente') ||
       featureLower.includes('living') ||
       featureLower.includes('sala')
     ) {
-      return <MdHome size={40} />
+      return <MdHome size={16} />
     }
     // Icono por defecto
-    return <MdViewQuilt size={40} />
+    return <MdViewQuilt size={16} />
   }
 
   // Función para generar el SVG de referencia del apartamento
@@ -125,12 +125,12 @@ const ApartmentDetail = () => {
     const sizeConfig = {
       compact: {
         container: 'w-[80px] lg:w-[100px]',
-        maxHeight: '100px',
+
         fontSize: '12px'
       },
       normal: {
         container: 'w-full max-w-[140px] lg:max-w-[180px] mx-auto',
-        maxHeight: '150px',
+
         fontSize: '16px'
       }
     }
@@ -456,9 +456,6 @@ const ApartmentDetail = () => {
       return (
         <div className="w-full max-w-[140px] lg:max-w-[180px] mx-auto">
           <div className="bg-white rounded-lg border border-gray-200 p-2 lg:p-3">
-            <h4 className="text-xs lg:text-sm font-semibold text-[var(--color-three)] mb-2 text-center">
-              Ubicación en planta
-            </h4>
             <svg
               id="PlantaSix"
               data-name="Capa 2"
@@ -566,9 +563,6 @@ const ApartmentDetail = () => {
       return (
         <div className="w-full max-w-[140px] lg:max-w-[180px] mx-auto">
           <div className="bg-white rounded-lg border border-gray-200 p-2 lg:p-3">
-            <h4 className="text-xs lg:text-sm font-semibold text-[var(--color-three)] mb-2 text-center">
-              Ubicación en planta
-            </h4>
             <svg
               id="PlantaSeven"
               data-name="Capa 2"
@@ -633,17 +627,13 @@ const ApartmentDetail = () => {
     return (
       <div className="w-full max-w-[140px] lg:max-w-[180px] mx-auto">
         <div className="bg-white rounded-lg border border-gray-200 p-2 lg:p-3">
-          <h4 className="text-xs lg:text-sm font-semibold text-[var(--color-three)] mb-2 text-center">
-            Ubicación en planta
-          </h4>
           <svg
             data-name="Capa 2"
             xmlns="http://www.w3.org/2000/svg"
             viewBox="0 0 218.28 388.08"
             style={{
               width: '100%',
-              height: 'auto',
-              maxHeight: '150px'
+              height: 'auto'
             }}
           >
             <defs>
@@ -793,8 +783,8 @@ const ApartmentDetail = () => {
 
   return (
     <>
-      <div className="custom-container  mt-14 px-4 ">
-        <div className="flex items-center gap-6 mb-12">
+      <div className="custom-container  mt-14   px-4 ">
+        <div className="flex min-md:items-center items-start min-md:flex-row flex-col gap-6 mb-12">
           <Button
             onClick={() => navigate('/apartments')}
             className="z-50 flex items-center cursor-pointer gap-2 bg-[var(--color-three)] hover:bg-opacity-90 text-white px-6 py-3 rounded-full"
@@ -834,7 +824,7 @@ const ApartmentDetail = () => {
 
           <div className="min-[768px]:row-span-1 min-[768px]:col-span-1">
             <Card hasGradient className="flex flex-col h-full">
-              <div className="flex items-center justify-around mb-4 w-full">
+              <div className="flex   w-full">
                 <div>
                   <p className="font-bold text-[var(--color-three)] mb-1">
                     <span className="inline-block font-bold rounded-full text-[var(--color-one)] text-4xl">
@@ -843,66 +833,50 @@ const ApartmentDetail = () => {
                   </p>
                   <p className="text-lg text-[var(--color-three)] font-medium">{apartment.type}</p>
                 </div>
-
-                {/* Ubicación en planta - ahora en la parte superior */}
-                <div className="flex-shrink-0">
-                  {renderApartmentReference(apartmentId, 'compact')}
-                </div>
               </div>
             </Card>
           </div>
 
-          {/* Card de características - Ocupa 3 rows en desktop */}
           <div className="min-[768px]:row-span-3 min-[768px]:col-span-1">
-            <Card hasGradient className="flex flex-col h-full overflow-hidden">
-              <div className="flex items-center gap-3 mb-6">
-                <h3 className="text-3xl font-bold text-[var(--color-three)]">Características</h3>
+            <Card
+              id="cardInfo"
+              hasGradient
+              className="flex flex-row min-lg:gap-6 gap-4 h-full overflow-hidden p-6"
+            >
+              <div className="apartmentSVGcontainer">
+                {renderApartmentReference(apartmentId, 'compact')}
               </div>
 
-              {/* Layout horizontal: características a la izquierda, sin ubicación */}
-              <div className="flex flex-col gap-1 flex-1">
-                {/* Características con diseño mejorado e iconos */}
-                <div className="grid grid-cols-1 lg:grid-cols-2 gap-1">
+              <section className="flex-1 flex flex-col justify-start">
+                {/* Header con título principal */}
+                <header className="mb-4 border-b border-white/20 pb-2">
+                  <h3 className="text-2xl lg:text-3xl font-bold text-[var(--color-three)] mb-1">
+                    Características
+                  </h3>
+                  <div className="flex items-center gap-2 text-[var(--color-three)]/70 bg-[#e2d8ce4d] p-2 rounded-xl">
+                    <MdOutlineArrowOutward size="1em" className="text-[var(--color-one)]" />
+                    <span className="text-xs py-2 font-semibold text-[var(--color-one)] ">
+                      Calidad Premium
+                    </span>
+                  </div>
+                </header>
+
+                {/* Lista de características más compacta */}
+                <div className="flex-1">
                   {apartment.features.map((characteristic, index) => (
-                    <div
-                      key={index}
-                      className="flex items-center gap-4 bg-white/10 rounded-xl backdrop-blur-sm border border-white/20 hover:bg-white/20 transition-all duration-300 hover:scale-[1.02] group"
-                    >
-                      <div className="w-12 h-12 rounded-xl flex items-center justify-center flex-shrink-0 group-hover:scale-110 transition-transform duration-300">
-                        {getFeatureIcon(characteristic)}
+                    <div key={index} className="flex items-center gap-3 pb-2">
+                      <div className="w-4 h-4 rounded flex items-center justify-center flex-shrink-0">
+                        <div className="text-[var(--color-one)]">
+                          {getFeatureIcon(characteristic)}
+                        </div>
                       </div>
-                      <p className="text-[var(--color-three)] text-sm lg:text-base leading-relaxed font-medium flex-1">
+                      <p className="text-[var(--color-three)] textApartmentC leading-relaxed">
                         {characteristic}
                       </p>
                     </div>
                   ))}
                 </div>
-
-                {/* Elemento decorativo */}
-                <div className="mt-2 p-4 bg-gradient-to-r from-white/5 to-white/10 rounded-xl border border-white/10">
-                  <div className="flex items-center gap-3 text-[var(--color-three)]/80">
-                    <div className="w-8 h-8 bg-gradient-to-r from-yellow-400 to-orange-400 rounded-lg flex items-center justify-center">
-                      <svg
-                        width="16"
-                        height="16"
-                        viewBox="0 0 24 24"
-                        fill="none"
-                        xmlns="http://www.w3.org/2000/svg"
-                        className="text-white"
-                      >
-                        <path
-                          d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"
-                          fill="currentColor"
-                        />
-                      </svg>
-                    </div>
-                    <div>
-                      <span className="text-sm font-semibold block">Calidad Premium</span>
-                      <span className="text-xs opacity-80">Materiales de primera línea</span>
-                    </div>
-                  </div>
-                </div>
-              </div>
+              </section>
             </Card>
           </div>
         </div>

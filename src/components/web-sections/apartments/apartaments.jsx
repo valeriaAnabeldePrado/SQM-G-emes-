@@ -23,6 +23,23 @@ const Apartaments = () => {
   const [selectedApartment, setSelectedApartment] = useState(null)
   const navigate = useNavigate()
 
+  // Arrays de datos para las tipologías y amenities
+  const tipologiesData = [
+    'Estudios y Microviviendas',
+    '1 Dormitorio',
+    '2 Dormitorios',
+    'Duplex 2 Dormitorios con Patio',
+    'Quincho con Terraza'
+  ]
+
+  const amenitiesData = [
+    'Desde 32m² hasta 89m²',
+    'Balcones y Terrazas Privadas',
+    'Cocinas Integradas Premium',
+    'Baños Completos Revestidos',
+    'Espacios Optimizados'
+  ]
+
   const handleFloorClick = (floorId) => {
     setSelectedFloor(floorId)
   }
@@ -85,7 +102,6 @@ const Apartaments = () => {
           </svg>
         </div>
         <div>
-          <p className="text-sm font-semibold text-[var(--color-three)]">Departamento {letter}</p>
           <p className="text-xs text-[var(--color-three)]/70">
             {apartmentInfo?.title || `${apartmentInfo?.type || 'Información disponible'}`}
           </p>
@@ -222,29 +238,17 @@ const Apartaments = () => {
                   {/* Tipologías de Unidades */}
                   <Card hasGradient className="flex-col gap-1 text-[var(--color-three)] ">
                     <div className="flex items-center gap-2 mb-2">
-                      <h3 className="text-base font-bold">Tipologías Disponibles</h3>
+                      <p className="text-md font-bold">Tipologías Disponibles</p>
                     </div>
                     <div className="space-y-1">
-                      <div className="flex items-center gap-2  bg-white/10 rounded-lg backdrop-blur-sm border border-white/20">
-                        <div className="w-1.5 h-1.5 bg-gradient-to-r from-[var(--color-one)] to-orange-400 rounded-full"></div>
-                        <p className="text-xs font-medium">Estudios y Microviviendas</p>
-                      </div>
-                      <div className="flex items-center gap-2 bg-white/10 rounded-lg backdrop-blur-sm border border-white/20">
-                        <div className="w-1.5 h-1.5 bg-gradient-to-r from-[var(--color-one)] to-orange-400 rounded-full"></div>
-                        <p className="text-xs font-medium">1 Dormitorio</p>
-                      </div>
-                      <div className="flex items-center gap-2 bg-white/10 rounded-lg backdrop-blur-sm border border-white/20">
-                        <div className="w-1.5 h-1.5 bg-gradient-to-r from-[var(--color-one)] to-orange-400 rounded-full"></div>
-                        <p className="text-xs font-medium">2 Dormitorios</p>
-                      </div>
-                      <div className="flex items-center gap-2 bg-white/10 rounded-lg backdrop-blur-sm border border-white/20">
-                        <div className="w-1.5 h-1.5 bg-gradient-to-r from-[var(--color-one)] to-orange-400 rounded-full"></div>
-                        <p className="text-xs font-medium">Duplex 2 Dormitorios con Patio</p>
-                      </div>
-                      <div className="flex items-center gap-2 bg-white/10 rounded-lg backdrop-blur-sm border border-white/20">
-                        <div className="w-1.5 h-1.5 bg-gradient-to-r from-[var(--color-one)] to-orange-400 rounded-full"></div>
-                        <p className="text-xs font-medium">Quincho con Terraza</p>
-                      </div>
+                      {tipologiesData.map((tipology, index) => (
+                        <div
+                          key={index}
+                          className="flex items-center gap-2 bg-white/10 rounded-lg backdrop-blur-sm border border-white/20"
+                        >
+                          <p className="text-xs font-normal">• {tipology}</p>
+                        </div>
+                      ))}
                     </div>
                   </Card>
 
@@ -254,29 +258,17 @@ const Apartaments = () => {
                     className="flex-col gap-1 text-[var(--color-three)] justify-items-start"
                   >
                     <div className="flex items-center gap-2 mb-2">
-                      <h3 className="text-base font-bold">Superficies y Amenities</h3>
+                      <p className="text-md font-bold">Superficies y Amenities</p>
                     </div>
                     <div className="space-y-1">
-                      <div className="flex items-center gap-2 bg-white/10 rounded-lg backdrop-blur-sm border border-white/20">
-                        <div className="w-1.5 h-1.5 bg-gradient-to-r from-blue-500 to-purple-500 rounded-full"></div>
-                        <p className="text-xs font-medium">Desde 32m² hasta 89m²</p>
-                      </div>
-                      <div className="flex items-center gap-2 bg-white/10 rounded-lg backdrop-blur-sm border border-white/20">
-                        <div className="w-1.5 h-1.5 bg-gradient-to-r from-blue-500 to-purple-500 rounded-full"></div>
-                        <p className="text-xs font-medium">Balcones y Terrazas Privadas</p>
-                      </div>
-                      <div className="flex items-center gap-2  bg-white/10 rounded-lg backdrop-blur-sm border border-white/20">
-                        <div className="w-1.5 h-1.5 bg-gradient-to-r from-blue-500 to-purple-500 rounded-full"></div>
-                        <p className="text-xs font-medium">Cocinas Integradas Premium</p>
-                      </div>
-                      <div className="flex items-center gap-2 bg-white/10 rounded-lg backdrop-blur-sm border border-white/20">
-                        <div className="w-1.5 h-1.5 bg-gradient-to-r from-blue-500 to-purple-500 rounded-full"></div>
-                        <p className="text-xs font-medium">Baños Completos Revestidos</p>
-                      </div>
-                      <div className="flex items-center gap-2  bg-white/10 rounded-lg backdrop-blur-sm border border-white/20">
-                        <div className="w-1.5 h-1.5 bg-gradient-to-r from-blue-500 to-purple-500 rounded-full"></div>
-                        <p className="text-xs font-medium">Espacios Optimizados</p>
-                      </div>
+                      {amenitiesData.map((amenity, index) => (
+                        <div
+                          key={index}
+                          className="flex items-center gap-2 bg-white/10 rounded-lg backdrop-blur-sm border border-white/20"
+                        >
+                          <p className="text-xs font-normal">• {amenity}</p>
+                        </div>
+                      ))}
                     </div>
                   </Card>
                 </div>
@@ -290,7 +282,7 @@ const Apartaments = () => {
                 <div className="flex-1 lg:flex-2 bg-white rounded-2xl p-6 flex items-center justify-center min-h-[400px]">
                   {renderFloorComponent(selectedFloor)}
                 </div>
-                <div className="flex-1 flex flex-col justify-between gap-8 lg:gap-16 p-2">
+                <div className="flex-2 flex flex-col justify-between gap-8 lg:gap-16 p-2">
                   <div className="space-y-4">
                     <p className="text-modal text-[var(--color-three)]">
                       Selecciona un departamento para ver más detalles y acceder a los planos
@@ -307,7 +299,7 @@ const Apartaments = () => {
                     )}
                   </div>
                   <Button
-                    className="w-full lg:w-auto flex items-center justify-center lg:justify-between gap-2"
+                    className=" w-[250px] lg:w-auto flex items-center justify-center lg:justify-between gap-2"
                     onClick={handleViewPlans}
                     disabled={!selectedApartment}
                   >

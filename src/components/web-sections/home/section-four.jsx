@@ -143,7 +143,7 @@ const SectionFour = () => {
               <div className="mt-4 hidden min-d:block">
                 <button
                   onClick={() => openModal(img)}
-                  className=" bg-opacity-20 hover:bg-opacity-40 text-white px-4 py-2 rounded-lg text-sm font-medium transition-all duration-200 border border-white hover:border-[var(--color-one)] hover:bg-[var(--color-one)] cursor-pointer"
+                  className=" bg-opacity-20 hover:bg-opacity-40 text-white px-6 py-4 rounded-full text-sm font-medium transition-all duration-200 border border-white border-2 hover:border-[var(--color-one)] hover:bg-[var(--color-one)] cursor-pointer"
                 >
                   Ver imagen completa
                 </button>
@@ -156,7 +156,7 @@ const SectionFour = () => {
       {/* Modal para mostrar imagen ampliada - Solo desktop */}
       {modalImage && (
         <div
-          className="fixed inset-0 bg-black bg-opacity-90 min-d:flex items-center justify-center z-50 hidden transition-opacity duration-300 ease-in-out"
+          className="fixed inset-0 bg-black bg-opacity-90 min-d:flex items-center justify-center z-500 hidden transition-opacity duration-300 ease-in-out"
           style={{ backgroundColor: 'rgba(0, 0, 0, 0.8)' }}
           onClick={closeModal}
         >

@@ -1,19 +1,17 @@
 import { Card } from './components/card'
 import Button from './components/button'
-import { RiBuilding2Line } from 'react-icons/ri'
+
 import { FiBox } from 'react-icons/fi'
 import { MdOutline3dRotation } from 'react-icons/md'
 
-// Componente principal con cards componentizadas
 export default function SectionCallTo() {
   return (
     <div className="flex flex-col min-d:flex-row items-stretch gap-[var(--generic-gap-tablet)] min-d:gap-[var(--generic-gap-desktop)] py-[var(--pading-y)] min-d:h-[90vh] ">
-      {/* Card principal - full width en mobile, flex-1 en desktop */}
-      <div className="w-full min-d:flex-2  flex flex-col gap-[var(--generic-gap-tablet)] min-d:gap-[var(--generic-gap-desktop)] bg-[url('/src/assets/sectioncto/s.png')]  bg-cover ">
+      <div className="w-full min-d:flex-2  flex flex-col gap-[var(--generic-gap-tablet)] min-d:gap-[var(--generic-gap-desktop)] bg-[url('/src/assets/sectioncto/plano.png')]  bg-cover ">
         <Card hasGradient className="w-full flex-col min-d:h-full justify-between ">
           <div className="flex-grow-0 text-transparent flex-shrink-0 basis-1 w-full"></div>
-          <div className="w-full flex flex-col font-[var(--font-weight-bold)] text-(length:--text-menu) py-[var(--pading-y)] min-d:justify-end">
-            <h3 className="text-subtitleS text-[var(--color-three)]">
+          <div className="w-full flex flex-col font-[var(--font-weight-bold)] text-(length:--text-menu) py-10 min-d:justify-end">
+            <h3 className="text-subtitleS text-[var(--color-three)] leading-14">
               Descubrí la estructura del proyecto
             </h3>
           </div>
@@ -33,11 +31,9 @@ export default function SectionCallTo() {
         </Card>
       </div>
 
-      {/* Container de las dos cards pequeñas */}
       <div className="w-full flex flex-col min-d:flex-1 gap-[var(--generic-gap-tablet)] min-d:gap-[var(--generic-gap-desktop)] ">
-        {/* Primera card pequeña */}
-        <section className="flex gap-[var(--generic-gap-tablet)] min-d:gap-[var(--generic-gap-desktop)] min-d:flex-1 bg-[url('/src/assets/sectioncto/a.png')]  bg-cover">
-          <Card hasGradient className="w-full min-d:flex-1 flex flex-col justify-between">
+        <section className="flex gap-[var(--generic-gap-tablet)] min-d:gap-[var(--generic-gap-desktop)] min-d:flex-1   bg-cover">
+          <Card className="w-full min-d:flex-1 flex flex-col justify-between bg-slate-300">
             <div className="flex-grow"></div>
             <div className="flex-1 w-full flex flex-col justify-end">
               <p className="text-[var(--color-three)] mb-4 text-sm">

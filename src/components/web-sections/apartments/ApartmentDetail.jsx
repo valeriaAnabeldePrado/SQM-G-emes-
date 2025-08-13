@@ -882,11 +882,7 @@ const ApartmentDetail = () => {
         </div>
         <Card hasGradient className="flex flex-col my-8">
           <p className="text-[var(--color-three)] text-base mb-6 leading-relaxed">
-            <span className="font-bold">Lorem ipsum dolor sit amet,</span> consectetur adipiscing
-            elit, sed do eiusmod, Lorem ipsum dolor sit amet consectetur adipisicing elit. Aut
-            corporis incidunt blanditiis tempora dicta? Quidem possimus quod tempora, corporis
-            voluptate explicabo, nisi iure consequatur est repudiandae maxime facere suscipit
-            deleniti.
+            {apartment.copy}
           </p>
           <Button className=" bg-[var(--color-one)] cursor-pointer hover:bg-opacity-90 text-white py-3 px-6 rounded-full flex items-center justify-center gap-3 font-medium min-2xl:w-[300px] ">
             Descargar plano

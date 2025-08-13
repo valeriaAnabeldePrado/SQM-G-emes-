@@ -3020,9 +3020,19 @@ const PlanoEdificio = ({ onEvent, selectedFloor }) => (
         }}
       >
         <rect
-          x="63.2"
-          y="545"
-          width="72"
+          x="75.2"
+          y="550"
+          width="60"
+          height="29.2"
+          rx="3.4"
+          ry="3.4"
+          fill={selectedFloor === 'p-duplex' ? '#ffc46a' : 'transparent'}
+          style={{ cursor: 'pointer', transition: 'fill 600ms' }}
+        />
+        <rect
+          x="260.6"
+          y="520"
+          width="89.3"
           height="25.2"
           rx="3.4"
           ry="3.4"
@@ -3031,7 +3041,7 @@ const PlanoEdificio = ({ onEvent, selectedFloor }) => (
         />
         <rect
           x="254.6"
-          y="515"
+          y="555"
           width="93.3"
           height="25.2"
           rx="3.4"
@@ -3041,8 +3051,18 @@ const PlanoEdificio = ({ onEvent, selectedFloor }) => (
         />
         <rect
           x="394.3"
-          y="515"
-          width="94.3"
+          y="555"
+          width="80.3"
+          height="25.2"
+          rx="3.4"
+          ry="3.4"
+          fill={selectedFloor === 'p-duplex' ? '#ffc46a' : 'transparent'}
+          style={{ cursor: 'pointer', transition: 'fill 600ms' }}
+        />
+        <rect
+          x="394.3"
+          y="520"
+          width="80.3"
           height="25.2"
           rx="3.4"
           ry="3.4"

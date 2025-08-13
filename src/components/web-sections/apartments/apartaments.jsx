@@ -11,7 +11,7 @@ import ModelFour from '../../../assets/floors/ModelFour'
 import ModelFive from '../../../assets/floors/ModelFive'
 import ModelSix from '../../../assets/floors/ModelSix'
 import ModelSeven from '../../../assets/floors/ModelSeven'
-import ModelDuplex from '../../../assets/floors/ModelDuplex'
+import ModelPb from '../../../assets/floors/modelPb'
 import Button from '../home/components/button'
 import { MdOutlineArrowOutward } from 'react-icons/md'
 import apartmentData from './utils/apartmentData.json'
@@ -112,10 +112,10 @@ const Apartaments = () => {
   const renderFloorComponent = () => {
     console.log('selectedFloor en renderFloorComponent:', selectedFloor)
     switch (selectedFloor) {
-      // Duplex (Planta Baja): ModelDuplex
+      // Duplex (Planta Baja): ModelPb
       case 'p-duplex':
         return (
-          <ModelDuplex
+          <ModelPb
             onEventApartment={handlerApartment}
             selectedApartment={selectedApartment}
             selectedFloor={selectedFloor}
@@ -278,7 +278,7 @@ const Apartaments = () => {
                 id="apartments-model"
                 className="overflow-hidden flex flex-col lg:flex-row min-xl:gap-6 gap-4 animatedIn min-h-[500px]"
               >
-                <div className="flex-1 lg:flex-2 bg-white rounded-2xl p-6 flex items-center justify-center min-h-[400px]">
+                <div className="flex-1 lg:flex-2  rounded-2xl p-6 flex items-center justify-center min-h-[400px] min-w-[300px] w-full">
                   {renderFloorComponent(selectedFloor)}
                 </div>
                 <div className="flex-2 flex flex-col justify-between gap-8 lg:gap-16 p-2">

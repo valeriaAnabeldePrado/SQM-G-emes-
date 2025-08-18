@@ -95,8 +95,8 @@ export default function SectionThree() {
           <Button icon={<MdArrowOutward size={25} />}>Ver en mapas</Button>
         </div>
       </div>
-      <div className="flex-1 bg-gray-300">
-        <h1>LOGO</h1>
+      <div className="flex-1 flex items-center justify-center">
+        <img src="/vivra-logo.png" alt="VIVRA Logo" className="max-w-full h-auto object-contain " />
       </div>
     </div>
   )

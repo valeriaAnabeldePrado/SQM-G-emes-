@@ -63,7 +63,7 @@ const ModelSix = ({ onEventApartment, selectedApartment }) => {
 
       {/* SVG superpuesto para selecciones precisas */}
       <div
-        style={{ position: 'absolute', top: 0, left: 0, width: '100%', height: '100%', zIndex: 2 }}
+        style={{ position: 'absolute', top: 30, left: 22, width: '85%', height: '85%', zIndex: 2 }}
       >
         <svg
           id="PlantaSix"
@@ -132,18 +132,18 @@ const ModelSix = ({ onEventApartment, selectedApartment }) => {
                 }
                 stroke={isApartmentActive(apartmentIds.B) ? '#ffc46a' : 'transparent'}
                 strokeWidth="2"
-                y="225.6"
-                width="218.16"
-                height="123.84"
+                y="238.6"
+                width="228.16"
+                height="153.84"
                 onMouseEnter={() => handleHover(apartmentIds.B)}
                 onMouseLeave={handleHoverLeave}
               />
               {isApartmentActive(apartmentIds.B) && (
                 <g>
-                  <circle cx="110" cy="287" r="22" fill="none" stroke="#483b2b" strokeWidth="2" />
+                  <circle cx="110" cy="307" r="22" fill="none" stroke="#483b2b" strokeWidth="2" />
                   <text
                     x="110"
-                    y="293"
+                    y="313"
                     textAnchor="middle"
                     className="apartment-text"
                     fill="#483b2b"

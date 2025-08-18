@@ -1,10 +1,10 @@
 import React, { useState } from 'react'
 import { Card } from './components/card'
 import { CardArrow } from './components/card-arrow'
-import bed from '/src/assets/section-six/dormitorio.png'
+import bed from '/src/assets/section-six/dormitorio.jpg'
 import dpto from '/src/assets/section-six/dpto.png'
 import galleryOne from '/src/assets/section-six/galleryOne.jpg'
-import galleryTwo from '/src/assets/section-six/galleryTwo.jpg'
+import galleryTwo from '/src/assets/section-six/frente12ok.jpg'
 import deptoCompleto from '/src/assets/section-six/depa1.jpg'
 import galleryFour from '/src/assets/section-six/galleryFour.png'
 
@@ -49,7 +49,7 @@ export default function SectionSix() {
       ></div>
 
       <div
-        className=" aspect-square w-full max-w-[90vw] max-h-[70vw] mx-auto rounded-[var(--border-radius-phone)] min-d:rounded-[var(--border-radius-tablet)] min-extra:rounded-[var(--border-radius-note)] min-note:rounded-[var(--border-radius-desktop)] p-[var(--padding-cards)] bg-[url('/src/assets/section-six/depa2.jpg')] flex justify-center gap-[var(--generic-gap-tablet)] min-d:gap-[var(--generic-gap-desktop)] bg-cover cursor-pointer transition-transform duration-300"
+        className=" aspect-square w-full max-w-[90vw] max-h-[70vw] mx-auto rounded-[var(--border-radius-phone)] min-d:rounded-[var(--border-radius-tablet)] min-extra:rounded-[var(--border-radius-note)] min-note:rounded-[var(--border-radius-desktop)] p-[var(--padding-cards)] bg-[url('/src/assets/section-six/dpto.png')] flex justify-center gap-[var(--generic-gap-tablet)] min-d:gap-[var(--generic-gap-desktop)] bg-cover cursor-pointer transition-transform duration-300"
         onClick={() => openModal('/src/assets/section-six/depa2.jpg')}
       ></div>
       {/*---------------------  Sector numero 3 */}
@@ -82,10 +82,12 @@ export default function SectionSix() {
 
           {/* Segunda card pequeña */}
           <section className="flex gap-[var(--generic-gap-tablet)] min-d:gap-[var(--generic-gap-desktop)] min-d:flex-1">
-            <Card className="w-full min-d:flex-1 bg-[var(--color-two)] flex flex-col ">
+            <Card className="w-full min-d:flex-1  flex flex-col ">
               <div className="flex w-full justify-end"></div>
-              <div className="min-d:block hidden flex-grow-0 flex-shrink-0 basis-1/3 w-full"></div>
-              <div className="flex-1 w-full">LOGO</div>
+
+              <div className="flex-1 w-full h-full flex items-center justify-center">
+                <img src="/vivra-logo.png" alt="VIVRA logo" className="h-full w-auto " />
+              </div>
             </Card>
           </section>
         </div>

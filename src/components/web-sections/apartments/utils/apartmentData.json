@@ -1,6 +1,6 @@
 {
   "local_comercial_PB": {
-    "id": "local_comercial_PB",
+    "id": "Local_PB",
     "title": "Local Comercial - Planta Baja",
     "type": "Local Comercial",
     "area": "89,33m²",
@@ -17,6 +17,7 @@
     "description": "Moderno duplex de 2 ambientes con patio. Excelente distribución en dos niveles.",
     "features": ["1 Dormitorio", "Patio de 12,00m²", "Cocina integrada", "Living-comedor"],
     "floorPlan": "/planos/0/A.png",
+    "floorExtra-d": "/planos/0/AE.png",
     "floorPlan-extra": "/planos/0/AE.png",
     "copy": "Descubrí la comodidad de vivir en este exclusivo duplex de 1 dormitorio en planta baja. Con 49,71m² inteligentemente distribuidos en dos niveles y un patio privado de 12m², este hogar combina la intimidad de una casa con las ventajas de un departamento moderno. El diseño contemporáneo y los espacios optimizados crean el ambiente perfecto para quienes buscan calidad de vida en el corazón de la ciudad."
   },
@@ -37,8 +38,8 @@
     "area": "49,54m²",
     "description": "Moderno duplex de 2 ambientes con patio. Excelente distribución en dos niveles.",
     "features": ["1 Dormitorio", "Patio de 12,00m²", "Cocina integrada", "Living-comedor"],
-    "floorPlan": "/planos/PB/C.png",
-    "floorPlan-extra": "/planos/0/CE.png",
+    "floorPlan": "/planos/0/C.png",
+    "floorExtra-d": "/planos/0/CE.png",
     "copy": "Experimentá la vida en este sofisticado duplex de 1 dormitorio que redefine el concepto de hogar moderno. Con 49,54m² distribuidos en dos plantas y un patio privado de 12m², cada espacio ha sido diseñado para maximizar el confort y la funcionalidad. La perfecta integración entre ambientes crea una sensación de amplitud única."
   },
   "apartment_A_P1": {
@@ -675,6 +676,7 @@
       "Terraza de 30,25m²"
     ],
     "floorPlan": "/planos/13/A.png",
+    "floorExtra-d": "/planos/13/AT.png",
     "copy": "La joya del edificio. Este penthouse de 2 dormitorios en el piso 13 redefine el lujo urbano con su espectacular terraza privada de más de 30m² y un quincho de uso exclusivo en el piso 14. Un hogar único sobre Av. Pueyrredón para un estilo de vida sin igual."
   },
   "apartment_B_P13": {

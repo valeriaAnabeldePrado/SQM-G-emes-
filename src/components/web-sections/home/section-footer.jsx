@@ -13,7 +13,7 @@ const SectionFooter = () => {
         <div className="w-full min-d:w-1/2 flex flex-col gap-6 items-center min-d:items-start justify-center">
           <div className="text-2xl font-extrabold text-white mb-2 tracking-wide">VIVRA Güemes</div>
           <div className="text-white text-base opacity-90 mb-2 text-center min-d:text-left">
-            Av. Pueyrredón 387 · Córdoba Capital
+            Av. Pueyrredón 377 · Córdoba Capital
           </div>
           <div className="text-white text-sm opacity-80 mb-4 text-center min-d:text-left">
             ¿Querés saber más? Escribinos o seguinos en redes para conocer más sobre el proyecto.

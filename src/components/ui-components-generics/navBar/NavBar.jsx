@@ -63,7 +63,9 @@ const NavBar = () => {
       >
         {/* LOGO - Solo se muestra en desktop cuando estamos en home */}
         {isHomePage && (
-          <div className="hidden min-d:block text-xl font-bold text-[var(--color-dark)]">VIVRA</div>
+          <div className="hidden min-d:flex min-d:items-center">
+            <img src="/vivra-logo.png" alt="VIVRA Logo" className="h-8 w-auto mr-2 " />
+          </div>
         )}
 
         {/* DESKTOP MENU - Solo se muestra en pantallas grandes Y solo en home */}

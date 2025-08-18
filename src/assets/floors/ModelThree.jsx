@@ -72,8 +72,8 @@ const ModelThree = ({ onEventApartment, selectedApartment, selectedFloor = 'p05'
           className="animateInPlant"
           data-name="Capa 2"
           xmlns="http://www.w3.org/2000/svg"
-          viewBox="0 0 218.28 388.08"
-          style={{ width: '100%', height: '100%' }}
+          viewBox="0 0 218.28 420"
+          style={{ width: '90%', height: '420px', marginLeft: '5%', marginTop: '3.5%' }}
         >
           <defs>
             <style>{`
@@ -92,7 +92,7 @@ const ModelThree = ({ onEventApartment, selectedApartment, selectedFloor = 'p05'
               id={apartmentIds.A}
               className="apartment-group"
               onClick={(e) => handleClick(apartmentIds.A, e)}
-              style={{ cursor: 'pointer' }}
+              style={{ transform: 'translate(8px, 8px) scale(0.90)' }}
             >
               <polygon
                 className="apartment-surface"
@@ -111,7 +111,7 @@ const ModelThree = ({ onEventApartment, selectedApartment, selectedFloor = 'p05'
               id={apartmentIds.B}
               className="apartment-group"
               onClick={(e) => handleClick(apartmentIds.B, e)}
-              style={{ cursor: 'pointer' }}
+              style={{ transform: 'translate(10px, 8px) scale(0.90)' }}
             >
               <polygon
                 className="apartment-surface"
@@ -130,7 +130,7 @@ const ModelThree = ({ onEventApartment, selectedApartment, selectedFloor = 'p05'
               id={apartmentIds.D}
               className="apartment-group"
               onClick={(e) => handleClick(apartmentIds.D, e)}
-              style={{ cursor: 'pointer' }}
+              style={{ transform: 'translate(5px, 18px) scale(0.90)' }}
             >
               <polygon
                 className="apartment-surface"
@@ -149,7 +149,7 @@ const ModelThree = ({ onEventApartment, selectedApartment, selectedFloor = 'p05'
               id={apartmentIds.C}
               className="apartment-group"
               onClick={(e) => handleClick(apartmentIds.C, e)}
-              style={{ cursor: 'pointer' }}
+              style={{ transform: 'translate(12px, 18px) scale(0.90)' }}
             >
               <polygon
                 className="apartment-surface"

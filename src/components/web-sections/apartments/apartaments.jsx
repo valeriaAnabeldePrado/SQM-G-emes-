@@ -12,6 +12,8 @@ import ModelFive from '../../../assets/floors/ModelFive'
 import ModelSix from '../../../assets/floors/ModelSix'
 import ModelSeven from '../../../assets/floors/ModelSeven'
 import ModelPb from '../../../assets/floors/modelPb'
+import ModelTwelve from '../../../assets/floors/ModelTwelve'
+import ModelThirteen from '../../../assets/floors/ModelThirteen'
 import Button from '../home/components/button'
 import { MdOutlineArrowOutward } from 'react-icons/md'
 import apartmentData from './utils/apartmentData.json'
@@ -41,10 +43,12 @@ const Apartaments = () => {
 
   const handleFloorClick = (floorId) => {
     setSelectedFloor(floorId)
+    setSelectedApartment(null) // Reset apartment selection when floor changes
   }
 
   const handleContainerClick = () => {
     setSelectedFloor(null)
+    setSelectedApartment(null) // Reset apartment selection when clearing floor
   }
 
   const handlerApartment = (apartmentID) => {
@@ -121,12 +125,20 @@ const Apartaments = () => {
             selectedFloor={selectedFloor}
           />
         )
-      // Pisos 1-3: ModelOne
+      // Pisos 1-2: ModelTwelve (con plano 123/12/plano.png)
       case 'p01-modelOne':
       case 'p02-modelOne':
+        return (
+          <ModelTwelve
+            onEventApartment={handlerApartment}
+            selectedApartment={selectedApartment}
+            selectedFloor={selectedFloor}
+          />
+        )
+      // Piso 3: ModelThirteen (con plano 123/3/plano.png)
       case 'p03-modelOne':
         return (
-          <ModelOne
+          <ModelThirteen
             onEventApartment={handlerApartment}
             selectedApartment={selectedApartment}
             selectedFloor={selectedFloor}
@@ -177,15 +189,6 @@ const Apartaments = () => {
       case 'plantaAlta':
         return (
           <ModelSix
-            onEventApartment={handlerApartment}
-            selectedApartment={selectedApartment}
-            selectedFloor={selectedFloor}
-          />
-        )
-      // Piso 14: ModelSeven
-      case 'p14-modelSeven':
-        return (
-          <ModelSeven
             onEventApartment={handlerApartment}
             selectedApartment={selectedApartment}
             selectedFloor={selectedFloor}
@@ -298,11 +301,19 @@ const Apartaments = () => {
                     )}
                   </div>
                   <Button
-                    className=" w-[250px] lg:w-auto flex items-center justify-center lg:justify-between gap-2"
-                    onClick={handleViewPlans}
+                    className={`w-[250px] lg:w-auto flex items-center justify-center lg:justify-between gap-2 ${
+                      !selectedApartment
+                        ? 'bg-gray-500 cursor-not-allowed opacity-50 hover:brightness-100'
+                        : ''
+                    }`}
+                    onClick={selectedApartment ? handleViewPlans : () => {}}
                     disabled={!selectedApartment}
                   >
-                    Ver planos <MdOutlineArrowOutward size="1.5em" color="white" />
+                    Ver planos{' '}
+                    <MdOutlineArrowOutward
+                      size="1.5em"
+                      color={selectedApartment ? 'white' : '#9CA3AF'}
+                    />
                   </Button>
                 </div>
               </Card>

@@ -28,12 +28,13 @@ const SectionBanner = () => {
             }}
           ></div>
           <div className="relative z-10 flex-1 flex flex-col items-center text-center min-d:items-start min-d:text-left py-6 ">
-            <h1 className="text-(length:--text-title-huge) font-bold mb-2 drop-shadow-lg text-white leading-15">
-              VIVRA
-            </h1>
-            <h2 className="text-(length:--text-subtitleS) font-medium drop-shadow-lg text-white">
-              GÜEMES
-            </h2>
+            <div className="mb-6">
+              <img
+                src="/vivra-logo.png"
+                alt="VIVRA GÜEMES"
+                className="h-24 md:h-32 w-auto drop-shadow-lg logo-white"
+              />
+            </div>
             <p className="text-(length:--text-menu-sub) drop-shadow-lg leading-relaxed text-white mt-4 ">
               Un proyecto que combina diseño contemporáneo, calidad constructiva y ubicación
               estratégica

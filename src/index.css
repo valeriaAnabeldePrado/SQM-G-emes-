@@ -59,6 +59,14 @@
   --breakpoint-bannerT: 1500px;
   /* Atencion!, este es un breakpoint: min-tablet:max-w-[numero] max-tablet:max-w-[nuemro] */
 }
+
+/* Logo filter to render colored PNG as white-ish. If you have the SVG version, prefer that for crisp results. */
+.logo-white {
+  /* Invert and brighten to make colored logo white over dark backgrounds */
+  filter: invert(100%) grayscale(100%) brightness(200%);
+  /* Ensure the filter applies to the element's contents */
+  -webkit-filter: invert(100%) grayscale(100%) brightness(200%);
+}
 body {
   .custom-container {
     width: 100%;

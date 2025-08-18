@@ -78,7 +78,7 @@ export default function SectionTwo() {
             <div className="text-[var(--color-three)] pt-16">
               <p>Ubicado en</p>
               <h2 className="font-[var(--font-weight-bold)] text-(length:--text-menu)">
-                Av. Pueyrredón 387
+                Av. Pueyrredón 377
               </h2>
             </div>
           </Card>

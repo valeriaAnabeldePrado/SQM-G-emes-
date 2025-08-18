@@ -66,13 +66,20 @@ const ModelFive = ({ onEventApartment, selectedApartment, selectedFloor = 'p11' 
 
       {/* SVG superpuesto para selecciones precisas */}
       <div
-        style={{ position: 'absolute', top: 0, left: 0, width: '100%', height: '100%', zIndex: 2 }}
+        style={{
+          position: 'absolute',
+          top: 10,
+          left: 5,
+          width: '100%',
+          height: '100%',
+          zIndex: 2
+        }}
       >
         <svg
           id="PlantaFive"
           data-name="Capa 2"
           xmlns="http://www.w3.org/2000/svg"
-          viewBox="0 0 218.28 388.2"
+          viewBox="0 0 218.28 428.2"
           style={{ width: '100%', height: '100%' }}
         >
           <defs>
@@ -151,6 +158,7 @@ const ModelFive = ({ onEventApartment, selectedApartment, selectedFloor = 'p11' 
             <g
               id={apartmentIds.D}
               className="apartment-group"
+              transform="translate(0,30) scale(0.90) "
               onClick={(e) => handleClick(apartmentIds.D, e)}
               style={{ cursor: 'pointer' }}
             >
@@ -161,16 +169,16 @@ const ModelFive = ({ onEventApartment, selectedApartment, selectedFloor = 'p11' 
                 }
                 stroke={isApartmentActive(apartmentIds.D) ? '#ffc46a' : 'transparent'}
                 strokeWidth="2"
-                points="107.52 245.52 107.52 369.36 58.56 369.36 58.56 388.2 9 388.2 9 369.36 0 369.36 0 245.52 107.52 245.52"
+                points="120.52 245.52 120.52 389.36 58.56 389.36 58.56 408.2 9 408.2 9 389.36 0 389.36 0 245.52 120.52 245.52"
                 onMouseEnter={() => handleHover(apartmentIds.D)}
                 onMouseLeave={handleHoverLeave}
               />
               {isApartmentActive(apartmentIds.D) && (
                 <g>
-                  <circle cx="54" cy="307" r="22" fill="none" stroke="#483b2b" strokeWidth="2" />
+                  <circle cx="64" cy="327" r="22" fill="none" stroke="#483b2b" strokeWidth="2" />
                   <text
-                    x="54"
-                    y="313"
+                    x="64"
+                    y="333"
                     textAnchor="middle"
                     className="apartment-text"
                     fill="#483b2b"
@@ -184,6 +192,7 @@ const ModelFive = ({ onEventApartment, selectedApartment, selectedFloor = 'p11' 
             <g
               id={apartmentIds.C}
               className="apartment-group"
+              transform="translate(23,30) scale(0.90) "
               onClick={(e) => handleClick(apartmentIds.C, e)}
               style={{ cursor: 'pointer' }}
             >
@@ -194,16 +203,23 @@ const ModelFive = ({ onEventApartment, selectedApartment, selectedFloor = 'p11' 
                 }
                 stroke={isApartmentActive(apartmentIds.C) ? '#ffc46a' : 'transparent'}
                 strokeWidth="2"
-                points="218.28 245.4 218.28 369.36 209.28 369.36 209.28 388.2 159.72 388.2 159.72 369.36 110.52 369.36 110.52 245.4 218.28 245.4"
+                points="218.28 245.52 218.28 389.36 209.28 389.36 209.28 408.2 159.72 408.2 159.72 389.36 97.76 389.36 97.76 245.52 218.28 245.52"
                 onMouseEnter={() => handleHover(apartmentIds.C)}
                 onMouseLeave={handleHoverLeave}
               />
               {isApartmentActive(apartmentIds.C) && (
                 <g>
-                  <circle cx="163" cy="307" r="22" fill="none" stroke="#483b2b" strokeWidth="2" />
+                  <circle
+                    cx="158.02"
+                    cy="327"
+                    r="22"
+                    fill="none"
+                    stroke="#483b2b"
+                    strokeWidth="2"
+                  />
                   <text
-                    x="163"
-                    y="313"
+                    x="158.02"
+                    y="333"
                     textAnchor="middle"
                     className="apartment-text"
                     fill="#483b2b"

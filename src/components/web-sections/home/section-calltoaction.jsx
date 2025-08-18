@@ -12,7 +12,7 @@ export default function SectionCallTo() {
           <div className="flex-grow-0 text-transparent flex-shrink-0 basis-1 w-full"></div>
           <div className="w-full flex flex-col font-[var(--font-weight-bold)] text-(length:--text-menu) py-10 min-d:justify-end">
             <h3 className="text-subtitleS text-[var(--color-three)] leading-14">
-              Descubrí la estructura del proyecto
+              Explorá el proyecto y sus planos
             </h3>
           </div>
           <div className="flex flex-col">

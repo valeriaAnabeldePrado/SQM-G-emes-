@@ -73,7 +73,7 @@ const ModelFour = ({ onEventApartment, selectedApartment, selectedFloor = 'p07' 
           data-name="Capa 2"
           xmlns="http://www.w3.org/2000/svg"
           viewBox="0 0 218.4 387.96"
-          style={{ width: '100%', height: '100%' }}
+          style={{ width: '80%', height: '95%', marginLeft: '10%' }}
         >
           <defs>
             <style>{`
@@ -152,7 +152,6 @@ const ModelFour = ({ onEventApartment, selectedApartment, selectedFloor = 'p07' 
               id={apartmentIds.C}
               className="apartment-group"
               onClick={(e) => handleClick(apartmentIds.C, e)}
-              style={{ cursor: 'pointer' }}
             >
               <polygon
                 className="apartment-surface"
@@ -161,7 +160,7 @@ const ModelFour = ({ onEventApartment, selectedApartment, selectedFloor = 'p07' 
                 }
                 stroke={isApartmentActive(apartmentIds.C) ? '#ffc46a' : 'transparent'}
                 strokeWidth="2"
-                points="218.28 245.4 218.28 369.12 209.4 369.12 209.4 387.96 159.72 387.96 159.72 369.12 58.56 369.12 58.56 387.96 9 387.96 9 369.12 0 369.12 0 245.4 218.28 245.4"
+                points="2347.37 255.4 217.37 379.12 212.01 400.12 202.01 417.96 168.74 467.96 161.74 379.12 55.63 379.12 55.63 407.96 8.55 407.96 8.55 379.12 0 379.12 0 255.4 207.37 255.4"
                 onMouseEnter={() => handleHover(apartmentIds.C)}
                 onMouseLeave={handleHoverLeave}
               />

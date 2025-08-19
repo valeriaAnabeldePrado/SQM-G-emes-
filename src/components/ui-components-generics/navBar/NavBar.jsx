@@ -1,25 +1,20 @@
 import React, { useState, useEffect } from 'react'
 import { Transition } from '@headlessui/react'
 import { IoClose, IoMenu } from 'react-icons/io5'
+import { useLocation } from 'react-router-dom'
 
 const NavBar = () => {
   const [isOpen, setIsOpen] = useState(false)
   const [isHomePage, setIsHomePage] = useState(true)
+  const location = useLocation()
 
   const toggleMenu = () => setIsOpen(!isOpen)
 
-  // Detectar si estamos en la home o en otras secciones
+  // Detectar si estamos en la home o en otras secciones usando React Router
   useEffect(() => {
-    const checkCurrentPage = () => {
-      const currentPath = window.location.pathname
-      setIsHomePage(currentPath === '/' || currentPath === '')
-    }
-
-    checkCurrentPage()
-    // Escuchar cambios de ruta
-    window.addEventListener('popstate', checkCurrentPage)
-    return () => window.removeEventListener('popstate', checkCurrentPage)
-  }, [])
+    const currentPath = location.pathname
+    setIsHomePage(currentPath === '/' || currentPath === '')
+  }, [location.pathname])
 
   const routes = [
     { id: 1, name: '3D inmersivo', path: '/inmersive-apartament' },

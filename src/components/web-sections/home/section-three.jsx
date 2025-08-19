@@ -12,6 +12,10 @@ export default function SectionThree() {
   const textRef = useRef(null)
   const buttonRef = useRef(null)
 
+  const handleOpenMaps = () => {
+    window.open('https://maps.app.goo.gl/JfvX3Am17h85QaoS7', '_blank', 'noopener,noreferrer')
+  }
+
   const wrapWords = (element) => {
     const nodes = Array.from(element.childNodes)
 
@@ -92,7 +96,9 @@ export default function SectionThree() {
           del campus UNC y de Parque Sarmiento. Rodeado de bares, restaurantes y vida cultural.
         </h3>
         <div ref={buttonRef} className="opacity-0">
-          <Button icon={<MdArrowOutward size={25} />}>Ver en mapas</Button>
+          <Button icon={<MdArrowOutward size={25} />} onClick={handleOpenMaps}>
+            Ver en mapas
+          </Button>
         </div>
       </div>
       <div className="flex-1 flex items-center justify-center">

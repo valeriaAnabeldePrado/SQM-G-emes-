@@ -1,8 +1,19 @@
 import BannerImage from '../../../assets/banner/full.jpg'
 import Button from './components/button'
 import { Card } from './components/card'
+import { useNavigate } from 'react-router-dom'
 
 const SectionBanner = () => {
+  const navigate = useNavigate()
+
+  const handleNavigateToApartments = () => {
+    navigate('/apartments')
+  }
+
+  const handleNavigateToInmersive = () => {
+    navigate('/inmersive-build')
+  }
+
   return (
     <div
       className="w-full h-screen min-h-[400px]  max-h-[1000px] items-center justify-center relative min-d:flex"
@@ -28,13 +39,12 @@ const SectionBanner = () => {
             }}
           ></div>
           <div className="relative z-10 flex-1 flex flex-col items-center text-center min-d:items-start min-d:text-left py-6 ">
-            <div className="mb-6">
-              <img
-                src="/vivra-logo.png"
-                alt="VIVRA GÜEMES"
-                className="h-24 md:h-32 w-auto drop-shadow-lg logo-white"
-              />
-            </div>
+            <h1 className="text-(length:--text-title-huge) font-bold mb-2 drop-shadow-lg text-white leading-15">
+              VIVRA
+            </h1>
+            <h2 className="text-(length:--text-subtitleS) font-medium drop-shadow-lg text-white">
+              GÜEMES
+            </h2>
             <p className="text-(length:--text-menu-sub) drop-shadow-lg leading-relaxed text-white mt-4 ">
               Un proyecto que combina diseño contemporáneo, calidad constructiva y ubicación
               estratégica
@@ -44,14 +54,14 @@ const SectionBanner = () => {
           {/* Botones */}
           <div className="relative flex-row w-full z-10 md:flex gap-4 md:px-10 justify-center  items-center   ">
             <button
+              onClick={handleNavigateToApartments}
               className="md:w-[150px] w-full p-4 rounded-full text-lg  cursor-pointer font-medium bg-[var(--color-one)] text-white hover:brightness-90 transition-all duration-300 ease-in-out flex min-2xl:gap-8 gap-2 items-center justify-center"
-              onClick={() => console.log('Ver planos')}
             >
               Ver planos
             </button>
             <button
+              onClick={handleNavigateToInmersive}
               className="md:flex hidden p-4 md:w-[150px] w-[120px] rounded-full text-lg  cursor-pointer font-medium bg-[var(--color-one)] text-white hover:brightness-90 transition-all duration-300 ease-in-out  min-2xl:gap-8 gap-2 items-center justify-center"
-              onClick={() => console.log('Vista 3D')}
             >
               Vista 3D
             </button>

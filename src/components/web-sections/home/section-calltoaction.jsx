@@ -1,10 +1,22 @@
 import { Card } from './components/card'
 import Button from './components/button'
-
 import { FiBox } from 'react-icons/fi'
 import { MdOutline3dRotation } from 'react-icons/md'
+import { useNavigate } from 'react-router-dom'
 
 export default function SectionCallTo() {
+  const navigate = useNavigate()
+
+  const handleNavigateToApartments = () => {
+    navigate('/apartments')
+  }
+
+  const handleNavigateToInmersive = () => {
+    navigate('/inmersive-build')
+  }
+  const handleNavigateToUnidad = () => {
+    navigate('/inmersive-apartament')
+  }
   return (
     <div className="flex flex-col min-d:flex-row items-stretch gap-[var(--generic-gap-tablet)] min-d:gap-[var(--generic-gap-desktop)] py-[var(--pading-y)] min-d:h-[90vh] ">
       <div className="w-full min-d:flex-2  flex flex-col gap-[var(--generic-gap-tablet)] min-d:gap-[var(--generic-gap-desktop)] bg-[url('/src/assets/sectioncto/plano.png')]  bg-cover ">
@@ -21,8 +33,8 @@ export default function SectionCallTo() {
               Navegá por el edificio, seleccioná cada piso y visualizá su distribución.
             </p>
             <Button
-              onClick={() => console.log('Ver planos')}
-              className="bg-[var(--color-one)] self-start"
+              onClick={handleNavigateToApartments}
+              className="bg-[var(--color-one)] self-start min-md:w-[300px] w-full justify-between"
               icon={<FiBox size="2em" />}
             >
               Ver planos
@@ -44,8 +56,8 @@ export default function SectionCallTo() {
                 integral e interactiva.
               </p>
               <Button
-                onClick={() => console.log('Recorrido del edificio')}
-                className="bg-[var(--color-one)] self-start text-xs"
+                onClick={handleNavigateToInmersive}
+                className="bg-[var(--color-one)] self-start min-md:w-[350px] justify-between"
                 icon={<MdOutline3dRotation size="2em" />}
               >
                 Recorrido del edificio
@@ -64,12 +76,12 @@ export default function SectionCallTo() {
             <div className="flex-1 w-full flex flex-col justify-end">
               <p className="text-[var(--color-three)] mb-4 text-sm">
                 Ingresá al departamento modelo y explorá cada ambiente en detalle a través de un
-                recorrido 3D realista e inmersivo.
+                recorrido realista e inmersivo.
               </p>
               <Button
-                onClick={() => console.log('Recorrido de la unidad')}
-                className="bg-[var(--color-one)] self-start text-xs"
-                icon={<MdOutline3dRotation size="2em" />}
+                onClick={handleNavigateToUnidad}
+                className="bg-[var(--color-one)] self-start min-md:w-[350px] w-full justify-between"
+                icon={<FiBox size="2em" />}
               >
                 Recorrido de la unidad
               </Button>

@@ -33,29 +33,35 @@ export default function SectionSeven() {
       <div className="w-full min-d:flex min-d:flex-1 min-d:flex-col hidden gap-[var(--generic-gap-tablet)] min-d:gap-[var(--generic-gap-desktop)] ">
         {/* Primera card pequeña */}
         <section className="flex  gap-[var(--generic-gap-tablet)] min-d:gap-[var(--generic-gap-desktop)] min-d:flex-1">
-          <Card className="w-full min-d:flex-1 bg-[var(--color-one)] flex flex-col ">
-            <div className="flex w-full justify-end">
-              <RiBuilding2Line size="4em" color="white" />
-            </div>
-            <div className="min-d:block hidden flex-grow-0 flex-shrink-0 basis-1/3 w-full"></div>
-            <div className="flex-1 w-full">
-              <h3 className="text-white  min-note:text-body text-menu">Experiencia</h3>
-              <h3 className="text-white   min-note:text-body text-menu">Inmersiva del edificio</h3>
-            </div>
+          <Card className="w-full cursor-pointer min-d:flex-1 bg-[var(--color-one)] flex flex-col ">
+            <a href="/inmersive-build" className=" w-full">
+              <div className="flex w-full justify-end">
+                <RiBuilding2Line size="4em" color="white" />
+              </div>
+              <div className="min-d:block hidden flex-grow-0 flex-shrink-0 basis-1/3 w-full"></div>
+              <div className="flex-1 w-full">
+                <h3 className="text-white  min-note:text-body text-menu">Experiencia</h3>
+                <h3 className="text-white   min-note:text-body text-menu">
+                  Inmersiva del edificio
+                </h3>
+              </div>
+            </a>
           </Card>
         </section>
 
         {/* Segunda card pequeña */}
         <section className="min-d:flex-1 ">
-          <Card className="w-full h-full min-d:flex-1 bg-[var(--color-one)] flex flex-col ">
-            <div className="flex w-full justify-end">
-              <FiBox size="4em" color="white" />
-            </div>
-            <div className="flex-grow-0 flex-shrink-0 basis-1/3 w-full"></div>
-            <div className="flex-1 w-full">
-              <h3 className="text-white min-note:text-body text-menu">Visita Nuestro</h3>
-              <h3 className="text-white min-note:text-body text-menu">departamento modelo</h3>
-            </div>
+          <Card className="w-full h-full cursor-pointer min-d:flex-1 bg-[var(--color-one)] flex flex-col ">
+            <a href="/inmersive-apartament" className=" w-full">
+              <div className="flex w-full justify-end">
+                <FiBox size="4em" color="white" />
+              </div>
+              <div className="flex-grow-0 flex-shrink-0 basis-1/3 w-full"></div>
+              <div className="flex-1 w-full">
+                <h3 className="text-white min-note:text-body text-menu">Visita Nuestro</h3>
+                <h3 className="text-white min-note:text-body text-menu">departamento modelo</h3>
+              </div>
+            </a>
           </Card>
         </section>
       </div>

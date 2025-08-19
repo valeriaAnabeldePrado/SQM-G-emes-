@@ -1,6 +1,5 @@
 import React from 'react'
 import './App.css'
-import BannerResponsive from './components/web-sections/home/banner-responsive'
 import SectionBanner from './components/web-sections/home/section-banner'
 import SectionCallTo from './components/web-sections/home/section-calltoaction'
 import SectionFive from './components/web-sections/home/section-five'

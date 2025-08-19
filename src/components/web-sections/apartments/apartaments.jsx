@@ -301,7 +301,7 @@ const Apartaments = () => {
                     )}
                   </div>
                   <Button
-                    className={`w-[250px] lg:w-auto flex items-center justify-center lg:justify-between gap-2 ${
+                    className={`w-full min-[400px]:w-[300px] lg:w-auto flex items-center justify-between  ${
                       !selectedApartment
                         ? 'bg-gray-500 cursor-not-allowed opacity-50 hover:brightness-100'
                         : ''

@@ -55,7 +55,7 @@ export default function SectionTwo() {
             <h2 className="text-(length:--text-title-huge) font-[var(--font-weight-bold)] leading-none text-[var(--color-one)]">
               54
             </h2>
-            <div className="min-d:items-start text-[var(--color-three)] text-body w-full items-center justify-center align-middle flex flex-col">
+            <div className="min-d:items-start text-[var(--color-three)] text-body w-full  justify-center align-middle flex flex-col">
               <p>Unidades</p>
               <p>Disponibles</p>
             </div>

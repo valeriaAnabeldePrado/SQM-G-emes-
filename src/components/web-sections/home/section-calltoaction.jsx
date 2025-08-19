@@ -11,7 +11,7 @@ export default function SectionCallTo() {
         <Card hasGradient className="w-full flex-col min-d:h-full justify-between ">
           <div className="flex-grow-0 text-transparent flex-shrink-0 basis-1 w-full"></div>
           <div className="w-full flex flex-col font-[var(--font-weight-bold)] text-(length:--text-menu) py-10 min-d:justify-end">
-            <h3 className="text-subtitleS text-[var(--color-three)] leading-14">
+            <h3 className="text-subtitleS text-[var(--color-three)] min-lg:leading-14 leading-10">
               Explorá el proyecto y sus planos
             </h3>
           </div>
@@ -33,7 +33,10 @@ export default function SectionCallTo() {
 
       <div className="w-full flex flex-col min-d:flex-1 gap-[var(--generic-gap-tablet)] min-d:gap-[var(--generic-gap-desktop)] ">
         <section className="flex gap-[var(--generic-gap-tablet)] min-d:gap-[var(--generic-gap-desktop)] min-d:flex-1   bg-cover">
-          <Card className="w-full min-d:flex-1 flex flex-col justify-between bg-slate-300">
+          <Card
+            hasGradient
+            className="w-full min-d:flex-1 min-md:flex hidden flex-col justify-between bg-slate-300"
+          >
             <div className="flex-grow"></div>
             <div className="flex-1 w-full flex flex-col justify-end">
               <p className="text-[var(--color-three)] mb-4 text-sm">
@@ -53,7 +56,10 @@ export default function SectionCallTo() {
 
         {/* Segunda card pequeña */}
         <section className="min-d:flex-1 ">
-          <Card className="w-full h-full min-d:flex-1 bg-gray-100 flex flex-col justify-between">
+          <Card
+            hasGradient
+            className="w-full h-full min-d:flex-1 bg-gray-100 flex flex-col justify-between"
+          >
             <div className="flex-grow"></div>
             <div className="flex-1 w-full flex flex-col justify-end">
               <p className="text-[var(--color-three)] mb-4 text-sm">

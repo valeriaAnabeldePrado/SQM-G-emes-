@@ -854,10 +854,10 @@ const ApartmentDetail = () => {
           </div>
         </div>
         <Card hasGradient className="flex flex-col my-8">
-          <p className="text-[var(--color-three)] text-base mb-6 leading-relaxed">
+          <p className="text-[var(--color-three)] text-modal mb-6 leading-relaxed">
             {apartment.copy}
           </p>
-          <Button className=" bg-[var(--color-one)] cursor-pointer hover:bg-opacity-90 text-white py-3 px-6 rounded-full flex items-center justify-center gap-3 font-medium min-2xl:w-[300px] ">
+          <Button className=" bg-[var(--color-one)] cursor-pointer hover:bg-opacity-90 text-white py-3 px-6 rounded-full flex items-center justify-between w-full font-medium min-[400px]:w-[300px] ">
             Descargar plano
             <MdOutlineArrowOutward size="1.2em" />
           </Button>

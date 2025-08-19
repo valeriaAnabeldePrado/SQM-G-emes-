@@ -11,8 +11,12 @@ export default function SectionSeven() {
         <Card className="w-full bg-[var(--color-two)] flex-col min-d:h-full ">
           <div className="flex-grow-0 text-transparent flex-shrink-0 basis-1 w-full"></div>
           <div className="w-full flex flex-col font-[var(--font-weight-bold)] text-(length:--text-menu) py-[var(--pading-y)] min-d:justify-end min-d:h-full">
-            <h3 className="text-subtitleS text-[var(--color-three)]">Pensado para habitar, </h3>
-            <h3 className="text-subtitleS text-[var(--color-three)]">Proyectado para perdurar </h3>
+            <h3 className="text-subtitleS text-[var(--color-three)] min-lg:leading-14 leading-10">
+              Pensado para habitar,{' '}
+            </h3>
+            <h3 className="text-subtitleS text-[var(--color-three)] min-lg:leading-14 leading-10">
+              Proyectado para perdurar{' '}
+            </h3>
           </div>
           <div>
             <p className="text-[var(--color-three)]">

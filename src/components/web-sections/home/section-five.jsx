@@ -45,7 +45,7 @@ const SectionFive = () => {
             hideGradientOnHover={true}
             isRed={true}
           >
-            <h3 className="w-full  py-4 text-subtitleS text-[var(--color-three)]">
+            <h3 className="w-full  py-4 text-subtitleS text-[var(--color-three)] min-lg:leading-14 leading-10">
               {feature.title}
             </h3>
             <div

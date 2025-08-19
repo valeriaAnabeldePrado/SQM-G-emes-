@@ -135,7 +135,7 @@ const SectionFour = () => {
             <div className="min-d:hidden h-[45vh]"></div>
             <div className="opacity-100 min-d:opacity-0 min-d:group-hover:opacity-100 min-d:group-hover:delay-300 min-d:group-hover:transition-opacity min-d:group-hover:duration-100 min-d:transition-opacity min-d:duration-75 z-10 flex flex-col h-full justify-end gap-[var(--generic-gap-tablet)] min-d:gap-[var(--generic-gap-desktop)] p-4">
               <div>
-                <h3 className="text-white text-subtitleS leading-14">{title}</h3>
+                <h3 className="text-white text-subtitleS min-lg:leading-14 leading-10">{title}</h3>
               </div>
               <div>
                 <p className="text-white">{description}</p>

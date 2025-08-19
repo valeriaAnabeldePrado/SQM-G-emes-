@@ -82,7 +82,7 @@ export default function SectionThree() {
       <div className="flex-1/3">
         <h3
           ref={textRef}
-          className="text-subtitle font-bold- text-[var(--color-three)] pb-16 min-note:leading-20"
+          className="text-subtitle font-bold- text-[var(--color-three)] pb-8 min-lg:pb-16 min-note:leading-20"
         >
           Una zona de continua{' '}
           <span className="inline-block font-bold rounded-full text-(lenght:--color-one)">

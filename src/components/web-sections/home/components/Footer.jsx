@@ -37,7 +37,7 @@ const Footer = () => {
             {/* Iconos sociales */}
             <div className="flex gap-4 items-center">
               <a
-                href="https://www.instagram.com/"
+                href="https://maps.app.goo.gl/JfvX3Am17h85QaoS7"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="w-12 h-12 border-2 border-white rounded-full flex items-center justify-center hover:bg-white hover:text-[var(--color-three)] transition-all duration-300"
@@ -51,7 +51,7 @@ const Footer = () => {
                 <RiMailOpenLine size="1.2em" color="white" />
               </a>
               <a
-                href="https://goo.gl/maps/xyz"
+                href="https://www.instagram.com/juarezbeltran_sa?igsh=djh1czJwcGN0YzIx"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="w-12 h-12 border-2 border-white rounded-full flex items-center justify-center hover:bg-white hover:text-[var(--color-three)] transition-all duration-300"

@@ -12,15 +12,15 @@ const SectionFooter = () => {
         {/* Columna izquierda: branding, texto, datos, redes */}
         <div className="w-full min-d:w-1/2 flex flex-col gap-6 items-center min-d:items-start justify-center">
           <div className="text-2xl font-extrabold text-white mb-2 tracking-wide">VIVRA Güemes</div>
-          <div className="text-white text-base opacity-90 mb-2 text-center min-d:text-left">
+          <div className="text-white text-p opacity-90 mb-2 text-center min-d:text-left">
             Av. Pueyrredón 377 · Córdoba Capital
           </div>
-          <div className="text-white text-sm opacity-80 mb-4 text-center min-d:text-left">
+          <div className="text-white text-p opacity-80 mb-4 text-center min-d:text-left">
             ¿Querés saber más? Escribinos o seguinos en redes para conocer más sobre el proyecto.
           </div>
           <div className="flex flex-row gap-6 items-center justify-center min-d:justify-start">
             <a
-              href="https://www.instagram.com/"
+              href="https://www.instagram.com/juarezbeltran_sa?igsh=djh1czJwcGN0YzIx"
               target="_blank"
               rel="noopener noreferrer"
               className="hover:scale-110 transition-transform"
@@ -31,7 +31,7 @@ const SectionFooter = () => {
               <RiMailOpenLine size="2em" color="white" />
             </a>
             <a
-              href="https://goo.gl/maps/xyz"
+              href="https://maps.app.goo.gl/JfvX3Am17h85QaoS7"
               target="_blank"
               rel="noopener noreferrer"
               className="hover:scale-110 transition-transform"
@@ -51,7 +51,8 @@ const SectionFooter = () => {
         </div>
       </div>
       <div className="w-full text-center text-white text-xs opacity-60 mt-10 pb-4">
-        © {new Date().getFullYear()} VIVRA Güemes. Todos los derechos reservados.
+        © {new Date().getFullYear()} SmartCloud Studio. Desarrollamos soluciones digitales
+        completas, https://www.smartcloudstudio.com/.
       </div>
     </footer>
   )

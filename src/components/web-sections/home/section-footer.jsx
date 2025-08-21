@@ -50,15 +50,11 @@ const SectionFooter = () => {
               />
             </div>
             <div className="bg-white/60 backdrop-blur-sm rounded-lg p-3 hover:bg-white/90 transition-all duration-300">
-              <img
-                src="/src/assets/logos/LZ - Logo - CMYK-02.png"
-                alt="LZ"
-                className="h-10 w-auto object-contain"
-              />
+              <img src="/src/assets/logos/lz.png" alt="LZ" className="h-10 w-auto object-contain" />
             </div>
             <div className="bg-white/60 backdrop-blur-sm rounded-lg p-3 hover:bg-white/90 transition-all duration-300">
               <img
-                src="/src/assets/logos/LOGO_EMPRACONS_IMAGEN_nuevo-removebg-preview.png"
+                src="/src/assets/logos/empra.png"
                 alt="Partner Logo"
                 className="h-10 w-auto object-contain"
               />

@@ -471,52 +471,58 @@ const ScrollApartment = ({
             </span>
           </div>
         )}
-        {/* Logos aparecen solo al final - inicialmente ocultos */}
+        {/* Logos aparecen solo al final - partners más arriba, SmartCloud en el bottom */}
         {isLoaded && (
-          <div className="absolute bottom-8 left-1/2 transform -translate-x-1/2 z-20 pointer-events-none">
-            <div className="flex flex-col items-center space-y-4">
-              {/* Partner logos - aparecen solo al final */}
-              <div className="logos-grid flex flex-col md:flex-row items-center md:items-center gap-3 md:gap-6 mb-2">
-                {/* On mobile stack vertically and give each logo a tiny translucent bg for contrast */}
-                <div className="w-full md:w-auto flex justify-center">
-                  <div className="rounded-md bg-white/30 md:bg-transparent p-2 md:p-0 flex items-center">
-                    <img
-                      src={empraconsLogo}
-                      alt="Empracons"
-                      className="h-8 md:h-10 object-contain"
-                    />
+          <>
+            {/* Partner logos: on mobile show near the top, on md+ keep them above SmartCloud near the bottom */}
+            <div className="absolute left-1/2 transform -translate-x-1/2 z-20 pointer-events-none top-44 md:bottom-24 md:top-auto">
+              <div className="flex flex-col items-center space-y-4">
+                <div className="logos-grid flex flex-col md:flex-row items-center md:items-center gap-3 md:gap-6 mb-2">
+                  <div className="w-full md:w-auto flex justify-center">
+                    <div className="rounded-md bg-white/30 md:bg-transparent p-2 md:p-0 flex items-center">
+                      <img
+                        src={empraconsLogo}
+                        alt="Empracons"
+                        className="h-8 md:h-10 object-contain"
+                      />
+                    </div>
                   </div>
-                </div>
 
-                <div className="w-full md:w-auto flex justify-center">
-                  <div className="rounded-md bg-white/30 md:bg-transparent p-2 md:p-0 flex items-center">
-                    <img src={lzLogo} alt="LZ" className="h-8 md:h-10 object-contain" />
+                  <div className="w-full md:w-auto flex justify-center">
+                    <div className="rounded-md bg-white/30 md:bg-transparent p-2 md:p-0 flex items-center">
+                      <img src={lzLogo} alt="LZ" className="h-8 md:h-10 object-contain" />
+                    </div>
                   </div>
-                </div>
 
-                <div className="w-full md:w-auto flex justify-center">
-                  <div className="rounded-md bg-white/30 md:bg-transparent p-2 md:p-0 flex items-center">
-                    <img src={juarezLogo} alt="Juarez" className="h-8 md:h-10 object-contain" />
+                  <div className="w-full md:w-auto flex justify-center">
+                    <div className="rounded-md bg-white/30 md:bg-transparent p-2 md:p-0 flex items-center">
+                      <img src={juarezLogo} alt="Juarez" className="h-8 md:h-10 object-contain" />
+                    </div>
                   </div>
                 </div>
-              </div>
-              {/* SmartCloud credit - aparece solo al final */}
-              <div className="credit flex flex-col md:flex-row items-center gap-2">
-                <div className="rounded-md bg-black/30 md:bg-transparent p-2 md:p-0 flex items-center">
-                  <img
-                    src={scLogo}
-                    alt="SmartCloud"
-                    className="h-6 object-contain"
-                    onLoad={() => console.log('SC logo loaded successfully')}
-                    onError={(e) => console.log('Error loading SC logo:', e)}
-                  />
-                </div>
-                <span className="text-white text-xs font-medium drop-shadow">
-                  Hecho por SmartCloud Studio
-                </span>
               </div>
             </div>
-          </div>
+
+            {/* SmartCloud credit stays at the original bottom position */}
+            <div className="absolute bottom-8 left-1/2 transform -translate-x-1/2 z-20 pointer-events-none">
+              <div className="flex flex-col items-center space-y-4">
+                <div className="credit flex flex-col md:flex-row items-center gap-2">
+                  <div className="rounded-md bg-black/30 md:bg-transparent p-2 md:p-0 flex items-center">
+                    <img
+                      src={scLogo}
+                      alt="SmartCloud"
+                      className="h-6 object-contain"
+                      onLoad={() => console.log('SC logo loaded successfully')}
+                      onError={(e) => console.log('Error loading SC logo:', e)}
+                    />
+                  </div>
+                  <span className="text-white text-xs font-medium drop-shadow">
+                    Hecho por SmartCloud Studio
+                  </span>
+                </div>
+              </div>
+            </div>
+          </>
         )}
       </div>
     </div>

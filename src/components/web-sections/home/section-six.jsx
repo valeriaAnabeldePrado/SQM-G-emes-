@@ -6,7 +6,7 @@ import dpto from '/src/assets/section-six/cdd.png'
 import galleryOne from '/src/assets/section-six/galleryOne.jpg'
 import galleryTwo from '/src/assets/section-six/frente12ok.jpg'
 import deptoCompleto from '/src/assets/section-six/livingok.jpg'
-import galleryFour from '/src/assets/section-six/galleryFour.png'
+import galleryFour from '/src/assets/section-six/cocina.jpg'
 
 const cardsData = [
   {

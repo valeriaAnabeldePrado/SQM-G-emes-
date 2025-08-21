@@ -86,7 +86,7 @@ export default function SectionThree() {
       <div className="flex-1/3">
         <h3
           ref={textRef}
-          className="text-subtitle font-bold- text-[var(--color-three)] pb-8 min-lg:pb-16 min-note:leading-20"
+          className="text-subtitle font-bold- text-[var(--color-three)] pb-8 min-lg:pb-16 "
         >
           Una zona de continua{' '}
           <span className="inline-block font-bold rounded-full text-(lenght:--color-one)">
@@ -102,7 +102,7 @@ export default function SectionThree() {
         </div>
       </div>
       <div className="flex-1 flex items-center justify-center">
-        <img src="/vivra-logo.png" alt="VIVRA Logo" className="max-w-full h-auto object-contain " />
+        <img src="/vivra-logo.png" alt="VIVRA Logo" className=" object-contain h-24 " />
       </div>
     </div>
   )

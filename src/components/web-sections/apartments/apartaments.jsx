@@ -3,9 +3,7 @@ import PlanoEdificio from '../../../assets/Corte'
 import { Card } from '../home/components/card'
 import { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
-import Footer from '../home/components/Footer'
-import ModelOne from '../../../assets/floors/ModelOne'
-import ModelTwo from '../../../assets/floors/ModelTwo'
+
 import ModelThree from '../../../assets/floors/ModelThree'
 import ModelFour from '../../../assets/floors/ModelFour'
 import ModelFive from '../../../assets/floors/ModelFive'
@@ -19,6 +17,8 @@ import { MdOutlineArrowOutward } from 'react-icons/md'
 import apartmentData from './utils/apartmentData.json'
 
 import './apartmentAnimate.css'
+import ModelTwo from '../../../assets/floors/ModelTwo'
+import SectionFooter from '../home/section-footer'
 
 const Apartaments = () => {
   const [selectedFloor, setSelectedFloor] = useState(null)
@@ -322,7 +322,7 @@ const Apartaments = () => {
         </section>
       </div>
       <section className="custom-container mt-8">
-        <Footer />
+        <SectionFooter />
       </section>
     </>
   )

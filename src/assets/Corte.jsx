@@ -2841,10 +2841,10 @@ const PlanoEdificio = ({ onEvent, selectedFloor }) => (
       {/* PISO 4 - UNIFICADO (oficina y apartamentos juntos) */}
       <g
         id="PisoCuatroOficina"
-        className={`floor-hover ${selectedFloor === 'p04-modelTwo' ? 'floor-selected' : ''}`}
+        className={`floor-hover ${selectedFloor === 'p04-oficina' ? 'floor-selected' : ''}`}
         onClick={(e) => {
           e.stopPropagation()
-          onEvent('p04-modelTwo')
+          onEvent('p04-oficina')
         }}
       >
         <rect
@@ -2854,7 +2854,7 @@ const PlanoEdificio = ({ onEvent, selectedFloor }) => (
           height="25.2"
           rx="3.4"
           ry="3.4"
-          fill={selectedFloor === 'p04-modelTwo' ? '#ffc46a' : 'transparent'}
+          fill={selectedFloor === 'p04-oficina' ? '#ffc46a' : 'transparent'}
           style={{ cursor: 'pointer', transition: 'fill 600ms' }}
         />
       </g>

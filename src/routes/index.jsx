@@ -5,7 +5,8 @@ import ApartmentDetail from '../components/web-sections/apartments/ApartmentDeta
 import BuildSection from '../components/web-sections/inmersive/build/BuildSection.jsx'
 import Layout from '../components/layout/Layout.jsx'
 import NavBar from '../components/ui-components-generics/navBar/NavBar.jsx'
-import ScrollApartmentOptimized from '../components/web-sections/inmersive/ScrollApartmentOptimized.jsx'
+import ScrollApartment from '../components/web-sections/inmersive/ScrollApartment.jsx'
+// import ScrollApartmentOptimized from '../components/web-sections/inmersive/ScrollApartmentOptimized.jsx'
 
 export const router = createBrowserRouter([
   {
@@ -40,7 +41,8 @@ export const router = createBrowserRouter([
     element: (
       <Layout>
         <NavBar />
-        <ScrollApartmentOptimized />
+        <ScrollApartment />
+        {/* <ScrollApartmentOptimized /> */}
       </Layout>
     )
   },

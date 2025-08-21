@@ -52,7 +52,7 @@ const ScrollApartmentOptimized = ({
       ctx.imageSmoothingQuality = 'high'
     }
 
-    // Función para dibujar imagen con mejor calidad
+    // Función para dibujar imagen con mejor calidad y ajuste contain
     const drawImage = (frameIndex) => {
       const img = images[frameIndex]
       if (!img || !img.complete) return
@@ -60,22 +60,25 @@ const ScrollApartmentOptimized = ({
       const canvasRect = canvas.getBoundingClientRect()
       ctx.clearRect(0, 0, canvasRect.width, canvasRect.height)
 
-      // Calcular dimensiones manteniendo aspect ratio
+      // Calcular dimensiones usando contain (sin zoom/crop)
       const imgAspect = img.width / img.height
       const canvasAspect = canvasRect.width / canvasRect.height
 
       let drawWidth, drawHeight, offsetX, offsetY
 
+      // Usar contain en lugar de cover - la imagen completa siempre es visible
       if (imgAspect > canvasAspect) {
-        drawHeight = canvasRect.height
-        drawWidth = drawHeight * imgAspect
-        offsetX = (canvasRect.width - drawWidth) / 2
-        offsetY = 0
-      } else {
+        // Imagen más ancha: ajustar al ancho del canvas
         drawWidth = canvasRect.width
         drawHeight = drawWidth / imgAspect
         offsetX = 0
         offsetY = (canvasRect.height - drawHeight) / 2
+      } else {
+        // Imagen más alta: ajustar a la altura del canvas
+        drawHeight = canvasRect.height
+        drawWidth = drawHeight * imgAspect
+        offsetX = (canvasRect.width - drawWidth) / 2
+        offsetY = 0
       }
 
       ctx.drawImage(img, offsetX, offsetY, drawWidth, drawHeight)
@@ -185,6 +188,34 @@ const ScrollApartmentOptimized = ({
             opacity: 1,
             duration: 0.1
           })
+
+          // Reveal dinámico de partners: aparece entre 92% y 100% y sube hasta la mitad; desaparece al volver
+          const revealStart = 0.98
+          const revealEnd = 1.0
+          const revealProgress = gsap.utils.clamp(
+            0,
+            1,
+            (smoothProgress - revealStart) / (revealEnd - revealStart)
+          )
+
+          // Calcular desplazamiento objetivo (subir hasta ~35% de la pantalla)
+          const targetY = -window.innerHeight * 0.35
+
+          // Aplicar animación suave (sin timeline persistente) y permitir reversa
+          gsap.to('.logos-grid', {
+            opacity: revealProgress,
+            y: targetY * revealProgress,
+            duration: 0.12,
+            overwrite: true,
+            ease: 'power1.out'
+          })
+          gsap.to('.credit', {
+            opacity: revealProgress,
+            y: targetY * revealProgress + 10,
+            duration: 0.12,
+            overwrite: true,
+            ease: 'power1.out'
+          })
         },
         onRefresh: () => {
           setupCanvas()
@@ -235,9 +266,9 @@ const ScrollApartmentOptimized = ({
   }, [imageUrls, totalFrames])
 
   return (
-    <div ref={containerRef} className="relative w-full" style={{ height: '500vh' }}>
+    <div ref={containerRef} className="relative w-full" style={{ height: '900vh' }}>
       {/* Container fijo para el canvas */}
-      <div className="sticky top-0 w-full h-screen flex items-center justify-center overflow-hidden bg-gradient-to-b from-gray-900 to-black">
+      <div className="sticky top-0 w-full h-screen flex items-center justify-center overflow-hidden bg-gradient-to-b from-gray-800 to-gray-900">
         {/* Canvas para la secuencia */}
         <div className="absolute inset-0 w-full h-full">
           <canvas
@@ -246,12 +277,13 @@ const ScrollApartmentOptimized = ({
             style={{
               width: '100%',
               height: '100%',
-              display: 'block'
+              display: 'block',
+              filter: 'brightness(1.15) contrast(1.05)'
             }}
           />
 
           {/* Overlay gradient más sutil */}
-          <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-black/20 pointer-events-none" />
+          <div className="absolute inset-0 bg-gradient-to-t from-black/20 via-transparent to-black/10 pointer-events-none" />
         </div>
 
         {/* Loading indicator mejorado */}
@@ -307,6 +339,40 @@ const ScrollApartmentOptimized = ({
             <span className="text-xs text-white/60 rotate-90 transform origin-center whitespace-nowrap mt-6 font-medium">
               {Math.round(progress * 100)}%
             </span>
+          </div>
+        )}
+        {/* Final partner reveal: aparece cuando el scroll llega al final */}
+        {isLoaded && (
+          <div className="partner-reveal absolute inset-0 flex items-end justify-center z-20 pointer-events-none">
+            <div className="w-full max-w-4xl mx-auto py-6 px-8  rounded-2xl flex flex-col items-center pointer-events-none transform translate-y-0">
+              <div className="logos-grid flex gap-8 mb-4 opacity-0">
+                <img
+                  src="/src/assets/logos/LOGO_EMPRACONS_IMAGEN_nuevo-removebg-preview.png"
+                  alt="Empracons"
+                  className="h-12 object-contain"
+                />
+                <img
+                  src="/src/assets/logos/LZ - Logo - CMYK-02.png"
+                  alt="LZ"
+                  className="h-12 object-contain"
+                />
+                <img
+                  src="/src/assets/logos/juarez.png"
+                  alt="Juarez"
+                  className="h-12 object-contain"
+                />
+              </div>
+              <div className="credit mt-2 opacity-0 flex items-center gap-3">
+                <img
+                  src="/src/assets/logo/sc.png"
+                  alt="SmartCloud"
+                  className="h-8 object-contain"
+                />
+                <span className="text-white text-sm font-medium drop-shadow">
+                  Hecho por SmartCloud Studio
+                </span>
+              </div>
+            </div>
           </div>
         )}
       </div>

@@ -39,6 +39,31 @@ const SectionFooter = () => {
               <LuMapPin size="2em" color="white" />
             </a>
           </div>
+
+          {/* Logos de partners */}
+          <div className="flex flex-wrap justify-center min-d:justify-start items-center gap-4 mt-6">
+            <div className="bg-white/60 backdrop-blur-sm rounded-lg p-3 hover:bg-white/90 transition-all duration-300">
+              <img
+                src="/src/assets/logos/juarez.png"
+                alt="Empracons"
+                className="h-10 w-auto object-contain"
+              />
+            </div>
+            <div className="bg-white/60 backdrop-blur-sm rounded-lg p-3 hover:bg-white/90 transition-all duration-300">
+              <img
+                src="/src/assets/logos/LZ - Logo - CMYK-02.png"
+                alt="LZ"
+                className="h-10 w-auto object-contain"
+              />
+            </div>
+            <div className="bg-white/60 backdrop-blur-sm rounded-lg p-3 hover:bg-white/90 transition-all duration-300">
+              <img
+                src="/src/assets/logos/LOGO_EMPRACONS_IMAGEN_nuevo-removebg-preview.png"
+                alt="Partner Logo"
+                className="h-10 w-auto object-contain"
+              />
+            </div>
+          </div>
         </div>
         {/* Columna derecha: formulario */}
         <div id="contact" className="w-full min-d:w-1/2 flex flex-col justify-center">
@@ -51,8 +76,17 @@ const SectionFooter = () => {
         </div>
       </div>
       <div className="w-full text-center text-white text-xs opacity-60 mt-10 pb-4">
-        © {new Date().getFullYear()} SmartCloud Studio. Desarrollamos soluciones digitales
-        completas, https://www.smartcloudstudio.com/.
+        © {new Date().getFullYear()} VIVRA Güemes. Desarrollamos soluciones digitales completas.
+        <div className="mt-2">
+          <a
+            href="https://www.smartcloudstudio.com/"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="text-white underline font-semibold hover:text-[var(--color-one)] transition-colors"
+          >
+            Desarrollado por SmartCloud Studio
+          </a>
+        </div>
       </div>
     </footer>
   )

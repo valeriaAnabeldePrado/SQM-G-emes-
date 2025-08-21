@@ -14,8 +14,8 @@ import {
 } from 'react-icons/md'
 import { Card } from '../home/components/card'
 import Button from '../home/components/button'
-import Footer from '../home/components/Footer'
 import apartmentData from './utils/apartmentData.json'
+import SectionFooter from '../home/section-footer'
 
 const ApartmentDetail = () => {
   const { apartmentId } = useParams()
@@ -864,7 +864,7 @@ const ApartmentDetail = () => {
         </Card>
       </div>
       <section className="custom-container">
-        <Footer />
+        <SectionFooter />
       </section>
     </>
   )

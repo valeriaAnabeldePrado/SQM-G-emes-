@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, useRef } from 'react'
 import emailjs from '@emailjs/browser'
 import Button from './button'
 
@@ -11,7 +11,21 @@ const ContactForm = () => {
   })
 
   const [isSubmitting, setIsSubmitting] = useState(false)
-  const [submitStatus, setSubmitStatus] = useState('')
+  const toastTimer = useRef(null)
+  const [toast, setToast] = useState({ visible: false, message: '', type: 'info' })
+
+  const showToast = (message, type = 'info', duration = 4000) => {
+    // clear previous timer
+    if (toastTimer.current) {
+      clearTimeout(toastTimer.current)
+      toastTimer.current = null
+    }
+    setToast({ visible: true, message, type })
+    toastTimer.current = setTimeout(() => {
+      setToast((t) => ({ ...t, visible: false }))
+      toastTimer.current = null
+    }, duration)
+  }
 
   const handleChange = (e) => {
     const { name, value } = e.target
@@ -24,45 +38,54 @@ const ContactForm = () => {
   const handleSubmit = async (e) => {
     e.preventDefault()
     setIsSubmitting(true)
-    setSubmitStatus('')
 
     // Validación básica
     if (!formData.nombre || !formData.email || !formData.mensaje) {
-      setSubmitStatus('Por favor completa todos los campos obligatorios.')
+      showToast('Por favor completa todos los campos obligatorios.', 'error')
       setIsSubmitting(false)
       return
     }
 
     try {
-      // Configuración EmailJS (reemplazar con tus IDs reales)
-      const SERVICE_ID = 'your_service_id'
-      const TEMPLATE_ID = 'your_template_id'
-      const PUBLIC_KEY = 'your_public_key'
+      // Configuración EmailJS desde variables de entorno (Vite)
+      const SERVICE_ID = import.meta.env.VITE_EMAILJS_SERVICE || 'service_sux1wqg'
+      const TEMPLATE_ID = import.meta.env.VITE_EMAILJS_TEMPLATE || 'template_25yviek'
+      const PUBLIC_KEY = import.meta.env.VITE_EMAILJS_PUBLIC || 'fcgrcFrPPV6ApVd1d'
 
-      // Parámetros del template
+      // extraer utm_source si existe
+      let utm = ''
+      try {
+        const params =
+          typeof window !== 'undefined' ? new URLSearchParams(window.location.search) : null
+        utm = params ? params.get('utm_source') || '' : ''
+      } catch {
+        utm = ''
+      }
+
+      // Construir payload que coincide con el template HTML
       const templateParams = {
         from_name: formData.nombre,
-        from_email: formData.email,
-        phone: formData.telefono,
+        reply_to: formData.email,
+        phone: formData.telefono || '—',
         message: formData.mensaje,
-        to_name: 'VIVRA Güemes' // nombre del destinatario
+        page: typeof window !== 'undefined' ? window.location.pathname : 'site',
+        utm_source: utm,
+        datetime: new Date().toLocaleString(),
+        to_email: 'vivraguemes@gmail.com'
       }
 
       // Enviar email
       await emailjs.send(SERVICE_ID, TEMPLATE_ID, templateParams, PUBLIC_KEY)
 
-      setSubmitStatus('¡Mensaje enviado correctamente! Te contactaremos pronto.')
+      const successMsg = '¡Mensaje enviado correctamente! Te contactaremos pronto.'
+      showToast(successMsg, 'success')
 
       // Limpiar formulario
-      setFormData({
-        nombre: '',
-        email: '',
-        telefono: '',
-        mensaje: ''
-      })
+      setFormData({ nombre: '', email: '', telefono: '', mensaje: '' })
     } catch (error) {
       console.error('Error sending email:', error)
-      setSubmitStatus('Hubo un error al enviar el mensaje. Intenta nuevamente.')
+      const errMsg = 'Hubo un error al enviar el mensaje. Intenta nuevamente.'
+      showToast(errMsg, 'error')
     } finally {
       setIsSubmitting(false)
     }
@@ -125,20 +148,35 @@ const ContactForm = () => {
           rows={3}
           required
         ></textarea>{' '}
-        {/* Mensaje de estado */}
-        {submitStatus && (
-          <div
-            className={`text-sm text-center py-2 ${
-              submitStatus.includes('correctamente') ? 'text-green-400' : 'text-red-400'
-            }`}
-          >
-            {submitStatus}
-          </div>
-        )}
+        {/* Mensaje de estado (se muestra ahora como toast) */}
         <Button type="submit" className={'mt-4 min-note:mt-10 '} disabled={isSubmitting}>
           <p className="m-auto">{isSubmitting ? 'Enviando...' : 'Enviar formulario'}</p>
         </Button>
       </form>
+      {/* Toast (fixed bottom-left) */}
+      <div aria-live="polite" className="fixed bottom-4 left-4 pointer-events-none z-50">
+        {toast.visible && (
+          <div
+            role="status"
+            className={`pointer-events-auto max-w-sm bg-opacity-95 text-white shadow-lg rounded-lg p-3 border ${
+              toast.type === 'success'
+                ? 'bg-emerald-600 border-emerald-700'
+                : 'bg-rose-600 border-rose-700'
+            } transform transition-all duration-300`}
+          >
+            <div className="flex items-start gap-3">
+              <div className="flex-1 text-sm leading-tight">{toast.message}</div>
+              <button
+                aria-label="Cerrar"
+                onClick={() => setToast((t) => ({ ...t, visible: false }))}
+                className="text-white opacity-90 hover:opacity-100"
+              >
+                ✕
+              </button>
+            </div>
+          </div>
+        )}
+      </div>
     </>
   )
 }

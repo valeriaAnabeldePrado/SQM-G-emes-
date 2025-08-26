@@ -206,7 +206,7 @@ function CharacteristicsDrawer({ isOpen, characteristics, onClose }) {
       {/* Características principales */}
       <div style={{ marginBottom: '25px' }}>
         <h3 style={{ fontSize: '18px', marginBottom: '15px', color: '#ff6b6b' }}>
-          ✨ Características destacadas
+          Características destacadas
         </h3>
         <ul style={{ listStyle: 'none', padding: 0, margin: 0 }}>
           {characteristics.features.map((feature, index) => (
@@ -228,7 +228,7 @@ function CharacteristicsDrawer({ isOpen, characteristics, onClose }) {
       {/* Especificaciones técnicas */}
       <div style={{ marginBottom: '25px' }}>
         <h3 style={{ fontSize: '18px', marginBottom: '15px', color: '#ff6b6b' }}>
-          📋 Especificaciones
+          Especificaciones
         </h3>
         <div
           style={{
@@ -254,6 +254,26 @@ function CharacteristicsDrawer({ isOpen, characteristics, onClose }) {
               <span style={{ color: '#fff' }}>{value}</span>
             </div>
           ))}
+
+          {/* Campos adicionales de alto nivel */}
+          <div style={{ marginTop: '12px', borderTop: '1px solid #333', paddingTop: '12px' }}>
+            <div style={{ display: 'flex', justifyContent: 'space-between', padding: '6px 0' }}>
+              <span style={{ fontWeight: 'bold', color: '#ddd' }}>Año:</span>
+              <span style={{ color: '#fff' }}>{characteristics.year || '—'}</span>
+            </div>
+            <div style={{ display: 'flex', justifyContent: 'space-between', padding: '6px 0' }}>
+              <span style={{ fontWeight: 'bold', color: '#ddd' }}>Arquitecto:</span>
+              <span style={{ color: '#fff' }}>{characteristics.architect || '—'}</span>
+            </div>
+            <div style={{ display: 'flex', justifyContent: 'space-between', padding: '6px 0' }}>
+              <span style={{ fontWeight: 'bold', color: '#ddd' }}>Superficie total:</span>
+              <span style={{ color: '#fff' }}>{characteristics.totalArea || '—'}</span>
+            </div>
+            <div style={{ display: 'flex', justifyContent: 'space-between', padding: '6px 0' }}>
+              <span style={{ fontWeight: 'bold', color: '#ddd' }}>Ascensores:</span>
+              <span style={{ color: '#fff' }}>{characteristics.elevators ?? '—'}</span>
+            </div>
+          </div>
         </div>
       </div>
 
@@ -272,7 +292,7 @@ function CharacteristicsDrawer({ isOpen, characteristics, onClose }) {
         }}
       >
         <p style={{ margin: '0 0 10px 0', fontSize: '12px', color: '#ccc' }}>
-          💡 Usa los controles del mouse para explorar en detalle
+          Usa los controles del mouse para explorar en detalle
         </p>
       </div>
     </div>

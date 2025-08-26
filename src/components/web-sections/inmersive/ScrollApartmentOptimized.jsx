@@ -1,4 +1,8 @@
 import React, { useState, useRef, useEffect, useMemo } from 'react'
+import empraconsLogo from '../../assets/logos/LOGO_EMPRACONS_IMAGEN_nuevo-removebg-preview.png'
+import lzLogo from '../../assets/logos/LZ - Logo - CMYK-02.png'
+import juarezLogo from '../../assets/logos/juarez.png'
+import scLogo from '../../assets/logo/sc.png'
 import { gsap } from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
 
@@ -346,28 +350,12 @@ const ScrollApartmentOptimized = ({
           <div className="partner-reveal absolute inset-0 flex items-end justify-center z-20 pointer-events-none">
             <div className="w-full max-w-4xl mx-auto py-6 px-8  rounded-2xl flex flex-col items-center pointer-events-none transform translate-y-0">
               <div className="logos-grid flex gap-8 mb-4 opacity-0">
-                <img
-                  src="/src/assets/logos/LOGO_EMPRACONS_IMAGEN_nuevo-removebg-preview.png"
-                  alt="Empracons"
-                  className="h-12 object-contain"
-                />
-                <img
-                  src="/src/assets/logos/LZ - Logo - CMYK-02.png"
-                  alt="LZ"
-                  className="h-12 object-contain"
-                />
-                <img
-                  src="/src/assets/logos/juarez.png"
-                  alt="Juarez"
-                  className="h-12 object-contain"
-                />
+                <img src={empraconsLogo} alt="Empracons" className="h-12 object-contain" />
+                <img src={lzLogo} alt="LZ" className="h-12 object-contain" />
+                <img src={juarezLogo} alt="Juarez" className="h-12 object-contain" />
               </div>
               <div className="credit mt-2 opacity-0 flex items-center gap-3">
-                <img
-                  src="/src/assets/logo/sc.png"
-                  alt="SmartCloud"
-                  className="h-8 object-contain"
-                />
+                <img src={scLogo} alt="SmartCloud" className="h-8 object-contain" />
                 <span className="text-white text-sm font-medium drop-shadow">
                   Hecho por SmartCloud Studio
                 </span>

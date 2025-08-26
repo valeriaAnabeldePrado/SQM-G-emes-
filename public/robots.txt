@@ -1,0 +1,10 @@
+User-agent: *
+Allow: /
+
+# Sitemap location
+Sitemap: https://vivraguemes.com/sitemap.xml
+
+# Block unnecessary files
+Disallow: /*.json$
+Disallow: /src/
+Disallow: /node_modules/

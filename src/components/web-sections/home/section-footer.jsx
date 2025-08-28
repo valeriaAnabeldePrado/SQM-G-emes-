@@ -1,4 +1,7 @@
 import React from 'react'
+import juarezLogo from '../../../assets/logos/juarez.png'
+import lzLogo from '../../../assets/logos/lz.png'
+import empraLogo from '../../../assets/logos/empra.png'
 import { Card } from './components/card'
 import { FaInstagram } from 'react-icons/fa'
 import { RiMailOpenLine } from 'react-icons/ri'
@@ -43,21 +46,13 @@ const SectionFooter = () => {
           {/* Logos de partners */}
           <div className="flex flex-wrap justify-center min-d:justify-start items-center gap-4 mt-6">
             <div className="bg-white/60 backdrop-blur-sm rounded-lg p-3 hover:bg-white/90 transition-all duration-300">
-              <img
-                src="/src/assets/logos/juarez.png"
-                alt="Empracons"
-                className="h-10 w-auto object-contain"
-              />
+              <img src={juarezLogo} alt="Empracons" className="h-10 w-auto object-contain" />
             </div>
             <div className="bg-white/60 backdrop-blur-sm rounded-lg p-3 hover:bg-white/90 transition-all duration-300">
-              <img src="/src/assets/logos/lz.png" alt="LZ" className="h-10 w-auto object-contain" />
+              <img src={lzLogo} alt="LZ" className="h-10 w-auto object-contain" />
             </div>
             <div className="bg-white/60 backdrop-blur-sm rounded-lg p-3 hover:bg-white/90 transition-all duration-300">
-              <img
-                src="/src/assets/logos/empra.png"
-                alt="Partner Logo"
-                className="h-10 w-auto object-contain"
-              />
+              <img src={empraLogo} alt="Partner Logo" className="h-10 w-auto object-contain" />
             </div>
           </div>
         </div>

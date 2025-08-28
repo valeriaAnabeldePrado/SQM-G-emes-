@@ -9,7 +9,8 @@ const ModelOne = ({ onEventApartment, selectedApartment, selectedFloor = 'p01' }
     B: `apartment_B_P${parseInt(floorNumber)}`,
     C: `apartment_C_P${parseInt(floorNumber)}`,
     D: `apartment_D_P${parseInt(floorNumber)}`,
-    Oficina: `Oficina_P${parseInt(floorNumber)}`
+    // Usar la misma clave de oficina que en apartmentData.json para pisos 1-3
+    Oficina: `oficina_A_P00`
   }
 
   return (

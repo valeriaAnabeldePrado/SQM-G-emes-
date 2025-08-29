@@ -11,7 +11,8 @@ const ModelThirteen = ({ onEventApartment, selectedApartment, selectedFloor = 'p
     B: `apartment_B_P${parseInt(floorNumber)}`,
     C: `apartment_C_P${parseInt(floorNumber)}`,
     D: `apartment_D_P${parseInt(floorNumber)}`,
-    Oficina: `Oficina_P${parseInt(floorNumber)}`
+  // Mapear la oficina a la clave compartida en apartmentData.json
+  Oficina: `oficina_A_P00`
   }
 
   return (

@@ -16,7 +16,8 @@ const ModelTwo = ({ onEventApartment, selectedApartment, selectedFloor = 'p04' }
     B: `apartment_B_P${parseInt(floorNumber)}`,
     C: `apartment_C_P${parseInt(floorNumber)}`,
     D: `apartment_D_P${parseInt(floorNumber)}`,
-    Oficina: `Oficina_P${parseInt(floorNumber)}`
+  // Normalmente Oficina varia por piso; mapear a la clave compartida si queremos la misma oficina
+  Oficina: `oficina_A_P00`
   }
 
   // Manejadores de hover para las áreas de la imagen

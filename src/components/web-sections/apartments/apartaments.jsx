@@ -63,9 +63,13 @@ const Apartaments = () => {
 
   // Función para obtener la letra del apartamento
   const getApartmentLetter = (apartmentId) => {
-    if (!apartmentId) return null
-    const parts = apartmentId.split('_')
-    return parts[1] // apartment_A_P5 -> A
+  if (!apartmentId) return null
+  const lower = apartmentId.toLowerCase()
+  // detectar tipos especiales que en el SVG se representan por palabras (LOCAL, OFICINA)
+  if (lower.startsWith('local')) return 'LOCAL'
+  if (lower.startsWith('oficina')) return 'OFICINA'
+  const parts = apartmentId.split('_')
+  return parts[1] // apartment_A_P5 -> A
   }
 
   // Función para generar el mini SVG del apartamento seleccionado

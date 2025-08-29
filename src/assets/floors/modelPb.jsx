@@ -9,11 +9,11 @@ const ModelPb = ({ onEventApartment, selectedApartment }) => {
 
   // Generar IDs dinámicos basados en el piso PB (Planta Baja)
   const apartmentIds = {
-    A: `duplex_A_PB`,
-    B: `dpto_B_PB`,
-    C: `duplex_C_PB`,
-    LOCAL: `Local_PB`,
-    OFICINA: `ofi_PB`
+  A: `duplex_A_PB`,
+  B: `estudio_B_PB`,
+  C: `duplex_C_PB`,
+  LOCAL: `local_comercial_PB`,
+  OFICINA: `oficina_A_P00`
   }
 
   // Función para determinar si un apartamento está activo
@@ -38,7 +38,8 @@ const ModelPb = ({ onEventApartment, selectedApartment }) => {
   // Manejador de click
   const handleClick = (apartmentId, e) => {
     e.stopPropagation()
-    onEventApartment(apartmentId)
+  console.log('ModelPb clicked apartmentId:', apartmentId)
+  onEventApartment(apartmentId)
   }
 
   return (

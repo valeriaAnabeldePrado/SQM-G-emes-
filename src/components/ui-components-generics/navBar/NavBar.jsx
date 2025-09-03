@@ -19,19 +19,21 @@ const NavBar = () => {
   const routes = [
     { id: 1, name: '3D inmersivo', path: '/inmersive-apartament' },
     { id: 2, name: 'Departamentos', path: '/apartments' },
-    { id: 3, name: 'Galería', path: '#gallery' },
-    { id: 4, name: 'Características', path: '/#characte' },
-    { id: 5, name: 'Contacto', path: '#contact' }
+    { id: 3, name: 'Roadmap', path: '/roadmap' },
+    { id: 4, name: 'Galería', path: '#gallery' },
+    { id: 5, name: 'Características', path: '/#characte' },
+    { id: 6, name: 'Contacto', path: '#contact' }
   ]
 
   const routesBurger = [
     { id: 1, name: 'Inicio', path: '/' },
     { id: 2, name: 'Departamentos', path: '/apartments' },
-    { id: 3, name: 'Características', path: '/#characte' },
-    { id: 4, name: 'Galería', path: '/#gallery' },
-    { id: 5, name: 'Contacto', path: '/#contact' },
-    { id: 6, name: 'Vista 3D Edificio', path: '/inmersive-build' },
-    { id: 7, name: 'Vista 3D Apartamento', path: '/inmersive-apartament' }
+    { id: 3, name: 'Roadmap', path: '/roadmap' },
+    { id: 4, name: 'Características', path: '/#characte' },
+    { id: 5, name: 'Galería', path: '/#gallery' },
+    { id: 6, name: 'Contacto', path: '/#contact' },
+    { id: 7, name: 'Vista 3D Edificio', path: '/inmersive-build' },
+    { id: 8, name: 'Vista 3D Apartamento', path: '/inmersive-apartament' }
   ]
 
   return (
@@ -114,7 +116,7 @@ const NavBar = () => {
               key={route.id}
               href={route.path}
               className={`block py-2 hover:text-[var(--color-one)] transition-colors ${
-                route.id === 6 ? 'hidden md:block' : ''
+                route.id === 7 ? 'hidden md:block' : ''
               }`}
               onClick={() => setIsOpen(false)}
             >

@@ -1,7 +1,7 @@
 import { Card } from './components/card'
 import Button from './components/button'
 import { FiBox } from 'react-icons/fi'
-import { MdOutline3dRotation } from 'react-icons/md'
+import { MdOutline3dRotation, MdTimeline } from 'react-icons/md'
 import { useNavigate } from 'react-router-dom'
 
 export default function SectionCallTo() {
@@ -16,6 +16,9 @@ export default function SectionCallTo() {
   }
   const handleNavigateToUnidad = () => {
     navigate('/inmersive-apartament')
+  }
+  const handleNavigateToRoadmap = () => {
+    navigate('/roadmap')
   }
   return (
     <div className="flex flex-col min-d:flex-row items-stretch gap-[var(--generic-gap-tablet)] min-d:gap-[var(--generic-gap-desktop)] py-[var(--pading-y)] min-d:h-[90vh] ">
@@ -66,28 +69,48 @@ export default function SectionCallTo() {
           </Card>
         </section>
 
-        {/* Segunda card pequeña */}
-        <section className="min-d:flex-1 ">
-          <Card
-            hasGradient
-            className="w-full h-full min-d:flex-1 bg-gray-100 flex flex-col justify-between"
-          >
-            <div className="flex-grow"></div>
-            <div className="flex-1 w-full flex flex-col justify-end">
-              <p className="text-[var(--color-three)] mb-4 text-sm">
-                Ingresá al departamento modelo y explorá cada ambiente en detalle a través de un
-                recorrido realista e inmersivo.
-              </p>
-              <Button
-                onClick={handleNavigateToUnidad}
-                className="bg-[var(--color-one)] self-start min-md:w-[350px] w-full justify-between"
-                icon={<FiBox size="2em" />}
-              >
-                Recorrido de la unidad
-              </Button>
-            </div>
-          </Card>
-        </section>
+        {/* Cards pequeñas */}
+        <div className="flex flex-col min-d:flex-row gap-[var(--generic-gap-tablet)] min-d:gap-[var(--generic-gap-desktop)] min-d:flex-1">
+          {/* Primera card pequeña - Unidad */}
+          <section className="min-d:flex-1">
+            <Card hasGradient className="w-full h-full bg-gray-100 flex flex-col justify-between">
+              <div className="flex-grow"></div>
+              <div className="flex-1 w-full flex flex-col justify-end">
+                <p className="text-[var(--color-three)] mb-4 text-sm">
+                  Ingresá al departamento modelo y explorá cada ambiente en detalle a través de un
+                  recorrido realista e inmersivo.
+                </p>
+                <Button
+                  onClick={handleNavigateToUnidad}
+                  className="bg-[var(--color-one)] self-start min-md:w-[350px] w-full justify-between"
+                  icon={<FiBox size="2em" />}
+                >
+                  Recorrido de la unidad
+                </Button>
+              </div>
+            </Card>
+          </section>
+
+          {/* Segunda card pequeña - Roadmap */}
+          <section className="min-d:flex-1">
+            <Card hasGradient className="w-full h-full bg-gray-200 flex flex-col justify-between">
+              <div className="flex-grow"></div>
+              <div className="flex-1 w-full flex flex-col justify-end">
+                <p className="text-[var(--color-three)] mb-4 text-sm">
+                  Seguí el avance de obra mes a mes con fotos reales del proceso constructivo.
+                  Conocé cada etapa del desarrollo.
+                </p>
+                <Button
+                  onClick={handleNavigateToRoadmap}
+                  className="bg-[var(--color-one)] self-start min-md:w-[350px] w-full justify-between"
+                  icon={<MdTimeline size="2em" />}
+                >
+                  Ver avance de obra
+                </Button>
+              </div>
+            </Card>
+          </section>
+        </div>
       </div>
     </div>
   )

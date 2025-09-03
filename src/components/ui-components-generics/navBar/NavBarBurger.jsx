@@ -11,10 +11,11 @@ const NavBarBurger = () => {
 
   const menuItems = [
     { name: 'Inicio', href: '/' },
+    { name: 'Departamentos', href: '/apartments' },
+    { name: 'Roadmap', href: '/roadmap' },
     { name: 'Características', href: '/#characte' },
     { name: 'Galería', href: '/#gallery' },
     { name: 'Contacto', href: '/#contact' },
-    { name: 'Apartamentos', href: '/apartments' },
     { name: 'Vista 3D Edificio', href: '/inmersive-build' },
     { name: 'Vista 3D Apartamento', href: '/inmersive-apartament' }
   ]

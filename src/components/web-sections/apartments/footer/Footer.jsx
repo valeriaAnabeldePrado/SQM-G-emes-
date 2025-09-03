@@ -21,6 +21,12 @@ const Footer = () => {
               <a href="/" className="hover:opacity-80 transition-opacity">
                 Home
               </a>
+              <a href="/apartments" className="hover:opacity-80 transition-opacity">
+                Apartamentos
+              </a>
+              <a href="/roadmap" className="hover:opacity-80 transition-opacity">
+                Roadmap
+              </a>
               <a href="/ubicacion" className="hover:opacity-80 transition-opacity">
                 Ubicación
               </a>

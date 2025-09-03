@@ -2,7 +2,7 @@ User-agent: *
 Allow: /
 
 # Sitemap location
-Sitemap: https://vivraguemes.com/sitemap.xml
+Sitemap: https://vivraguemes.com.ar/sitemap.xml
 
 # Block unnecessary files
 Disallow: /*.json$

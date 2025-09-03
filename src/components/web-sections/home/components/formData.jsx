@@ -93,7 +93,7 @@ const ContactForm = () => {
 
   return (
     <>
-      <style jsx>{`
+      <style>{`
         input:-webkit-autofill,
         input:-webkit-autofill:hover,
         input:-webkit-autofill:focus,

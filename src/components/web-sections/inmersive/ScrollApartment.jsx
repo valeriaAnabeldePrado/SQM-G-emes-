@@ -409,18 +409,10 @@ const ScrollApartment = ({
         {isLoaded && (
           <>
             {/* Título arriba en móvil (bajado ~25vh) */}
-            <div
-              className="main-content-top absolute left-0 right-0 z-10 text-center text-white px-6 block md:hidden"
-              style={{ top: '25vh' }}
-            >
-              <h1 className="scroll-text text-3xl font-bold mb-4 leading-tight bg-gradient-to-r from-white to-gray-200 bg-clip-text text-transparent">
-                {title}
-              </h1>
-            </div>
 
             {/* Contenido principal centrado para desktop */}
             <div className="main-content relative z-10 text-center text-white px-6 max-w-5xl mx-auto hidden md:block">
-              <h1 className="scroll-text text-5xl md:text-7xl lg:text-8xl font-bold mb-8 leading-tight bg-gradient-to-r from-white to-gray-200 bg-clip-text text-transparent">
+              <h1 className="scroll-text  text-5xl md:text-7xl lg:text-8xl font-bold mb-8 leading-tight bg-gradient-to-r from-white to-gray-200 bg-clip-text text-transparent">
                 {title}
               </h1>
               <p
@@ -430,22 +422,12 @@ const ScrollApartment = ({
                 {description}
               </p>
             </div>
-
-            {/* Descripción abajo en móvil */}
-            <div className="main-content-bottom absolute bottom-36 left-0 right-0 z-10 text-center text-white px-6 block md:hidden">
-              <p
-                className="scroll-text text-lg opacity-90 leading-relaxed"
-                style={{ transform: 'translateY(-1.8vh)' }}
-              >
-                {description}
-              </p>
-            </div>
           </>
         )}
 
         {/* Indicador de scroll mejorado - centrado (más pequeño en móviles) */}
         {isLoaded && (
-          <div className="scroll-indicator absolute bottom-10 left-1/2 transform -translate-x-1/2 text-white/80 text-center z-10">
+          <div className="scroll-indicator  absolute bottom-10 left-1/2 transform -translate-x-1/2 text-white/80 text-center z-10">
             <div className="scroll-text animate-bounce flex flex-col items-center">
               <div className="w-6 h-10 md:w-8 md:h-12 border-2 border-white/60 rounded-full flex justify-center items-center mb-4">
                 <div className="w-1 h-3 md:h-4 bg-white/80 rounded-full animate-pulse"></div>

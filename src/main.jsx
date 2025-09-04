@@ -15,7 +15,6 @@ const showConsoleBranding = () => {
     highlight: 'color: #f59e0b; font-size: 16px; font-weight: bold;'
   }
 
-  console.clear()
   console.log('%c☁️ SMARTCLOUD STUDIO', styles.title)
   console.log(
     '%c━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━',
@@ -26,7 +25,6 @@ const showConsoleBranding = () => {
   console.log('%c Nuestros servicios:', styles.highlight)
   console.log('%c Desarrollo Web & Software', styles.text)
   console.log('%c Identidad de Marca & Diseño', styles.text)
-  console.log('%c Aplicaciones Mobile', styles.text)
   console.log('%c Arquitectura Cloud', styles.text)
   console.log('%c', '')
   console.log('%c¿Te gusta lo que ves? ¡Trabajemos juntos!', styles.text)
@@ -40,10 +38,7 @@ const showConsoleBranding = () => {
   console.log('%c  Incluye experiencias inmersivas con scroll-triggered animations', styles.text)
   console.log('%c', '')
   console.log('%c⚠️  Advertencia: Esta consola es para desarrolladores.', styles.warning)
-  console.log(
-    '%c   Si alguien te pidió que copies/pegues algo aquí, es probablemente una estafa.',
-    styles.warning
-  )
+
   console.log('%c', '')
   console.log(
     '%c━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━',

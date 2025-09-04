@@ -3,14 +3,13 @@ import { gsap } from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
 import { useGSAP } from '@gsap/react'
 import { Card } from '../home/components/card'
+import { milestones } from './data/milestones'
+import ModalGallery from './components/ModalGallery'
 import {
   MdCheckCircle,
   MdRadioButtonUnchecked,
   MdAccessTime,
   MdPhotoLibrary,
-  MdClose,
-  MdArrowBackIos,
-  MdArrowForwardIos,
   MdPlayArrow
 } from 'react-icons/md'
 
@@ -22,157 +21,6 @@ const Roadmap = () => {
   const timelineRef = useRef(null)
   const [selectedImages, setSelectedImages] = useState(null)
   const [currentImageIndex, setCurrentImageIndex] = useState(0)
-
-  const milestones = [
-    {
-      id: 1,
-      title: 'Inicio de obra',
-      date: 'Marzo 2024',
-      description:
-        'Preparación del terreno y comienzo de excavaciones. Obtención de permisos y habilitaciones necesarias.',
-      status: 'completed',
-      images: [
-        '/characteristics/bano.png',
-        '/characteristics/pisos.png',
-        '/characteristics/balcony.jpg'
-      ],
-      progress: 100,
-      thumbnail: '/characteristics/bano.png'
-    },
-    {
-      id: 2,
-      title: 'Cimientos y estructura',
-      date: 'Junio 2024',
-      description:
-        'Construcción de fundaciones y estructura principal. Hormigón armado y pilares de soporte.',
-      status: 'completed',
-      images: ['/characteristics/pisos.png', '/characteristics/bano.png'],
-      progress: 100,
-      thumbnail: '/characteristics/pisos.png'
-    },
-    {
-      id: 3,
-      title: 'Avance constructivo',
-      date: 'Septiembre 2024',
-      description:
-        'Levantamiento de muros y estructura de pisos. Mampostería y losas de entrepisos.',
-      status: 'in-progress',
-      images: ['/characteristics/balcony.jpg', '/characteristics/pisos.png'],
-      progress: 65,
-      thumbnail: '/characteristics/balcony.jpg'
-    },
-    {
-      id: 4,
-      title: 'Instalaciones',
-      date: 'Diciembre 2024',
-      description:
-        'Sistemas eléctricos, sanitarios y de climatización. Cañerías, cableado y ductos.',
-      status: 'upcoming',
-      progress: 0,
-      thumbnail: '/banner/0010.png'
-    },
-    {
-      id: 5,
-      title: 'Terminaciones',
-      date: 'Marzo 2025',
-      description:
-        'Acabados interiores y exteriores. Revestimientos, pisos, pintura y carpintería.',
-      status: 'upcoming',
-
-      progress: 0,
-      thumbnail: '/banner/0012.png'
-    },
-    {
-      id: 6,
-      title: 'Entrega',
-      date: 'Junio 2025',
-      description:
-        'Entrega de unidades y puesta en funcionamiento. Últimos detalles y habilitación final.',
-      status: 'upcoming',
-      progress: 0,
-      thumbnail: '/banner/0014.png'
-    },
-    {
-      id: 7,
-      title: 'Aislamientos y fachada',
-      date: 'Septiembre 2025',
-      description:
-        'Trabajos de fachada, revestimientos exteriores e implementación de aislamientos térmicos y acústicos.',
-      status: 'upcoming',
-      progress: 30,
-      thumbnail: '/banner/0016.png'
-    },
-    {
-      id: 8,
-      title: 'Espacios comunes',
-      date: 'Noviembre 2025',
-      description:
-        'Terminación de áreas comunes: lobby, sala de usos múltiples, gimnasio y circulación principal.',
-      status: 'upcoming',
-      progress: 0,
-      thumbnail: '/banner/0020.png'
-    },
-    {
-      id: 9,
-      title: 'Paisajismo',
-      date: 'Enero 2026',
-      description:
-        'Diseño y ejecución de jardines, veredas y espacios verdes perimetrales del proyecto.',
-      status: 'upcoming',
-      progress: 0,
-      thumbnail: '/banner/0024.png'
-    },
-    {
-      id: 10,
-      title: 'Certificaciones & ensayos',
-      date: 'Marzo 2026',
-      description:
-        'Pruebas finales de instalaciones (eléctricas, sanitarias y de gas) y emisión de certificados obligatorios.',
-      status: 'upcoming',
-      progress: 0,
-      thumbnail: '/banner/0026.png'
-    },
-    {
-      id: 11,
-      title: 'Garantías y postventa',
-      date: 'Mayo 2026',
-      description:
-        'Implementación de procesos de postventa, atención a reclamos y garantías contractuales.',
-      status: 'upcoming',
-      progress: 0,
-      thumbnail: '/banner/0027.png'
-    },
-    {
-      id: 12,
-      title: 'Puesta en marcha de instalaciones',
-      date: 'Julio 2026',
-      description:
-        'Arranque y pruebas en condiciones reales de todas las instalaciones; puesta en servicio de climatización, bombas y ascensores.',
-      status: 'upcoming',
-      progress: 0,
-      thumbnail: '/banner/0028.png'
-    },
-    {
-      id: 13,
-      title: 'Inspecciones finales',
-      date: 'Septiembre 2026',
-      description:
-        'Inspecciones técnicas finales y check-list de calidad antes de la recepción definitiva.',
-      status: 'upcoming',
-      progress: 0,
-      thumbnail: '/banner/0029.png'
-    },
-    {
-      id: 14,
-      title: 'Recepción final',
-      date: 'Noviembre 2026',
-      description:
-        'Recepción definitiva del edificio, entrega de documentación y cierre administrativo del proyecto.',
-      status: 'upcoming',
-      progress: 0,
-      thumbnail: '/banner/0030.png'
-    }
-  ]
 
   const PLACEHOLDER_IMAGE = '/characteristics/bano.png'
 
@@ -420,7 +268,6 @@ const Roadmap = () => {
           </Card>
         </div>
 
-        {/* Detailed Milestone Cards */}
         <div className="py-[var(--pading-y)] space-y-8">
           {milestones.map((milestone) => (
             <Card
@@ -430,7 +277,7 @@ const Roadmap = () => {
             >
               <div className="flex flex-col min-lg:flex-row gap-8 items-center justify-center w-full">
                 {/* Content */}
-                <div className="flex-1 space-y-4 text-center min-lg:text-left">
+                <div className="flex-1 space-y-4  text-left">
                   <div className="flex items-center gap-4">
                     {getStatusIcon(milestone.status)}
                     <div>
@@ -443,18 +290,20 @@ const Roadmap = () => {
                     </div>
                   </div>
 
-                  <p className="text-(length:--text-p) text-[var(--color-three)] opacity-80 leading-relaxed">
+                  <p className="text-(length:--text-p) text-[var(--color-three)]  leading-relaxed">
                     {milestone.description}
                   </p>
                   {/* Photo Gallery Button */}
                   {Array.isArray(milestone.images) && milestone.images.length > 0 && (
-                    <div className="flex justify-center min-lg:justify-start">
+                    <div className="flex  min-lg:justify-start">
                       <button
+                        disabled
                         onClick={() => openImageGallery(milestone.images, 0)}
-                        className="inline-flex items-center gap-2 px-6 py-3 bg-[var(--color-one)] text-white rounded-full hover:brightness-90 transition-all duration-300 font-medium"
+                        className="inline-flex items-center gap-2 px-6 py-3 bg-slate-300 cursor-not-allowed text-white rounded-full hover:brightness-90 transition-all duration-300 font-medium"
                       >
                         <MdPhotoLibrary size={18} />
-                        Ver fotos ({milestone.images.length})
+                        Proximamente
+                        {/* Ver fotos ({milestone.images.length}) */}
                       </button>
                     </div>
                   )}
@@ -465,18 +314,17 @@ const Roadmap = () => {
           ))}
         </div>
 
-        {/* Overall Progress */}
-        <div className="py-[var(--pading-y)]">
+        {/* <div className="py-[var(--pading-y)]">
           <Card
             className="p-[var(--padding-cards-small)] min-d:p-[var(--padding-cards)] text-center"
             hasGradient
           >
-            <h4 className="text-(length:--text-subtitle) font-bold text-[var(--color-three)] mb-6">
+            <h4 className="text-(length:--text-subtitle) font-bold text-[var(--color-three)]  mb-6">
               Progreso General del Proyecto
             </h4>
 
             <div className="max-w-2xl mx-auto space-y-6">
-              {/* Main Progress Bar */}
+            
               <div className="relative">
                 <div className="bg-[var(--color-beige)] rounded-full h-6 overflow-hidden">
                   <div
@@ -493,7 +341,7 @@ const Roadmap = () => {
                 </div>
               </div>
 
-              {/* Stats Grid */}
+              Stats Grid
               <div className="grid grid-cols-3 gap-4 mt-8">
                 <div className="text-center p-4 bg-white bg-opacity-50 rounded-lg">
                   <div className="text-2xl font-bold text-green-600">2</div>
@@ -516,60 +364,17 @@ const Roadmap = () => {
               </div>
             </div>
           </Card>
-        </div>
+        </div> */}
       </div>
 
-      {/* Image Gallery Modal */}
-      {selectedImages && (
-        <div
-          className="fixed inset-0 bg-black bg-opacity-90 z-[9999] flex items-center justify-center p-4"
-          onClick={closeImageGallery}
-        >
-          <div className="relative max-w-4xl max-h-full" onClick={(e) => e.stopPropagation()}>
-            {/* Close Button */}
-            <button
-              onClick={closeImageGallery}
-              aria-label="Cerrar galería"
-              className="absolute top-3 right-3 z-10 bg-white text-[var(--color-three)] rounded-full p-2 shadow-lg hover:scale-105 transition-all duration-200"
-            >
-              <MdClose size={22} />
-            </button>
-
-            {/* Navigation Buttons */}
-            {selectedImages.length > 1 && (
-              <>
-                <button
-                  onClick={prevImage}
-                  className="absolute left-4 top-1/2 transform -translate-y-1/2 z-10 bg-white bg-opacity-20 hover:bg-opacity-30 rounded-full p-3 transition-all duration-300"
-                >
-                  <MdArrowBackIos size={24} className="text-white" />
-                </button>
-                <button
-                  onClick={nextImage}
-                  className="absolute right-4 top-1/2 transform -translate-y-1/2 z-10 bg-white bg-opacity-20 hover:bg-opacity-30 rounded-full p-3 transition-all duration-300"
-                >
-                  <MdArrowForwardIos size={24} className="text-white" />
-                </button>
-              </>
-            )}
-
-            {/* Main Image */}
-            <img
-              src={selectedImages[currentImageIndex]}
-              alt="Avance de obra"
-              onError={(e) => (e.currentTarget.src = PLACEHOLDER_IMAGE)}
-              className="max-w-full max-h-full object-contain rounded-lg bg-gray-900"
-            />
-
-            {/* Image Counter */}
-            {selectedImages.length > 1 && (
-              <div className="absolute bottom-4 left-1/2 transform -translate-x-1/2 bg-black bg-opacity-50 text-white px-4 py-2 rounded-full">
-                {currentImageIndex + 1} / {selectedImages.length}
-              </div>
-            )}
-          </div>
-        </div>
-      )}
+      <ModalGallery
+        selectedImages={selectedImages}
+        currentImageIndex={currentImageIndex}
+        onClose={closeImageGallery}
+        onPrevImage={prevImage}
+        onNextImage={nextImage}
+        placeholderImage={PLACEHOLDER_IMAGE}
+      />
     </>
   )
 }

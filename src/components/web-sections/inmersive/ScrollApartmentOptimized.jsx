@@ -229,7 +229,6 @@ const ScrollApartmentOptimized = ({
         }
       })
 
-      // Animar elementos de texto al inicio
       gsap.fromTo(
         '.scroll-text',
         {

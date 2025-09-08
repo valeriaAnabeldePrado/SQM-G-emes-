@@ -223,9 +223,6 @@ const Roadmap = () => {
                         <h6 className="text-sm font-semibold text-[var(--color-three)] mb-0 line-clamp-2">
                           {milestone.title}
                         </h6>
-                        <span className="text-xs text-[var(--color-three)] opacity-70">
-                          {milestone.date}
-                        </span>
                       </div>
                     </div>
                   ))}
@@ -256,9 +253,6 @@ const Roadmap = () => {
                         <h6 className="text-sm font-semibold text-[var(--color-three)]">
                           {milestone.title}
                         </h6>
-                        <span className="text-xs text-[var(--color-three)] opacity-70">
-                          {milestone.date}
-                        </span>
                       </div>
                     </div>
                   ))}
@@ -284,9 +278,6 @@ const Roadmap = () => {
                       <h4 className="text-(length:--text-subtitleS) font-bold text-[var(--color-three)]">
                         {milestone.title}
                       </h4>
-                      <span className="text-(length:--text-menu-sub) text-[var(--color-one)] font-medium">
-                        {milestone.date}
-                      </span>
                     </div>
                   </div>
 

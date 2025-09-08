@@ -752,7 +752,7 @@
     "area": "32,75m²",
     "description": "Oficina en el cuarto piso con espacio descubierto.",
     "features": ["Planta libre", "Espacio descubierto de 33,00m²"],
-    "floorPlan": "/planos/4/oficinaD.png",
+    "floorPlan": "/planos/4/ofi-terraza.png",
     "copy": "Una oficina que rompe con lo convencional. Ubicada en el cuarto piso, ofrece una planta libre y un espectacular espacio descubierto de 33m², ideal para reuniones al aire libre o como zona de esparcimiento para tu equipo. Innovación y bienestar para tu empresa."
   }
 }

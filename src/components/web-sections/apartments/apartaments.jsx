@@ -1,4 +1,3 @@
-import React from 'react'
 import PlanoEdificio from '../../../assets/Corte'
 import { Card } from '../home/components/card'
 import { useState } from 'react'
@@ -63,13 +62,13 @@ const Apartaments = () => {
 
   // Función para obtener la letra del apartamento
   const getApartmentLetter = (apartmentId) => {
-  if (!apartmentId) return null
-  const lower = apartmentId.toLowerCase()
-  // detectar tipos especiales que en el SVG se representan por palabras (LOCAL, OFICINA)
-  if (lower.startsWith('local')) return 'LOCAL'
-  if (lower.startsWith('oficina')) return 'OFICINA'
-  const parts = apartmentId.split('_')
-  return parts[1] // apartment_A_P5 -> A
+    if (!apartmentId) return null
+    const lower = apartmentId.toLowerCase()
+    // detectar tipos especiales que en el SVG se representan por palabras (LOCAL, OFICINA)
+    if (lower.startsWith('local')) return 'LOCAL'
+    if (lower.startsWith('oficina')) return 'OFICINA'
+    const parts = apartmentId.split('_')
+    return parts[1] // apartment_A_P5 -> A
   }
 
   // Función para generar el mini SVG del apartamento seleccionado
@@ -79,6 +78,9 @@ const Apartaments = () => {
 
     // Obtener información del apartamento desde el JSON
     const apartmentInfo = apartmentData[apartmentId]
+
+    // Detectar si es oficina para no mostrar la descripción
+    const isOffice = apartmentId && apartmentId.toLowerCase().startsWith('oficina')
 
     return (
       <div className="flex items-center gap-3 bg-white/20 rounded-lg p-3">
@@ -104,13 +106,13 @@ const Apartaments = () => {
               fill="#483b2b"
               fontFamily="Arial, sans-serif"
             >
-              {letter}
+              {isOffice ? 'Ofi' : letter}
             </text>
           </svg>
         </div>
         <div>
           <p className="text-xs text-[var(--color-three)]/70">
-            {apartmentInfo?.title || `${apartmentInfo?.type || 'Información disponible'}`}
+            {apartmentInfo?.title || `${apartmentInfo?.type || 'Información disponible'}`}{' '}
           </p>
         </div>
       </div>
@@ -152,6 +154,14 @@ const Apartaments = () => {
       case 'p04-modelTwo':
         return (
           <ModelTwo
+            onEventApartment={handlerApartment}
+            selectedApartment={selectedApartment}
+            selectedFloor={selectedFloor}
+          />
+        )
+      case 'p04-oficina':
+        return (
+          <ModelOficina04
             onEventApartment={handlerApartment}
             selectedApartment={selectedApartment}
             selectedFloor={selectedFloor}

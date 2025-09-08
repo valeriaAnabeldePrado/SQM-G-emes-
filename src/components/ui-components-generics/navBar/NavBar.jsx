@@ -19,7 +19,7 @@ const NavBar = () => {
   const routes = [
     { id: 1, name: '3D inmersivo', path: '/inmersive-apartament' },
     { id: 2, name: 'Departamentos', path: '/apartments' },
-    { id: 3, name: 'Roadmap', path: '/roadmap' },
+    { id: 3, name: 'Avance de Obra', path: '/roadmap' },
     { id: 4, name: 'Galería', path: '#gallery' },
     { id: 5, name: 'Características', path: '/#characte' },
     { id: 6, name: 'Contacto', path: '#contact' }
@@ -28,7 +28,7 @@ const NavBar = () => {
   const routesBurger = [
     { id: 1, name: 'Inicio', path: '/' },
     { id: 2, name: 'Departamentos', path: '/apartments' },
-    { id: 3, name: 'Roadmap', path: '/roadmap' },
+    { id: 3, name: 'Avance de Obra', path: '/roadmap' },
     { id: 4, name: 'Características', path: '/#characte' },
     { id: 5, name: 'Galería', path: '/#gallery' },
     { id: 6, name: 'Contacto', path: '/#contact' },

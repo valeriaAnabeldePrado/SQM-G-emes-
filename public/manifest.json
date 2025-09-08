@@ -1,0 +1,26 @@
+{
+  "name": "VIVRA Güemes - Departamentos de Calidad Superior",
+  "short_name": "VIVRA Güemes",
+  "description": "Departamentos de calidad superior con eficiencia térmica inteligente en Güemes",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#ffffff",
+  "theme_color": "#2563eb",
+  "icons": [
+    {
+      "src": "/favicon.ico",
+      "sizes": "32x32",
+      "type": "image/x-icon"
+    },
+    {
+      "src": "/vivra-logo.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    },
+    {
+      "src": "/vivra-logo.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ]
+}

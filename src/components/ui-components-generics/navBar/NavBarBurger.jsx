@@ -12,7 +12,7 @@ const NavBarBurger = () => {
   const menuItems = [
     { name: 'Inicio', href: '/' },
     { name: 'Departamentos', href: '/apartments' },
-    { name: 'Roadmap', href: '/roadmap' },
+    { name: 'Avance de Obra', href: '/roadmap' },
     { name: 'Características', href: '/#characte' },
     { name: 'Galería', href: '/#gallery' },
     { name: 'Contacto', href: '/#contact' },

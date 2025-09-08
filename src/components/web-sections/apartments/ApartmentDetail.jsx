@@ -26,24 +26,24 @@ const ApartmentDetail = () => {
 
   // Función para obtener la letra del apartamento
   const getApartmentLetter = (apartmentId) => {
-  if (!apartmentId) return null
-  const lower = apartmentId.toLowerCase()
-  if (lower.startsWith('local')) return 'LOCAL'
-  if (lower.startsWith('oficina')) return 'OFICINA'
-  const parts = apartmentId.split('_')
-  return parts[1] // apartment_A_P5 -> A
+    if (!apartmentId) return null
+    const lower = apartmentId.toLowerCase()
+    if (lower.startsWith('local')) return 'LOCAL'
+    if (lower.startsWith('oficina')) return 'OFICINA'
+    const parts = apartmentId.split('_')
+    return parts[1] // apartment_A_P5 -> A
   }
 
   // Función para obtener el número de piso del apartmentId
   const getFloorNumber = (apartmentId) => {
-  if (!apartmentId) return null
-  const parts = apartmentId.split('_')
-  const floorPart = parts[2] // apartment_A_P5 -> P5
-  if (!floorPart) return null
-  // soportar casos como P00 o PB o nombres sin P
-  const match = floorPart.match(/P(\d+)/i)
-  if (match) return parseInt(match[1], 10)
-  return null
+    if (!apartmentId) return null
+    const parts = apartmentId.split('_')
+    const floorPart = parts[2] // apartment_A_P5 -> P5
+    if (!floorPart) return null
+    // soportar casos como P00 o PB o nombres sin P
+    const match = floorPart.match(/P(\d+)/i)
+    if (match) return parseInt(match[1], 10)
+    return null
   }
 
   // Función para determinar qué layout usar según el piso
@@ -740,7 +740,7 @@ const ApartmentDetail = () => {
             Volver a apartamentos
           </Button>
         </div>
-  <SectionFooter />
+        <SectionFooter />
       </>
     )
   }

@@ -1,6 +1,7 @@
 import { Suspense, useState, useEffect, useRef } from 'react'
 import { Canvas, useThree } from '@react-three/fiber'
 import { OrbitControls, useGLTF, Stats, Html, Environment, Sky } from '@react-three/drei'
+import * as THREE from 'three'
 
 import gsap from 'gsap'
 import { HOTSPOTS } from '../data'
@@ -77,10 +78,9 @@ function WebGLContextHandler({ children }) {
 }
 
 // Componente simple para cargar el modelo 3D
-function Model3D({ position = [0, 0, 0], scale = 1 }) {
-  const { scene } = useGLTF('/d.glb')
+function Model3D({ position = [0, -1.3, 0] }) {
+  const { scene } = useGLTF('/ABC.glb')
 
-  // OPTIMIZACIONES DE PERFORMANCE EN TIEMPO DE EJECUCIÓN
   if (scene) {
     scene.traverse((child) => {
       if (child.isMesh) {
@@ -112,7 +112,57 @@ function Model3D({ position = [0, 0, 0], scale = 1 }) {
     })
   }
 
-  return <primitive object={scene} position={position} scale={scale} />
+  return <primitive object={scene} position={position} />
+}
+
+function ModelEdificio({ position = [0, -1.3, 0] }) {
+  const { scene } = useGLTF('/s.glb')
+
+  if (scene) {
+    scene.traverse((child) => {
+      if (child.isMesh) {
+        // Optimizaciones básicas de rendimiento
+        child.castShadow = false
+        child.receiveShadow = false
+        child.frustumCulled = true
+
+        // Simplificar materiales pesados
+        if (child.material) {
+          const materials = Array.isArray(child.material) ? child.material : [child.material]
+
+          materials.forEach((mat) => {
+            if (mat) {
+              // FlatShading para mejor performance
+              mat.flatShading = true
+              mat.needsUpdate = true
+
+              // Remover transparencias innecesarias
+              if (mat.transparent && mat.opacity >= 0.99) {
+                mat.transparent = false
+              }
+
+              // Simplificar materiales muy complejos
+              if (mat.normalMap || mat.roughnessMap || mat.metalnessMap) {
+                // Limpiar texturas pesadas en meshes densos
+                if (child.geometry?.attributes?.position?.count > 30000) {
+                  if (mat.normalMap) {
+                    if (mat.normalMap.dispose) mat.normalMap.dispose()
+                    mat.normalMap = null
+                  }
+                  if (mat.roughnessMap) {
+                    if (mat.roughnessMap.dispose) mat.roughnessMap.dispose()
+                    mat.roughnessMap = null
+                  }
+                }
+              }
+            }
+          })
+        }
+      }
+    })
+  }
+
+  return <primitive position={position} object={scene} />
 }
 
 // Componente de loading personalizado
@@ -1004,6 +1054,7 @@ export default function Edificio() {
       >
         <WebGLContextHandler>
           <Sky />
+          <Stats />
           {/* Iluminación estándar */}
           <ambientLight intensity={0.5} />
           <directionalLight position={[10, 10, 5]} intensity={1} />
@@ -1030,46 +1081,12 @@ export default function Edificio() {
             zoomSpeed={0.6}
           />
 
-          {/* Suelo realista tipo cemento */}
-          <mesh position={[0, -0.1, 0]} rotation={[-Math.PI / 2, 0, 0]}>
-            <planeGeometry args={[100, 100]} />
-            <meshStandardMaterial
-              color="#6B6B6B"
-              roughness={0.9}
-              metalness={0.1}
-              normalScale={[0.5, 0.5]}
-            />
-          </mesh>
-
-          {/* Líneas de pavimento para dar realismo */}
-          <group>
-            {/* Líneas horizontales */}
-            {Array.from({ length: 10 }, (_, i) => (
-              <mesh
-                key={`h-${i}`}
-                position={[0, -0.09, (i - 5) * 10]}
-                rotation={[-Math.PI / 2, 0, 0]}
-              >
-                <planeGeometry args={[100, 0.2]} />
-                <meshStandardMaterial color="#555555" />
-              </mesh>
-            ))}
-            {/* Líneas verticales */}
-            {Array.from({ length: 10 }, (_, i) => (
-              <mesh
-                key={`v-${i}`}
-                position={[(i - 5) * 10, -0.09, 0]}
-                rotation={[-Math.PI / 2, 0, Math.PI / 2]}
-              >
-                <planeGeometry args={[100, 0.2]} />
-                <meshStandardMaterial color="#555555" />
-              </mesh>
-            ))}
-          </group>
-
           {/* Modelo 3D seleccionado */}
           <Suspense fallback={<LoadingComponent />}>
-            <Model3D modelPath={'/a/c.glb'} position={[0, 0, 0]} scale={1} />
+            <ModelEdificio />
+          </Suspense>
+          <Suspense fallback={<LoadingComponent />}>
+            <Model3D />
           </Suspense>
 
           <Hotspots onHotspotClick={handleHotspotClick} />

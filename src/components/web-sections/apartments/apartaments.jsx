@@ -1,12 +1,9 @@
 import { Card } from '../home/components/card'
 import { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
-import ModelFourFive from '../../../assets/floors/ModelFourFive'
-import ModelFour from '../../../assets/floors/ModelFour'
-import ModelFive from '../../../assets/floors/ModelFive'
 import ModelSix from '../../../assets/floors/ModelSix'
 import ModelSeven from '../../../assets/floors/ModelSeven'
-import ModelPb from '../../../assets/floors/modelPb'
+import ModelpbDptos from '../../../assets/floors/modelPb'
 import ModelTwelve from '../../../assets/floors/ModelTwelve'
 import ModelThirteen from '../../../assets/floors/ModelThirteen'
 import Button from '../home/components/button'
@@ -14,8 +11,12 @@ import { MdOutlineArrowOutward } from 'react-icons/md'
 import apartmentData from './utils/apartmentData.json'
 import CorteNew from '../../../assets/CorteNew'
 import './apartmentAnimate.css'
-import ModelTwo from '../../../assets/floors/ModelTwo'
 import SectionFooter from '../home/section-footer'
+import ModelOneTwoThreeFourFive from '../../../assets/floors/ModeloneFive'
+import ModelpbOficinas from '../../../assets/floors/ModelpbOficinas'
+import ModelPOneOfi from '../../../assets/floors/ModelPOneOfi'
+import ModelPTwoOfi from '../../../assets/floors/ModelPdosOfi'
+import ModelPTreeOfi from '../../../assets/floors/ModelPTresOfi'
 
 const Apartaments = () => {
   const [selectedFloor, setSelectedFloor] = useState(null)
@@ -65,7 +66,7 @@ const Apartaments = () => {
         <div className="w-12 h-12 flex items-center justify-center">{letter}</div>
         <div>
           <p className="text-xs text-[var(--color-three)]/70">
-            {apartmentInfo?.title || `${apartmentInfo?.type || 'Información disponible'}`}{' '}
+            {apartmentInfo?.title || `${apartmentInfo?.type || 'Información no disponible'}`}{' '}
           </p>
         </div>
       </div>
@@ -76,7 +77,39 @@ const Apartaments = () => {
     switch (selectedFloor) {
       case 'plantaBaja':
         return (
-          <ModelPb
+          <ModelpbDptos
+            onEventApartment={handlerApartment}
+            selectedApartment={selectedApartment}
+            selectedFloor={selectedFloor}
+          />
+        )
+      case 'plantaBajaOficina':
+        return (
+          <ModelpbOficinas
+            onEventApartment={handlerApartment}
+            selectedApartment={selectedApartment}
+            selectedFloor={selectedFloor}
+          />
+        )
+      case 'pisoUnoOficina':
+        return (
+          <ModelPOneOfi
+            onEventApartment={handlerApartment}
+            selectedApartment={selectedApartment}
+            selectedFloor={selectedFloor}
+          />
+        )
+      case 'pisoDosOficina':
+        return (
+          <ModelPTwoOfi
+            onEventApartment={handlerApartment}
+            selectedApartment={selectedApartment}
+            selectedFloor={selectedFloor}
+          />
+        )
+      case 'pisoTresOficina':
+        return (
+          <ModelPTreeOfi
             onEventApartment={handlerApartment}
             selectedApartment={selectedApartment}
             selectedFloor={selectedFloor}
@@ -115,10 +148,13 @@ const Apartaments = () => {
             selectedFloor={selectedFloor}
           />
         )
+      case 'pisoUno':
+      case 'pisoDos':
+      case 'pisoTres':
       case 'pisoCuatro':
       case 'pisoCinco':
         return (
-          <ModelFourFive
+          <ModelOneTwoThreeFourFive
             onEventApartment={handlerApartment}
             selectedApartment={selectedApartment}
             selectedFloor={selectedFloor}
@@ -186,6 +222,55 @@ const Apartaments = () => {
         return null
     }
   }
+  const selectedOk = () => {
+    switch (selectedFloor) {
+      case 'plantaBajaOficina':
+        return 'Planta baja Oficina'
+      case 'pisoUnoOficina':
+        return 'Piso uno Oficina'
+      case 'pisoDosOficina':
+        return 'Piso dos Oficina'
+      case 'pisoTresOficina':
+        return 'Piso tres Oficina'
+      case 'plantaBaja':
+        return 'Planta baja Departamentos'
+      case 'pisoUno':
+        return 'Piso uno'
+      case 'pisoDos':
+        return 'Piso dos'
+      case 'pisoTres':
+        return 'Piso tres'
+      case 'pisoCuatro':
+        return 'Piso cuatro'
+      case 'pisoCinco':
+        return 'Piso cinco'
+      case 'pisoSeis':
+        return 'Piso seis'
+      case 'pisoSiete':
+        return 'Piso siete'
+      case 'pisoOcho':
+        return 'Piso ocho'
+      case 'pisoNueve':
+        return 'Piso nueve'
+      case 'pisoDiez':
+        return 'Piso diez'
+      case 'pisoOnce':
+        return 'Piso once'
+      case 'pisoDoce':
+        return 'Piso doce'
+      case 'pisoTrece':
+        return 'Piso trece'
+      case 'pisoCatorce':
+        return 'Piso catorce'
+      case 'pisoQuince':
+        return 'Piso quince'
+      case 'pisoDieciseis':
+        return 'Piso dieciseis'
+      default:
+        return null
+    }
+  }
+  let selectedFloorOnly = selectedOk()
   return (
     <>
       <div className=" custom-container mt-14 px-4 " onClick={handleContainerClick}>
@@ -262,25 +347,23 @@ const Apartaments = () => {
                            shadow-2xl backdrop-blur-sm
                           "
               >
-                <div className="flex-1  w-full rounded-t-2xl ">
+                <div className="flex-1  w-full rounded-t-2xl overflow-hidden ">
                   {renderFloorComponent(selectedFloor)}
                 </div>
 
                 <div className="flex w-full justify-evenly flex-col items-stretch gap-4 lg:gap-6 py-4 lg:py-6 ">
                   <div className="flex-1 space-y-3">
-                    <p className="text-sm lg:text-base text-[var(--color-three)] font-medium">
+                    <p
+                      key={selectedFloor}
+                      className="floorTextAnimate text-[var(--color-one)] font-semibold text-lg bg-white/20 rounded-lg p-3 border border-white/30 backdrop-blur-sm"
+                    >
+                      {selectedFloorOnly}
+                    </p>
+                    <p className="text-sm lg:text-lg text-[var(--color-three)] ml-1">
                       Selecciona un departamento para ver más detalles y acceder a los planos
                       completos.
                     </p>
-                    {selectedApartment ? (
-                      renderApartmentPreview(selectedApartment)
-                    ) : (
-                      <div className="bg-white/20 rounded-lg p-3 border border-white/30 backdrop-blur-sm">
-                        <p className="text-xs lg:text-sm text-[var(--color-three)]/70 italic">
-                          Ningún departamento seleccionado
-                        </p>
-                      </div>
-                    )}
+                    {selectedApartment ? renderApartmentPreview(selectedApartment) : ''}
                   </div>
 
                   <div className="flex items-end lg:items-center">

@@ -1,13 +1,30 @@
 import React, { useState } from 'react'
 import './models.css'
 
-const ModelFourFive = ({
+const ModelOneTwoThreeFourFive = ({
   onEventApartment,
   selectedApartment,
   selectedLetter,
-  selectedFloor = 'pisoCuatro' | 'pisoCinco'
+  selectedFloor = 'pisoUno' | 'pisoDos' | 'pisoTres' | 'pisoCuatro' | 'pisoCinco' 
 }) => {
-  const floorNumber = selectedFloor === 'pisoCuatro' ? '4' : '5'
+  const getFloorNumber = (floor) => {
+    switch (floor) {
+      case 'pisoUno':
+        return '1'
+      case 'pisoDos':
+        return '2'
+      case 'pisoTres':
+        return '3'
+      case 'pisoCuatro':
+        return '4'
+      case 'pisoCinco':
+        return '5'
+      default:
+        return '1'
+    }
+  }
+
+  const floorNumber = getFloorNumber(selectedFloor)
 
   const [hoveredApartment, setHoveredApartment] = useState(null)
 
@@ -56,6 +73,7 @@ const ModelFourFive = ({
       <img
         src="/planos/pisoCuatroCinco/piso-cuatro-cinco.png"
         alt="Planta del piso"
+        className="rotateMobile"
         style={{
           position: 'absolute',
           top: 0,
@@ -73,6 +91,7 @@ const ModelFourFive = ({
       />
 
       <div
+        className="rotateMobile esquemasMobile"
         style={{
           position: 'absolute',
           top: '50%',
@@ -230,4 +249,4 @@ const ModelFourFive = ({
   )
 }
 
-export default ModelFourFive
+export default ModelOneTwoThreeFourFive

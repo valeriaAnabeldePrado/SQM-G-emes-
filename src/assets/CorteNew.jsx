@@ -3336,6 +3336,16 @@ const PlanoEdificioNuevo = ({ onEvent, selectedFloor }) => (
             fill={selectedFloor === 'plantaBaja' ? '#ffc46a' : 'transparent'}
             style={{ cursor: 'pointer', transition: 'fill 600ms' }}
           />
+        </g>
+        <g
+          id="PB-PLANTA-OFICINA"
+          data-name="PB-PLANTA-OFICINA"
+          className={`floor-hover ${selectedFloor === 'plantaBajaOficina' ? 'floor-selected' : ''}`}
+          onClick={(e) => {
+            e.stopPropagation()
+            onEvent('plantaBajaOficina')
+          }}
+        >
           <rect
             id="PB-Oficina"
             data-name="PB-Oficina"
@@ -3349,11 +3359,10 @@ const PlanoEdificioNuevo = ({ onEvent, selectedFloor }) => (
             style={{
               cursor: 'pointer',
               transition: 'fill 600ms',
-              fill: selectedFloor === 'plantaBaja' ? '#ffc46a' : 'transparent'
+              fill: selectedFloor === 'plantaBajaOficina' ? '#ffc46a' : 'transparent'
             }}
           />
         </g>
-
         <g
           id="PLANTA-UNO"
           data-name="PLANTA-UNO"
@@ -3385,6 +3394,16 @@ const PlanoEdificioNuevo = ({ onEvent, selectedFloor }) => (
             rx="8.38"
             ry="8.38"
           />
+        </g>
+        <g
+          id="PLANTA-UNO-OFICINA"
+          data-name="PLANTA-UNO-OFICINA"
+          className={`pisoUno floor-hover ${selectedFloor === 'pisoUnoOficina' ? 'floor-selected' : ''}`}
+          onClick={(e) => {
+            e.stopPropagation()
+            onEvent('pisoUnoOficina')
+          }}
+        >
           <rect
             id="P1-Oficina"
             data-name="P1-Oficina"
@@ -3398,7 +3417,7 @@ const PlanoEdificioNuevo = ({ onEvent, selectedFloor }) => (
             style={{
               cursor: 'pointer',
               transition: 'fill 600ms',
-              fill: selectedFloor === 'pisoUno' ? '#ffc46a' : 'transparent'
+              fill: selectedFloor === 'pUnoOficina' ? '#ffc46a' : 'transparent'
             }}
           />
         </g>
@@ -3433,6 +3452,16 @@ const PlanoEdificioNuevo = ({ onEvent, selectedFloor }) => (
             rx="8.38"
             ry="8.38"
           />
+        </g>
+        <g
+          id="PLANTA-DOS-OFICINA"
+          data-name="PLANTA-DOS-OFICINA"
+          className={`pisoDosOficina floor-hover ${selectedFloor === 'pisoDosOficina' ? 'floor-selected' : ''}`}
+          onClick={(e) => {
+            e.stopPropagation()
+            onEvent('pisoDosOficina')
+          }}
+        >
           <rect
             id="P2-Oficina"
             data-name="P2-Oficina"
@@ -3446,7 +3475,7 @@ const PlanoEdificioNuevo = ({ onEvent, selectedFloor }) => (
             style={{
               cursor: 'pointer',
               transition: 'fill 600ms',
-              fill: selectedFloor === 'pisoDos' ? '#ffc46a' : 'transparent'
+              fill: selectedFloor === 'pisoDosOficina' ? '#ffc46a' : 'transparent'
             }}
           />
         </g>
@@ -3481,6 +3510,16 @@ const PlanoEdificioNuevo = ({ onEvent, selectedFloor }) => (
             rx="8.38"
             ry="8.38"
           />
+        </g>
+        <g
+          id="PLANTA-TRES-OFICINA"
+          data-name="PLANTA-TRES-OFICINA"
+          className={`pisoTresOficina floor-hover ${selectedFloor === 'pisoTresOficina' ? 'floor-selected' : ''}`}
+          onClick={(e) => {
+            e.stopPropagation()
+            onEvent('pisoTresOficina')
+          }}
+        >
           <rect
             id="P3-Oficina"
             data-name="P3-Oficina"
@@ -3494,7 +3533,7 @@ const PlanoEdificioNuevo = ({ onEvent, selectedFloor }) => (
             style={{
               cursor: 'pointer',
               transition: 'fill 600ms',
-              fill: selectedFloor === 'pisoTres' ? '#ffc46a' : 'transparent'
+              fill: selectedFloor === 'pisoTresOficina' ? '#ffc46a' : 'transparent'
             }}
           />
         </g>

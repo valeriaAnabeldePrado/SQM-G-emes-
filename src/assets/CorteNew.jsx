@@ -3,7 +3,7 @@ import React from 'react'
 const PlanoEdificioNuevo = ({ onEvent, selectedFloor }) => (
   <div style={{ width: '100%', height: 'auto' }}>
     <style>{`
-          .plantaBaja, .pTresOficina, .pDosOficina, .pUnoOficina, .pbOficina, .pisoUno, .pisoDos, .pisoTres, .pisoCuatro, .pisoCinco, .pisoSeis, .pisoSiete, .pisoOcho, .pisoNueve, .pisoDiez, .pisoOnce, .pisoDoce, .pisoTrece, .pisoDuplexCatorceQuinceAbc, .pisoDuplexCatorceQuinceDe, .pisoDieciseis {
+          .plantaBaja, .pTresOficina, .pDosOficina, .pUnoOficina, .pbOficina, .pisoUno, .pisoDos, .pisoTres, .pisoCuatro, .pisoCinco, .pisoSeis, .pisoSiete, .pisoOcho, .pisoNueve, .pisoDiez, .pisoOnce, .pisoDoce, .pisoTrece, .pisoDuplexCatorceQuinceAbc, .pisoDuplexCatorceQuinceDe, .pisoCatorceAbc, .pisoCatorceDe, .pisoQuinceAbc, .pisoQuinceDe, .pisoDieciseis {
             fill: transparent;
             transition: fill 600ms;
             cursor: pointer;
@@ -3858,18 +3858,18 @@ const PlanoEdificioNuevo = ({ onEvent, selectedFloor }) => (
           />
         </g>
         <g
-          id="PLANTA-DUPLEX-CATORCE-QUINCE-ABC"
-          data-name="PLANTA-DUPLEX-CATORCE-QUINCE-ABC"
-          className={`pisoDuplexCatorceQuinceAbc floor-hover ${selectedFloor === 'pisoDuplexCatorceQuinceAbc' ? 'floor-selected' : ''}`}
+          id="PLANTA-PISO-CATORCE-ABCDE"
+          data-name="PLANTA-PISO-CATORCE-ABCDE"
+          className={`pisoCatorceAbc floor-hover ${selectedFloor === 'pisoCatorceAbc' ? 'floor-selected' : ''}`}
           onClick={(e) => {
             e.stopPropagation()
-            onEvent('pisoDuplexCatorceQuinceAbc')
+            onEvent('pisoCatorceAbc')
           }}
         >
           <rect
-            id="PISO-DUPLEX-A-B-C-KITCHEN"
-            data-name="PISO-DUPLEX-A-B-C-KITCHEN"
-            className="pisoDuplexCatorceQuinceAbc-kitchen"
+            id="PISO-CATORCE-A-B-C-KITCHEN"
+            data-name="PISO-CATORCE-A-B-C-KITCHEN"
+            className="pisoCatorceAbc-kitchen"
             x="732.63"
             y="260.12"
             width="173.09"
@@ -3878,30 +3878,9 @@ const PlanoEdificioNuevo = ({ onEvent, selectedFloor }) => (
             ry="8.38"
           />
           <rect
-            id="PISO-DUPLEX-A-B-C-ROOMS"
-            data-name="PISO-DUPLEX-A-B-C-ROOMS"
-            className="pisoDuplexCatorceQuinceAbc-rooms"
-            x="732.63"
-            y="196.49"
-            width="173.09"
-            height="48.81"
-            rx="8.38"
-            ry="8.38"
-          />
-        </g>
-        <g
-          id="PLANTA-DUPLEX-CATORCE-QUINCE-DE"
-          data-name="PLANTA-DUPLEX-CATORCE-QUINCE-DE"
-          className={`pisoDuplexCatorceQuinceDe floor-hover ${selectedFloor === 'pisoDuplexCatorceQuinceDe' ? 'floor-selected' : ''}`}
-          onClick={(e) => {
-            e.stopPropagation()
-            onEvent('pisoDuplexCatorceQuinceDe')
-          }}
-        >
-          <rect
-            id="PISO-DUPLEX-D-E-KITCHEN"
-            data-name="PISO-DUPLEX-D-E-KITCHEN"
-            className="pisoDuplexCatorceQuinceDe-kitchen"
+            id="PISO-CATORCE-D-E-KITCHEN"
+            data-name="PISO-CATORCE-D-E-KITCHEN"
+            className="pisoCatorceDe-kitchen"
             x="520.49"
             y="259.01"
             width="128.28"
@@ -3909,10 +3888,32 @@ const PlanoEdificioNuevo = ({ onEvent, selectedFloor }) => (
             rx="8.38"
             ry="8.38"
           />
+        </g>
+
+        <g
+          id="PLANTA-PISO-QUINCE-ABCDE"
+          data-name="PLANTA-PISO-QUINCE-ABCDE"
+          className={`pisoQuinceAbc floor-hover ${selectedFloor === 'pisoQuinceAbc' ? 'floor-selected' : ''}`}
+          onClick={(e) => {
+            e.stopPropagation()
+            onEvent('pisoQuinceAbc')
+          }}
+        >
           <rect
-            id="PISO-DUPLEX-D-E-ROOMS"
-            data-name="PISO-DUPLEX-D-E-ROOMS"
-            className="pisoDuplexCatorceQuinceDe-rooms"
+            id="PISO-QUINCE-A-B-C-ROOMS"
+            data-name="PISO-QUINCE-A-B-C-ROOMS"
+            className="pisoQuinceAbc-rooms"
+            x="732.63"
+            y="196.49"
+            width="173.09"
+            height="48.81"
+            rx="8.38"
+            ry="8.38"
+          />
+          <rect
+            id="PISO-QUINCE-D-E-ROOMS"
+            data-name="PISO-QUINCE-D-E-ROOMS"
+            className="pisoQuinceDe-rooms"
             x="520.49"
             y="195.37"
             width="128.28"
@@ -3921,6 +3922,7 @@ const PlanoEdificioNuevo = ({ onEvent, selectedFloor }) => (
             ry="8.38"
           />
         </g>
+
         <g
           id="PLANTA-DIECISEIS"
           data-name="PLANTA-DIECISEIS"

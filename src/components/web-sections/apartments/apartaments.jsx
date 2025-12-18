@@ -1,11 +1,8 @@
 import { Card } from '../home/components/card'
 import { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
-import ModelSix from '../../../assets/floors/ModelSix'
-import ModelSeven from '../../../assets/floors/ModelSeven'
+
 import ModelpbDptos from '../../../assets/floors/modelPb'
-import ModelTwelve from '../../../assets/floors/ModelTwelve'
-import ModelThirteen from '../../../assets/floors/ModelThirteen'
 import Button from '../home/components/button'
 import { MdOutlineArrowOutward } from 'react-icons/md'
 import apartmentData from './utils/apartmentData.json'
@@ -17,6 +14,11 @@ import ModelpbOficinas from '../../../assets/floors/ModelpbOficinas'
 import ModelPOneOfi from '../../../assets/floors/ModelPOneOfi'
 import ModelPTwoOfi from '../../../assets/floors/ModelPdosOfi'
 import ModelPTreeOfi from '../../../assets/floors/ModelPTresOfi'
+import ModelPSix from '../../../assets/floors/ModelPSix'
+import ModelPSevenTen from '../../../assets/floors/ModelPSevenTen'
+import ModelElevenThirteen from '../../../assets/floors/ModelElevenThirteen'
+import ModelFourTeen from '../../../assets/floors/ModelFourTeen'
+import ModelFiveTeen from '../../../assets/floors/ModelFiveTeen'
 
 const Apartaments = () => {
   const [selectedFloor, setSelectedFloor] = useState(null)
@@ -63,7 +65,7 @@ const Apartaments = () => {
     const apartmentInfo = apartmentData[apartmentId]
     return (
       <div className="flex items-center gap-3 bg-white/20 rounded-lg p-3">
-        <div className="w-12 h-12 flex items-center justify-center">{letter}</div>
+        <div className="w-12 h-4 flex items-center justify-center">{letter}</div>
         <div>
           <p className="text-xs text-[var(--color-three)]/70">
             {apartmentInfo?.title || `${apartmentInfo?.type || 'Información no disponible'}`}{' '}
@@ -115,39 +117,6 @@ const Apartaments = () => {
             selectedFloor={selectedFloor}
           />
         )
-      case 'p01-modelOne':
-      case 'p02-modelOne':
-        return (
-          <ModelTwelve
-            onEventApartment={handlerApartment}
-            selectedApartment={selectedApartment}
-            selectedFloor={selectedFloor}
-          />
-        )
-      case 'p03-modelOne':
-        return (
-          <ModelThirteen
-            onEventApartment={handlerApartment}
-            selectedApartment={selectedApartment}
-            selectedFloor={selectedFloor}
-          />
-        )
-      case 'p04-modelTwo':
-        return (
-          <ModelTwo
-            onEventApartment={handlerApartment}
-            selectedApartment={selectedApartment}
-            selectedFloor={selectedFloor}
-          />
-        )
-      case 'p04-oficina':
-        return (
-          <ModelOficina04
-            onEventApartment={handlerApartment}
-            selectedApartment={selectedApartment}
-            selectedFloor={selectedFloor}
-          />
-        )
       case 'pisoUno':
       case 'pisoDos':
       case 'pisoTres':
@@ -163,7 +132,7 @@ const Apartaments = () => {
         )
       case 'pisoSeis':
         return (
-          <ModelFourFive
+          <ModelPSix
             onEventApartment={handlerApartment}
             selectedApartment={selectedApartment}
             selectedFloor={selectedFloor}
@@ -175,7 +144,7 @@ const Apartaments = () => {
       case 'pisoNueve':
       case 'pisoDiez':
         return (
-          <ModelFour
+          <ModelPSevenTen
             onEventApartment={handlerApartment}
             selectedApartment={selectedApartment}
             selectedFloor={selectedFloor}
@@ -186,7 +155,7 @@ const Apartaments = () => {
       case 'pisoDoce':
       case 'pisoTrece':
         return (
-          <ModelFive
+          <ModelElevenThirteen
             onEventApartment={handlerApartment}
             selectedApartment={selectedApartment}
             selectedFloor={selectedFloor}
@@ -194,7 +163,7 @@ const Apartaments = () => {
         )
       case 'pisoCatorce':
         return (
-          <ModelFive
+          <ModelFourTeen
             onEventApartment={handlerApartment}
             selectedApartment={selectedApartment}
             selectedFloor={selectedFloor}
@@ -203,7 +172,7 @@ const Apartaments = () => {
 
       case 'pisoQuince':
         return (
-          <ModelSix
+          <ModelFiveTeen
             onEventApartment={handlerApartment}
             selectedApartment={selectedApartment}
             selectedFloor={selectedFloor}

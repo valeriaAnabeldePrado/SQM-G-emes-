@@ -695,6 +695,38 @@
     "floorPlan": "/planos/13/B.png",
     "copy": "Vive en tu propio oasis en las alturas. Este exclusivo estudio-loft en el piso 13 cuenta con una impresionante terraza privada de más de 31m². Un espacio exterior inmenso que te invita a disfrutar del sol y las estrellas, combinado con un interior moderno y funcional."
   },
+  "apartment_C_P13": {
+    "id": "apartment_C_P13",
+    "title": "Departamento C - Piso 13",
+    "type": "3 Ambientes",
+    "area": "36,08m²",
+    "description": "Espectacular departamento de 3 ambientes en el piso 13 con amplia terraza.",
+    "features": [
+      "2 Dormitorios",
+      "Baño completo",
+      "Cocina",
+      "Living-comedor",
+      "Terraza de 31,52m²"
+    ],
+    "floorPlan": "/planos/13/B.png",
+    "copy": "Vive en tu propio oasis en las alturas. Este exclusivo estudio-loft en el piso 13 cuenta con una impresionante terraza privada de más de 31m². Un espacio exterior inmenso que te invita a disfrutar del sol y las estrellas, combinado con un interior moderno y funcional."
+  },
+  "apartment_D_P13": {
+    "id": "apartment_D_P13",
+    "title": "Departamento D - Piso 13",
+    "type": "3 Ambientes",
+    "area": "36,08m²",
+    "description": "Espectacular departamento de 3 ambientes en el piso 13 con amplia terraza.",
+    "features": [
+      "2 Dormitorios",
+      "Baño completo",
+      "Cocina",
+      "Living-comedor",
+      "Terraza de 31,52m²"
+    ],
+    "floorPlan": "/planos/13/B.png",
+    "copy": "Vive en tu propio oasis en las alturas. Este exclusivo estudio-loft en el piso 13 cuenta con una impresionante terraza privada de más de 31m². Un espacio exterior inmenso que te invita a disfrutar del sol y las estrellas, combinado con un interior moderno y funcional."
+  },
   "quincho_A_P14": {
     "id": "quincho_A_P14",
     "title": "Quincho - Piso 14",

@@ -19,6 +19,7 @@ import ModelPSevenTen from '../../../assets/floors/ModelPSevenTen'
 import ModelElevenThirteen from '../../../assets/floors/ModelElevenThirteen'
 import ModelFourTeen from '../../../assets/floors/ModelFourTeen'
 import ModelFiveTeen from '../../../assets/floors/ModelFiveTeen'
+import ModelSixTeen from '../../../assets/floors/ModelSIxTeen'
 
 const Apartaments = () => {
   const [selectedFloor, setSelectedFloor] = useState(null)
@@ -161,7 +162,7 @@ const Apartaments = () => {
             selectedFloor={selectedFloor}
           />
         )
-      case 'pisoCatorce':
+      case 'pisoCatorceAbc':
         return (
           <ModelFourTeen
             onEventApartment={handlerApartment}
@@ -170,7 +171,7 @@ const Apartaments = () => {
           />
         )
 
-      case 'pisoQuince':
+      case 'pisoQuinceAbc':
         return (
           <ModelFiveTeen
             onEventApartment={handlerApartment}
@@ -181,7 +182,7 @@ const Apartaments = () => {
 
       case 'pisoDieciseis':
         return (
-          <ModelSeven
+          <ModelSixTeen
             onEventApartment={handlerApartment}
             selectedApartment={selectedApartment}
             selectedFloor={selectedFloor}

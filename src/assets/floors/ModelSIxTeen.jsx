@@ -1,15 +1,13 @@
 import React, { useState } from 'react'
 import './models.css'
 
-const ModelFiveTeen = ({ onEventApartment, selectedApartment, selectedLetter }) => {
+const ModelSixTeen = ({ onEventApartment, selectedApartment, selectedLetter }) => {
   const [hoveredApartment, setHoveredApartment] = useState(null)
 
   const apartmentIds = {
-    A: 'apartment_A_P15',
-    B: 'apartment_B_P15',
-    C: 'apartment_C_P15',
-    D: 'apartment_D_P15',
-    E: 'apartment_E_P15'
+    A: 'quincho_A_P16',
+    B: 'quincho_B_P16',
+    C: 'pileta_C_P16'
   }
 
   const isApartmentActive = (apartmentId) => {
@@ -48,7 +46,7 @@ const ModelFiveTeen = ({ onEventApartment, selectedApartment, selectedLetter }) 
       }}
     >
       <img
-        src="/planos/pisoQuince/piso-quince.png"
+        src="/planos/pisoDieciseis/piso-dieciseis.png"
         alt="Planta del piso"
         className="rotateMobile"
         style={{
@@ -71,8 +69,8 @@ const ModelFiveTeen = ({ onEventApartment, selectedApartment, selectedLetter }) 
         className="rotateMobile esquemasMobile"
         style={{
           position: 'absolute',
-          top: '48%',
-          left: '48%',
+          top: '50%',
+          left: '50%',
           transform: 'translate(-50%, -50%)',
           width: '100%',
           height: '100%',
@@ -129,14 +127,17 @@ const ModelFiveTeen = ({ onEventApartment, selectedApartment, selectedLetter }) 
               `}
             </style>
           </defs>
-          <g id="DuplexUltimoPiso" transform="translate(3, 45)">
-            <polygon
+          <g id="pisodieciseis" transform="translate(3, 45)">
+            <rect
               id="pasillo"
               className="pasillo"
-              points="383.35 230.08 383.35 341 289.3 341 289.3 229.9 383.35 230.08"
+              x="280.99"
+              y="58.33"
+              width="97.07"
+              height="270.59"
             />
             <g
-              id="duplexHabitacionA"
+              id="quinchoUno"
               onClick={(e) => {
                 handleClick(apartmentIds.A, e)
                 handleLetterSelected('A', e)
@@ -146,16 +147,16 @@ const ModelFiveTeen = ({ onEventApartment, selectedApartment, selectedLetter }) 
               onMouseLeave={handleHoverLeave}
             >
               <polygon
-                id="duplexHabitacionA-poly"
+                id="quinchoUno-poly"
                 className={`plantasDptos ${isApartmentActive(apartmentIds.A) ? 'plantasDptos-active' : ''}`}
-                points="282.93 229.71 282.93 341 31.11 341 31.11 330.04 0 330.04 0 245.08 31.11 245.08 31.11 229.71 282.93 229.71"
+                points="353.91 142.12 353.91 0 541.53 0 541.53 166.65 387.72 166.65 387.72 142.12 353.91 142.12"
               />
-              <text className="letras" x="140" y="285">
-                A
+              <text className="letras" x="420" y="100" style={{ fontSize: '30px' }}>
+                Quincho A
               </text>
             </g>
             <g
-              id="duplexHabitacionB"
+              id="QuinchoDos"
               onClick={(e) => {
                 handleClick(apartmentIds.B, e)
                 handleLetterSelected('B', e)
@@ -165,16 +166,16 @@ const ModelFiveTeen = ({ onEventApartment, selectedApartment, selectedLetter }) 
               onMouseLeave={handleHoverLeave}
             >
               <polygon
-                id="duplexHabitacionB-poly"
+                id="QuinchoDos-poly"
                 className={`plantasDptos ${isApartmentActive(apartmentIds.B) ? 'plantasDptos-active' : ''}`}
-                points="327.7 133.41 327.7 225.03 31.11 225.03 31.11 212.62 1.16 212.62 1.16 127.66 31.11 127.66 31.11 116.17 282.93 116.17 282.93 133.41 327.7 133.41"
+                points="353.89 337.92 353.89 195.8 387.71 195.8 387.71 171.28 541.52 171.28 541.52 337.92 353.89 337.92"
               />
-              <text className="letras" x="160" y="170">
-                B
+              <text className="letras" x="420" y="280" style={{ fontSize: '30px' }}>
+                Quincho B
               </text>
             </g>
             <g
-              id="duplexHabitacionC"
+              id="Piscina"
               onClick={(e) => {
                 handleClick(apartmentIds.C, e)
                 handleLetterSelected('C', e)
@@ -183,51 +184,22 @@ const ModelFiveTeen = ({ onEventApartment, selectedApartment, selectedLetter }) 
               onMouseEnter={() => handleHover(apartmentIds.C)}
               onMouseLeave={handleHoverLeave}
             >
-              <polygon
-                id="duplexHabitacionC-poly"
+              <rect
+                id="Piscina-2"
                 className={`plantasDptos ${isApartmentActive(apartmentIds.C) ? 'plantasDptos-active' : ''}`}
-                points="282.93 .19 282.93 111.48 31.11 111.48 31.11 98.62 1.17 98.62 1.17 13.66 31.11 13.66 31.11 .19 282.93 .19"
+                width="249.86"
+                height="337.92"
               />
-              <text className="letras" x="140" y="55">
-                C
-              </text>
-            </g>
-            <g
-              id="duplexHabitacionD"
-              onClick={(e) => {
-                handleClick(apartmentIds.D, e)
-                handleLetterSelected('D', e)
-              }}
-              style={{ cursor: 'pointer' }}
-              onMouseEnter={() => handleHover(apartmentIds.D)}
-              onMouseLeave={handleHoverLeave}
-            >
-              <polygon
-                id="duplexHabitacionD-poly"
-                className={`plantasDptos ${isApartmentActive(apartmentIds.D) ? 'plantasDptos-active' : ''}`}
-                points="603.56 10.14 603.56 95.09 576.9 95.09 576.9 237.02 474.6 237.02 474.6 186.05 383.35 186.05 383.35 225.4 333.89 225.4 333.89 133.41 383.35 133.41 383.35 .19 474.6 .19 576.9 0 576.9 10.14 603.56 10.14"
+              <rect
+                id="Piscina-3"
+                className={`plantasDptos ${isApartmentActive(apartmentIds.C) ? 'plantasDptos-active' : ''}`}
+                x="35.26"
+                y="34.86"
+                width="91.53"
+                height="270"
               />
-              <text className="letras" x="490" y="120">
-                D
-              </text>
-            </g>
-            <g
-              id="duplexHabitacionE"
-              onClick={(e) => {
-                handleClick(apartmentIds.E, e)
-                handleLetterSelected('E', e)
-              }}
-              style={{ cursor: 'pointer' }}
-              onMouseEnter={() => handleHover(apartmentIds.E)}
-              onMouseLeave={handleHoverLeave}
-            >
-              <polygon
-                id="duplexHabitacionE-poly"
-                className={`plantasDptos ${isApartmentActive(apartmentIds.E) ? 'plantasDptos-active' : ''}`}
-                points="602.39 246.41 602.39 331.37 576.9 331.37 576.9 341 388.04 341 388.04 192.24 468.41 192.24 468.41 243.2 576.9 243.2 576.9 246.41 602.39 246.41"
-              />
-              <text className="letras" x="495" y="290">
-                E
+              <text className="letras" x="80" y="180" style={{ fontSize: '30px' }}>
+                Piscina
               </text>
             </g>
           </g>
@@ -237,4 +209,4 @@ const ModelFiveTeen = ({ onEventApartment, selectedApartment, selectedLetter }) 
   )
 }
 
-export default ModelFiveTeen
+export default ModelSixTeen

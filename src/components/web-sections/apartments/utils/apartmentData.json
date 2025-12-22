@@ -826,5 +826,170 @@
     "features": ["Planta libre", "Luminosa"],
     "floorPlan": "/planos/0/oficina.png",
     "copy": "Lleva tu negocio a una nueva altura en esta oficina del tercer piso. Sus 61,88m² de planta libre y gran luminosidad crean un ambiente de trabajo óptimo, con la versatilidad necesaria para adaptarse al crecimiento de tu empresa."
+  },
+  "apartment_A_P14": {
+    "id": "apartment_A_P14",
+    "title": "Duplex A - Piso 14",
+    "type": "Duplex 2 Ambientes",
+    "area": "58,50m²",
+    "description": "Exclusivo duplex con distribución en dos plantas. Zona social en nivel inferior y dormitorio privado en nivel superior.",
+    "features": [
+      "Distribución en 2 plantas",
+      "Cocina integrada moderna",
+      "Dormitorio en planta alta",
+      "Vistas panorámicas"
+    ],
+    "floorPlan": "/planos/14/A.png",
+    "copy": "Disfruta de la independencia y el estilo en este duplex único. En el piso 14 encontrarás un amplio estar con cocina integrada, ideal para recibir visitas, mientras que el piso 15 reserva la privacidad de tu dormitorio. Una distribución inteligente que separa tus momentos de descanso de tu vida social."
+  },
+  "apartment_B_P14": {
+    "id": "apartment_B_P14",
+    "title": "Duplex B - Piso 14",
+    "type": "Duplex 2 Ambientes",
+    "area": "52,30m²",
+    "description": "Duplex moderno y funcional. Espacios bien definidos para vivir y descansar con total comodidad.",
+    "features": [
+      "Doble altura",
+      "Balcón aterrazado",
+      "Suite principal arriba",
+      "Toilette en planta baja"
+    ],
+    "floorPlan": "/planos/14/B.png",
+    "copy": "Este duplex redefine el concepto de departamento urbano. Con su diseño en doble altura, ofrece una sensación de amplitud inigualable. La planta baja invita a la convivencia, y la planta alta es tu refugio personal, todo con terminaciones de primera calidad y vistas despejadas."
+  },
+  "apartment_C_P14": {
+    "id": "apartment_C_P14",
+    "title": "Duplex C - Piso 14",
+    "type": "Duplex 2 Ambientes",
+    "area": "55,10m²",
+    "description": "Elegante duplex con excelente iluminación natural. La combinación perfecta entre diseño y funcionalidad.",
+    "features": [
+      "Living comedor amplio",
+      "Cocina americana",
+      "Dormitorio con vestidor",
+      "Baño completo y toilette"
+    ],
+    "floorPlan": "/planos/14/C.png",
+    "copy": "Vive la experiencia de un hogar en dos niveles. Este duplex destaca por su luminosidad y distribución fluida. La planta baja es el corazón del hogar, perfecta para el día a día, conectada por una escalera de diseño hacia la tranquilidad del dormitorio en la planta superior."
+  },
+  "apartment_D_P14": {
+    "id": "apartment_D_P14",
+    "title": "Duplex D - Piso 14",
+    "type": "Duplex 3 Ambientes",
+    "area": "75,40m²",
+    "description": "Espacioso duplex de 3 ambientes. Ideal para quienes buscan más espacio y confort en altura.",
+    "features": [
+      "2 Dormitorios en planta alta",
+      "Amplio living comedor",
+      "Cocina separada",
+      "Balcón corrido"
+    ],
+    "floorPlan": "/planos/14/D.png",
+    "copy": "Un duplex pensado para la familia moderna o para quienes necesitan un espacio extra. Con dos dormitorios en la planta alta, ofrece privacidad y confort. La planta baja se despliega en un generoso living comedor, creando el escenario perfecto para tus mejores momentos."
+  },
+  "apartment_E_P14": {
+    "id": "apartment_E_P14",
+    "title": "Duplex E - Piso 14",
+    "type": "Duplex 2 Ambientes",
+    "area": "60,00m²",
+    "description": "Duplex de diseño vanguardista. Espacios abiertos y conectados que maximizan la luz y las vistas.",
+    "features": [
+      "Diseño tipo loft",
+      "Gran ventanal",
+      "Dormitorio balconeando",
+      "Cocina full equipada"
+    ],
+    "floorPlan": "/planos/14/E.png",
+    "copy": "Para los amantes del diseño, este duplex es la elección ideal. Su estructura abierta y moderna conecta visualmente ambos niveles, llenando de luz cada rincón. Un espacio inspirador donde la arquitectura se pone al servicio de tu estilo de vida."
+  },
+  "apartment_A_P15": {
+    "id": "apartment_A_P15",
+    "title": "Duplex A - Piso 15 (Planta Alta)",
+    "type": "Duplex - Dormitorio",
+    "area": "58,50m² (Total)",
+    "description": "Nivel superior del duplex A. Dormitorio principal con baño en suite y vistas panorámicas.",
+    "features": ["Dormitorio principal", "Baño en suite", "Vestidor", "Vistas a la ciudad"],
+    "floorPlan": "/planos/14/A.png",
+    "copy": "El refugio perfecto para el descanso. La planta alta del duplex A ofrece un dormitorio espacioso y sereno, aislado del área social. Despierta cada mañana con vistas increíbles y disfruta de la privacidad de tu baño en suite."
+  },
+  "apartment_B_P15": {
+    "id": "apartment_B_P15",
+    "title": "Duplex B - Piso 15 (Planta Alta)",
+    "type": "Duplex - Dormitorio",
+    "area": "52,30m² (Total)",
+    "description": "Nivel superior del duplex B. Suite confortable con excelente iluminación.",
+    "features": ["Suite luminosa", "Baño completo", "Espacio para escritorio", "Privacidad total"],
+    "floorPlan": "/planos/14/B.png",
+    "copy": "Tu espacio personal en las alturas. La planta alta del duplex B está diseñada para el confort y la intimidad. Un dormitorio luminoso que invita al relax, complementado con un baño moderno y funcional."
+  },
+  "apartment_C_P15": {
+    "id": "apartment_C_P15",
+    "title": "Duplex C - Piso 15 (Planta Alta)",
+    "type": "Duplex - Dormitorio",
+    "area": "55,10m² (Total)",
+    "description": "Nivel superior del duplex C. Dormitorio principal con diseño acogedor.",
+    "features": ["Dormitorio amplio", "Placard empotrado", "Baño completo", "Ventilación natural"],
+    "floorPlan": "/planos/14/C.png",
+    "copy": "Descanso garantizado en la planta alta del duplex C. Un dormitorio pensado para desconectar, con amplios espacios de guardado y un diseño que prioriza la calidez y el bienestar."
+  },
+  "apartment_D_P15": {
+    "id": "apartment_D_P15",
+    "title": "Duplex D - Piso 15 (Planta Alta)",
+    "type": "Duplex - Dormitorios",
+    "area": "75,40m² (Total)",
+    "description": "Nivel superior del duplex D. Dos dormitorios ideales para familia.",
+    "features": [
+      "2 Dormitorios",
+      "Baño compartido",
+      "Hall de distribución",
+      "Luminosidad en todos los ambientes"
+    ],
+    "floorPlan": "/planos/14/D.png",
+    "copy": "La planta alta del duplex D es el sector familiar por excelencia. Con dos cómodos dormitorios, ofrece el espacio necesario para que cada integrante tenga su lugar, manteniendo la conexión y la armonía del hogar."
+  },
+  "apartment_E_P15": {
+    "id": "apartment_E_P15",
+    "title": "Duplex E - Piso 15 (Planta Alta)",
+    "type": "Duplex - Dormitorio",
+    "area": "60,00m² (Total)",
+    "description": "Nivel superior del duplex E. Dormitorio tipo loft balconeando al estar.",
+    "features": ["Dormitorio abierto", "Balconeo al living", "Baño completo", "Estilo moderno"],
+    "floorPlan": "/planos/14/E.png",
+    "copy": "Vanguardia y estilo en la planta alta del duplex E. El dormitorio balconea sobre el estar, creando una integración visual única y permitiendo disfrutar de la doble altura y la luz natural en todo su esplendor."
+  },
+  "quincho_A_P16": {
+    "id": "quincho_A_P16",
+    "title": "Quincho Norte - Piso 16",
+    "type": "Amenity",
+    "area": "40,00m²",
+    "description": "Espacio de usos múltiples con parrilla y terraza propia.",
+    "features": ["Parrilla completa", "Terraza privada", "Cocina equipada", "Vistas panorámicas"],
+    "floorPlan": "/planos/16/quinchoA.png",
+    "copy": "Celebra tus mejores momentos en el Quincho Norte. Un espacio totalmente equipado con parrilla y cocina, conectado a una terraza privada con vistas inigualables. El lugar ideal para reuniones sociales y eventos familiares."
+  },
+  "quincho_B_P16": {
+    "id": "quincho_B_P16",
+    "title": "Quincho Sur - Piso 16",
+    "type": "Amenity",
+    "area": "40,00m²",
+    "description": "Segundo espacio de usos múltiples, ideal para reuniones.",
+    "features": ["Parrilla", "Espacio flexible", "Conexión con solarium", "Baños exclusivos"],
+    "floorPlan": "/planos/16/quinchoB.png",
+    "copy": "El Quincho Sur ofrece una alternativa perfecta para tus encuentros. Con un diseño versátil y acceso directo a las áreas comunes, es el complemento ideal para disfrutar de la vida social en el edificio."
+  },
+  "pileta_C_P16": {
+    "id": "pileta_C_P16",
+    "title": "Piscina & Solarium - Piso 16",
+    "type": "Amenity",
+    "area": "80,00m²",
+    "description": "Piscina descubierta con amplio solarium en la terraza.",
+    "features": [
+      "Piscina con vista infinita",
+      "Solarium deck",
+      "Duchas exteriores",
+      "Área de relax"
+    ],
+    "floorPlan": "/planos/16/pileta.png",
+    "copy": "Sumérgete en la tranquilidad de nuestra piscina en el piso 16. Con un diseño de borde infinito y un amplio solarium, es el oasis urbano perfecto para relajarse, tomar sol y disfrutar de las vistas de la ciudad."
   }
 }

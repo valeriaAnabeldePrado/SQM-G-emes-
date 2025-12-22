@@ -31,3 +31,25 @@
     opacity: 1;
   }
 }
+@media (max-width: 500px) {
+  .rotateMobile {
+    transform: rotate(-90deg) !important;
+  }
+  .esquemasMobile {
+    transform: rotate(-90deg) !important;
+    top: 0 !important;
+    left: 50% !important;
+    translate: -50% 0 !important;
+  }
+  .esquemasMobilePb {
+    transform: rotate(-90deg) !important;
+    top: 35px !important;
+    left: 50% !important;
+    translate: -50% 0 !important;
+  }
+}
+@media (max-width: 410px) {
+  .rotateMobile {
+    scale: 1.3;
+  }
+}

@@ -13,8 +13,50 @@
   }
 }
 
+@keyframes slideInFromRight {
+  from {
+    opacity: 0;
+    transform: translateX(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+.floorTextAnimate {
+  animation: slideInFromRight 0.8s ease-out;
+}
+
 #apartments-model {
   min-height: 400px;
+}
+
+/* Estilos para el contenedor de planos dentro del modal */
+#apartments-model .floor-plan-container {
+  width: 100% !important;
+  height: 100% !important;
+  min-height: unset !important;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+#apartments-model .floor-plan-container > img {
+  width: 100% !important;
+  height: 100% !important;
+  object-fit: contain !important;
+}
+
+#apartments-model .floor-plan-container > div {
+  width: 100% !important;
+  height: 100% !important;
+}
+
+#apartments-model svg {
+  width: 100% !important;
+  height: 100% !important;
+  max-height: 100% !important;
 }
 
 .apartmentSVGcontainer {

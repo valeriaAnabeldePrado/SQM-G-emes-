@@ -1,15 +1,32 @@
 import React, { useState } from 'react'
 import './models.css'
 
-const ModelpbDptos = ({ onEventApartment, selectedApartment, selectedLetter }) => {
-  const floorNumber = 'PB'
+const ModelElevenThirteen = ({
+  onEventApartment,
+  selectedApartment,
+  selectedLetter,
+  selectedFloor = 'pisoOnce' | 'pisoDoce' | 'pisoTrece'
+}) => {
+  const getFloorNumber = (floor) => {
+    switch (floor) {
+      case 'pisoOnce':
+        return '11'
+      case 'pisoDoce':
+        return '12'
+      case 'pisoTrece':
+        return '13'
+    }
+  }
+
+  const floorNumber = getFloorNumber(selectedFloor)
 
   const [hoveredApartment, setHoveredApartment] = useState(null)
 
   const apartmentIds = {
-    LOCAL: `local_comercial_${floorNumber}`,
-    C: `duplex_C_${floorNumber}`,
-    D: `duplex_A_${floorNumber}`
+    A: `apartment_A_P${floorNumber}`,
+    B: `apartment_B_P${floorNumber}`,
+    C: `apartment_C_P${floorNumber}`,
+    D: `apartment_D_P${floorNumber}`
   }
 
   const isApartmentActive = (apartmentId) => {
@@ -48,8 +65,8 @@ const ModelpbDptos = ({ onEventApartment, selectedApartment, selectedLetter }) =
       }}
     >
       <img
-        src="/planos/plantaBajaDptos/pb-dptos.png"
-        alt="Planta baja"
+        src="/planos/pisoOnceTrece/piso-once-trece.png"
+        alt="Planta del piso"
         className="rotateMobile"
         style={{
           position: 'absolute',
@@ -68,16 +85,17 @@ const ModelpbDptos = ({ onEventApartment, selectedApartment, selectedLetter }) =
       />
 
       <div
-        className="rotateMobile esquemasMobilePb"
+        className="rotateMobile esquemasMobile"
         style={{
           position: 'absolute',
           top: '50%',
           left: '50%',
           transform: 'translate(-50%, -50%)',
-          width: '85%',
-          height: '85%',
+          width: '100%',
+          height: '100%',
           zIndex: 2,
           display: 'flex',
+
           alignItems: 'center',
           justifyContent: 'center'
         }}
@@ -117,7 +135,6 @@ const ModelpbDptos = ({ onEventApartment, selectedApartment, selectedLetter }) =
 
                 .pasillo {
                   fill: rgba(147, 149, 152, 0.3);
-                  pointer-events: none;
                 }
 
                 .letras {
@@ -126,44 +143,58 @@ const ModelpbDptos = ({ onEventApartment, selectedApartment, selectedLetter }) =
                   font-weight: bold;
                   pointer-events: none;
                 }
-                
-                .letras-local {
-                  fill: #483b2b;
-                  font-size: 32px;
-                  font-weight: bold;
-                  pointer-events: none;
-                }
               `}
             </style>
           </defs>
-          <g id="planta-baja-dptos" data-name="Capa 1" transform="translate(3, 45)">
+          <g id="planta-piso-once-trece" data-name="Capa 1" transform="translate(3, 45)">
             <g
-              id="locales-pb"
+              id="depto-B"
               onClick={(e) => {
-                handleClick(apartmentIds.LOCAL, e)
-                handleLetterSelected('LOCAL', e)
+                handleClick(apartmentIds.B, e)
+                handleLetterSelected('B', e)
               }}
               style={{ cursor: 'pointer' }}
-              onMouseEnter={() => handleHover(apartmentIds.LOCAL)}
+              onMouseEnter={() => handleHover(apartmentIds.B)}
               onMouseLeave={handleHoverLeave}
             >
               <polygon
-                className={`plantasDptos ${isApartmentActive(apartmentIds.LOCAL) ? 'plantasDptos-active' : ''}`}
-                points=".42 68.49 164.87 68.49 164.87 198.42 210.43 198.42 210.43 326.56 164.87 326.56 .42 326.21 .42 68.49"
+                id="dpto-esquema-b"
+                className={`plantasDptos ${isApartmentActive(apartmentIds.B) ? 'plantasDptos-active' : ''}`}
+                points="285.23 0 285.23 165.81 0 165.81 0 84.11 30.5 84.11 30.5 0 285.23 0"
               />
-              <text className="letras-local" x="60" y="200">
-                Local
+              <text className="letras" x="137" y="90">
+                B
               </text>
             </g>
-
-            <polygon
+            <g
+              id="depto-A"
+              onClick={(e) => {
+                handleClick(apartmentIds.A, e)
+                handleLetterSelected('A', e)
+              }}
+              style={{ cursor: 'pointer' }}
+              onMouseEnter={() => handleHover(apartmentIds.A)}
+              onMouseLeave={handleHoverLeave}
+            >
+              <polygon
+                id="dpto-esquema-a"
+                className={`plantasDptos ${isApartmentActive(apartmentIds.A) ? 'plantasDptos-active' : ''}`}
+                points="285.23 170.43 285.23 336.25 30.5 336.25 30.5 252.14 0 252.14 0 170.43 285.23 170.43"
+              />
+              <text className="letras" x="137" y="255">
+                A
+              </text>
+            </g>
+            <rect
               id="pasillo"
               className="pasillo"
-              points="0 2.34 209.84 2.34 209.84 121.59 215.71 121.59 215.71 102.54 215.89 58.23 305.23 58.23 305.23 326.62 215.89 326.44 215.71 326.44 215.71 193.67 209.84 193.67 168.72 193.49 168.72 65.52 0 65.7 0 2.34"
+              x="285.54"
+              y="58.14"
+              width="95"
+              height="268.25"
             />
-
             <g
-              id="depto-d"
+              id="depto-D"
               onClick={(e) => {
                 handleClick(apartmentIds.D, e)
                 handleLetterSelected('D', e)
@@ -172,20 +203,17 @@ const ModelpbDptos = ({ onEventApartment, selectedApartment, selectedLetter }) =
               onMouseEnter={() => handleHover(apartmentIds.D)}
               onMouseLeave={handleHoverLeave}
             >
-              <rect
+              <polygon
+                id="dpto-esquema-d"
                 className={`plantasDptos ${isApartmentActive(apartmentIds.D) ? 'plantasDptos-active' : ''}`}
-                x="313.01"
-                y="167.45"
-                width="229.56"
-                height="158.94"
+                points="598 246.04 598 322.38 568.97 322.38 568.97 336.25 378.21 336.25 378.21 170.62 568.97 170.62 568.97 246.04 598 246.04"
               />
-              <text className="letras" x="410" y="260">
+              <text className="letras" x="470" y="258">
                 D
               </text>
             </g>
-
             <g
-              id="depto-c"
+              id="depto-C"
               onClick={(e) => {
                 handleClick(apartmentIds.C, e)
                 handleLetterSelected('C', e)
@@ -194,14 +222,12 @@ const ModelpbDptos = ({ onEventApartment, selectedApartment, selectedLetter }) =
               onMouseEnter={() => handleHover(apartmentIds.C)}
               onMouseLeave={handleHoverLeave}
             >
-              <rect
+              <polygon
+                id="dpto-esquema-c"
                 className={`plantasDptos ${isApartmentActive(apartmentIds.C) ? 'plantasDptos-active' : ''}`}
-                x="313.01"
-                y="2.64"
-                width="229.56"
-                height="158.94"
+                points="598.4 14.32 598.4 90.67 569.37 90.67 569.37 166.46 378.42 166.46 378.42 .46 569.37 .46 569.37 14.32 598.4 14.32"
               />
-              <text className="letras" x="410" y="95">
+              <text className="letras" x="470" y="90">
                 C
               </text>
             </g>
@@ -212,4 +238,4 @@ const ModelpbDptos = ({ onEventApartment, selectedApartment, selectedLetter }) =
   )
 }
 
-export default ModelpbDptos
+export default ModelElevenThirteen

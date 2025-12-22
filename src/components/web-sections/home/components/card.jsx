@@ -1,4 +1,11 @@
-export const Card = ({ children, className = '', hasGradient = false }) => {
+export const Card = ({
+  children,
+  className = '',
+  hasGradient = false,
+  opacity = '100%',
+  cardGradient = 'var(--gradient-card)',
+  borderStyleCustom = '2px solid var(--color-border)'
+}) => {
   const baseClasses = `
   rounded-[var(--border-radius-phone)] 
   min-d:rounded-[var(--border-radius-tablet)]
@@ -9,10 +16,11 @@ flex items-start justify-center p-[var(--padding-cards-small)] min-extra:p-[var(
 
   const style = hasGradient
     ? {
-        background: 'var(--gradient-card)',
-        border: '2px solid var(--color-border)'
+        background: cardGradient,
+        border: borderStyleCustom,
+        opacity: opacity
       }
-    : {}
+    : { opacity: opacity }
 
   return (
     <div className={`${baseClasses} ${className} `} style={style}>

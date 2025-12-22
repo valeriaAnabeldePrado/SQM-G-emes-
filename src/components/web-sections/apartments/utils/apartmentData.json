@@ -695,6 +695,38 @@
     "floorPlan": "/planos/13/B.png",
     "copy": "Vive en tu propio oasis en las alturas. Este exclusivo estudio-loft en el piso 13 cuenta con una impresionante terraza privada de más de 31m². Un espacio exterior inmenso que te invita a disfrutar del sol y las estrellas, combinado con un interior moderno y funcional."
   },
+  "apartment_C_P13": {
+    "id": "apartment_C_P13",
+    "title": "Departamento C - Piso 13",
+    "type": "3 Ambientes",
+    "area": "36,08m²",
+    "description": "Espectacular departamento de 3 ambientes en el piso 13 con amplia terraza.",
+    "features": [
+      "2 Dormitorios",
+      "Baño completo",
+      "Cocina",
+      "Living-comedor",
+      "Terraza de 31,52m²"
+    ],
+    "floorPlan": "/planos/13/B.png",
+    "copy": "Vive en tu propio oasis en las alturas. Este exclusivo estudio-loft en el piso 13 cuenta con una impresionante terraza privada de más de 31m². Un espacio exterior inmenso que te invita a disfrutar del sol y las estrellas, combinado con un interior moderno y funcional."
+  },
+  "apartment_D_P13": {
+    "id": "apartment_D_P13",
+    "title": "Departamento D - Piso 13",
+    "type": "3 Ambientes",
+    "area": "36,08m²",
+    "description": "Espectacular departamento de 3 ambientes en el piso 13 con amplia terraza.",
+    "features": [
+      "2 Dormitorios",
+      "Baño completo",
+      "Cocina",
+      "Living-comedor",
+      "Terraza de 31,52m²"
+    ],
+    "floorPlan": "/planos/13/B.png",
+    "copy": "Vive en tu propio oasis en las alturas. Este exclusivo estudio-loft en el piso 13 cuenta con una impresionante terraza privada de más de 31m². Un espacio exterior inmenso que te invita a disfrutar del sol y las estrellas, combinado con un interior moderno y funcional."
+  },
   "quincho_A_P14": {
     "id": "quincho_A_P14",
     "title": "Quincho - Piso 14",
@@ -754,5 +786,45 @@
     "features": ["Planta libre", "Espacio descubierto de 33,00m²"],
     "floorPlan": "/planos/4/ofi-terraza.png",
     "copy": "Una oficina que rompe con lo convencional. Ubicada en el cuarto piso, ofrece una planta libre y un espectacular espacio descubierto de 33m², ideal para reuniones al aire libre o como zona de esparcimiento para tu equipo. Innovación y bienestar para tu empresa."
+  },
+  "oficina_pb_PB": {
+    "id": "oficina_pb_PB",
+    "title": "Oficina - Planta Baja",
+    "type": "Oficina",
+    "area": "45,60m²",
+    "description": "Oficina en Planta Baja con espacio descubierto.",
+    "features": ["Planta libre", "Espacio descubierto de 53,94m²"],
+    "floorPlan": "/planos/0/oficina.png",
+    "copy": "Impulsa tu negocio en esta oficina en planta baja con un diferencial único: un espacio descubierto de casi 54m². La planta libre te permite adaptar el ambiente a tus necesidades, mientras que el patio ofrece un lugar para la creatividad y el descanso."
+  },
+  "oficina_p1_P1": {
+    "id": "oficina_p1_P1",
+    "title": "Oficina - Piso 1",
+    "type": "Oficina",
+    "area": "61,88m²",
+    "description": "Amplia oficina en el primer piso.",
+    "features": ["Planta libre", "Luminosa"],
+    "floorPlan": "/planos/0/oficina.png",
+    "copy": "Una oficina amplia y luminosa en el primer piso, ideal para empresas que buscan un espacio profesional y bien ubicado. Sus 61,88m² de planta libre ofrecen total flexibilidad para crear un entorno de trabajo productivo y moderno."
+  },
+  "oficina_p2_P2": {
+    "id": "oficina_p2_P2",
+    "title": "Oficina - Piso 2",
+    "type": "Oficina",
+    "area": "61,88m²",
+    "description": "Amplia oficina en el segundo piso.",
+    "features": ["Planta libre", "Luminosa"],
+    "floorPlan": "/planos/0/oficina.png",
+    "copy": "Establece tu empresa en esta espaciosa oficina del segundo piso. Con 61,88m² de planta libre y abundante luz natural, es el lienzo perfecto para diseñar un espacio de trabajo que inspire a tu equipo y proyecte una imagen de éxito."
+  },
+  "oficina_p3_P3": {
+    "id": "oficina_p3_P3",
+    "title": "Oficina - Piso 3",
+    "type": "Oficina",
+    "area": "61,88m²",
+    "description": "Amplia oficina en el tercer piso.",
+    "features": ["Planta libre", "Luminosa"],
+    "floorPlan": "/planos/0/oficina.png",
+    "copy": "Lleva tu negocio a una nueva altura en esta oficina del tercer piso. Sus 61,88m² de planta libre y gran luminosidad crean un ambiente de trabajo óptimo, con la versatilidad necesaria para adaptarse al crecimiento de tu empresa."
   }
 }

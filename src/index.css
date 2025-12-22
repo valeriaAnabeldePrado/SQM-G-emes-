@@ -19,6 +19,7 @@
   --color-border: rgba(179, 175, 171, 0.2);
 
   --gradient-card: linear-gradient(90deg, #e2d8ce4d 0%, #d8bca04d 100%); /* 30% opacidad */
+  --gradient-card-opacityfull: linear-gradient(90deg, #fff5e6 0%, #f0dbc7 100%);
   --gradient-alt: linear-gradient(90deg, #f6f0ebcc 0%, #e8e0dc 100%);
   --border-gradient: linear-gradient(90deg, #f6f0eb80 0%, #b3afab80 100%);
 

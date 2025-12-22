@@ -11,7 +11,7 @@ const SectionBanner = () => {
   }
 
   const handleNavigateToInmersive = () => {
-    navigate('/inmersive-build')
+    navigate('/new')
   }
 
   return (

@@ -12,7 +12,7 @@ export default function SectionCallTo() {
   }
 
   const handleNavigateToInmersive = () => {
-    navigate('/inmersive-build')
+    navigate('/new')
   }
   const handleNavigateToUnidad = () => {
     navigate('/inmersive-apartament')

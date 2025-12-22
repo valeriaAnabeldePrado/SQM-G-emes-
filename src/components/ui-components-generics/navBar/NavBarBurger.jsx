@@ -13,10 +13,8 @@ const NavBarBurger = () => {
     { name: 'Inicio', href: '/' },
     { name: 'Departamentos', href: '/apartments' },
     { name: 'Avance de Obra', href: '/roadmap' },
-    { name: 'Características', href: '/#characte' },
-    { name: 'Galería', href: '/#gallery' },
     { name: 'Contacto', href: '/#contact' },
-    { name: 'Vista 3D Edificio', href: '/inmersive-build' },
+    { name: 'Vista 3D Edificio', href: '/new' },
     { name: 'Vista 3D Apartamento', href: '/inmersive-apartament' }
   ]
 

@@ -3,13 +3,14 @@ import App from '../App.jsx'
 import Apartaments from '../components/web-sections/apartments/apartaments.jsx'
 import ApartmentDetail from '../components/web-sections/apartments/ApartmentDetail.jsx'
 import BuildSection from '../components/web-sections/inmersive/build/BuildSection.jsx'
+import BuildSectionSimple from '../components/web-sections/inmersive/build/BuildSectionSimple.jsx'
 import Roadmap from '../components/web-sections/roadmap/Roadmap.jsx'
 import Layout from '../components/layout/Layout.jsx'
 import NavBar from '../components/ui-components-generics/navBar/NavBar.jsx'
 import ScrollApartment from '../components/web-sections/inmersive/ScrollApartment.jsx'
 import ErrorBoundary from '../components/error/ErrorBoundary.jsx'
 import NotFound from '../components/error/NotFound.jsx'
-// import ScrollApartmentOptimized from '../components/web-sections/inmersive/ScrollApartmentOptimized.jsx'
+import NewBuild from '../components/web-sections/inmersive/build/newbuild.jsx'
 
 export const router = createBrowserRouter([
   {
@@ -54,11 +55,10 @@ export const router = createBrowserRouter([
     errorElement: <ErrorBoundary />
   },
   {
-    path: '/inmersive-build',
+    path: '/new',
     element: (
       <Layout>
-        <NavBar />
-        <BuildSection />
+        <NewBuild />
       </Layout>
     ),
     errorElement: <ErrorBoundary />

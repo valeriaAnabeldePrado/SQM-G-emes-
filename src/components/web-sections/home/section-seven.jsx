@@ -34,7 +34,7 @@ export default function SectionSeven() {
         {/* Primera card pequeña */}
         <section className="flex  gap-[var(--generic-gap-tablet)] min-d:gap-[var(--generic-gap-desktop)] min-d:flex-1">
           <Card className="w-full cursor-pointer min-d:flex-1 bg-[var(--color-one)] flex flex-col ">
-            <a href="/inmersive-build" className=" w-full">
+            <a href="/new" className=" w-full">
               <div className="flex w-full justify-end">
                 <RiBuilding2Line size="4em" color="white" />
               </div>

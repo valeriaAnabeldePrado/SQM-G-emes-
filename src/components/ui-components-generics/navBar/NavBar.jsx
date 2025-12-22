@@ -17,11 +17,10 @@ const NavBar = () => {
   }, [location.pathname])
 
   const routes = [
-    { id: 1, name: '3D inmersivo', path: '/inmersive-apartament' },
+    { id: 1, name: '3D inmersivo', path: '/new' },
     { id: 2, name: 'Departamentos', path: '/apartments' },
     { id: 3, name: 'Avance de Obra', path: '/roadmap' },
-    { id: 4, name: 'Galería', path: '#gallery' },
-    { id: 5, name: 'Características', path: '/#characte' },
+    { id: 4, name: 'Modelo', path: '/inmersive-apartament' },
     { id: 6, name: 'Contacto', path: '#contact' }
   ]
 
@@ -29,10 +28,8 @@ const NavBar = () => {
     { id: 1, name: 'Inicio', path: '/' },
     { id: 2, name: 'Departamentos', path: '/apartments' },
     { id: 3, name: 'Avance de Obra', path: '/roadmap' },
-    { id: 4, name: 'Características', path: '/#characte' },
-    { id: 5, name: 'Galería', path: '/#gallery' },
     { id: 6, name: 'Contacto', path: '/#contact' },
-    { id: 7, name: 'Vista 3D Edificio', path: '/inmersive-build' },
+    { id: 7, name: 'Vista 3D Edificio', path: '/new' },
     { id: 8, name: 'Vista 3D Apartamento', path: '/inmersive-apartament' }
   ]
 

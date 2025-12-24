@@ -31,6 +31,7 @@ export function SedanModel({
       group.current.position.set(...position)
       startPosition.current = [...position]
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
 
   // Reproducir la animación seleccionada
@@ -47,7 +48,7 @@ export function SedanModel({
   }, [animation, actions])
 
   // Movimiento de patrulla (ir y volver)
-  useFrame((state, delta) => {
+  useFrame((_state, delta) => {
     if (group.current && isVisible) {
       // Mover en el eje correspondiente según la dirección
       if (isHorizontal) {

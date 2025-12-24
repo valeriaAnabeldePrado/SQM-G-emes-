@@ -1,7 +1,6 @@
 import { Card } from '../home/components/card'
 import { useState } from 'react'
-import { useNavigate } from 'react-router-dom'
-
+//import { useNavigate } from 'react-router-dom'
 import ModelpbDptos from '../../../assets/floors/modelPb'
 import Button from '../home/components/button'
 import { MdOutlineArrowOutward } from 'react-icons/md'
@@ -24,8 +23,9 @@ import ModelSixTeen from '../../../assets/floors/ModelSIxTeen'
 const Apartaments = () => {
   const [selectedFloor, setSelectedFloor] = useState(null)
   const [selectedApartment, setSelectedApartment] = useState(null)
+  // eslint-disable-next-line no-unused-vars
   const [letter, setLetter] = useState('')
-  const navigate = useNavigate()
+  //const navigate = useNavigate()
 
   const tipologiesData = [
     'Estudios y Microviviendas',
@@ -56,23 +56,18 @@ const Apartaments = () => {
     setSelectedApartment(apartmentID)
   }
 
-  const handleViewPlans = () => {
-    if (selectedApartment) {
-      navigate(`/apartments/${selectedApartment}`)
-    }
-  }
+  // const handleViewPlans = () => {
+  //   if (selectedApartment) {
+  //     navigate(`/apartments/${selectedApartment}`)
+  //   }
+  // }
 
   const renderApartmentPreview = (apartmentId) => {
     const apartmentInfo = apartmentData[apartmentId]
     return (
-      <div className="flex items-center gap-3 bg-white/20 rounded-lg p-3">
-        <div className="w-12 h-4 flex items-center justify-center">{letter}</div>
-        <div>
-          <p className="text-xs text-[var(--color-three)]/70">
-            {apartmentInfo?.title || `${apartmentInfo?.type || 'Información no disponible'}`}{' '}
-          </p>
-        </div>
-      </div>
+      <p className="text-xs font-normal text-[var(--color-three)]/70">
+        {apartmentInfo?.title || `${apartmentInfo?.type || 'Información no disponible'}`}{' '}
+      </p>
     )
   }
 
@@ -230,9 +225,9 @@ const Apartaments = () => {
         return 'Piso doce'
       case 'pisoTrece':
         return 'Piso trece'
-      case 'pisoCatorce':
+      case 'pisoCatorceAbc':
         return 'Piso catorce'
-      case 'pisoQuince':
+      case 'pisoQuinceAbc':
         return 'Piso quince'
       case 'pisoDieciseis':
         return 'Piso dieciseis'
@@ -321,23 +316,23 @@ const Apartaments = () => {
                   {renderFloorComponent(selectedFloor)}
                 </div>
 
-                <div className="flex w-full justify-evenly flex-col items-stretch gap-4 lg:gap-6 py-4 lg:py-6 ">
+                <div className="flex w-full justify-evenly flex-col items-stretch gap-4 xl:gap-6 mt-4 xl:mt-6">
                   <div className="flex-1 space-y-3">
-                    <p
+                    <div
                       key={selectedFloor}
-                      className="floorTextAnimate text-[var(--color-one)] font-semibold text-lg bg-white/20 rounded-lg p-3 border border-white/30 backdrop-blur-sm"
+                      className="flex flex-row items-center gap-4 floorTextAnimate text-[var(--color-one)] font-semibold  bg-white/20 rounded-lg p-3 border border-white/30 backdrop-blur-sm"
                     >
-                      {selectedFloorOnly}
-                    </p>
+                      <p style={{ fontSize: '1.5rem' }}>{selectedFloorOnly} </p>
+                      {selectedApartment ? renderApartmentPreview(selectedApartment) : ''}
+                    </div>
                     <p className="text-sm lg:text-lg text-[var(--color-three)] ml-1">
                       Selecciona un departamento para ver más detalles y acceder a los planos
                       completos.
                     </p>
-                    {selectedApartment ? renderApartmentPreview(selectedApartment) : ''}
                   </div>
 
                   <div className="flex items-end lg:items-center">
-                    <Button
+                    {/* <Button
                       className={`w-full lg:w-auto lg:min-w-[200px] flex items-center justify-center gap-3 px-6 py-3
                                   transition-all duration-300 transform hover:scale-105
                                   ${
@@ -345,15 +340,19 @@ const Apartaments = () => {
                                       ? 'bg-gray-400 cursor-not-allowed opacity-60 hover:scale-100'
                                       : 'shadow-lg hover:shadow-xl'
                                   }`}
-                      onClick={selectedApartment ? handleViewPlans : () => {}}
-                      disabled={!selectedApartment}
+                      // onClick={selectedApartment ? handleViewPlans : () => {}}
+                      //disabled={!selectedApartment}
+                      disabled={true}
                     >
-                      <span className="font-medium">Ver planos</span>
+                      <span className="font-medium">Proximamente</span>
                       <MdOutlineArrowOutward
                         size="1.4em"
                         color={selectedApartment ? 'white' : '#9CA3AF'}
                       />
-                    </Button>
+                    </Button> */}
+                    <p className="text-sm lg:text-lg text-center text-[var(--color-three)] opacity-70 w-full p-3 ml-1">
+                      Proximamente planos disponibles.
+                    </p>
                   </div>
                 </div>
               </Card>

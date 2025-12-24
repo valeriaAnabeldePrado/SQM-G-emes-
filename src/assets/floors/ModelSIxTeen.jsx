@@ -150,8 +150,9 @@ const ModelSixTeen = ({ onEventApartment, selectedApartment, selectedLetter }) =
                 id="quinchoUno-poly"
                 className={`plantasDptos ${isApartmentActive(apartmentIds.A) ? 'plantasDptos-active' : ''}`}
                 points="353.91 142.12 353.91 0 541.53 0 541.53 166.65 387.72 166.65 387.72 142.12 353.91 142.12"
+                transform="translate(25,0)"
               />
-              <text className="letras" x="420" y="100" style={{ fontSize: '30px' }}>
+              <text className="letras" x="400" y="100" style={{ fontSize: '30px' }}>
                 Quincho A
               </text>
             </g>
@@ -169,8 +170,9 @@ const ModelSixTeen = ({ onEventApartment, selectedApartment, selectedLetter }) =
                 id="QuinchoDos-poly"
                 className={`plantasDptos ${isApartmentActive(apartmentIds.B) ? 'plantasDptos-active' : ''}`}
                 points="353.89 337.92 353.89 195.8 387.71 195.8 387.71 171.28 541.52 171.28 541.52 337.92 353.89 337.92"
+                transform="translate(25,0)"
               />
-              <text className="letras" x="420" y="280" style={{ fontSize: '30px' }}>
+              <text className="letras" x="400" y="280" style={{ fontSize: '30px' }}>
                 Quincho B
               </text>
             </g>
@@ -187,17 +189,10 @@ const ModelSixTeen = ({ onEventApartment, selectedApartment, selectedLetter }) =
               <rect
                 id="Piscina-2"
                 className={`plantasDptos ${isApartmentActive(apartmentIds.C) ? 'plantasDptos-active' : ''}`}
-                width="249.86"
+                width="270.86"
                 height="337.92"
               />
-              <rect
-                id="Piscina-3"
-                className={`plantasDptos ${isApartmentActive(apartmentIds.C) ? 'plantasDptos-active' : ''}`}
-                x="35.26"
-                y="34.86"
-                width="91.53"
-                height="270"
-              />
+
               <text className="letras" x="80" y="180" style={{ fontSize: '30px' }}>
                 Piscina
               </text>

@@ -9,7 +9,7 @@ const ModelpbDptos = ({ onEventApartment, selectedApartment, selectedLetter }) =
   const apartmentIds = {
     LOCAL: `local_comercial_${floorNumber}`,
     C: `duplex_C_${floorNumber}`,
-    D: `duplex_A_${floorNumber}`
+    D: `duplex_D_${floorNumber}`
   }
 
   const isApartmentActive = (apartmentId) => {

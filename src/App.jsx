@@ -23,8 +23,8 @@ function App() {
         <SectionFive />
         <SectionSix />
         <SectionSeven />
+        <SectionFooter />
       </div>
-      <SectionFooter />
     </>
   )
 }

@@ -150,7 +150,7 @@ const ModelFiveTeen = ({ onEventApartment, selectedApartment, selectedLetter }) 
                 className={`plantasDptos ${isApartmentActive(apartmentIds.A) ? 'plantasDptos-active' : ''}`}
                 points="282.93 229.71 282.93 341 31.11 341 31.11 330.04 0 330.04 0 245.08 31.11 245.08 31.11 229.71 282.93 229.71"
               />
-              <text className="letras" x="140" y="285">
+              <text className="letras" x="140" y="300">
                 A
               </text>
             </g>
@@ -169,7 +169,7 @@ const ModelFiveTeen = ({ onEventApartment, selectedApartment, selectedLetter }) 
                 className={`plantasDptos ${isApartmentActive(apartmentIds.B) ? 'plantasDptos-active' : ''}`}
                 points="327.7 133.41 327.7 225.03 31.11 225.03 31.11 212.62 1.16 212.62 1.16 127.66 31.11 127.66 31.11 116.17 282.93 116.17 282.93 133.41 327.7 133.41"
               />
-              <text className="letras" x="160" y="170">
+              <text className="letras" x="160" y="190">
                 B
               </text>
             </g>
@@ -188,7 +188,7 @@ const ModelFiveTeen = ({ onEventApartment, selectedApartment, selectedLetter }) 
                 className={`plantasDptos ${isApartmentActive(apartmentIds.C) ? 'plantasDptos-active' : ''}`}
                 points="282.93 .19 282.93 111.48 31.11 111.48 31.11 98.62 1.17 98.62 1.17 13.66 31.11 13.66 31.11 .19 282.93 .19"
               />
-              <text className="letras" x="140" y="55">
+              <text className="letras" x="140" y="75">
                 C
               </text>
             </g>
@@ -226,7 +226,7 @@ const ModelFiveTeen = ({ onEventApartment, selectedApartment, selectedLetter }) 
                 className={`plantasDptos ${isApartmentActive(apartmentIds.E) ? 'plantasDptos-active' : ''}`}
                 points="602.39 246.41 602.39 331.37 576.9 331.37 576.9 341 388.04 341 388.04 192.24 468.41 192.24 468.41 243.2 576.9 243.2 576.9 246.41 602.39 246.41"
               />
-              <text className="letras" x="495" y="290">
+              <text className="letras" x="495" y="305">
                 E
               </text>
             </g>

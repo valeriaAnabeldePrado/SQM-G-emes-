@@ -10,7 +10,7 @@ import ContactForm from './components/formData'
 
 const SectionFooter = () => {
   return (
-    <footer className="bg-[var(--color-three)] w-full pt-12 pb-0">
+    <footer className="bg-[var(--color-three)] w-full pt-12 pb-0 rounded-3xl">
       <div className="custom-container mx-auto px-4 flex flex-col min-d:flex-row gap-12 min-d:gap-20 items-start">
         {/* Columna izquierda: branding, texto, datos, redes */}
         <div className="w-full min-d:w-1/2 flex flex-col gap-6 items-center min-d:items-start justify-center">

@@ -9,9 +9,9 @@
     "floorPlan": "/planos/PB/local.png",
     "copy": "Estratégicamente ubicado sobre Av. Pueyrredón, este local comercial con entrepiso ofrece una oportunidad única para emprendedores. Con 89,33m² de superficie y planta libre, es ideal para diversos rubros comerciales. Su ubicación privilegiada garantiza alta visibilidad y flujo peatonal constante, convirtiendo cada metro cuadrado en una inversión inteligente para el futuro de tu negocio."
   },
-  "duplex_A_PB": {
-    "id": "duplex_A_PB",
-    "title": "Duplex A - Planta Baja",
+  "duplex_D_PB": {
+    "id": "duplex_D_PB",
+    "title": "Duplex D - Planta Baja",
     "type": "DUPLEX - 2 Ambientes",
     "area": "49,71m²",
     "description": "Moderno duplex de 2 ambientes con patio. Excelente distribución en dos niveles.",

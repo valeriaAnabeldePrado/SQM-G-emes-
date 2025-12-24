@@ -320,9 +320,11 @@ const Apartaments = () => {
                   <div className="flex-1 space-y-3">
                     <div
                       key={selectedFloor}
-                      className="flex flex-row items-center gap-4 floorTextAnimate text-[var(--color-one)] font-semibold  bg-white/20 rounded-lg p-3 border border-white/30 backdrop-blur-sm"
+                      className="flex flex-row items-center gap-4 floorTextAnimate  font-semibold  bg-white/20 rounded-lg p-3 border border-white/30 backdrop-blur-sm"
                     >
-                      <p style={{ fontSize: '1.5rem' }}>{selectedFloorOnly} </p>
+                      <p style={{ fontSize: '1.5rem' }} className="text-[var(--color-one)]">
+                        {selectedFloorOnly}{' '}
+                      </p>
                       {selectedApartment ? renderApartmentPreview(selectedApartment) : ''}
                     </div>
                     <p className="text-sm lg:text-lg text-[var(--color-three)] ml-1">
@@ -351,7 +353,7 @@ const Apartaments = () => {
                       />
                     </Button> */}
                     <p className="text-sm lg:text-lg text-center text-[var(--color-three)] opacity-70 w-full p-3 ml-1">
-                      Proximamente planos disponibles.
+                      Próximamente planos disponibles.
                     </p>
                   </div>
                 </div>

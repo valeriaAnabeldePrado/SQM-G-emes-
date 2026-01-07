@@ -1,21 +1,21 @@
 import { useState } from 'react'
-import { departamentosData } from './constant'
+import { edificioVivra } from './constant'
 
 export function FloorsPanel({ onFloorSelect }) {
   const [expandedFloor, setExpandedFloor] = useState(null)
 
   // Estructura de pisos
   const floors = [
-    { key: 'PB', label: 'PB', name: 'Planta Baja' },
-    { key: 'P1', label: 'P01', name: 'Piso 01' },
-    { key: 'P2', label: 'P02', name: 'Piso 02' },
-    { key: 'P3', label: 'P03', name: 'Piso 03' },
-    { key: 'P4', label: 'P04', name: 'Piso 04' },
-    { key: 'P5', label: 'P05', name: 'Piso 05' },
-    { key: 'P6', label: 'P06', name: 'Piso 06' },
-    { key: 'P7', label: 'P07', name: 'Piso 07' },
-    { key: 'P8', label: 'P08', name: 'Piso 08' },
-    { key: 'P9', label: 'P09', name: 'Piso 09' },
+    { key: 'P00', label: 'PB', name: 'Planta Baja' },
+    { key: 'P01', label: 'P01', name: 'Piso 01' },
+    { key: 'P02', label: 'P02', name: 'Piso 02' },
+    { key: 'P03', label: 'P03', name: 'Piso 03' },
+    { key: 'P04', label: 'P04', name: 'Piso 04' },
+    { key: 'P05', label: 'P05', name: 'Piso 05' },
+    { key: 'P06', label: 'P06', name: 'Piso 06' },
+    { key: 'P07', label: 'P07', name: 'Piso 07' },
+    { key: 'P08', label: 'P08', name: 'Piso 08' },
+    { key: 'P09', label: 'P09', name: 'Piso 09' },
     { key: 'P10', label: 'P10', name: 'Piso 10' },
     { key: 'P11', label: 'P11', name: 'Piso 11' },
     { key: 'P12', label: 'P12', name: 'Piso 12' },
@@ -63,7 +63,7 @@ export function FloorsPanel({ onFloorSelect }) {
         }}
       >
         {floors.map((floor) => {
-          const floorData = departamentosData[floor.key]
+          const floorData = edificioVivra[floor.key]
           const isExpanded = expandedFloor === floor.key
 
           return (

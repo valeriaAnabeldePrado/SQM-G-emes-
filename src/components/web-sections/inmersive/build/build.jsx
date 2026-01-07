@@ -14,26 +14,44 @@ import { FloorsPanel } from './FloorsPanel'
 function detectarPiso(nombre) {
   if (!nombre) return null
 
-  // Planta Baja
+  // Planta Baja (P00)
   if (nombre.includes('PB') || nombre.includes('LOCAL') || nombre.includes('OFI_PB')) {
-    return 'PB'
+    console.log(`✓ Detectado Planta Baja: ${nombre} -> P00`)
+    return 'P00'
   }
 
-  // Pisos numerados (P1, P2, P10, P14, etc)
-  const match = nombre.match(/^(\d+)[A-Z_]/) // Ajuste el regex para '14A_DUPLEX'
+  // Pisos numerados - buscar patrón de 1 o 2 dígitos seguidos de letra
+  // Ejemplos: "1A", "07B", "10C", "14A_DUPLEX"
+  const match = nombre.match(/(\d{1,2})[A-Z]/)
   if (match) {
-    // Para P14/P15 Duplex, podemos hacer una excepción si quieres agruparlos bajo una sola clave.
-    // O si los nombres son 14A, 14B, 15A, 15B, la clave sería P14 o P15 respectivamente.
     const floorNumber = parseInt(match[1])
-    if (floorNumber >= 14 && floorNumber <= 15) {
-      return 'P14' // Agrupamos P14 y P15 bajo la clave P14 en departamentosData
+
+    // Formatear el número de piso con ceros a la izquierda si es necesario
+    const paddedFloor = floorNumber.toString().padStart(2, '0')
+
+    // Para P14: planta baja del duplex (unidades A y B)
+    if (floorNumber === 14 && (nombre.includes('14A') || nombre.includes('14B'))) {
+      console.log(`✓ Detectado Duplex P14: ${nombre} -> P14`)
+      return 'P14'
     }
-    return `P${floorNumber}`
+
+    // Para P15: planta alta del duplex (unidades C, D, E que corresponden a 14C, 14D, 14E en el modelo)
+    if (
+      floorNumber === 14 &&
+      (nombre.includes('14C') || nombre.includes('14D') || nombre.includes('14E'))
+    ) {
+      console.log(`✓ Detectado Duplex P15: ${nombre} -> P15`)
+      return 'P15'
+    }
+
+    console.log(`✓ Detectado Piso: ${nombre} -> P${paddedFloor}`)
+    return `P${paddedFloor}`
   }
 
   // Terraza Amenities
   if (nombre.includes('PISCINA') || nombre.includes('QUINCHO')) {
-    return 'TERRAZA_PISCINA' // Retorna la clave de los amenities
+    console.log(`✓ Detectado Amenity: ${nombre} -> TERRAZA_PISCINA`)
+    return 'TERRAZA_PISCINA'
   }
 
   // Ignorar pasillos y planos auxiliares
@@ -41,6 +59,8 @@ function detectarPiso(nombre) {
     return null
   }
 
+  // Si no se detectó ningún patrón, loguear para debug
+  console.log(`⚠️ No se detectó piso para: ${nombre}`)
   return null
 }
 

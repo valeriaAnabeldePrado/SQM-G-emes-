@@ -18,24 +18,9 @@ export default function NewBuild() {
   const [loadingProgress, setLoadingProgress] = useState(0)
   const [isDrawerOpen, setIsDrawerOpen] = useState(false)
 
-  // Generar personas random
-  // const [people] = useState(() => {
-  //   return Array.from({ length: 5 }, (_, i) => ({
-  //     id: i,
-  //     position: [
-  //       Math.random() * 3 - 1.5, // X random entre -1.5 y 1.5
-  //       0.05,
-  //       Math.random() * 3 - 1.5 // Z random entre -1.5 y 1.5
-  //     ],
-  //     speed: Math.random() * 0.5 + 0.2, // velocidad entre 0.2 y 0.7
-  //     patrolDistance: Math.random() * 0.5 + 0.2, // distancia entre 0.2 y 0.7
-  //     scale: Math.random() * 0.05 + 0.05, // escala entre 0.05 y 0.1
-  //     direction: Math.random() > 0.5 ? 0 : Math.PI / 2 // horizontal (0) o vertical (π/2)
-  //   }))
-  // })
-
   const handleDepartmentClick = useCallback((data) => {
     setSelectedDepartment(data)
+
     setTimeout(() => setIsDrawerOpen(true), 10)
   }, [])
 

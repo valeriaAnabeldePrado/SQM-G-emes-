@@ -1,13 +1,13 @@
 import { useEffect, useCallback } from 'react'
 import { useGLTF } from '@react-three/drei'
 import * as THREE from 'three'
-import { departamentosData, amenitiesData } from './constant'
+import { edificioVivra } from './constant'
 import { detectarPiso } from './utils'
 import { getFloorPlanImage } from './planMapping'
 
 // Componente del modelo GLB con hover por departamento individual
 export function Model({ onDepartmentClick }) {
-  const { scene } = useGLTF('/eddi.glb')
+  const { scene } = useGLTF('/edficio-ok.glb')
 
   // Guardar colores originales, clonar materiales y asignar eventos a cada mesh
   useEffect(() => {
@@ -19,7 +19,7 @@ export function Model({ onDepartmentClick }) {
         // Recolectar meshes de pisos 14 y 15 para enlazar dúplex
         if (child.name.includes('14')) meshesP14.push(child)
         if (child.name.includes('15')) meshesP15.push(child)
-
+        console.log(child)
         // Clonar el material para que cada mesh tenga el suyo propio
         child.material = Array.isArray(child.material)
           ? child.material.map((m) => m.clone())
@@ -54,15 +54,26 @@ export function Model({ onDepartmentClick }) {
         child.receiveShadow = true
 
         // Hacer cada mesh interactivo
-        const pisoKey = detectarPiso(child.name)
+        const rawPisoKey = detectarPiso(child.name)
+
+        // Map rawPisoKey (PB, P1...) to constant.js keys (P00, P01...)
+        let pisoKey = null
+        if (rawPisoKey === 'PB') pisoKey = 'P00'
+        else if (rawPisoKey && rawPisoKey.match(/^P\d$/)) pisoKey = rawPisoKey.replace('P', 'P0')
+        else pisoKey = rawPisoKey
+
         if (pisoKey) {
           child.userData.pisoKey = pisoKey
           child.userData.clickable = true
 
           // Intenta encontrar la unidad específica dentro de ese piso
-          const unitsInFloor =
-            departamentosData[pisoKey]?.unidades || amenitiesData[pisoKey]?.unidades || []
-          const matchedUnit = unitsInFloor.find((unit) => child.name.includes(unit.meshNamePattern))
+          const unitsInFloor = edificioVivra[pisoKey]?.unidades || []
+
+          const matchedUnit = unitsInFloor.find((unit) => {
+            const matches = child.name.includes(unit.meshNamePattern)
+
+            return matches
+          })
 
           if (matchedUnit) {
             child.userData.unitData = matchedUnit

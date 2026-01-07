@@ -7,14 +7,12 @@ export function detectarPiso(nombre) {
     return 'PB'
   }
 
-  // Pisos numerados (P1, P2, P10, P14, etc)
-  const match = nombre.match(/^(\d+)[A-Z_]/)
+  // Pisos numerados - buscar patrón de 1 o 2 dígitos seguidos de letra EN CUALQUIER PARTE
+  // Ejemplos: "1A", "07B", "10C", "14A_DUPLEX", "DEPTO_10C", "piso10C"
+  const match = nombre.match(/(\d{1,2})([A-E])/i)
   if (match) {
     const floorNumber = parseInt(match[1])
-    if (floorNumber >= 14 && floorNumber <= 15) {
-      return 'P14' // Agrupamos P14 y P15 bajo la clave P14
-    }
-    return `P${floorNumber}`
+    return `P${floorNumber.toString().padStart(2, '0')}`
   }
 
   // Terraza Amenities

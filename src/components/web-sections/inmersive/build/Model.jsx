@@ -6,8 +6,8 @@ import { detectarPiso } from './utils'
 import { getFloorPlanImage } from './planMapping'
 
 // Componente del modelo GLB con hover por departamento individual
-export function Model({ onDepartmentClick }) {
-  const { scene } = useGLTF('/edficio-ok.glb')
+export function Model({ onDepartmentClick, highlightedUnits = [] }) {
+  const { scene } = useGLTF('/untitled.glb')
 
   // Guardar colores originales, clonar materiales y asignar eventos a cada mesh
   useEffect(() => {
@@ -19,7 +19,7 @@ export function Model({ onDepartmentClick }) {
         // Recolectar meshes de pisos 14 y 15 para enlazar dúplex
         if (child.name.includes('14')) meshesP14.push(child)
         if (child.name.includes('15')) meshesP15.push(child)
-        console.log(child)
+
         // Clonar el material para que cada mesh tenga el suyo propio
         child.material = Array.isArray(child.material)
           ? child.material.map((m) => m.clone())
@@ -70,7 +70,21 @@ export function Model({ onDepartmentClick }) {
           const unitsInFloor = edificioVivra[pisoKey]?.unidades || []
 
           const matchedUnit = unitsInFloor.find((unit) => {
-            const matches = child.name.includes(unit.meshNamePattern)
+            // Match exacto o que contenga el patrón (case-insensitive para mayor compatibilidad)
+            let matches =
+              child.name === unit.meshNamePattern ||
+              child.name.includes(unit.meshNamePattern) ||
+              child.name.toUpperCase().includes(unit.meshNamePattern.toUpperCase())
+
+            // También buscar en patrones alternativos si existen
+            if (!matches && unit.meshNamePatternAlt) {
+              matches = unit.meshNamePatternAlt.some(
+                (altPattern) =>
+                  child.name === altPattern ||
+                  child.name.includes(altPattern) ||
+                  child.name.toUpperCase().includes(altPattern.toUpperCase())
+              )
+            }
 
             return matches
           })
@@ -94,7 +108,7 @@ export function Model({ onDepartmentClick }) {
       }
     })
 
-    // Enlazar dúplex (Pisos 14 y 15)
+    // Enlazar dúplex: meshes de piso 14 con sus correspondientes en piso 15
     meshesP14.forEach((mesh14) => {
       const match = mesh14.name.match(/14([A-E])/)
       if (match) {
@@ -108,7 +122,89 @@ export function Model({ onDepartmentClick }) {
     })
   }, [scene])
 
+  // Resaltar unidades filtradas
+  useEffect(() => {
+    const hasActiveFilter = highlightedUnits.length > 0
+
+    scene.traverse((child) => {
+      if (child.isMesh && child.material) {
+        // ... (existing context building logic) ...
+        // Edificios de contexto: hacerlos invisibles cuando hay filtro activo
+        if (child.name.includes('edif_context')) {
+          if (hasActiveFilter) {
+            child.visible = false
+          } else {
+            child.visible = true
+          }
+          return
+        }
+
+        // Unidades clickeables del edificio principal
+        if (child.userData.clickable) {
+          const isHighlighted = highlightedUnits.some((item) => {
+            let meshMatch =
+              child.name === item.unit.meshNamePattern ||
+              child.name.includes(item.unit.meshNamePattern) ||
+              child.name.toUpperCase().includes(item.unit.meshNamePattern.toUpperCase())
+
+            // También buscar en patrones alternativos si existen
+            if (!meshMatch && item.unit.meshNamePatternAlt) {
+              meshMatch = item.unit.meshNamePatternAlt.some(
+                (altPattern) =>
+                  child.name === altPattern ||
+                  child.name.includes(altPattern) ||
+                  child.name.toUpperCase().includes(altPattern.toUpperCase())
+              )
+            }
+
+            const floorMatch = child.userData.pisoKey === item.floorKey
+
+            return meshMatch && floorMatch
+          })
+
+          if (hasActiveFilter) {
+            if (isHighlighted) {
+              // Unidades seleccionadas: sólidas con color verde claro
+              child.material.transparent = false
+              child.material.opacity = 1
+              child.material.color.set('#8fbc8f') // Verde claro
+              if (child.material.emissive) {
+                child.material.emissive.set('#000000')
+                child.material.emissiveIntensity = 0
+              }
+              child.userData.isFiltered = true
+            } else {
+              // Resto del edificio: muy transparente
+              child.material.transparent = true
+              child.material.opacity = 0.15
+              if (child.userData.originalColor) {
+                child.material.color.copy(child.userData.originalColor)
+              }
+              child.userData.isFiltered = false
+            }
+          } else {
+            // Sin filtro activo: restaurar todo a estado original
+            child.material.transparent = false
+            child.material.opacity = 1
+            if (child.userData.originalColor) {
+              child.material.color.copy(child.userData.originalColor)
+              if (child.material.emissive && child.userData.originalEmissive) {
+                child.material.emissive.copy(child.userData.originalEmissive)
+                child.material.emissiveIntensity = child.userData.originalEmissiveIntensity
+              }
+            }
+            child.userData.isFiltered = false
+          }
+        }
+      }
+    })
+  }, [scene, highlightedUnits])
+
   const highlightMesh = (mesh, highlight) => {
+    // No hacer hover si hay filtro activo
+    const hasActiveFilter = highlightedUnits.length > 0
+    if (hasActiveFilter) return
+
     if (highlight) {
       mesh.material.color.set('#ffc46a')
       if (mesh.material.emissive) {
@@ -126,27 +222,41 @@ export function Model({ onDepartmentClick }) {
     }
   }
 
-  const handlePointerOver = useCallback((event) => {
-    event.stopPropagation()
-    const mesh = event.object
+  const handlePointerOver = useCallback(
+    (event) => {
+      event.stopPropagation()
+      const mesh = event.object
 
-    if (mesh.userData.clickable && mesh.isMesh && mesh.material) {
-      highlightMesh(mesh, true)
-      if (mesh.userData.sibling) highlightMesh(mesh.userData.sibling, true)
-      document.body.style.cursor = 'pointer'
-    }
-  }, [])
+      // Log para ver el nombre del mesh al hacer hover
+      console.log('🖱️ Mesh Hover:', mesh.name)
 
-  const handlePointerOut = useCallback((event) => {
-    event.stopPropagation()
-    const mesh = event.object
+      if (mesh.userData.clickable && mesh.isMesh && mesh.material) {
+        highlightMesh(mesh, true)
+        if (mesh.userData.sibling) highlightMesh(mesh.userData.sibling, true)
+        
+        // Solo cambiar cursor si no hay filtro activo
+        const hasActiveFilter = highlightedUnits.length > 0
+        if (!hasActiveFilter) {
+          document.body.style.cursor = 'pointer'
+        }
+      }
+    },
+    [highlightedUnits]
+  )
 
-    if (mesh.isMesh && mesh.material) {
-      highlightMesh(mesh, false)
-      if (mesh.userData.sibling) highlightMesh(mesh.userData.sibling, false)
-    }
-    document.body.style.cursor = 'auto'
-  }, [])
+  const handlePointerOut = useCallback(
+    (event) => {
+      event.stopPropagation()
+      const mesh = event.object
+
+      if (mesh.isMesh && mesh.material) {
+        highlightMesh(mesh, false)
+        if (mesh.userData.sibling) highlightMesh(mesh.userData.sibling, false)
+      }
+      document.body.style.cursor = 'auto'
+    },
+    [highlightedUnits]
+  )
 
   const handleClick = useCallback(
     (event) => {
@@ -180,4 +290,4 @@ export function Model({ onDepartmentClick }) {
 }
 
 // Preload del modelo para mejor performance
-export const preloadModel = () => useGLTF.preload('/eddi.glb')
+export const preloadModel = () => useGLTF.preload('/untitled.glb')

@@ -17,11 +17,16 @@ export default function NewBuild() {
   const [isLoading, setIsLoading] = useState(true)
   const [loadingProgress, setLoadingProgress] = useState(0)
   const [isDrawerOpen, setIsDrawerOpen] = useState(false)
+  const [highlightedUnits, setHighlightedUnits] = useState([])
 
   const handleDepartmentClick = useCallback((data) => {
     setSelectedDepartment(data)
 
     setTimeout(() => setIsDrawerOpen(true), 10)
+  }, [])
+
+  const handleHighlightUnits = useCallback((units) => {
+    setHighlightedUnits(units)
   }, [])
 
   const handleCloseDrawer = useCallback(() => {
@@ -51,7 +56,7 @@ export default function NewBuild() {
 
       <LoadingScreen loadingProgress={loadingProgress} isLoading={isLoading} />
 
-      <FloorsPanel onFloorSelect={handleDepartmentClick} />
+      <FloorsPanel onHighlightUnits={handleHighlightUnits} />
 
       <DepartmentDrawer
         selectedDepartment={selectedDepartment}
@@ -87,7 +92,7 @@ export default function NewBuild() {
           <SceneLights />
           <UrbanDetails />
           {/* <Stats /> */}
-          <Model onDepartmentClick={handleDepartmentClick} />
+          <Model onDepartmentClick={handleDepartmentClick} highlightedUnits={highlightedUnits} />
           <SedanModel />
 
           {/* Personas caminando random */}

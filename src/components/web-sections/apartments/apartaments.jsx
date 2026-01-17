@@ -1,6 +1,6 @@
 import { Card } from '../home/components/card'
 import { useState } from 'react'
-//import { useNavigate } from 'react-router-dom'
+import { useNavigate } from 'react-router-dom'
 import ModelpbDptos from '../../../assets/floors/modelPb'
 import Button from '../home/components/button'
 import { MdOutlineArrowOutward } from 'react-icons/md'
@@ -25,7 +25,7 @@ const Apartaments = () => {
   const [selectedApartment, setSelectedApartment] = useState(null)
   // eslint-disable-next-line no-unused-vars
   const [letter, setLetter] = useState('')
-  //const navigate = useNavigate()
+  const navigate = useNavigate()
 
   const tipologiesData = [
     'Estudios y Microviviendas',
@@ -56,11 +56,11 @@ const Apartaments = () => {
     setSelectedApartment(apartmentID)
   }
 
-  // const handleViewPlans = () => {
-  //   if (selectedApartment) {
-  //     navigate(`/apartments/${selectedApartment}`)
-  //   }
-  // }
+  const handleViewPlans = () => {
+    if (selectedApartment) {
+      navigate(`/apartments/${selectedApartment}`)
+    }
+  }
 
   const renderApartmentPreview = (apartmentId) => {
     const apartmentInfo = apartmentData[apartmentId]
@@ -334,7 +334,7 @@ const Apartaments = () => {
                   </div>
 
                   <div className="flex items-end lg:items-center">
-                    {/* <Button
+                    <Button
                       className={`w-full lg:w-auto lg:min-w-[200px] flex items-center justify-center gap-3 px-6 py-3
                                   transition-all duration-300 transform hover:scale-105
                                   ${
@@ -342,19 +342,15 @@ const Apartaments = () => {
                                       ? 'bg-gray-400 cursor-not-allowed opacity-60 hover:scale-100'
                                       : 'shadow-lg hover:shadow-xl'
                                   }`}
-                      // onClick={selectedApartment ? handleViewPlans : () => {}}
-                      //disabled={!selectedApartment}
-                      disabled={true}
+                      onClick={selectedApartment ? handleViewPlans : () => {}}
+                      disabled={!selectedApartment}
                     >
-                      <span className="font-medium">Proximamente</span>
+                      <span className="font-medium">Ver plano</span>
                       <MdOutlineArrowOutward
                         size="1.4em"
                         color={selectedApartment ? 'white' : '#9CA3AF'}
                       />
-                    </Button> */}
-                    <p className="text-sm lg:text-lg text-center text-[var(--color-three)] opacity-70 w-full p-3 ml-1">
-                      Próximamente planos disponibles.
-                    </p>
+                    </Button>
                   </div>
                 </div>
               </Card>

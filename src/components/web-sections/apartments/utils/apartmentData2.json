@@ -1,0 +1,758 @@
+{
+  "local_comercial_PB": {
+    "id": "Local_PB",
+    "title": "Local Comercial - Planta Baja",
+    "type": "Local Comercial",
+    "area": "89,33m²",
+    "description": "Amplio local comercial ubicado en la planta baja, ideal para diversos rubros comerciales.",
+    "features": ["Planta libre", "Acceso directo desde la calle"],
+    "floorPlan": "/plantass/Local.png",
+    "copy": "Estratégicamente ubicado sobre Av. Pueyrredón, este local comercial con entrepiso ofrece una oportunidad única para emprendedores. Con 89,33m² de superficie y planta libre, es ideal para diversos rubros comerciales."
+  },
+  "oficina_pb_PB": {
+    "id": "oficina_pb_PB",
+    "title": "Oficina - Planta Baja",
+    "type": "Oficina Profesional",
+    "area": "85,00m²",
+    "description": "Oficina profesional en planta baja.",
+    "features": ["Planta abierta", "Baño privado", "Acceso independiente"],
+    "floorPlan": "/planos/ofiPisoUno/ofiPisoUno.png",
+    "copy": "Espacio ideal para profesionales que buscan una oficina con acceso directo desde la calle. Perfecta para consultorios, estudios o pequeñas empresas."
+  },
+  "oficina_p1_P1": {
+    "id": "oficina_p1_P1",
+    "title": "Oficina - Piso 1",
+    "type": "Oficina Profesional",
+    "area": "85,00m²",
+    "description": "Oficina profesional en primer piso.",
+    "features": ["Planta abierta", "Baño privado", "Luminosa"],
+    "floorPlan": "/planos/ofiPisoUno/ofiPisoUno.png",
+    "copy": "Oficina moderna en primer piso con excelente luminosidad. Ideal para estudios profesionales o emprendimientos."
+  },
+  "oficina_p2_P2": {
+    "id": "oficina_p2_P2",
+    "title": "Oficina - Piso 2",
+    "type": "Oficina Profesional",
+    "area": "85,00m²",
+    "description": "Oficina profesional en segundo piso.",
+    "features": ["Planta abierta", "Baño privado", "Vista panorámica"],
+    "floorPlan": "/planos/ofiPisoDos/ofiPisoDos.png",
+    "copy": "Oficina ubicada en segundo piso con vistas privilegiadas. Perfecta para empresas que valoran la presencia y el confort."
+  },
+  "oficina_p3_P3": {
+    "id": "oficina_p3_P3",
+    "title": "Oficina - Piso 3",
+    "type": "Oficina Profesional",
+    "area": "85,00m²",
+    "description": "Oficina profesional en tercer piso.",
+    "features": ["Planta abierta", "Baño privado", "Máxima luminosidad"],
+    "floorPlan": "/planos/ofiPisoTres/ofiPisoTres.png",
+    "copy": "Oficina en tercer piso con máxima luminosidad natural. Espacio versátil que se adapta a diferentes necesidades profesionales."
+  },
+  "oficina_D_P04": {
+    "id": "oficina_D_P04",
+    "title": "Oficina - Piso 4",
+    "type": "Oficina Profesional",
+    "area": "54,53m²",
+    "description": "Oficina profesional en cuarto piso.",
+    "features": ["Planta compacta", "Baño privado", "Frente"],
+    "floorPlan": "/planos/4/4D.png",
+    "copy": "Oficina práctica y funcional en cuarto piso. Ideal para profesionales independientes o pequeños equipos."
+  },
+  "duplex_C_PB": {
+    "id": "duplex_C_PB",
+    "title": "Depto 00°C",
+    "type": "1 Dormitorio con patio Privado",
+    "area": "54,78m²",
+    "description": "1 DORMITORIO con patio privado.",
+    "features": ["2 ambientes", "Patio Privado: 22,41m²", "Interno / Contrafrente"],
+    "floorPlan": "/plantass/PB C.png",
+    "copy": "Unidad única en planta baja que combina la comodidad de un departamento con el beneficio de un patio privado de 22,41m², ideal para quienes buscan un espacio al aire libre propio."
+  },
+  "duplex_D_PB": {
+    "id": "duplex_D_PB",
+    "title": "Depto 00°D",
+    "type": "1 Dormitorio con patio Privado",
+    "area": "54,57m²",
+    "description": "1 DORMITORIO con patio privado.",
+    "features": ["2 ambientes", "Patio Privado: 22,41m²", "Interno / Contrafrente"],
+    "floorPlan": "/plantass/PB D.png",
+    "copy": "Moderno departamento de 2 ambientes con patio. Excelente distribución que aprovecha cada metro cuadrado para brindar luminosidad y confort."
+  },
+  "apartment_A_P1": {
+    "id": "apartment_A_P1",
+    "title": "Depto 01°A",
+    "type": "1 Dormitorio con Balcón (Frente)",
+    "area": "57,95m²",
+    "description": "1 DORMITORIO con balcón al frente.",
+    "features": ["2 ambientes", "Frente (Av. Pueyrredón)", "Balcón: 4,76m²"],
+    "floorPlan": "/plantass/P01 A P13 A.png",
+    "copy": "Disfrutá de la vista y la luz en este departamento de 1 dormitorio con balcón sobre la Av. Pueyrredón."
+  },
+  "apartment_B_P1": {
+    "id": "apartment_B_P1",
+    "title": "Depto 01°B",
+    "type": "1 Dormitorio con Balcón (Frente)",
+    "area": "58,01m²",
+    "description": "1 DORMITORIO con balcón al frente.",
+    "features": ["2 ambientes", "Frente (Av. Pueyrredón)", "Balcón: 4,76m²"],
+    "floorPlan": "/plantass/P01 A P13 B.png",
+    "copy": "Con una ubicación preferencial sobre Av. Pueyrredón, este departamento te conecta con el pulso de la ciudad."
+  },
+  "apartment_C_P1": {
+    "id": "apartment_C_P1",
+    "title": "Depto 01°C",
+    "type": "1 Dormitorio con Balcón",
+    "area": "54,78m²",
+    "description": "1 DORMITORIO con balcón.",
+    "features": ["2 ambientes", "Interno / Contrafrente", "Balcón: 3,85m²"],
+    "floorPlan": "/plantass/P01 a P05 C.png",
+    "copy": "Un hogar diseñado para el bienestar, con un balcón privado que aporta luminosidad y silencio."
+  },
+  "apartment_D_P1": {
+    "id": "apartment_D_P1",
+    "title": "Depto 01°D",
+    "type": "1 Dormitorio con Balcón",
+    "area": "54,55m²",
+    "description": "1 DORMITORIO con balcón.",
+    "features": ["2 ambientes", "Interno / Contrafrente", "Balcón: 3,85m²"],
+    "floorPlan": "/plantass/P01 A P05 D.png",
+    "copy": "La combinación perfecta de diseño y funcionalidad en una ubicación estratégica."
+  },
+  "apartment_A_P2": {
+    "id": "apartment_A_P2",
+    "title": "Depto 02°A",
+    "type": "1 Dormitorio con Balcón (Frente)",
+    "area": "57,95m²",
+    "description": "1 DORMITORIO con balcón al frente.",
+    "features": ["2 ambientes", "Frente (Av. Pueyrredón)", "Balcón: 4,76m²"],
+    "floorPlan": "/plantass/P01 A P13 A.png",
+    "copy": "Elevá tu perspectiva de la ciudad desde este departamento moderno y lleno de luz."
+  },
+  "apartment_B_P2": {
+    "id": "apartment_B_P2",
+    "title": "Depto 02°B",
+    "type": "1 Dormitorio con Balcón (Frente)",
+    "area": "58,01m²",
+    "description": "1 DORMITORIO con balcón al frente.",
+    "features": ["2 ambientes", "Frente (Av. Pueyrredón)", "Balcón: 4,76m²"],
+    "floorPlan": "/plantass/P01 A P13 B.png",
+    "copy": "Viví la energía de Av. Pueyrredón desde la comodidad de tu balcón privado."
+  },
+  "apartment_C_P2": {
+    "id": "apartment_C_P2",
+    "title": "Depto 02°C",
+    "type": "1 Dormitorio con Balcón",
+    "area": "54,78m²",
+    "description": "1 DORMITORIO con balcón.",
+    "features": ["2 ambientes", "Interno / Contrafrente", "Balcón: 3,85m²"],
+    "floorPlan": "/plantass/P01 a P05 C.png",
+    "copy": "Descubrí un espacio acogedor y práctico en el corazón de la ciudad."
+  },
+  "apartment_D_P2": {
+    "id": "apartment_D_P2",
+    "title": "Depto 02°D",
+    "type": "1 Dormitorio con Balcón",
+    "area": "54,55m²",
+    "description": "1 DORMITORIO con balcón.",
+    "features": ["2 ambientes", "Interno / Contrafrente", "Balcón: 3,85m²"],
+    "floorPlan": "/plantass/P01 A P05 D.png",
+    "copy": "Confort urbano definido por espacios luminosos y una distribución superior."
+  },
+  "apartment_A_P3": {
+    "id": "apartment_A_P3",
+    "title": "Depto 03°A",
+    "type": "1 Dormitorio con Balcón (Frente)",
+    "area": "57,95m²",
+    "description": "1 DORMITORIO con balcón al frente.",
+    "features": ["2 ambientes", "Frente (Av. Pueyrredón)", "Balcón: 4,76m²"],
+    "floorPlan": "/plantass/P01 A P13 A.png",
+    "copy": "El equilibrio perfecto entre conexión urbana y privacidad."
+  },
+  "apartment_B_P3": {
+    "id": "apartment_B_P3",
+    "title": "Depto 03°B",
+    "type": "1 Dormitorio con Balcón (Frente)",
+    "area": "58,01m²",
+    "description": "1 DORMITORIO con balcón al frente.",
+    "features": ["2 ambientes", "Frente (Av. Pueyrredón)", "Balcón: 4,76m²"],
+    "floorPlan": "/plantass/P01 A P13 B.png",
+    "copy": "Sentí el ritmo de la ciudad desde tu balcón sobre la avenida principal."
+  },
+  "apartment_C_P3": {
+    "id": "apartment_C_P3",
+    "title": "Depto 03°C",
+    "type": "1 Dormitorio con Balcón",
+    "area": "54,78m²",
+    "description": "1 DORMITORIO con balcón.",
+    "features": ["2 ambientes", "Interno / Contrafrente", "Balcón: 3,85m²"],
+    "floorPlan": "/plantass/P01 a P05 C.png",
+    "copy": "Un refugio de confort y estilo diseñado para desconectar."
+  },
+  "apartment_D_P3": {
+    "id": "apartment_D_P3",
+    "title": "Depto 03°D",
+    "type": "1 Dormitorio con Balcón",
+    "area": "54,55m²",
+    "description": "1 DORMITORIO con balcón.",
+    "features": ["2 ambientes", "Interno / Contrafrente", "Balcón: 3,85m²"],
+    "floorPlan": "/plantass/P01 A P05 D.png",
+    "copy": "Modernidad y practicidad se unen en este departamento diseñado para maximizar la luz."
+  },
+  "apartment_A_P4": {
+    "id": "apartment_A_P4",
+    "title": "Depto 04°A",
+    "type": "1 Dormitorio con Balcón (Frente)",
+    "area": "57,95m²",
+    "description": "1 DORMITORIO con balcón al frente.",
+    "features": ["2 ambientes", "Frente (Av. Pueyrredón)", "Balcón: 4,76m²"],
+    "floorPlan": "/plantass/P01 A P13 A.png",
+    "copy": "Vistas privilegiadas y diseño moderno para una vida urbana activa."
+  },
+  "apartment_B_P4": {
+    "id": "apartment_B_P4",
+    "title": "Depto 04°B",
+    "type": "1 Dormitorio con Balcón (Frente)",
+    "area": "58,01m²",
+    "description": "1 DORMITORIO con balcón al frente.",
+    "features": ["2 ambientes", "Frente (Av. Pueyrredón)", "Balcón: 4,76m²"],
+    "floorPlan": "/plantass/P01 A P13 B.png",
+    "copy": "Espacios bien diseñados y luminosos, el escenario perfecto para tu día a día."
+  },
+  "apartment_C_P4": {
+    "id": "apartment_C_P4",
+    "title": "Depto 04°C",
+    "type": "1 Dormitorio con Balcón",
+    "area": "54,78m²",
+    "description": "1 DORMITORIO con balcón.",
+    "features": ["2 ambientes", "Interno / Contrafrente", "Balcón: 3,85m²"],
+    "floorPlan": "/plantass/P01 a P05 C.png",
+    "copy": "Llevá tu vida al siguiente nivel en este departamento de diseño contemporáneo."
+  },
+  "apartment_D_P4": {
+    "id": "apartment_D_P4",
+    "title": "Depto 04°D",
+    "type": "1 Dormitorio con Balcón",
+    "area": "54,55m²",
+    "description": "1 DORMITORIO con balcón.",
+    "features": ["2 ambientes", "Interno / Contrafrente", "Balcón: 3,85m²"],
+    "floorPlan": "/plantass/P01 A P05 D.png",
+    "copy": "Un oasis urbano personal con una distribución que prioriza tu comodidad."
+  },
+  "apartment_A_P5": {
+    "id": "apartment_A_P5",
+    "title": "Depto 05°A",
+    "type": "1 Dormitorio con Balcón (Frente)",
+    "area": "57,95m²",
+    "description": "1 DORMITORIO con balcón al frente.",
+    "features": ["2 ambientes", "Frente (Av. Pueyrredón)", "Balcón: 4,76m²"],
+    "floorPlan": "/plantass/P01 A P13 A.png",
+    "copy": "Vistas despejadas donde la luz y el diseño se unen para crear un hogar elegante."
+  },
+  "apartment_B_P5": {
+    "id": "apartment_B_P5",
+    "title": "Depto 05°B",
+    "type": "1 Dormitorio con Balcón (Frente)",
+    "area": "58,01m²",
+    "description": "1 DORMITORIO con balcón al frente.",
+    "features": ["2 ambientes", "Frente (Av. Pueyrredón)", "Balcón: 4,76m²"],
+    "floorPlan": "/plantass/P01 A P13 B.png",
+    "copy": "Vive a la altura de tus expectativas en un ambiente ideal para la vida moderna."
+  },
+  "apartment_C_P5": {
+    "id": "apartment_C_P5",
+    "title": "Depto 05°C",
+    "type": "1 Dormitorio con Balcón",
+    "area": "54,78m²",
+    "description": "1 DORMITORIO con balcón.",
+    "features": ["2 ambientes", "Interno / Contrafrente", "Balcón: 3,85m²"],
+    "floorPlan": "/plantass/P01 a P05 C.png",
+    "copy": "Funcionalidad y estilo definen a este departamento con balcón privado."
+  },
+  "apartment_D_P5": {
+    "id": "apartment_D_P5",
+    "title": "Depto 05°D",
+    "type": "1 Dormitorio con Balcón",
+    "area": "54,55m²",
+    "description": "1 DORMITORIO con balcón.",
+    "features": ["2 ambientes", "Interno / Contrafrente", "Balcón: 3,85m²"],
+    "floorPlan": "/plantass/P01 A P05 D.png",
+    "copy": "Un espacio versátil y luminoso, solución perfecta para un estilo de vida dinámico."
+  },
+  "apartment_A_P6": {
+    "id": "apartment_A_P6",
+    "title": "Depto 06°A",
+    "type": "1 Dormitorio con Balcón (Frente)",
+    "area": "57,95m²",
+    "description": "1 DORMITORIO con balcón al frente.",
+    "features": ["2 ambientes", "Frente (Av. Pueyrredón)", "Balcón: 4,76m²"],
+    "floorPlan": "/plantass/P01 A P13 A.png",
+    "copy": "Verdadero mirador urbano con diseño cuidado y espacios luminosos."
+  },
+  "apartment_B_P6": {
+    "id": "apartment_B_P6",
+    "title": "Depto 06°B",
+    "type": "1 Dormitorio con Balcón (Frente)",
+    "area": "58,01m²",
+    "description": "1 DORMITORIO con balcón al frente.",
+    "features": ["2 ambientes", "Frente (Av. Pueyrredón)", "Balcón: 4,76m²"],
+    "floorPlan": "/plantass/P01 A P13 B.png",
+    "copy": "Elegancia y confort se encuentran en este departamento con vistas en altura."
+  },
+  "apartment_C_P6": {
+    "id": "apartment_C_P6",
+    "title": "Depto 06°C",
+    "type": "2 Dormitorio con 2 Balcones",
+    "area": "88,90m²",
+    "description": "2 DORMITORIOS con dos balcones.",
+    "features": ["3 ambientes", "Interno", "Superficie Propia: 73,76m²"],
+    "floorPlan": "/plantass/P6 C.png",
+    "copy": "Amplia unidad de 3 ambientes diseñada para familias que buscan espacio y confort."
+  },
+  "apartment_D_P6": {
+    "id": "apartment_D_P6",
+    "title": "Depto 06°D",
+    "type": "2 Dormitorio con 2 Balcones",
+    "area": "88,66m²",
+    "description": "2 DORMITORIOS con dos balcones.",
+    "features": ["3 ambientes", "Interno", "Superficie Propia: 73,50m²"],
+    "floorPlan": "/plantass/P6 D.png",
+    "copy": "Descubre la amplitud y el diseño de este departamento de 2 dormitorios."
+  },
+  "apartment_A_P7": {
+    "id": "apartment_A_P7",
+    "title": "Depto 07°A",
+    "type": "1 Dormitorio con Balcón (Frente)",
+    "area": "57,95m²",
+    "description": "1 DORMITORIO con balcón.",
+    "features": ["2 ambientes", "Frente", "Balcón: 4,76m²"],
+    "floorPlan": "/plantass/P01 A P13 A.png",
+    "copy": "Vistas panorámicas y una atmósfera de tranquilidad en pisos superiores."
+  },
+  "apartment_B_P7": {
+    "id": "apartment_B_P7",
+    "title": "Depto 07°B",
+    "type": "1 Dormitorio con Balcón (Frente)",
+    "area": "58,01m²",
+    "description": "1 DORMITORIO con balcón.",
+    "features": ["2 ambientes", "Frente", "Balcón: 4,76m²"],
+    "floorPlan": "/plantass/P01 A P13 B.png",
+    "copy": "Vive por encima del ritmo de la ciudad en un espacio elegante y funcional."
+  },
+  "apartment_C_P7": {
+    "id": "apartment_C_P7",
+    "title": "Depto 07°C",
+    "type": "2 Dormitorio con 2 Balcones",
+    "area": "88,90m²",
+    "description": "2 DORMITORIOS con dos balcones.",
+    "features": ["3 ambientes", "Interno", "Balcones: 5,98m²"],
+    "floorPlan": "/plantass/P10 C.png",
+    "copy": "Confort y vistas desde una unidad espaciosa de 3 ambientes."
+  },
+  "apartment_A_P8": {
+    "id": "apartment_A_P8",
+    "title": "Depto 08°A",
+    "type": "1 Dormitorio con Balcón (Frente)",
+    "area": "57,95m²",
+    "description": "1 DORMITORIO con balcón.",
+    "features": ["2 ambientes", "Frente (Av. Pueyrredón)", "Superficie Propia: 48,08m²"],
+    "floorPlan": "/plantass/P01 A P13 A.png",
+    "copy": "Vistas panorámicas y diseño moderno en un piso alto, ideal para disfrutar la ciudad."
+  },
+  "apartment_B_P8": {
+    "id": "apartment_B_P8",
+    "title": "Depto 08°B",
+    "type": "1 Dormitorio con Balcón (Frente)",
+    "area": "58,01m²",
+    "description": "1 DORMITORIO con balcón.",
+    "features": ["2 ambientes", "Frente (Av. Pueyrredón)", "Superficie Propia: 48,13m²"],
+    "floorPlan": "/plantass/P01 A P13 B.png",
+    "copy": "Espacios optimizados con gran entrada de luz natural sobre la avenida principal."
+  },
+  "apartment_C_P8": {
+    "id": "apartment_C_P8",
+    "title": "Depto 08°C",
+    "type": "2 Dormitorio con 2 Balcones",
+    "area": "88,90m²",
+    "description": "2 DORMITORIOS con dos balcones.",
+    "features": ["3 ambientes", "Interno / Contrafrente", "Superficie Propia: 73,76m²"],
+    "floorPlan": "/plantass/P6 C.png",
+    "copy": "Amplia unidad de 3 ambientes, diseñada para brindar comodidad y privacidad a toda la familia."
+  },
+  "apartment_D_P8": {
+    "id": "apartment_D_P8",
+    "title": "Depto 08°D",
+    "type": "2 Dormitorio con 2 Balcones",
+    "area": "88,66m²",
+    "description": "2 DORMITORIOS con dos balcones.",
+    "features": ["3 ambientes", "Interno / Contrafrente", "Superficie Propia: 73,50m²"],
+    "floorPlan": "/plantass/P6 D.png",
+    "copy": "Excelente distribución interna con dos balcones que aseguran ventilación cruzada y luminosidad."
+  },
+  "apartment_E_P8": {
+    "id": "apartment_E_P8",
+    "title": "Depto 08°E",
+    "type": "2 Dormitorios con Balcón",
+    "area": "81,33m²",
+    "description": "2 DORMITORIOS con balcón.",
+    "features": ["3 ambientes", "Interno / Contrafrente", "Superficie Propia: 67,36m²"],
+    "floorPlan": "/plantass/1E.png",
+    "copy": "Un hogar espacioso y tranquilo en el corazón del edificio."
+  },
+  "apartment_A_P9": {
+    "id": "apartment_A_P9",
+    "title": "Depto 09°A",
+    "type": "1 Dormitorio con Balcón (Frente)",
+    "area": "57,95m²",
+    "description": "1 DORMITORIO con balcón.",
+    "features": ["2 ambientes", "Frente", "Balcón: 4,76m²"],
+    "floorPlan": "/plantass/P01 A P13 A.png"
+  },
+  "apartment_B_P9": {
+    "id": "apartment_B_P9",
+    "title": "Depto 09°B",
+    "type": "1 Dormitorio con Balcón (Frente)",
+    "area": "58,01m²",
+    "description": "1 DORMITORIO con balcón.",
+    "features": ["2 ambientes", "Frente", "Balcón: 4,76m²"],
+    "floorPlan": "/plantass/P01 A P13 B.png"
+  },
+  "apartment_C_P9": {
+    "id": "apartment_C_P9",
+    "title": "Depto 09°C",
+    "type": "2 Dormitorio con 2 Balcones",
+    "area": "88,90m²",
+    "description": "2 DORMITORIOS con dos balcones.",
+    "features": ["3 ambientes", "Interno", "Superficie Propia: 73,76m²"],
+    "floorPlan": "/plantass/P6 C.png"
+  },
+  "apartment_D_P9": {
+    "id": "apartment_D_P9",
+    "title": "Depto 09°D",
+    "type": "2 Dormitorio con 2 Balcones",
+    "area": "88,66m²",
+    "description": "2 DORMITORIOS con dos balcones.",
+    "features": ["3 ambientes", "Interno", "Superficie Propia: 73,50m²"],
+    "floorPlan": "/plantass/P6 D.png"
+  },
+  "apartment_E_P9": {
+    "id": "apartment_E_P9",
+    "title": "Depto 09°E",
+    "type": "2 Dormitorios con Balcón",
+    "area": "81,33m²",
+    "description": "2 DORMITORIOS con balcón.",
+    "features": ["3 ambientes", "Interno", "Superficie Propia: 67,36m²"],
+    "floorPlan": "/plantass/1E.png"
+  },
+  "apartment_A_P10": {
+    "id": "apartment_A_P10",
+    "title": "Depto 10°A",
+    "type": "1 Dormitorio con Balcón (Frente)",
+    "area": "57,95m²",
+    "description": "1 DORMITORIO con balcón.",
+    "features": ["2 ambientes", "Frente", "Balcón: 4,76m²"],
+    "floorPlan": "/plantass/P01 A P13 A.png"
+  },
+  "apartment_B_P10": {
+    "id": "apartment_B_P10",
+    "title": "Depto 10°B",
+    "type": "1 Dormitorio con Balcón (Frente)",
+    "area": "58,01m²",
+    "description": "1 DORMITORIO con balcón.",
+    "features": ["2 ambientes", "Frente", "Balcón: 4,76m²"],
+    "floorPlan": "/plantass/P01 A P13 B.png"
+  },
+  "apartment_C_P10": {
+    "id": "apartment_C_P10",
+    "title": "Depto 10°C",
+    "type": "2 Dormitorio con 2 Balcones",
+    "area": "88,90m²",
+    "description": "2 DORMITORIOS con dos balcones.",
+    "features": ["3 ambientes", "Interno", "Balcones: 5,98m²"],
+    "floorPlan": "/plantass/P10 C.png"
+  },
+  "apartment_D_P10": {
+    "id": "apartment_D_P10",
+    "title": "Depto 10°D",
+    "type": "2 Dormitorio con 2 Balcones",
+    "area": "88,66m²",
+    "description": "2 DORMITORIOS con dos balcones.",
+    "features": ["3 ambientes", "Interno", "Balcones: 5,98m²"],
+    "floorPlan": "/plantass/P10 D.png"
+  },
+  "apartment_E_P10": {
+    "id": "apartment_E_P10",
+    "title": "Depto 10°E",
+    "type": "2 Dormitorios con Balcón",
+    "area": "81,33m²",
+    "description": "2 DORMITORIOS con balcón.",
+    "features": ["3 ambientes", "Interno", "Superficie Propia: 67,36m²"],
+    "floorPlan": "/plantass/1E.png"
+  },
+  "apartment_A_P11": {
+    "id": "apartment_A_P11",
+    "title": "Depto 11°A",
+    "type": "1 Dormitorio con Balcón (Frente)",
+    "area": "57,95m²",
+    "description": "1 DORMITORIO con balcón.",
+    "features": ["2 ambientes", "Frente", "Superficie Propia: 48,08m²"],
+    "floorPlan": "/plantass/P01 A P13 A.png"
+  },
+  "apartment_B_P11": {
+    "id": "apartment_B_P11",
+    "title": "Depto 11°B",
+    "type": "1 Dormitorio con Balcón (Frente)",
+    "area": "58,01m²",
+    "description": "1 DORMITORIO con balcón.",
+    "features": ["2 ambientes", "Frente", "Superficie Propia: 48,13m²"],
+    "floorPlan": "/plantass/P01 A P13 B.png"
+  },
+  "apartment_C_P11": {
+    "id": "apartment_C_P11",
+    "title": "Depto 11°C",
+    "type": "1 Loft Estudio con Balcón",
+    "area": "44,60m²",
+    "description": "LOFT/ESTUDIO con balcón.",
+    "features": ["1 ambiente", "Interno", "Balcón: 3,67m²"],
+    "floorPlan": "/plantass/P11 C.png",
+    "copy": "Espacio versátil y moderno, ideal para un estilo de vida minimalista o profesional."
+  },
+  "apartment_D_P11": {
+    "id": "apartment_D_P11",
+    "title": "Depto 11°D",
+    "type": "1 Loft Estudio con Balcón",
+    "area": "44,42m²",
+    "description": "LOFT/ESTUDIO con balcón.",
+    "features": ["1 ambiente", "Interno", "Balcón: 3,67m²"],
+    "floorPlan": "/plantass/P11 D.png"
+  },
+  "apartment_E_P11": {
+    "id": "apartment_E_P11",
+    "title": "Depto 11°E",
+    "type": "2 Dormitorios con Balcón",
+    "area": "81,33m²",
+    "description": "2 DORMITORIOS con balcón.",
+    "features": ["3 ambientes", "Interno", "Superficie Propia: 67,36m²"],
+    "floorPlan": "/plantass/1E.png"
+  },
+  "apartment_A_P12": {
+    "id": "apartment_A_P12",
+    "title": "Depto 12°A",
+    "type": "1 Dormitorio con Balcón (Frente)",
+    "area": "57,95m²",
+    "description": "1 DORMITORIO con balcón.",
+    "features": ["2 ambientes", "Frente", "Superficie Propia: 48,08m²"],
+    "floorPlan": "/plantass/P01 A P13 A.png"
+  },
+  "apartment_B_P12": {
+    "id": "apartment_B_P12",
+    "title": "Depto 12°B",
+    "type": "1 Dormitorio con Balcón (Frente)",
+    "area": "58,01m²",
+    "description": "1 DORMITORIO con balcón.",
+    "features": ["2 ambientes", "Frente", "Superficie Propia: 48,13m²"],
+    "floorPlan": "/plantass/P01 A P13 B.png"
+  },
+  "apartment_C_P12": {
+    "id": "apartment_C_P12",
+    "title": "Depto 12°C",
+    "type": "1 Loft Estudio con Balcón",
+    "area": "44,60m²",
+    "description": "LOFT/ESTUDIO con balcón.",
+    "features": ["1 ambiente", "Interno", "Balcón: 3,67m²"],
+    "floorPlan": "/plantass/P11 C.png"
+  },
+  "apartment_D_P12": {
+    "id": "apartment_D_P12",
+    "title": "Depto 12°D",
+    "type": "1 Loft Estudio con Balcón",
+    "area": "44,42m²",
+    "description": "LOFT/ESTUDIO con balcón.",
+    "features": ["1 ambiente", "Interno", "Balcón: 3,67m²"],
+    "floorPlan": "/plantass/P11 D.png"
+  },
+  "apartment_E_P12": {
+    "id": "apartment_E_P12",
+    "title": "Depto 12°E",
+    "type": "2 Dormitorios con Balcón",
+    "area": "81,33m²",
+    "description": "2 DORMITORIOS con balcón.",
+    "features": ["3 ambientes", "Interno", "Superficie Propia: 67,36m²"],
+    "floorPlan": "/plantass/1E.png"
+  },
+  "apartment_A_P13": {
+    "id": "apartment_A_P13",
+    "title": "Depto 13°A",
+    "type": "1 Dormitorio con Balcón (Frente)",
+    "area": "57,95m²",
+    "description": "1 DORMITORIO con balcón.",
+    "features": ["2 ambientes", "Frente", "Superficie Propia: 48,08m²"],
+    "floorPlan": "/plantass/P01 A P13 A.png"
+  },
+  "apartment_B_P13": {
+    "id": "apartment_B_P13",
+    "title": "Depto 13°B",
+    "type": "1 Dormitorio con Balcón (Frente)",
+    "area": "58,01m²",
+    "description": "1 DORMITORIO con balcón.",
+    "features": ["2 ambientes", "Frente", "Superficie Propia: 48,13m²"],
+    "floorPlan": "/plantass/P01 A P13 B.png"
+  },
+  "apartment_C_P13": {
+    "id": "apartment_C_P13",
+    "title": "Depto 13°C",
+    "type": "1 Loft Estudio con Balcón",
+    "area": "44,60m²",
+    "description": "LOFT/ESTUDIO con balcón.",
+    "features": ["1 ambiente", "Interno", "Balcón: 3,67m²"],
+    "floorPlan": "/plantass/P11 C.png"
+  },
+  "apartment_D_P13": {
+    "id": "apartment_D_P13",
+    "title": "Depto 13°D",
+    "type": "1 Loft Estudio con Balcón",
+    "area": "44,42m²",
+    "description": "LOFT/ESTUDIO con balcón.",
+    "features": ["1 ambiente", "Interno", "Balcón: 3,67m²"],
+    "floorPlan": "/plantass/P11 D.png"
+  },
+  "apartment_E_P13": {
+    "id": "apartment_E_P13",
+    "title": "Depto 13°E",
+    "type": "2 Dormitorios con Balcón",
+    "area": "81,33m²",
+    "description": "2 DORMITORIOS con balcón.",
+    "features": ["3 ambientes", "Interno", "Superficie Propia: 67,36m²"],
+    "floorPlan": "/plantass/1E.png"
+  },
+  "apartment_A_P14": {
+    "id": "apartment_A_P14",
+    "title": "Piso Alto 14°A",
+    "type": "Duplex 1 Dormitorio con Balcón (Frente)",
+    "area": "76,85m²",
+    "description": "DUPLEX 1 DORMITORIO con balcón.",
+    "features": ["2 ambientes (Duplex)", "Frente (Av. Pueyrredón)", "Superficie Propia: 63,76m²"],
+    "floorPlan": "/plantass/P14 A .png",
+    "copy": "Disfruta de la independencia y el estilo en este duplex único con zona social y privada separadas."
+  },
+  "apartment_B_P14": {
+    "id": "apartment_B_P14",
+    "title": "Depto 14°B",
+    "type": "Duplex 1 Dormitorio con Balcón (Frente)",
+    "area": "56,21m²",
+    "description": "DUPLEX 1 DORMITORIO con balcón.",
+    "features": ["2 ambientes (Duplex)", "Frente (Av. Pueyrredón)", "Superficie Propia: 46,63m²"],
+    "floorPlan": "/plantass/P14 B.png",
+    "copy": "Experiencia vertical en el corazón de Palermo. Duplex con diseño abierto y luz natural."
+  },
+  "apartment_C_P14": {
+    "id": "apartment_C_P14",
+    "title": "Depto 14°C",
+    "type": "Duplex 1 Dormitorio con Balcón",
+    "area": "56,29m²",
+    "description": "DUPLEX 1 DORMITORIO con balcón.",
+    "features": ["2 ambientes (Duplex)", "Interno / Contrafrente", "Superficie Propia: 46,70m²"],
+    "floorPlan": "/plantass/P14 C.png",
+    "copy": "Duplex con amplitud vertical que maximiza cada metro cuadrado. Ideal para quienes valoran el diseño."
+  },
+  "apartment_D_P14": {
+    "id": "apartment_D_P14",
+    "title": "Depto 14°D",
+    "type": "Duplex 2 Dormitorios con Balcón",
+    "area": "74,13m²",
+    "description": "DUPLEX 2 DORMITORIOS con balcón.",
+    "features": ["3 ambientes (Duplex)", "Interno / Contrafrente", "Superficie Propia: 61,50m²"],
+    "floorPlan": "/plantass/P14 D.png",
+    "copy": "Un duplex pensado para la familia moderna que necesita espacio extra y privacidad en altura."
+  },
+  "apartment_E_P14": {
+    "id": "apartment_E_P14",
+    "title": "Depto 14°E",
+    "type": "Duplex 1 Dormitorio con Balcón",
+    "area": "103,94m²",
+    "description": "DUPLEX 1 DORMITORIO con balcón.",
+    "features": ["2 ambientes (Duplex)", "Interno / Contrafrente", "Superficie Propia: 86,23m²"],
+    "floorPlan": "/plantass/P14 E.png",
+    "copy": "Para los amantes del diseño, este duplex ofrece espacios abiertos que maximizan la luz y las vistas."
+  },
+  "apartment_A_P15": {
+    "id": "apartment_A_P15",
+    "title": "Depto 15°A",
+    "type": "1 Dormitorio con Balcón",
+    "area": "49,22m²",
+    "description": "1 DORMITORIO con balcón.",
+    "features": ["2 ambientes", "Interno / Contrafrente", "Superficie Propia: 40,83m²"],
+    "floorPlan": "/plantass/P15 A.png",
+    "copy": "Último piso con vistas panorámicas. Diseño moderno y acabados de primera calidad."
+  },
+  "apartment_B_P15": {
+    "id": "apartment_B_P15",
+    "title": "Depto 15°B",
+    "type": "1 Dormitorio con Balcón",
+    "area": "59,67m²",
+    "description": "1 DORMITORIO con balcón.",
+    "features": ["2 ambientes", "Interno", "Superficie Propia: 49,50m²"],
+    "floorPlan": "/plantass/P15 B.png",
+    "copy": "En el último piso, este departamento ofrece privacidad y vistas privilegiadas de la ciudad."
+  },
+  "apartment_C_P15": {
+    "id": "apartment_C_P15",
+    "title": "Depto 15°C",
+    "type": "1 Dormitorio con Balcón",
+    "area": "56,29m²",
+    "description": "1 DORMITORIO con balcón.",
+    "features": ["2 ambientes", "Interno / Contrafrente", "Superficie Propia: 46,70m²"],
+    "floorPlan": "/plantass/P15 C.png",
+    "copy": "Penthouse level con diseño contemporáneo y máxima luminosidad natural."
+  },
+  "apartment_D_P15": {
+    "id": "apartment_D_P15",
+    "title": "Depto 15°D",
+    "type": "2 Dormitorios con Balcón",
+    "area": "108,05m²",
+    "description": "2 DORMITORIOS con balcón.",
+    "features": ["3 ambientes", "Frente / Interno", "Superficie Propia: 89,64m²"],
+    "floorPlan": "/plantass/P15 D.png",
+    "copy": "Amplitud y exclusividad en el último nivel habitado. Perfecto para familias que buscan confort y estilo."
+  },
+  "apartment_E_P15": {
+    "id": "apartment_E_P15",
+    "title": "Depto 15°E",
+    "type": "1 Dormitorio con Balcón",
+    "area": "91,15m²",
+    "description": "1 DORMITORIO con balcón.",
+    "features": ["2 ambientes", "Interno / Contrafrente", "Superficie Propia: 75,62m²"],
+    "floorPlan": "/plantass/P15 E.png",
+    "copy": "Disfruta de un espacio generoso en el último piso con acabados premium y vistas incomparables."
+  },
+  "quincho_A_P16": {
+    "id": "quincho_A_P16",
+    "title": "Quincho Norte - Piso 16",
+    "type": "Amenity",
+    "area": "45,00m²",
+    "description": "Espacio de usos múltiples con parrilla y cocina.",
+    "features": ["Parrilla completa", "Cocina equipada", "Terraza privada"],
+    "floorPlan": "/planos/16/quinchoA.png",
+    "copy": "Celebra tus mejores momentos en el Quincho Norte con vistas inigualables."
+  },
+  "quincho_B_P16": {
+    "id": "quincho_B_P16",
+    "title": "Quincho Sur - Piso 16",
+    "type": "Amenity",
+    "area": "40,00m²",
+    "description": "Segundo espacio de usos múltiples, ideal para reuniones.",
+    "features": ["Parrilla", "Espacio flexible", "Conexión con solarium"],
+    "floorPlan": "/planos/16/quinchoB.png",
+    "copy": "El Quincho Sur ofrece una alternativa perfecta para tus encuentros sociales."
+  },
+  "pileta_C_P16": {
+    "id": "pileta_C_P16",
+    "title": "Piscina & Solarium - Piso 16",
+    "type": "Amenity",
+    "area": "80,00m²",
+    "description": "Piscina descubierta con amplio solarium en la terraza.",
+    "features": ["Piscina vista infinita", "Solarium deck", "Duchas exteriores"],
+    "floorPlan": "/planos/16/pileta.png",
+    "copy": "Relájate en la altura con nuestra piscina de vista infinita y el solarium."
+  }
+}

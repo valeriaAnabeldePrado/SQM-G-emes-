@@ -233,7 +233,7 @@ export function Model({ onDepartmentClick, highlightedUnits = [] }) {
       if (mesh.userData.clickable && mesh.isMesh && mesh.material) {
         highlightMesh(mesh, true)
         if (mesh.userData.sibling) highlightMesh(mesh.userData.sibling, true)
-        
+
         // Solo cambiar cursor si no hay filtro activo
         const hasActiveFilter = highlightedUnits.length > 0
         if (!hasActiveFilter) {

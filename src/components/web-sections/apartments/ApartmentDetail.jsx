@@ -71,8 +71,7 @@ const ApartmentDetail = () => {
     if (floorNumber === 4) return 'modelTwo'
     if (floorNumber >= 5 && floorNumber <= 6) return 'modelThree'
     if (floorNumber >= 7 && floorNumber <= 10) return 'modelFour'
-    if (floorNumber >= 11 && floorNumber <= 12) return 'modelFive'
-    if (floorNumber === 13) return 'modelSix'
+    if (floorNumber >= 11 && floorNumber <= 13) return 'modelFive'
     if (floorNumber === 14) return 'modelFourteen'
     if (floorNumber === 15) return 'modelFifteen'
     return 'modelThree' // default
@@ -592,16 +591,15 @@ const ApartmentDetail = () => {
       )
     }
 
-    // Para ModelSix (piso 13) que solo tiene A y B
-    if (layout === 'modelSix') {
+    // Para ModelFive (pisos 11-12) con A, B, C, D (4 departamentos)
+    if (layout === 'modelFive') {
       return (
         <div className={config.container}>
           <div className="bg-white rounded-lg border border-gray-200 p-2 lg:p-3">
             <svg
-              id="PlantaSix"
               data-name="Capa 2"
               xmlns="http://www.w3.org/2000/svg"
-              viewBox="0 0 218.16 349.44"
+              viewBox="0 0 218.4 387.96"
               style={{
                 width: '100%',
                 height: 'auto',
@@ -617,10 +615,11 @@ const ApartmentDetail = () => {
                   }
                 `}</style>
               </defs>
-              <g id="Capa_1-2" data-name="Capa 1">
-                {/* Rectángulo central transparente */}
+              <g data-name="Capa 1">
+                {/* Rectángulo central */}
                 <rect
-                  y="168.24"
+                  x=".24"
+                  y="188.04"
                   width="180.48"
                   height="54.36"
                   fill="#f0f0f0"
@@ -630,26 +629,25 @@ const ApartmentDetail = () => {
 
                 {/* Departamento A */}
                 <g className="apartment-group">
-                  <rect
+                  <polygon
                     fill={letter === 'A' ? '#ffc46a' : '#e8e8e8'}
                     stroke="#999"
                     strokeWidth="1"
-                    width="218.16"
-                    height="165.24"
+                    points="107.88 0 107.88 185.16 .24 185.16 .24 19.8 54.84 19.8 54.84 0 107.88 0"
                   />
                   {letter === 'A' && (
                     <g>
                       <circle
-                        cx="110"
-                        cy="80"
+                        cx="55"
+                        cy="92.5"
                         r="22"
                         fill="none"
                         stroke="#483b2b"
                         strokeWidth="2"
                       />
                       <text
-                        x="110"
-                        y="86"
+                        x="55"
+                        y="98"
                         textAnchor="middle"
                         className="apartment-text"
                         fill="#483b2b"
@@ -662,32 +660,258 @@ const ApartmentDetail = () => {
 
                 {/* Departamento B */}
                 <g className="apartment-group">
-                  <rect
+                  <polygon
                     fill={letter === 'B' ? '#ffc46a' : '#e8e8e8'}
                     stroke="#999"
                     strokeWidth="1"
-                    y="225.6"
-                    width="218.16"
-                    height="123.84"
+                    points="218.4 19.8 218.4 185.16 110.76 185.16 110.76 0 163.8 0 163.8 19.8 218.4 19.8"
                   />
                   {letter === 'B' && (
                     <g>
                       <circle
-                        cx="110"
-                        cy="287"
+                        cx="164"
+                        cy="92.5"
                         r="22"
                         fill="none"
                         stroke="#483b2b"
                         strokeWidth="2"
                       />
                       <text
-                        x="110"
-                        y="293"
+                        x="164"
+                        y="98"
                         textAnchor="middle"
                         className="apartment-text"
                         fill="#483b2b"
                       >
                         B
+                      </text>
+                    </g>
+                  )}
+                </g>
+
+                {/* Departamento C */}
+                <g className="apartment-group">
+                  <polygon
+                    fill={letter === 'C' ? '#ffc46a' : '#e8e8e8'}
+                    stroke="#999"
+                    strokeWidth="1"
+                    points="218.28 245.4 218.28 369.24 209.28 369.24 209.28 388.08 159.72 388.08 159.72 369.24 110.52 369.24 110.52 245.4 218.28 245.4"
+                  />
+                  {letter === 'C' && (
+                    <g>
+                      <circle
+                        cx="164"
+                        cy="307"
+                        r="22"
+                        fill="none"
+                        stroke="#483b2b"
+                        strokeWidth="2"
+                      />
+                      <text
+                        x="164"
+                        y="313"
+                        textAnchor="middle"
+                        className="apartment-text"
+                        fill="#483b2b"
+                      >
+                        C
+                      </text>
+                    </g>
+                  )}
+                </g>
+
+                {/* Departamento D */}
+                <g className="apartment-group">
+                  <polygon
+                    fill={letter === 'D' ? '#ffc46a' : '#e8e8e8'}
+                    stroke="#999"
+                    strokeWidth="1"
+                    points="107.52 245.52 107.52 369.24 58.56 369.24 58.56 388.08 9 388.08 9 369.24 0 369.24 0 245.52 107.52 245.52"
+                  />
+                  {letter === 'D' && (
+                    <g>
+                      <circle
+                        cx="54"
+                        cy="307"
+                        r="22"
+                        fill="none"
+                        stroke="#483b2b"
+                        strokeWidth="2"
+                      />
+                      <text
+                        x="54"
+                        y="313"
+                        textAnchor="middle"
+                        className="apartment-text"
+                        fill="#483b2b"
+                      >
+                        D
+                      </text>
+                    </g>
+                  )}
+                </g>
+              </g>
+            </svg>
+          </div>
+        </div>
+      )
+    }
+
+    // Para ModelSix (piso 13) con A, B, C, D (4 departamentos)
+    if (layout === 'modelSix') {
+      return (
+        <div className={config.container}>
+          <div className="bg-white rounded-lg border border-gray-200 p-2 lg:p-3">
+            <svg
+              data-name="Capa 2"
+              xmlns="http://www.w3.org/2000/svg"
+              viewBox="0 0 218.4 387.96"
+              style={{
+                width: '100%',
+                height: 'auto',
+                maxHeight: config.maxHeight
+              }}
+            >
+              <defs>
+                <style>{`
+                  .apartment-text {
+                    font-family: Arial, sans-serif;
+                    font-size: ${config.fontSize};
+                    font-weight: bold;
+                  }
+                `}</style>
+              </defs>
+              <g data-name="Capa 1">
+                {/* Rectángulo central */}
+                <rect
+                  x=".24"
+                  y="188.04"
+                  width="180.48"
+                  height="54.36"
+                  fill="#f0f0f0"
+                  stroke="#ddd"
+                  strokeWidth="1"
+                />
+
+                {/* Departamento A */}
+                <g className="apartment-group">
+                  <polygon
+                    fill={letter === 'A' ? '#ffc46a' : '#e8e8e8'}
+                    stroke="#999"
+                    strokeWidth="1"
+                    points="107.88 0 107.88 185.16 .24 185.16 .24 19.8 54.84 19.8 54.84 0 107.88 0"
+                  />
+                  {letter === 'A' && (
+                    <g>
+                      <circle
+                        cx="55"
+                        cy="92.5"
+                        r="22"
+                        fill="none"
+                        stroke="#483b2b"
+                        strokeWidth="2"
+                      />
+                      <text
+                        x="55"
+                        y="98"
+                        textAnchor="middle"
+                        className="apartment-text"
+                        fill="#483b2b"
+                      >
+                        A
+                      </text>
+                    </g>
+                  )}
+                </g>
+
+                {/* Departamento B */}
+                <g className="apartment-group">
+                  <polygon
+                    fill={letter === 'B' ? '#ffc46a' : '#e8e8e8'}
+                    stroke="#999"
+                    strokeWidth="1"
+                    points="218.4 19.8 218.4 185.16 110.76 185.16 110.76 0 163.8 0 163.8 19.8 218.4 19.8"
+                  />
+                  {letter === 'B' && (
+                    <g>
+                      <circle
+                        cx="164"
+                        cy="92.5"
+                        r="22"
+                        fill="none"
+                        stroke="#483b2b"
+                        strokeWidth="2"
+                      />
+                      <text
+                        x="164"
+                        y="98"
+                        textAnchor="middle"
+                        className="apartment-text"
+                        fill="#483b2b"
+                      >
+                        B
+                      </text>
+                    </g>
+                  )}
+                </g>
+
+                {/* Departamento C */}
+                <g className="apartment-group">
+                  <polygon
+                    fill={letter === 'C' ? '#ffc46a' : '#e8e8e8'}
+                    stroke="#999"
+                    strokeWidth="1"
+                    points="218.28 245.4 218.28 369.24 209.28 369.24 209.28 388.08 159.72 388.08 159.72 369.24 110.52 369.24 110.52 245.4 218.28 245.4"
+                  />
+                  {letter === 'C' && (
+                    <g>
+                      <circle
+                        cx="164"
+                        cy="307"
+                        r="22"
+                        fill="none"
+                        stroke="#483b2b"
+                        strokeWidth="2"
+                      />
+                      <text
+                        x="164"
+                        y="313"
+                        textAnchor="middle"
+                        className="apartment-text"
+                        fill="#483b2b"
+                      >
+                        C
+                      </text>
+                    </g>
+                  )}
+                </g>
+
+                {/* Departamento D */}
+                <g className="apartment-group">
+                  <polygon
+                    fill={letter === 'D' ? '#ffc46a' : '#e8e8e8'}
+                    stroke="#999"
+                    strokeWidth="1"
+                    points="107.52 245.52 107.52 369.24 58.56 369.24 58.56 388.08 9 388.08 9 369.24 0 369.24 0 245.52 107.52 245.52"
+                  />
+                  {letter === 'D' && (
+                    <g>
+                      <circle
+                        cx="54"
+                        cy="307"
+                        r="22"
+                        fill="none"
+                        stroke="#483b2b"
+                        strokeWidth="2"
+                      />
+                      <text
+                        x="54"
+                        y="313"
+                        textAnchor="middle"
+                        className="apartment-text"
+                        fill="#483b2b"
+                      >
+                        D
                       </text>
                     </g>
                   )}

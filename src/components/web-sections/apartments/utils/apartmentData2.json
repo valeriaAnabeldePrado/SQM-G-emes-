@@ -560,7 +560,7 @@
     "area": "44,60m²",
     "description": "LOFT/ESTUDIO con balcón.",
     "features": ["1 ambiente", "Interno", "Balcón: 3,67m²"],
-    "floorPlan": "/plantass/P11 C.png"
+    "floorPlan": "/plantass/P11 A P13 C.png"
   },
   "apartment_D_P12": {
     "id": "apartment_D_P12",
@@ -569,7 +569,7 @@
     "area": "44,42m²",
     "description": "LOFT/ESTUDIO con balcón.",
     "features": ["1 ambiente", "Interno", "Balcón: 3,67m²"],
-    "floorPlan": "/plantass/P11 D.png"
+    "floorPlan": "/plantass/P11 A P13 D.png"
   },
   "apartment_E_P12": {
     "id": "apartment_E_P12",
@@ -605,7 +605,7 @@
     "area": "44,60m²",
     "description": "LOFT/ESTUDIO con balcón.",
     "features": ["1 ambiente", "Interno", "Balcón: 3,67m²"],
-    "floorPlan": "/plantass/P11 C.png"
+    "floorPlan": "/plantass/P11 A P13 C.png"
   },
   "apartment_D_P13": {
     "id": "apartment_D_P13",
@@ -614,7 +614,7 @@
     "area": "44,42m²",
     "description": "LOFT/ESTUDIO con balcón.",
     "features": ["1 ambiente", "Interno", "Balcón: 3,67m²"],
-    "floorPlan": "/plantass/P11 D.png"
+    "floorPlan": "/plantass/P11 A P13 D.png"
   },
   "apartment_E_P13": {
     "id": "apartment_E_P13",
@@ -724,35 +724,5 @@
     "features": ["2 ambientes", "Interno / Contrafrente", "Superficie Propia: 75,62m²"],
     "floorPlan": "/plantass/P15 E.png",
     "copy": "Disfruta de un espacio generoso en el último piso con acabados premium y vistas incomparables."
-  },
-  "quincho_A_P16": {
-    "id": "quincho_A_P16",
-    "title": "Quincho Norte - Piso 16",
-    "type": "Amenity",
-    "area": "45,00m²",
-    "description": "Espacio de usos múltiples con parrilla y cocina.",
-    "features": ["Parrilla completa", "Cocina equipada", "Terraza privada"],
-    "floorPlan": "/planos/16/quinchoA.png",
-    "copy": "Celebra tus mejores momentos en el Quincho Norte con vistas inigualables."
-  },
-  "quincho_B_P16": {
-    "id": "quincho_B_P16",
-    "title": "Quincho Sur - Piso 16",
-    "type": "Amenity",
-    "area": "40,00m²",
-    "description": "Segundo espacio de usos múltiples, ideal para reuniones.",
-    "features": ["Parrilla", "Espacio flexible", "Conexión con solarium"],
-    "floorPlan": "/planos/16/quinchoB.png",
-    "copy": "El Quincho Sur ofrece una alternativa perfecta para tus encuentros sociales."
-  },
-  "pileta_C_P16": {
-    "id": "pileta_C_P16",
-    "title": "Piscina & Solarium - Piso 16",
-    "type": "Amenity",
-    "area": "80,00m²",
-    "description": "Piscina descubierta con amplio solarium en la terraza.",
-    "features": ["Piscina vista infinita", "Solarium deck", "Duchas exteriores"],
-    "floorPlan": "/planos/16/pileta.png",
-    "copy": "Relájate en la altura con nuestra piscina de vista infinita y el solarium."
   }
 }

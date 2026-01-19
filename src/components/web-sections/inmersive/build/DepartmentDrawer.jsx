@@ -236,6 +236,12 @@ export function DepartmentDrawer({ selectedDepartment, isDrawerOpen, onClose }) 
 
           {/* CTA Button */}
           <button
+            onClick={() => {
+              const departmentName = selectedDepartment.nombre || selectedDepartment.tipologia
+              const message = `Hola! Quiero información del edificio Vivra Guemes y quería información del ${departmentName}`
+              const whatsappURL = `https://wa.me/5493513470043?text=${encodeURIComponent(message)}`
+              window.open(whatsappURL, '_blank')
+            }}
             style={{
               width: '100%',
               padding: '14px 24px',

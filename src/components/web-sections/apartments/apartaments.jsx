@@ -328,30 +328,33 @@ const Apartaments = () => {
                       {selectedApartment ? renderApartmentPreview(selectedApartment) : ''}
                     </div>
                     <p className="text-sm lg:text-lg text-[var(--color-three)] ml-1">
-                      Selecciona un departamento para ver más detalles y acceder a los planos
-                      completos.
+                      {selectedFloor === 'pisoDieciseis' 
+                        ? 'Piso de amenities - visualización de planos no disponible.'
+                        : 'Selecciona un departamento para ver más detalles y acceder a los planos completos.'}
                     </p>
                   </div>
 
-                  <div className="flex items-end lg:items-center">
-                    <Button
-                      className={`w-full lg:w-auto lg:min-w-[200px] flex items-center justify-center gap-3 px-6 py-3
-                                  transition-all duration-300 transform hover:scale-105
-                                  ${
-                                    !selectedApartment
-                                      ? 'bg-gray-400 cursor-not-allowed opacity-60 hover:scale-100'
-                                      : 'shadow-lg hover:shadow-xl'
-                                  }`}
-                      onClick={selectedApartment ? handleViewPlans : () => {}}
-                      disabled={!selectedApartment}
-                    >
-                      <span className="font-medium">Ver plano</span>
-                      <MdOutlineArrowOutward
-                        size="1.4em"
-                        color={selectedApartment ? 'white' : '#9CA3AF'}
-                      />
-                    </Button>
-                  </div>
+                  {selectedFloor !== 'pisoDieciseis' && (
+                    <div className="flex items-end lg:items-center">
+                      <Button
+                        className={`w-full lg:w-auto lg:min-w-[200px] flex items-center justify-center gap-3 px-6 py-3
+                                    transition-all duration-300 transform hover:scale-105
+                                    ${
+                                      !selectedApartment
+                                        ? 'bg-gray-400 cursor-not-allowed opacity-60 hover:scale-100'
+                                        : 'shadow-lg hover:shadow-xl'
+                                    }`}
+                        onClick={selectedApartment ? handleViewPlans : () => {}}
+                        disabled={!selectedApartment}
+                      >
+                        <span className="font-medium">Ver plano</span>
+                        <MdOutlineArrowOutward
+                          size="1.4em"
+                          color={selectedApartment ? 'white' : '#9CA3AF'}
+                        />
+                      </Button>
+                    </div>
+                  )}
                 </div>
               </Card>
             )}

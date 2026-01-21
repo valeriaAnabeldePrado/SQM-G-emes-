@@ -1,7 +1,7 @@
 import React from 'react'
 
 const PlanoEdificioNuevo = ({ onEvent, selectedFloor }) => (
-  <div style={{ width: '100%', height: 'auto' }}>
+  <div style={{ width: '100%', height: 'auto', transform: 'scaleX(-1)' }}>
     <style>{`
           .plantaBaja, .pTresOficina, .pDosOficina, .pUnoOficina, .pbOficina, .pisoUno, .pisoDos, .pisoTres, .pisoCuatro, .pisoCinco, .pisoSeis, .pisoSiete, .pisoOcho, .pisoNueve, .pisoDiez, .pisoOnce, .pisoDoce, .pisoTrece, .pisoDuplexCatorceQuinceAbc, .pisoDuplexCatorceQuinceDe, .pisoCatorceAbc, .pisoCatorceDe, .pisoQuinceAbc, .pisoQuinceDe, .pisoDieciseis {
             fill: transparent;
@@ -63,6 +63,7 @@ const PlanoEdificioNuevo = ({ onEvent, selectedFloor }) => (
         `}</style>
     <svg
       id="Capa_2"
+      className="m-auto"
       data-name="Capa 2"
       xmlns="http://www.w3.org/2000/svg"
       viewBox="0 0 1064.91 1304.04"

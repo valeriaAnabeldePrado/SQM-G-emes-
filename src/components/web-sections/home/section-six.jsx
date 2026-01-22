@@ -4,7 +4,7 @@ import { CardArrow } from './components/card-arrow'
 import bed from '/src/assets/section-six/dormitorio.jpg'
 import dpto from '/src/assets/section-six/cdd.png'
 import galleryOne from '/src/assets/section-six/galleryOne.jpg'
-import galleryTwo from '/src/assets/section-six/frente12ok.jpg'
+import galleryTwo from '/src/assets/section-six/frenteOne.png'
 import deptoCompleto from '/src/assets/section-six/livingok.jpg'
 import galleryFour from '/src/assets/section-six/cocina.jpg'
 
@@ -42,15 +42,9 @@ export default function SectionSix() {
       id="gallery"
       className="flex flex-col  items-stretch gap-[var(--generic-gap-tablet)] min-d:gap-[var(--generic-gap-desktop)] py-[var(--pading-y)] min-d:flex-col"
     >
-      <div
-        className="cursor-pointer aspect-video w-full max-w-[90vw] mx-auto rounded-[var(--border-radius-phone)] min-d:rounded-[var(--border-radius-tablet)] min-extra:rounded-[var(--border-radius-note)] min-note:rounded-[var(--border-radius-desktop)] p-[var(--padding-cards)] bg-[url('/src/assets/section-six/galeria1.jpg')] flex justify-center gap-[var(--generic-gap-tablet)] min-d:gap-[var(--generic-gap-desktop)] bg-cover bg-center cursor-pointer transition-transform duration-300 "
-        onClick={() => openModal('/src/assets/section-six/galeria1.jpg')}
-      ></div>
+      <div className=" aspect-video w-full max-w-[90vw] mx-auto rounded-[var(--border-radius-phone)] min-d:rounded-[var(--border-radius-tablet)] min-extra:rounded-[var(--border-radius-note)] min-note:rounded-[var(--border-radius-desktop)] p-[var(--padding-cards)] bg-[url('/src/assets/section-six/frenteTwoOk.png')] flex justify-center gap-[var(--generic-gap-tablet)] min-d:gap-[var(--generic-gap-desktop)] bg-cover bg-center  transition-transform duration-300 "></div>
 
-      <div
-        className="aspect-video w-full max-w-[90vw] mx-auto rounded-[var(--border-radius-phone)] min-d:rounded-[var(--border-radius-tablet)] min-extra:rounded-[var(--border-radius-note)] min-note:rounded-[var(--border-radius-desktop)] p-[var(--padding-cards)] bg-[url('/src/assets/section-six/dpto.jpg')] flex justify-center gap-[var(--generic-gap-tablet)] min-d:gap-[var(--generic-gap-desktop)] bg-cover bg-center cursor-pointer transition-transform duration-300 "
-        onClick={() => openModal('/src/assets/section-six/dpto.jpg')}
-      ></div>
+      <div className="aspect-video w-full max-w-[90vw] mx-auto rounded-[var(--border-radius-phone)] min-d:rounded-[var(--border-radius-tablet)] min-extra:rounded-[var(--border-radius-note)] min-note:rounded-[var(--border-radius-desktop)] p-[var(--padding-cards)] bg-[url('/src/assets/section-six/pileta.png')] flex justify-center gap-[var(--generic-gap-tablet)] min-d:gap-[var(--generic-gap-desktop)] bg-cover bg-center  transition-transform duration-300 "></div>
       {/*---------------------  Sector numero 3 */}
       <div className="flex flex-col min-d:flex-row items-stretch gap-[var(--generic-gap-tablet)] min-d:gap-[var(--generic-gap-desktop)] h-full">
         {/* Card principal - full width en mobile, flex-1 en desktop */}

@@ -23,7 +23,7 @@ export default function SectionCallTo() {
   return (
     <>
       <div className="flex flex-col min-d:flex-row items-stretch gap-[var(--generic-gap-tablet)] min-d:gap-[var(--generic-gap-desktop)] py-7  ">
-        <div className="w-full flex flex-col gap-[var(--generic-gap-tablet)] min-d:gap-[var(--generic-gap-desktop)] bg-[url('/src/assets/sectioncto/plano.png')]  bg-cover ">
+        <div className="w-full flex flex-col gap-[var(--generic-gap-tablet)] min-d:gap-[var(--generic-gap-desktop)]  bg-cover ">
           <Card hasGradient className="w-full flex-col min-d:h-full justify-between ">
             <div className="w-full flex flex-col font-[var(--font-weight-bold)] text-(length:--text-menu) py-10 min-d:justify-end">
               <h3 className="text-subtitleS text-[var(--color-three)] min-lg:leading-14 leading-10">

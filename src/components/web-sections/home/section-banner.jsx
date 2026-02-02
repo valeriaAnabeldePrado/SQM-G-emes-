@@ -1,5 +1,5 @@
-import BannerImage from '../../../assets/banner/full.jpg'
-import Button from './components/button'
+import BannerImage from '../../../assets/banner/bannerOk.png'
+
 import { Card } from './components/card'
 import { useNavigate } from 'react-router-dom'
 
@@ -20,7 +20,7 @@ const SectionBanner = () => {
       style={{
         backgroundImage: `url(${BannerImage})`,
         backgroundSize: 'cover',
-        backgroundPosition: 'center',
+        backgroundPosition: 'bottom',
         backgroundRepeat: 'no-repeat'
       }}
     >

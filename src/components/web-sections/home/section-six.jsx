@@ -4,7 +4,7 @@ import { CardArrow } from './components/card-arrow'
 import bed from '/src/assets/section-six/dormitorio.jpg'
 import dpto from '/src/assets/section-six/cdd.png'
 import galleryOne from '/src/assets/section-six/pileDron.png'
-import galleryTwo from '/src/assets/section-six/frenteOne.png'
+import galleryTwo from '/src/assets/section-six/oficinasOk.png'
 import deptoCompleto from '/src/assets/section-six/livingok.jpg'
 import galleryFour from '/src/assets/section-six/cocina.jpg'
 

@@ -3,6 +3,15 @@ export function getFloorPlanImage(meshName) {
   if (!meshName) return null
   const name = meshName.toLowerCase()
 
+  // Amenities P16 (Solarium, Quinchos)
+  if (
+    name.includes('solarium') ||
+    name.includes('quincho') ||
+    name.includes('quicho')
+  ) {
+    return '/plantass/P16 amenities.png'
+  }
+
   // Planta Baja (P00)
   if (name.includes('pb_c')) return '/plantass/PB C.png'
   if (name.includes('pb_d')) return '/plantass/PB D.png'

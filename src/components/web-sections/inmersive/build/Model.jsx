@@ -7,7 +7,7 @@ import { getFloorPlanImage } from './planMapping'
 
 // Componente del modelo GLB con hover por departamento individual
 export function Model({ onDepartmentClick, highlightedUnits = [] }) {
-  const { scene } = useGLTF('/untitled.glb')
+  const { scene } = useGLTF('/Untitled.glb')
 
   // Guardar colores originales, clonar materiales y asignar eventos a cada mesh
   useEffect(() => {
@@ -228,11 +228,19 @@ export function Model({ onDepartmentClick, highlightedUnits = [] }) {
       const mesh = event.object
 
       // Log para ver el nombre del mesh al hacer hover
-      console.log('🖱️ Mesh Hover:', mesh.name)
 
       if (mesh.userData.clickable && mesh.isMesh && mesh.material) {
         highlightMesh(mesh, true)
         if (mesh.userData.sibling) highlightMesh(mesh.userData.sibling, true)
+
+        // Si es P16 (amenities), resaltar todos los meshes del piso
+        if (mesh.userData.pisoKey === 'P16') {
+          scene.traverse((child) => {
+            if (child.isMesh && child.userData.pisoKey === 'P16' && child !== mesh) {
+              highlightMesh(child, true)
+            }
+          })
+        }
 
         // Solo cambiar cursor si no hay filtro activo
         const hasActiveFilter = highlightedUnits.length > 0
@@ -241,7 +249,7 @@ export function Model({ onDepartmentClick, highlightedUnits = [] }) {
         }
       }
     },
-    [highlightedUnits]
+    [highlightedUnits, scene]
   )
 
   const handlePointerOut = useCallback(
@@ -252,10 +260,19 @@ export function Model({ onDepartmentClick, highlightedUnits = [] }) {
       if (mesh.isMesh && mesh.material) {
         highlightMesh(mesh, false)
         if (mesh.userData.sibling) highlightMesh(mesh.userData.sibling, false)
+
+        // Si es P16 (amenities), remover highlight de todos los meshes del piso
+        if (mesh.userData.pisoKey === 'P16') {
+          scene.traverse((child) => {
+            if (child.isMesh && child.userData.pisoKey === 'P16' && child !== mesh) {
+              highlightMesh(child, false)
+            }
+          })
+        }
       }
       document.body.style.cursor = 'auto'
     },
-    [highlightedUnits]
+    [highlightedUnits, scene]
   )
 
   const handleClick = useCallback(
@@ -290,4 +307,4 @@ export function Model({ onDepartmentClick, highlightedUnits = [] }) {
 }
 
 // Preload del modelo para mejor performance
-export const preloadModel = () => useGLTF.preload('/untitled.glb')
+export const preloadModel = () => useGLTF.preload('/Untitled.glb')

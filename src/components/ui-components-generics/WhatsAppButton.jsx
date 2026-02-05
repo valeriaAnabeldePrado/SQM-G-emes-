@@ -19,7 +19,7 @@ const WhatsAppButton = () => {
   }
 
   return (
-    <div className="fixed bottom-6 right-6 z-50">
+    <div className="fixed bottom-10 right-10 z-50 transform -translate-x-1/2">
       <a
         href={whatsappUrl}
         target="_blank"
@@ -46,7 +46,7 @@ const WhatsAppButton = () => {
         {/* Tooltip opcional */}
         <div
           className={`
-          absolute bottom-full right-0 mb-2
+          absolute bottom-full left-1/2 mb-2 transform -translate-x-1/2
           px-3 py-2 bg-gray-800 text-white text-sm rounded-lg
           whitespace-nowrap opacity-0 pointer-events-none
           transition-opacity duration-200
@@ -54,7 +54,7 @@ const WhatsAppButton = () => {
         `}
         >
           ¡Contáctanos por WhatsApp!
-          <div className="absolute top-full right-4 w-0 h-0 border-l-4 border-r-4 border-t-4 border-transparent border-t-gray-800"></div>
+          <div className="absolute top-full left-1/2 -translate-x-1/2 w-0 h-0 border-l-4 border-r-4 border-t-4 border-transparent border-t-gray-800"></div>
         </div>
       </a>
     </div>

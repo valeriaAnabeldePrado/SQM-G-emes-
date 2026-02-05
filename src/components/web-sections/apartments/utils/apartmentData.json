@@ -347,29 +347,29 @@
     "floorPlan": "/plantass/P01 A P13 B.png",
     "copy": "Elegancia y confort se encuentran en este departamento con vistas en altura."
   },
+  "apartment_D_P6": {
+    "id": "apartment_D_P6",
+    "title": "Depto 06°C",
+    "type": "1 Dormitorio con Balcón al frente",
+    "superficiePropia": "33,8m²",
+    "superficieTotal": "44,74m²",
+    "balcones": "11,47m²",
+    "description": "LOFT/ESTUDIO con Balcón con Terraza Privada",
+    "features": ["2 ambientes", "Interno"],
+    "floorPlan": "/plantass/P6 C.png",
+    "copy": "Amplia unidad de 2 ambientes."
+  },
   "apartment_C_P6": {
     "id": "apartment_C_P6",
     "title": "Depto 06°C",
-    "type": "2 Dormitorio con 2 Balcones",
-    "superficiePropia": "33,99m²",
-    "superficieTotal": "40,97m²",
+    "type": "1 Dormitorio con Balcón al frente",
+    "superficiePropia": "33,9m²",
+    "superficieTotal": "40,97",
     "balcones": "11,47m²",
-    "description": "2 DORMITORIOS con dos balcones.",
-    "features": ["3 ambientes", "Interno"],
+    "description": "LOFT/ESTUDIO con Balcón con Terraza Privada",
+    "features": ["2 ambientes", "Interno"],
     "floorPlan": "/plantass/P6 C.png",
-    "copy": "Amplia unidad de 3 ambientes diseñada para familias que buscan espacio y confort."
-  },
-  "apartment_D_P6": {
-    "id": "apartment_D_P6",
-    "title": "Depto 06°D",
-    "type": "2 Dormitorio con 2 Balcones",
-    "superficiePropia": "33,8m²",
-    "superficieTotal": "40,74m²",
-    "balcones": "11,47m²",
-    "description": "2 DORMITORIOS con dos balcones.",
-    "features": ["3 ambientes", "Interno"],
-    "floorPlan": "/plantass/P6 D.png",
-    "copy": "Descubre la amplitud y el diseño de este departamento de 2 dormitorios."
+    "copy": "Descubre la amplitud y el diseño de este departamento de 1 dormitorio con terraza privada."
   },
   "apartment_A_P7": {
     "id": "apartment_A_P7",
@@ -404,7 +404,7 @@
     "balcones": "5,98m²",
     "description": "2 DORMITORIOS con dos balcones.",
     "features": ["3 ambientes", "Interno / Contrafrente"],
-    "floorPlan": "/plantass/P10 C.png",
+    "floorPlan": "/plantass/P7aP10C.png",
     "copy": "Confort y vistas desde una unidad espaciosa de 3 ambientes."
   },
   "apartment_A_P8": {
@@ -440,7 +440,7 @@
     "balcones": "5,98m²",
     "description": "2 DORMITORIOS con dos balcones.",
     "features": ["3 ambientes", "Interno / Contrafrente"],
-    "floorPlan": "/plantass/P6 C.png",
+    "floorPlan": "/plantass/P7aP10C.png",
     "copy": "Amplia unidad de 3 ambientes, diseñada para brindar comodidad y privacidad a toda la familia."
   },
   "apartment_D_P8": {
@@ -498,7 +498,7 @@
     "balcones": "5,98m²",
     "description": "2 DORMITORIOS con dos balcones.",
     "features": ["3 ambientes", "Interno"],
-    "floorPlan": "/plantass/P6 C.png"
+    "floorPlan": "/plantass/P7aP10C.png"
   },
   "apartment_D_P9": {
     "id": "apartment_D_P9",
@@ -553,7 +553,7 @@
     "balcones": "5,98m²",
     "description": "2 DORMITORIOS con dos balcones.",
     "features": ["3 ambientes", "Interno"],
-    "floorPlan": "/plantass/P10 C.png"
+    "floorPlan": "/plantass/P7aP10C.png"
   },
   "apartment_D_P10": {
     "id": "apartment_D_P10",
@@ -608,7 +608,7 @@
     "balcones": "3,67m²",
     "description": "LOFT/ESTUDIO con balcón.",
     "features": ["1 ambiente", "Interno"],
-    "floorPlan": "/plantass/P11 C.png",
+    "floorPlan": "/plantass/P11 A P13 C.png",
     "copy": "Espacio versátil y moderno, ideal para un estilo de vida minimalista o profesional."
   },
   "apartment_D_P11": {
@@ -620,7 +620,7 @@
     "balcones": "3,67m²",
     "description": "LOFT/ESTUDIO con balcón.",
     "features": ["1 ambiente", "Interno"],
-    "floorPlan": "/plantass/P11 D.png"
+    "floorPlan": "/plantass/P11 A P13 D.png"
   },
   "apartment_E_P11": {
     "id": "apartment_E_P11",

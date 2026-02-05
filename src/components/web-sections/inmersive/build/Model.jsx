@@ -7,7 +7,7 @@ import { getFloorPlanImage } from './planMapping'
 
 // Componente del modelo GLB con hover por departamento individual
 export function Model({ onDepartmentClick, highlightedUnits = [] }) {
-  const { scene } = useGLTF('/Untitled.glb')
+  const { scene } = useGLTF('/untitled.glb')
 
   // Guardar colores originales, clonar materiales y asignar eventos a cada mesh
   useEffect(() => {

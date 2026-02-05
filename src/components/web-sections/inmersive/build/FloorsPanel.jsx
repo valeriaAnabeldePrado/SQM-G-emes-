@@ -6,13 +6,18 @@ export function FloorsPanel({ onHighlightUnits }) {
 
   // Contar unidades por tipo
   const unitCounts = useMemo(() => {
-    const counts = { 1: 0, 2: 0, loft: 0, duplex: 0, oficina: 0 }
-    Object.values(edificioVivra).forEach((floor) => {
+    const counts = { 1: 0, 2: 0, loft: 0, duplex: 0, oficina: 0, amenities: 0 }
+    Object.entries(edificioVivra).forEach(([floorKey, floor]) => {
       floor.unidades?.forEach((unit) => {
         const type = unit.tipologia?.toLowerCase() || ''
 
         if (type.includes('oficina')) {
           counts.oficina++
+        }
+
+        // Contar amenities (P16)
+        if (floorKey === 'P16' || type.includes('amenity')) {
+          counts.amenities++
         }
 
         // Count independently as a unit can be multiple things
@@ -41,6 +46,8 @@ export function FloorsPanel({ onHighlightUnits }) {
           if (unit.loft) match = true
         } else if (filterType === 'duplex') {
           if (unit.duplex) match = true
+        } else if (filterType === 'amenities') {
+          if (floorKey === 'P16' || type.includes('amenity')) match = true
         } else {
           // It's a number (rooms)
           if (unit.rooms === parseInt(filterType)) match = true
@@ -88,6 +95,9 @@ export function FloorsPanel({ onHighlightUnits }) {
       : []),
     ...(unitCounts.oficina > 0
       ? [{ type: 'oficina', label: 'Oficinas', icon: '💼', count: unitCounts.oficina }]
+      : []),
+    ...(unitCounts.amenities > 0
+      ? [{ type: 'amenities', label: 'Amenities', icon: '🏊', count: unitCounts.amenities }]
       : [])
   ]
 

@@ -53,7 +53,7 @@ export default function SectionTwo() {
         <section className="flex md:flex-row gap-[var(--generic-gap-tablet)] min-d:gap-[var(--generic-gap-desktop)] sm:flex-row basis-1/2">
           <Card className="animated-card flex-1 flex-col" hasGradient>
             <h2 className="text-(length:--text-title-huge) font-[var(--font-weight-bold)] leading-none text-[var(--color-one)]">
-              54
+              55
             </h2>
             <div className="min-d:items-start text-[var(--color-three)] text-body w-full  justify-center align-middle flex flex-col">
               <p>Unidades</p>
@@ -96,8 +96,8 @@ export default function SectionTwo() {
             <p className="text-body text-[var(--color-three)]">
               En VIVRA Güemes, convergen estilo, funcionalidad y ubicación. Un proyecto moderno que
               redefine la forma de habitar y trabajar, integrando un edificio residencial con
-              unidades de 1 y 2 dormitorios, dúplex y microviviendas, más un bloque corporativo
-              ideal para oficinas y locales comerciales.
+              unidades de 1 y 2 dormitorios, dúplex, loft y microviviendas, más un bloque
+              corporativo ideal para oficinas y locales comerciales.
             </p>
           </div>
         </Card>

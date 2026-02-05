@@ -368,6 +368,7 @@ export const edificioVivra = {
       {
         meshNamePattern: '6C',
         nombre: 'Depto 06°C',
+        loft: true,
         tipologia: '1 Dormitorio con Balcón con Terraza Privada',
         ambientes: '2 ambientes',
         rooms: 1,
@@ -383,6 +384,7 @@ export const edificioVivra = {
         tipologia: '1 Dormitorio con Balcón con Terraza Privada',
         ambientes: '2 ambientes',
         rooms: 1,
+        loft: true,
         superficiePropia: 33.8,
         superficieTotal: 40.74,
         balcones: 11.47,
@@ -874,29 +876,45 @@ export const edificioVivra = {
         descripcion: 'DUPLEX 1 DORMITORIO con balcón. Distribuido en dos plantas.'
       }
     ]
+  },
+  P16: {
+    nombre: 'Piso 16 - Amenities',
+    unidades: [
+      {
+        meshNamePattern: 'SOLARIUM',
+        nombre: 'Solarium',
+        tipologia: 'Amenity',
+        ambientes: 'Área común',
+        descripcion: 'Solarium con vistas panorámicas.',
+        superficiePropia: 'N/A',
+        superficieTotal: 'N/A',
+        orientacion: 'Terraza'
+      },
+      {
+        meshNamePattern: 'QUINCHO 1',
+        meshNamePatternAlt: ['QUINCHO_1', 'QUINCHO'],
+        nombre: 'Quincho 1',
+        tipologia: 'Amenity',
+        ambientes: 'Área común',
+        descripcion: 'Quincho con parrilla y área de reunión.',
+        superficiePropia: 'N/A',
+        superficieTotal: 'N/A',
+        orientacion: 'Terraza'
+      },
+      {
+        meshNamePattern: 'QUICHO 2',
+        meshNamePatternAlt: ['QUICHO_2', 'QUINCHO_2', 'QUINCHO 2'],
+        nombre: 'Quincho 2',
+        tipologia: 'Amenity',
+        ambientes: 'Área común',
+        descripcion: 'Quincho con parrilla y área de reunión.',
+        superficiePropia: 'N/A',
+        superficieTotal: 'N/A',
+        orientacion: 'Terraza'
+      }
+    ]
   }
 }
 
 // Exportamos también como departamentosData para compatibilidad
 export const departamentosData = edificioVivra
-
-// Exportamos amenitiesData como objeto vacío o con datos si los hay
-export const amenitiesData = {
-  TERRAZA_PISCINA: {
-    nombre: 'Terraza con Amenities',
-    unidades: [
-      {
-        meshNamePattern: 'PISCINA',
-        nombre: 'Piscina',
-        tipologia: 'Amenity',
-        descripcion: 'Piscina en terraza.'
-      },
-      {
-        meshNamePattern: 'QUINCHO',
-        nombre: 'Quincho',
-        tipologia: 'Amenity',
-        descripcion: 'Quincho con parrilla.'
-      }
-    ]
-  }
-}

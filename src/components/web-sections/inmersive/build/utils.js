@@ -61,9 +61,13 @@ export function detectarPiso(nombre) {
     return `P${floorNumber.toString().padStart(2, '0')}`
   }
 
-  // Terraza Amenities
-  if (nombre.includes('PISCINA') || nombre.includes('QUINCHO')) {
-    return 'TERRAZA_PISCINA'
+  // Terraza Amenities P16
+  if (
+    nombre.includes('SOLARIUM') ||
+    nombre.includes('QUINCHO') ||
+    nombre.includes('QUICHO')
+  ) {
+    return 'P16'
   }
 
   // Ignorar pasillos y planos auxiliares

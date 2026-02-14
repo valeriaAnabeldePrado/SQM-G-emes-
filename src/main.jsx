@@ -3,6 +3,7 @@ import { createRoot } from 'react-dom/client'
 import { RouterProvider } from 'react-router-dom'
 import './index.css'
 import { router } from './routes/index.jsx'
+import { Analytics } from '@vercel/analytics/react'
 
 const showConsoleBranding = () => {
   const styles = {
@@ -66,5 +67,6 @@ showConsoleBranding()
 createRoot(document.getElementById('root')).render(
   <StrictMode>
     <RouterProvider router={router} />
+    <Analytics />
   </StrictMode>
 )

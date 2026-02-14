@@ -70,7 +70,6 @@ const SectionFour = () => {
         return span
       })
 
-      // Responsive trigger for GSAP
       const isMobile = window.innerWidth < 768
       gsap
         .timeline({

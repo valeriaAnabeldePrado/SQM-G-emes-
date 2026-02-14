@@ -1,4 +1,4 @@
-import { useRef, useState, useEffect } from 'react'
+import { useRef } from 'react'
 import { gsap } from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
 import { useGSAP } from '@gsap/react'
@@ -19,8 +19,8 @@ const Roadmap = () => {
   const containerRef = useRef(null)
   const headerRef = useRef(null)
   const timelineRef = useRef(null)
-  const [selectedImages, setSelectedImages] = useState(null)
-  const [currentImageIndex, setCurrentImageIndex] = useState(0)
+  //const [selectedImages, setSelectedImages] = useState(null)
+  //const [currentImageIndex, setCurrentImageIndex] = useState(0)
 
   const PLACEHOLDER_IMAGE = '/characteristics/bano.png'
 
@@ -124,47 +124,47 @@ const Roadmap = () => {
     }
   }
 
-  const openImageGallery = (images, startIndex = 0) => {
-    setSelectedImages(images)
-    setCurrentImageIndex(startIndex)
-  }
+  // const openImageGallery = (images, startIndex = 0) => {
+  //   setSelectedImages(images)
+  //   setCurrentImageIndex(startIndex)
+  // }
 
-  const closeImageGallery = () => {
-    setSelectedImages(null)
-    setCurrentImageIndex(0)
-  }
+  // const closeImageGallery = () => {
+  //   setSelectedImages(null)
+  //   setCurrentImageIndex(0)
+  // }
 
-  const nextImage = () => {
-    setCurrentImageIndex((prev) => (prev + 1) % selectedImages.length)
-  }
+  // const nextImage = () => {
+  //   setCurrentImageIndex((prev) => (prev + 1) % selectedImages.length)
+  // }
 
-  const prevImage = () => {
-    setCurrentImageIndex((prev) => (prev - 1 + selectedImages.length) % selectedImages.length)
-  }
+  // const prevImage = () => {
+  //   setCurrentImageIndex((prev) => (prev - 1 + selectedImages.length) % selectedImages.length)
+  // }
 
   // keyboard navigation for modal (Esc to close, arrows to navigate)
-  useEffect(() => {
-    if (!selectedImages) return
+  // useEffect(() => {
+  //   if (!selectedImages) return
 
-    const handler = (e) => {
-      if (e.key === 'Escape') closeImageGallery()
-      if (e.key === 'ArrowRight') {
-        setCurrentImageIndex((prev) => (prev + 1) % selectedImages.length)
-      }
-      if (e.key === 'ArrowLeft') {
-        setCurrentImageIndex((prev) => (prev - 1 + selectedImages.length) % selectedImages.length)
-      }
-    }
+  //   const handler = (e) => {
+  //     if (e.key === 'Escape') closeImageGallery()
+  //     if (e.key === 'ArrowRight') {
+  //       setCurrentImageIndex((prev) => (prev + 1) % selectedImages.length)
+  //     }
+  //     if (e.key === 'ArrowLeft') {
+  //       setCurrentImageIndex((prev) => (prev - 1 + selectedImages.length) % selectedImages.length)
+  //     }
+  //   }
 
-    window.addEventListener('keydown', handler)
-    return () => window.removeEventListener('keydown', handler)
-  }, [selectedImages])
+  //   window.addEventListener('keydown', handler)
+  //   return () => window.removeEventListener('keydown', handler)
+  // }, [selectedImages])
 
   return (
     <>
       <div ref={containerRef} className="custom-container mx-auto px-4 md:py-14 py-24">
         {/* Header Section */}
-        <div className="py-[var(--pading-y)]">
+        <div className=" mt-8 lg:pt-20 max-w-6xl">
           <h3
             ref={headerRef}
             className="text-subtitle font-bold text-[var(--color-three)] pb-8 min-lg:pb-16"
@@ -179,7 +179,7 @@ const Roadmap = () => {
         </div>
 
         {/* Interactive Timeline */}
-        <div ref={timelineRef} className="py-[var(--pading-y)]">
+        <div ref={timelineRef} className="">
           <Card
             className="p-[var(--padding-cards-small)] min-d:p-[var(--padding-cards)] overflow-hidden"
             hasGradient
@@ -195,16 +195,12 @@ const Roadmap = () => {
                   {milestones.map((milestone) => (
                     <div
                       key={milestone.id}
-                      className={`timeline-milestone min-w-[140px] flex-shrink-0 snap-center flex flex-col items-center ${
-                        Array.isArray(milestone.images) && milestone.images.length > 0
-                          ? 'cursor-pointer group'
-                          : 'cursor-default'
-                      }`}
-                      onClick={() =>
-                        Array.isArray(milestone.images) && milestone.images.length > 0
-                          ? openImageGallery(milestone.images, 0)
-                          : null
-                      }
+                      className="timeline-milestone min-w-[140px] flex-shrink-0 snap-center flex flex-col items-center "
+                      // onClick={() =>
+                      //   Array.isArray(milestone.images) && milestone.images.length > 0
+                      //     ? openImageGallery(milestone.images, 0)
+                      //     : null
+                      // }
                     >
                       {/* Small Point */}
                       <div
@@ -236,7 +232,7 @@ const Roadmap = () => {
                     <div
                       key={milestone.id}
                       className="flex items-start gap-4"
-                      onClick={() => openImageGallery(milestone.images, 0)}
+                      // onClick={() => openImageGallery(milestone.images, 0)}
                     >
                       <div
                         className={`w-8 h-8 rounded-full flex items-center justify-center shadow-sm border-2 mt-1 ${
@@ -289,7 +285,7 @@ const Roadmap = () => {
                     <div className="flex  min-lg:justify-start">
                       <button
                         disabled
-                        onClick={() => openImageGallery(milestone.images, 0)}
+                        // onClick={() => openImageGallery(milestone.images, 0)}
                         className="inline-flex items-center gap-2 px-6 py-3 bg-slate-300 cursor-not-allowed text-white rounded-full hover:brightness-90 transition-all duration-300 font-medium"
                       >
                         <MdPhotoLibrary size={18} />
@@ -304,68 +300,16 @@ const Roadmap = () => {
             </Card>
           ))}
         </div>
-
-        {/* <div className="py-[var(--pading-y)]">
-          <Card
-            className="p-[var(--padding-cards-small)] min-d:p-[var(--padding-cards)] text-center"
-            hasGradient
-          >
-            <h4 className="text-(length:--text-subtitle) font-bold text-[var(--color-three)]  mb-6">
-              Progreso General del Proyecto
-            </h4>
-
-            <div className="max-w-2xl mx-auto space-y-6">
-            
-              <div className="relative">
-                <div className="bg-[var(--color-beige)] rounded-full h-6 overflow-hidden">
-                  <div
-                    className="bg-gradient-to-r from-green-500 to-[var(--color-one)] h-full rounded-full transition-all duration-2000 ease-out relative"
-                    style={{ width: '21%' }}
-                  >
-                    <div className="absolute inset-0 bg-gradient-to-r from-transparent to-white opacity-20 animate-pulse"></div>
-                  </div>
-                </div>
-                <div className="absolute inset-0 flex items-center justify-center">
-                  <span className="text-(length:--text-menu-sub) font-bold text-white drop-shadow-lg">
-                    21% Completado
-                  </span>
-                </div>
-              </div>
-
-              Stats Grid
-              <div className="grid grid-cols-3 gap-4 mt-8">
-                <div className="text-center p-4 bg-white bg-opacity-50 rounded-lg">
-                  <div className="text-2xl font-bold text-green-600">2</div>
-                  <div className="text-(length:--text-menu-sub) text-[var(--color-three)]">
-                    Completadas
-                  </div>
-                </div>
-                <div className="text-center p-4 bg-white bg-opacity-50 rounded-lg">
-                  <div className="text-2xl font-bold text-[var(--color-one)]">2</div>
-                  <div className="text-(length:--text-menu-sub) text-[var(--color-three)]">
-                    En progreso
-                  </div>
-                </div>
-                <div className="text-center p-4 bg-white bg-opacity-50 rounded-lg">
-                  <div className="text-2xl font-bold text-gray-500">10</div>
-                  <div className="text-(length:--text-menu-sub) text-[var(--color-three)]">
-                    Próximas
-                  </div>
-                </div>
-              </div>
-            </div>
-          </Card>
-        </div> */}
       </div>
 
-      <ModalGallery
+      {/* <ModalGallery
         selectedImages={selectedImages}
         currentImageIndex={currentImageIndex}
         onClose={closeImageGallery}
         onPrevImage={prevImage}
         onNextImage={nextImage}
         placeholderImage={PLACEHOLDER_IMAGE}
-      />
+      /> */}
     </>
   )
 }

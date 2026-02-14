@@ -27,7 +27,7 @@ const WhatsAppButton = () => {
         onClick={handleClick}
         className={`
           flex items-center justify-center
-          w-14 h-14 md:w-16 md:h-16
+           p-5
           bg-green-500 hover:bg-green-600
           text-white rounded-full shadow-lg
           transition-all duration-300 ease-in-out

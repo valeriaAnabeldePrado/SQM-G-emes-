@@ -66,8 +66,9 @@ export default function NewBuild() {
 
       <Canvas
         shadows
+        frameloop="demand"
         camera={{ position: [15, 10, 15], fov: 20 }}
-        dpr={window.innerWidth < 768 ? [1, 1.5] : [1, 2]}
+        dpr={[1, 1.5]}
         gl={{
           antialias: window.innerWidth >= 768,
           powerPreference: 'high-performance',

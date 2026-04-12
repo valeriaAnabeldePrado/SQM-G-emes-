@@ -5,7 +5,7 @@ export function DirectionalLight() {
       position={[10, 15, 10]}
       intensity={5}
       castShadow
-      shadow-mapSize={window.innerWidth < 768 ? [512, 512] : [2048, 2048]}
+      shadow-mapSize={window.innerWidth < 768 ? [512, 512] : [1024, 1024]}
       shadow-camera-far={50}
       shadow-camera-left={-15}
       shadow-camera-right={15}

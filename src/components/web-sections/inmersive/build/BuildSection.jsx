@@ -1,11 +1,84 @@
-import { Suspense, useState, useEffect, useRef } from 'react'
-import { Canvas, useThree } from '@react-three/fiber'
+import { Suspense, useState, useEffect, useRef, useCallback } from 'react'
+import { Canvas, useThree, useFrame } from '@react-three/fiber'
 import { OrbitControls, useGLTF, Stats, Html, Environment, Sky } from '@react-three/drei'
 import * as THREE from 'three'
 
 import gsap from 'gsap'
 import { HOTSPOTS } from '../data'
 import BackToHome from '../components/BackToHome'
+
+// Detecta si la PC es de bajo rendimiento antes de montar el Canvas
+function detectLowEndDevice() {
+  try {
+    // 1. Testear si el navegador mismo reporta rendimiento limitado
+    const testCanvas = document.createElement('canvas')
+    const gl =
+      testCanvas.getContext('webgl', { failIfMajorPerformanceCaveat: true }) ||
+      testCanvas.getContext('experimental-webgl', { failIfMajorPerformanceCaveat: true })
+
+    if (!gl) return true // Contexto rechazado = hardware muy limitado
+
+    // 2. Detectar GPU por nombre
+    const debugInfo = gl.getExtension('WEBGL_debug_renderer_info')
+    if (debugInfo) {
+      const renderer = gl.getParameter(debugInfo.UNMASKED_RENDERER_WEBGL).toLowerCase()
+      const lowEndPatterns = [
+        'intel hd graphics 4',
+        'intel hd graphics 3',
+        'intel hd graphics 2',
+        'intel hd graphics 1',
+        'intel gma',
+        'software rasterizer',
+        'llvmpipe',
+        'swiftshader',
+        'mesa',
+        'microsoft basic render'
+      ]
+      if (lowEndPatterns.some((p) => renderer.includes(p))) return true
+    }
+
+    // 3. Poca memoria del dispositivo (< 4GB)
+    if (navigator.deviceMemory && navigator.deviceMemory < 4) return true
+
+    // 4. Pocos núcleos de CPU
+    if (navigator.hardwareConcurrency && navigator.hardwareConcurrency <= 2) return true
+
+    return false
+  } catch {
+    return false
+  }
+}
+
+// Hook que monitorea FPS durante los primeros segundos y baja calidad si es necesario
+function useDynamicQuality(isLowEnd, onDowngrade) {
+  const frameCount = useRef(0)
+  const startTime = useRef(null)
+  const degraded = useRef(false)
+
+  useFrame(() => {
+    if (degraded.current) return
+
+    const now = performance.now()
+    if (!startTime.current) startTime.current = now
+    frameCount.current++
+
+    const elapsed = now - startTime.current
+    if (elapsed >= 3000) {
+      const fps = (frameCount.current / elapsed) * 1000
+      if (fps < 25 && !degraded.current) {
+        degraded.current = true
+        onDowngrade()
+      }
+      // Reiniciar para no seguir midiendo
+      degraded.current = true
+    }
+  })
+}
+
+function QualityMonitor({ onDowngrade }) {
+  useDynamicQuality(false, onDowngrade)
+  return null
+}
 
 // Componente para manejar la recuperación del contexto WebGL
 function WebGLContextHandler({ children }) {
@@ -877,8 +950,13 @@ export default function Edificio() {
   const [selectedCharacteristics, setSelectedCharacteristics] = useState(null)
   const [isDrawerOpen, setIsDrawerOpen] = useState(false)
   const [isZoomedIn, setIsZoomedIn] = useState(false)
+  const [lowQuality, setLowQuality] = useState(() => detectLowEndDevice())
 
   const controlsRef = useRef()
+
+  const handleDowngrade = useCallback(() => {
+    setLowQuality(true)
+  }, [])
 
   const handleHotspotClick = (cameraConfig, hotspotData) => {
     setActiveHotspot(cameraConfig)
@@ -1041,11 +1119,12 @@ export default function Edificio() {
           height: '100vh',
           background: 'linear-gradient(to bottom, #87CEEB, #98D8E8)'
         }}
+        dpr={lowQuality ? 1 : [1, 2]}
         onError={(error) => {
           console.error('Canvas error:', error)
         }}
         gl={{
-          antialias: true,
+          antialias: !lowQuality,
           alpha: true,
           powerPreference: 'high-performance',
           preserveDrawingBuffer: false,
@@ -1053,15 +1132,17 @@ export default function Edificio() {
         }}
       >
         <WebGLContextHandler>
-          <Sky />
+          {!lowQuality && <Sky />}
           <Stats />
           {/* Iluminación estándar */}
-          <ambientLight intensity={0.5} />
+          <ambientLight intensity={lowQuality ? 0.8 : 0.5} />
           <directionalLight position={[10, 10, 5]} intensity={1} />
-          <pointLight position={[-10, -10, -10]} intensity={0.3} />
+          {!lowQuality && <pointLight position={[-10, -10, -10]} intensity={0.3} />}
 
-          {/* Environment para mejor iluminación */}
-          <Environment preset="city" />
+          {/* Environment para mejor iluminación — omitido en modo bajo rendimiento */}
+          {!lowQuality && <Environment preset="city" />}
+
+          <QualityMonitor onDowngrade={handleDowngrade} />
 
           {/* Controles de órbita mejorados y restringidos */}
           <OrbitControls

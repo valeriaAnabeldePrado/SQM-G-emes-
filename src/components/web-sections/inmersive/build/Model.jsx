@@ -1,13 +1,16 @@
-import { useEffect, useCallback } from 'react'
+import { useEffect, useCallback, useRef } from 'react'
 import { useGLTF } from '@react-three/drei'
+import { useThree } from '@react-three/fiber'
 import * as THREE from 'three'
 import { edificioVivra } from './constant'
 import { detectarPiso } from './utils'
-import { getFloorPlanImage } from './planMapping'
+import { getFloorPlanImages } from './planMapping'
 
 // Componente del modelo GLB con hover por departamento individual
 export function Model({ onDepartmentClick, highlightedUnits = [] }) {
   const { scene } = useGLTF('/untitled.glb')
+  const { invalidate } = useThree()
+  const prevHighlightedCount = useRef(0)
 
   // Guardar colores originales, clonar materiales y asignar eventos a cada mesh
   useEffect(() => {
@@ -49,9 +52,10 @@ export function Model({ onDepartmentClick, highlightedUnits = [] }) {
         child.material.transparent = false
         child.material.opacity = 1
 
-        // Habilitar sombras en cada mesh
+        // Habilitar sombras y culling en cada mesh
         child.castShadow = true
         child.receiveShadow = true
+        child.frustumCulled = true
 
         // Hacer cada mesh interactivo
         const rawPisoKey = detectarPiso(child.name)
@@ -120,11 +124,17 @@ export function Model({ onDepartmentClick, highlightedUnits = [] }) {
         }
       }
     })
-  }, [scene])
+
+    invalidate()
+  }, [scene, invalidate])
 
   // Resaltar unidades filtradas
   useEffect(() => {
     const hasActiveFilter = highlightedUnits.length > 0
+
+    // Si no había filtro antes y sigue sin haberlo, no hay nada que cambiar
+    if (!hasActiveFilter && prevHighlightedCount.current === 0) return
+    prevHighlightedCount.current = highlightedUnits.length
 
     scene.traverse((child) => {
       if (child.isMesh && child.material) {
@@ -198,7 +208,9 @@ export function Model({ onDepartmentClick, highlightedUnits = [] }) {
         }
       }
     })
-  }, [scene, highlightedUnits])
+
+    invalidate()
+  }, [scene, highlightedUnits, invalidate])
 
   const highlightMesh = (mesh, highlight) => {
     // No hacer hover si hay filtro activo
@@ -246,10 +258,11 @@ export function Model({ onDepartmentClick, highlightedUnits = [] }) {
         const hasActiveFilter = highlightedUnits.length > 0
         if (!hasActiveFilter) {
           document.body.style.cursor = 'pointer'
+          invalidate()
         }
       }
     },
-    [highlightedUnits, scene]
+    [highlightedUnits, scene, invalidate]
   )
 
   const handlePointerOut = useCallback(
@@ -269,10 +282,11 @@ export function Model({ onDepartmentClick, highlightedUnits = [] }) {
             }
           })
         }
+        invalidate()
       }
       document.body.style.cursor = 'auto'
     },
-    [highlightedUnits, scene]
+    [highlightedUnits, scene, invalidate]
   )
 
   const handleClick = useCallback(
@@ -281,13 +295,14 @@ export function Model({ onDepartmentClick, highlightedUnits = [] }) {
       const mesh = event.object
 
       if (mesh.userData.clickable && mesh.userData.pisoKey && mesh.userData.unitData) {
-        const floorPlanImage = getFloorPlanImage(mesh.name)
+        const floorPlanImages = getFloorPlanImages(mesh.name)
 
         onDepartmentClick({
           ...mesh.userData.unitData,
           piso: mesh.userData.pisoKey,
           meshName: mesh.name,
-          floorPlanImage: floorPlanImage
+          floorPlanImage: floorPlanImages[0] || null,
+          floorPlanImages: floorPlanImages
         })
       }
     },

@@ -100,3 +100,38 @@ export function getFloorPlanImage(meshName) {
 
   return null
 }
+
+// Para dúplex (pisos 14-15), retorna ambas imágenes [planta baja, planta alta].
+// Para el resto, retorna un array con la imagen única.
+export function getFloorPlanImages(meshName) {
+  if (!meshName) return []
+
+  const match = meshName.match(/^(\d+)([A-Z])/i)
+  if (match) {
+    const pisoNum = parseInt(match[1])
+    const dpto = match[2].toUpperCase()
+
+    if (pisoNum === 14 || pisoNum === 15) {
+      const p14Map = {
+        A: '/plantass/P14 A .png',
+        B: '/plantass/P14 B.png',
+        C: '/plantass/P14 C.png',
+        D: '/plantass/P14 D.png',
+        E: '/plantass/P14 E.png'
+      }
+      const p15Map = {
+        A: '/plantass/P15 A.png',
+        B: '/plantass/P15 B.png',
+        C: '/plantass/P15 C.png',
+        D: '/plantass/P15 D.png',
+        E: '/plantass/P15 E.png'
+      }
+      if (p14Map[dpto] && p15Map[dpto]) {
+        return [p14Map[dpto], p15Map[dpto]]
+      }
+    }
+  }
+
+  const single = getFloorPlanImage(meshName)
+  return single ? [single] : []
+}

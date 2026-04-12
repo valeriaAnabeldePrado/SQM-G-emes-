@@ -167,55 +167,95 @@ export function DepartmentDrawer({ selectedDepartment, isDrawerOpen, onClose }) 
           </div>
 
           {/* Floor plan preview compacto */}
-          {selectedDepartment.floorPlanImage && (
-            <div
-              style={{
-                marginBottom: '16px',
-                borderRadius: '12px',
-                overflow: 'hidden',
-                border: '1px solid rgba(255, 255, 255, 0.2)',
-                cursor: 'pointer',
-                transition: 'all 0.2s ease',
-                position: 'relative',
-                background: 'rgba(255, 255, 255, 0.05)',
-                backdropFilter: 'blur(10px)'
-              }}
-              onMouseEnter={(e) => {
-                e.currentTarget.style.transform = 'scale(1.02)'
-                e.currentTarget.style.boxShadow = '0 8px 16px rgba(72, 59, 43, 0.1)'
-              }}
-              onMouseLeave={(e) => {
-                e.currentTarget.style.transform = 'scale(1)'
-                e.currentTarget.style.boxShadow = 'none'
-              }}
-              onClick={() => window.open(selectedDepartment.floorPlanImage, '_blank')}
-            >
-              <img
-                src={selectedDepartment.floorPlanImage}
-                alt={`Plano ${selectedDepartment.tipologia}`}
-                style={{
-                  width: '100%',
-                  height: 'auto',
-                  display: 'block',
-                  backgroundColor: '#fafafa'
-                }}
-              />
-              <div
-                style={{
-                  position: 'absolute',
-                  bottom: '10px',
-                  right: '10px',
-                  background: 'rgba(255, 255, 255, 0.2)',
-                  backdropFilter: 'blur(10px)',
-                  padding: '6px 12px',
-                  borderRadius: '12px',
-                  fontSize: '10px',
-                  fontWeight: '500',
-                  color: '#fff',
-                  border: '1px solid rgba(255, 255, 255, 0.3)'
-                }}
-              >
-                Ver plano completo
+          {selectedDepartment.floorPlanImages && selectedDepartment.floorPlanImages.length > 0 && (
+            <div style={{ marginBottom: '16px' }}>
+              {selectedDepartment.floorPlanImages.length > 1 && (
+                <div style={{
+                  fontSize: '9px',
+                  color: 'rgba(255,255,255,0.6)',
+                  textTransform: 'uppercase',
+                  letterSpacing: '1px',
+                  fontWeight: '600',
+                  marginBottom: '8px'
+                }}>
+                  Plantas del Dúplex
+                </div>
+              )}
+              <div style={{
+                display: 'grid',
+                gridTemplateColumns: selectedDepartment.floorPlanImages.length > 1 ? '1fr 1fr' : '1fr',
+                gap: '8px'
+              }}>
+                {selectedDepartment.floorPlanImages.map((img, idx) => (
+                  <div
+                    key={idx}
+                    style={{
+                      borderRadius: '12px',
+                      overflow: 'hidden',
+                      border: '1px solid rgba(255, 255, 255, 0.2)',
+                      cursor: 'pointer',
+                      transition: 'all 0.2s ease',
+                      position: 'relative',
+                      background: 'rgba(255, 255, 255, 0.05)',
+                      backdropFilter: 'blur(10px)'
+                    }}
+                    onMouseEnter={(e) => {
+                      e.currentTarget.style.transform = 'scale(1.02)'
+                      e.currentTarget.style.boxShadow = '0 8px 16px rgba(72, 59, 43, 0.1)'
+                    }}
+                    onMouseLeave={(e) => {
+                      e.currentTarget.style.transform = 'scale(1)'
+                      e.currentTarget.style.boxShadow = 'none'
+                    }}
+                    onClick={() => window.open(img, '_blank')}
+                  >
+                    <img
+                      src={img}
+                      alt={`Plano ${selectedDepartment.tipologia} - Planta ${idx === 0 ? 'Baja' : 'Alta'}`}
+                      style={{
+                        width: '100%',
+                        height: 'auto',
+                        display: 'block',
+                        backgroundColor: '#fafafa'
+                      }}
+                    />
+                    {selectedDepartment.floorPlanImages.length > 1 && (
+                      <div style={{
+                        position: 'absolute',
+                        bottom: '6px',
+                        left: '50%',
+                        transform: 'translateX(-50%)',
+                        background: 'rgba(0,0,0,0.5)',
+                        backdropFilter: 'blur(10px)',
+                        padding: '3px 8px',
+                        borderRadius: '8px',
+                        fontSize: '9px',
+                        fontWeight: '600',
+                        color: '#fff',
+                        whiteSpace: 'nowrap'
+                      }}>
+                        Planta {idx === 0 ? 'Baja' : 'Alta'}
+                      </div>
+                    )}
+                    {selectedDepartment.floorPlanImages.length === 1 && (
+                      <div style={{
+                        position: 'absolute',
+                        bottom: '10px',
+                        right: '10px',
+                        background: 'rgba(255, 255, 255, 0.2)',
+                        backdropFilter: 'blur(10px)',
+                        padding: '6px 12px',
+                        borderRadius: '12px',
+                        fontSize: '10px',
+                        fontWeight: '500',
+                        color: '#fff',
+                        border: '1px solid rgba(255, 255, 255, 0.3)'
+                      }}>
+                        Ver plano completo
+                      </div>
+                    )}
+                  </div>
+                ))}
               </div>
             </div>
           )}

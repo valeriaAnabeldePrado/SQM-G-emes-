@@ -1,4 +1,5 @@
 import { createBrowserRouter } from 'react-router-dom'
+import { lazy, Suspense } from 'react'
 import App from '../App.jsx'
 import Apartaments from '../components/web-sections/apartments/apartaments.jsx'
 import ApartmentDetail from '../components/web-sections/apartments/ApartmentDetail.jsx'
@@ -8,7 +9,8 @@ import NavBar from '../components/ui-components-generics/navBar/NavBar.jsx'
 import ScrollApartment from '../components/web-sections/inmersive/ScrollApartment.jsx'
 import ErrorBoundary from '../components/error/ErrorBoundary.jsx'
 import NotFound from '../components/error/NotFound.jsx'
-import NewBuild from '../components/web-sections/inmersive/build/newbuild.jsx'
+
+const NewBuild = lazy(() => import('../components/web-sections/inmersive/build/newbuild.jsx'))
 
 export const router = createBrowserRouter([
   {
@@ -56,7 +58,9 @@ export const router = createBrowserRouter([
     path: '/new',
     element: (
       <Layout>
-        <NewBuild />
+        <Suspense fallback={null}>
+          <NewBuild />
+        </Suspense>
       </Layout>
     ),
     errorElement: <ErrorBoundary />

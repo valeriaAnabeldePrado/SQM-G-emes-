@@ -9,7 +9,6 @@ import ScrollApartment from '../components/web-sections/inmersive/ScrollApartmen
 import ErrorBoundary from '../components/error/ErrorBoundary.jsx'
 import NotFound from '../components/error/NotFound.jsx'
 import NewBuild from '../components/web-sections/inmersive/build/newbuild.jsx'
-import Disponibilidad from '../components/web-sections/disponibilidad/Disponibilidad.jsx'
 
 export const router = createBrowserRouter([
   {
@@ -70,11 +69,6 @@ export const router = createBrowserRouter([
         <Roadmap />
       </Layout>
     ),
-    errorElement: <ErrorBoundary />
-  },
-  {
-    path: '/disponibilidad',
-    element: <Disponibilidad />,
     errorElement: <ErrorBoundary />
   },
   {

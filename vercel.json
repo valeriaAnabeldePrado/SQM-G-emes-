@@ -3,7 +3,7 @@
     {
       "source": "/(.*)",
       "has": [{"type": "host", "value": "disponibilidad.vivraguemes.com.ar"}],
-      "destination": "https://majaxu.github.io/listado-vivra/cotizador-vivra.html"
+      "destination": "/disponibilidad"
     },
     {
       "source": "/(.*)",

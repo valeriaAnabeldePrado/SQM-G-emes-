@@ -80,7 +80,7 @@ export default function SectionSix() {
 
               <div className="flex-1 w-full h-full flex items-center justify-center">
                 <img
-                  src="/vivra-logo.png"
+                  src="/vect.svg"
                   alt="VIVRA logo"
                   className="h-24 w-auto object-contain"
                 />

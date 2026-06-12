@@ -369,19 +369,19 @@ export const edificioVivra = {
         meshNamePattern: '6C',
         nombre: 'Depto 06°C',
         loft: true,
-        tipologia: '1 Dormitorio con Balcón con Terraza Privada',
+        tipologia: 'Loft con Terraza Privada',
         ambientes: '2 ambientes',
         rooms: 1,
         superficiePropia: 33.99,
         superficieTotal: 40.97,
         balcones: 11.47,
         orientacion: 'Interno / Contrafrente',
-        descripcion: '1 DORMITORIO con terraza privada.'
+        descripcion: 'LOFT con terraza privada.'
       },
       {
         meshNamePattern: '6D',
         nombre: 'Depto 06°D',
-        tipologia: '1 Dormitorio con Balcón con Terraza Privada',
+        tipologia: 'Loft con Terraza Privada',
         ambientes: '2 ambientes',
         rooms: 1,
         loft: true,
@@ -389,7 +389,7 @@ export const edificioVivra = {
         superficieTotal: 40.74,
         balcones: 11.47,
         orientacion: 'Interno / Contrafrente',
-        descripcion: '1 DORMITORIO con terraza privada.'
+        descripcion: 'LOFT con terraza privada.'
       }
     ]
   },

@@ -40,7 +40,7 @@ const SectionBanner = () => {
           ></div>
           <div className="relative z-10 flex-1 flex flex-col items-center text-center min-d:items-start min-d:text-left py-6 ">
             <img
-              src="/vivra-logo.png"
+              src="/vect.svg"
               alt="VIVRA"
               className=" object-contain drop-shadow-lg logo-white"
             />

@@ -350,11 +350,11 @@
   "apartment_D_P6": {
     "id": "apartment_D_P6",
     "title": "Depto 06°C",
-    "type": "1 Dormitorio con Balcón al frente",
+    "type": "Loft con Terraza Privada",
     "superficiePropia": "33,8m²",
     "superficieTotal": "44,74m²",
     "balcones": "11,47m²",
-    "description": "LOFT/ESTUDIO con Balcón con Terraza Privada",
+    "description": "LOFT con Balcón con Terraza Privada",
     "features": ["2 ambientes", "Interno"],
     "floorPlan": "/plantass/P6 C.png",
     "copy": "Amplia unidad de 2 ambientes."
@@ -362,14 +362,14 @@
   "apartment_C_P6": {
     "id": "apartment_C_P6",
     "title": "Depto 06°C",
-    "type": "1 Dormitorio con Balcón al frente",
+    "type": "Loft con Terraza Privada",
     "superficiePropia": "33,9m²",
     "superficieTotal": "40,97",
     "balcones": "11,47m²",
-    "description": "LOFT/ESTUDIO con Balcón con Terraza Privada",
+    "description": "LOFT con Balcón con Terraza Privada",
     "features": ["2 ambientes", "Interno"],
     "floorPlan": "/plantass/P6 C.png",
-    "copy": "Descubre la amplitud y el diseño de este departamento de 1 dormitorio con terraza privada."
+    "copy": "Amplia unidad loft con terraza privada."
   },
   "apartment_A_P7": {
     "id": "apartment_A_P7",

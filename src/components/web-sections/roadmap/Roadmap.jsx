@@ -1,4 +1,4 @@
-import { useRef } from 'react'
+import { useRef, useState, useEffect } from 'react'
 import { gsap } from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
 import { useGSAP } from '@gsap/react'
@@ -19,8 +19,8 @@ const Roadmap = () => {
   const containerRef = useRef(null)
   const headerRef = useRef(null)
   const timelineRef = useRef(null)
-  //const [selectedImages, setSelectedImages] = useState(null)
-  //const [currentImageIndex, setCurrentImageIndex] = useState(0)
+  const [selectedImages, setSelectedImages] = useState(null)
+  const [currentImageIndex, setCurrentImageIndex] = useState(0)
 
   const PLACEHOLDER_IMAGE = '/characteristics/bano.png'
 
@@ -124,41 +124,34 @@ const Roadmap = () => {
     }
   }
 
-  // const openImageGallery = (images, startIndex = 0) => {
-  //   setSelectedImages(images)
-  //   setCurrentImageIndex(startIndex)
-  // }
+  const openImageGallery = (images, startIndex = 0) => {
+    setSelectedImages(images)
+    setCurrentImageIndex(startIndex)
+  }
 
-  // const closeImageGallery = () => {
-  //   setSelectedImages(null)
-  //   setCurrentImageIndex(0)
-  // }
+  const closeImageGallery = () => {
+    setSelectedImages(null)
+    setCurrentImageIndex(0)
+  }
 
-  // const nextImage = () => {
-  //   setCurrentImageIndex((prev) => (prev + 1) % selectedImages.length)
-  // }
+  const nextImage = () => {
+    setCurrentImageIndex((prev) => (prev + 1) % selectedImages.length)
+  }
 
-  // const prevImage = () => {
-  //   setCurrentImageIndex((prev) => (prev - 1 + selectedImages.length) % selectedImages.length)
-  // }
+  const prevImage = () => {
+    setCurrentImageIndex((prev) => (prev - 1 + selectedImages.length) % selectedImages.length)
+  }
 
-  // keyboard navigation for modal (Esc to close, arrows to navigate)
-  // useEffect(() => {
-  //   if (!selectedImages) return
-
-  //   const handler = (e) => {
-  //     if (e.key === 'Escape') closeImageGallery()
-  //     if (e.key === 'ArrowRight') {
-  //       setCurrentImageIndex((prev) => (prev + 1) % selectedImages.length)
-  //     }
-  //     if (e.key === 'ArrowLeft') {
-  //       setCurrentImageIndex((prev) => (prev - 1 + selectedImages.length) % selectedImages.length)
-  //     }
-  //   }
-
-  //   window.addEventListener('keydown', handler)
-  //   return () => window.removeEventListener('keydown', handler)
-  // }, [selectedImages])
+  useEffect(() => {
+    if (!selectedImages) return
+    const handler = (e) => {
+      if (e.key === 'Escape') closeImageGallery()
+      if (e.key === 'ArrowRight') setCurrentImageIndex((prev) => (prev + 1) % selectedImages.length)
+      if (e.key === 'ArrowLeft') setCurrentImageIndex((prev) => (prev - 1 + selectedImages.length) % selectedImages.length)
+    }
+    window.addEventListener('keydown', handler)
+    return () => window.removeEventListener('keydown', handler)
+  }, [selectedImages])
 
   return (
     <>
@@ -282,15 +275,13 @@ const Roadmap = () => {
                   </p>
                   {/* Photo Gallery Button */}
                   {Array.isArray(milestone.images) && milestone.images.length > 0 && (
-                    <div className="flex  min-lg:justify-start">
+                    <div className="flex min-lg:justify-start">
                       <button
-                        disabled
-                        // onClick={() => openImageGallery(milestone.images, 0)}
-                        className="inline-flex items-center gap-2 px-6 py-3 bg-slate-300 cursor-not-allowed text-white rounded-full hover:brightness-90 transition-all duration-300 font-medium"
+                        onClick={() => openImageGallery(milestone.images, 0)}
+                        className="inline-flex items-center gap-2 px-6 py-3 bg-[var(--color-one)] cursor-pointer text-white rounded-full hover:brightness-90 transition-all duration-300 font-medium"
                       >
                         <MdPhotoLibrary size={18} />
-                        Proximamente
-                        {/* Ver fotos ({milestone.images.length}) */}
+                        Ver fotos ({milestone.images.length})
                       </button>
                     </div>
                   )}
@@ -302,14 +293,14 @@ const Roadmap = () => {
         </div>
       </div>
 
-      {/* <ModalGallery
+      <ModalGallery
         selectedImages={selectedImages}
         currentImageIndex={currentImageIndex}
         onClose={closeImageGallery}
         onPrevImage={prevImage}
         onNextImage={nextImage}
         placeholderImage={PLACEHOLDER_IMAGE}
-      /> */}
+      />
     </>
   )
 }

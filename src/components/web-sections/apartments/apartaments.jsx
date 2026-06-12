@@ -28,7 +28,7 @@ const Apartaments = () => {
   const navigate = useNavigate()
 
   const tipologiesData = [
-    'Estudios y Microviviendas',
+    'Estudios y Loft',
     '1 Dormitorio',
     '2 Dormitorios',
     'Duplex 2 Dormitorios con Patio',

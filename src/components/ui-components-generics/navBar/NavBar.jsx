@@ -55,7 +55,7 @@ const NavBar = () => {
         {/* LOGO - Solo se muestra en desktop cuando estamos en home */}
         {isHomePage && (
           <div className="hidden min-d:flex min-d:items-center">
-            <img src="/vivra-logo.png" alt="VIVRA Logo" className="h-8 w-auto mr-2 " />
+            <img src="/vect.svg" alt="VIVRA Logo" className="h-8 w-auto mr-2 " />
           </div>
         )}
 

@@ -96,7 +96,7 @@ export default function SectionTwo() {
             <p className="text-body text-[var(--color-three)]">
               En VIVRA Güemes, convergen estilo, funcionalidad y ubicación. Un proyecto moderno que
               redefine la forma de habitar y trabajar, integrando un edificio residencial con
-              unidades de 1 y 2 dormitorios, dúplex, loft y microviviendas, más un bloque
+              unidades de 1 y 2 dormitorios, dúplex y loft, más un bloque
               corporativo ideal para oficinas y locales comerciales.
             </p>
           </div>

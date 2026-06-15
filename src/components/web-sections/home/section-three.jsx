@@ -102,7 +102,7 @@ export default function SectionThree() {
         </div>
       </div>
       <div className="flex-1 flex items-center justify-center">
-        <img src="/vivra-logo.png" alt="VIVRA Logo" className=" object-contain h-24 " />
+        <img src="/vect.svg" alt="VIVRA Logo" className=" object-contain h-24 " />
       </div>
     </div>
   )

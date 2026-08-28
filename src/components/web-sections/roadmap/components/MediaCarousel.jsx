@@ -82,7 +82,7 @@ const MediaCarousel = ({ items, onExpand, fallback }) => {
               type="button"
               onClick={() => onExpand(i)}
               aria-label={`Ampliar ${isVideo(item.src) ? 'video' : 'foto'} ${i + 1} de ${items.length}`}
-              className="relative w-full flex-shrink-0 snap-center cursor-zoom-in overflow-hidden aspect-[4/3] min-d:aspect-[16/9]"
+              className="relative w-full flex-shrink-0 snap-center cursor-zoom-in overflow-hidden aspect-[4/3] min-d:aspect-[3/2]"
             >
               <img
                 src={isVideo(item.src) ? posterFor(item.src) : item.src}

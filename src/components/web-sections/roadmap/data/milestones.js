@@ -4,13 +4,13 @@ export const milestones = [
     title: 'INICIO DE OBRA',
     description:
       'Preparación del terreno y comienzo de excavaciones. Obtención de permisos y habilitaciones necesarias.',
-    status: 'in-progress',
-    images: [
-      '/inicio/1.jpeg',
-      '/inicio/2.jpeg',
-      '/inicio/3.jpeg',
-      '/inicio/4.jpeg',
-      '/inicio/5.jpeg'
+    status: 'completed',
+    media: [
+      { src: '/inicio/1.jpeg' },
+      { src: '/inicio/2.jpeg' },
+      { src: '/inicio/3.jpeg' },
+      { src: '/inicio/4.jpeg' },
+      { src: '/inicio/5.jpeg' }
     ],
     progress: 100,
     thumbnail: '/inicio/1.jpeg'
@@ -20,15 +20,28 @@ export const milestones = [
     title: 'FUNDACIONES Y SUBSUELO',
     description:
       'Construcción de fundaciones y estructura principal. Hormigón armado y pilares de soporte.',
-    status: 'upcoming',
+    status: 'completed',
+    date: '21 de agosto de 2026',
+    media: [
+      { src: '/fundaciones/v1.mp4', time: '09:25', source: 'Cámara' },
+      { src: '/fundaciones/1.webp', time: '09:30', source: 'Dron' },
+      { src: '/fundaciones/v2.mp4', time: '09:31', source: 'Dron' },
+      { src: '/fundaciones/v3.mp4', time: '09:31', source: 'Dron' },
+      { src: '/fundaciones/v4.mp4', time: '09:31', source: 'Dron' },
+      { src: '/fundaciones/v5.mp4', time: '09:52', source: 'Dron' },
+      { src: '/fundaciones/2.webp', time: '09:53', source: 'Dron' },
+      { src: '/fundaciones/3.webp', time: '09:56', source: 'Dron' },
+      { src: '/fundaciones/4.webp', time: '09:56', source: 'Dron' },
+      { src: '/fundaciones/5.webp', time: '10:24', source: 'Cámara' }
+    ],
     progress: 100,
-    thumbnail: '/characteristics/pisos.png'
+    thumbnail: '/fundaciones/1.webp'
   },
   {
     id: 3,
     title: 'AVANCE ESTRUCTURA',
     description: 'Levantamiento de muros y estructura de pisos. Mampostería y losas de entrepisos.',
-    status: 'upcoming',
+    status: 'in-progress',
     progress: 65,
     thumbnail: '/characteristics/balcony.jpg'
   },

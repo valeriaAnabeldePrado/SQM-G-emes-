@@ -14,4 +14,11 @@ export const BUILDING = {
     'Edifico residencial con locales en planta baja, diseñado para ofrecer confort, eficiencia energética y espacios comunes de alta calidad.'
 }
 
+// Enlaces externos oficiales, compartidos por los footers del sitio
+export const LINKS = {
+  instagram: 'https://www.instagram.com/vivraguemes/',
+  email: 'mailto:info@vivraguemes.com',
+  maps: 'https://share.google/Bn4qltPNnff7dQXCM'
+}
+
 export default BUILDING

@@ -4,6 +4,7 @@ import { ScrollTrigger } from 'gsap/ScrollTrigger'
 import { useGSAP } from '@gsap/react'
 import { MdArrowOutward } from 'react-icons/md'
 import Button from './components/button'
+import { LINKS } from '../../../data/buildingInfo'
 
 gsap.registerPlugin(ScrollTrigger)
 
@@ -13,7 +14,7 @@ export default function SectionThree() {
   const buttonRef = useRef(null)
 
   const handleOpenMaps = () => {
-    window.open('https://maps.app.goo.gl/JfvX3Am17h85QaoS7', '_blank', 'noopener,noreferrer')
+    window.open(LINKS.maps, '_blank', 'noopener,noreferrer')
   }
 
   const wrapWords = (element) => {

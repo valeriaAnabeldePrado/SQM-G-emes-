@@ -6,6 +6,7 @@ import { MdOutlineArrowOutward } from 'react-icons/md'
 import Button from '../../home/components/button'
 import { Card } from '../../home/components/card'
 import ContactForm from '../../home/components/formData'
+import { LINKS } from '../../../../data/buildingInfo'
 
 const Footer = () => {
   return (
@@ -27,16 +28,16 @@ const Footer = () => {
               <a href="/roadmap" className="hover:opacity-80 transition-opacity">
                 Roadmap
               </a>
-              <a href="/ubicacion" className="hover:opacity-80 transition-opacity">
+              <a href="/#location" className="hover:opacity-80 transition-opacity">
                 Ubicación
               </a>
-              <a href="/caracteristicas" className="hover:opacity-80 transition-opacity">
+              <a href="/#characte" className="hover:opacity-80 transition-opacity">
                 Características
               </a>
-              <a href="/galeria" className="hover:opacity-80 transition-opacity">
+              <a href="/#gallery" className="hover:opacity-80 transition-opacity">
                 Galería
               </a>
-              <a href="/contacto" className="hover:opacity-80 transition-opacity">
+              <a href="/#contact" className="hover:opacity-80 transition-opacity">
                 Contacto
               </a>
             </nav>
@@ -44,23 +45,29 @@ const Footer = () => {
             {/* Iconos sociales */}
             <div className="flex gap-4 items-center">
               <a
-                href="https://maps.app.goo.gl/JfvX3Am17h85QaoS7"
+                href={LINKS.maps}
                 target="_blank"
                 rel="noopener noreferrer"
+                aria-label="Ver VIVRA Güemes en Google Maps"
+                title="Ver VIVRA Güemes en Google Maps"
                 className="w-12 h-12 border-2 border-white rounded-full flex items-center justify-center hover:bg-white hover:text-[var(--color-three)] transition-all duration-300"
               >
                 <LuMapPin size="1.2em" color="white" />
               </a>
               <a
-                href="mailto:info@vivraguemes.com"
+                href={LINKS.email}
+                aria-label="Escribinos por mail"
+                title="Escribinos por mail"
                 className="w-12 h-12 border-2 border-white rounded-full flex items-center justify-center hover:bg-white hover:text-[var(--color-three)] transition-all duration-300"
               >
                 <RiMailOpenLine size="1.2em" color="white" />
               </a>
               <a
-                href="https://www.instagram.com/juarezbeltran_sa?igsh=djh1czJwcGN0YzIx"
+                href={LINKS.instagram}
                 target="_blank"
                 rel="noopener noreferrer"
+                aria-label="Instagram de VIVRA Güemes"
+                title="Instagram de VIVRA Güemes"
                 className="w-12 h-12 border-2 border-white rounded-full flex items-center justify-center hover:bg-white hover:text-[var(--color-three)] transition-all duration-300"
               >
                 <FaInstagram size="1.2em" color="white" />

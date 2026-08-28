@@ -7,6 +7,7 @@ import { FaInstagram } from 'react-icons/fa'
 import { RiMailOpenLine } from 'react-icons/ri'
 import { LuMapPin } from 'react-icons/lu'
 import ContactForm from './components/formData'
+import { LINKS } from '../../../data/buildingInfo'
 
 const SectionFooter = () => {
   return (
@@ -23,20 +24,29 @@ const SectionFooter = () => {
           </div>
           <div className="flex flex-row gap-6 items-center justify-center min-d:justify-start">
             <a
-              href="https://www.instagram.com/juarezbeltran_sa?igsh=djh1czJwcGN0YzIx"
+              href={LINKS.instagram}
               target="_blank"
               rel="noopener noreferrer"
+              aria-label="Instagram de VIVRA Güemes"
+              title="Instagram de VIVRA Güemes"
               className="hover:scale-110 transition-transform"
             >
               <FaInstagram size="2em" color="white" />
             </a>
-            <a href="mailto:info@vivraguemes.com" className="hover:scale-110 transition-transform">
+            <a
+              href={LINKS.email}
+              aria-label="Escribinos por mail"
+              title="Escribinos por mail"
+              className="hover:scale-110 transition-transform"
+            >
               <RiMailOpenLine size="2em" color="white" />
             </a>
             <a
-              href="https://maps.app.goo.gl/JfvX3Am17h85QaoS7"
+              href={LINKS.maps}
               target="_blank"
               rel="noopener noreferrer"
+              aria-label="Ver VIVRA Güemes en Google Maps"
+              title="Ver VIVRA Güemes en Google Maps"
               className="hover:scale-110 transition-transform"
             >
               <LuMapPin size="2em" color="white" />

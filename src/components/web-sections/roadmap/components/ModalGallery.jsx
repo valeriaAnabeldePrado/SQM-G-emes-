@@ -1,5 +1,12 @@
 import { MdClose, MdArrowBackIos, MdArrowForwardIos } from 'react-icons/md'
 
+const VIDEO_EXTENSIONS = /\.(mp4|webm|mov)$/i
+
+const isVideo = (src) => VIDEO_EXTENSIONS.test(src)
+
+// Convention: /fundaciones/video.mp4 -> /fundaciones/video-poster.webp
+const posterFor = (src) => src.replace(VIDEO_EXTENSIONS, '-poster.webp')
+
 const ModalGallery = ({
   selectedImages,
   currentImageIndex,
@@ -9,6 +16,8 @@ const ModalGallery = ({
   placeholderImage
 }) => {
   if (!selectedImages) return null
+
+  const currentSrc = selectedImages[currentImageIndex]
 
   return (
     <div
@@ -43,15 +52,28 @@ const ModalGallery = ({
           </>
         )}
 
-        {/* Main Image */}
-        <img
-          src={selectedImages[currentImageIndex]}
-          alt="Avance de obra"
-          onError={(e) => (e.currentTarget.src = placeholderImage)}
-          className="max-w-full max-h-full object-contain rounded-lg bg-gray-900"
-        />
+        {/* Main Media */}
+        {isVideo(currentSrc) ? (
+          <video
+            key={currentSrc}
+            src={currentSrc}
+            poster={posterFor(currentSrc)}
+            controls
+            playsInline
+            preload="metadata"
+            className="max-w-full max-h-[85vh] object-contain rounded-lg bg-gray-900"
+          />
+        ) : (
+          <img
+            src={currentSrc}
+            alt="Avance de obra"
+            loading="lazy"
+            onError={(e) => (e.currentTarget.src = placeholderImage)}
+            className="max-w-full max-h-[85vh] object-contain rounded-lg bg-gray-900"
+          />
+        )}
 
-        {/* Image Counter */}
+        {/* Media Counter */}
         {selectedImages.length > 1 && (
           <div className="absolute bottom-4 left-1/2 transform -translate-x-1/2 bg-black bg-opacity-50 text-white px-4 py-2 rounded-full">
             {currentImageIndex + 1} / {selectedImages.length}

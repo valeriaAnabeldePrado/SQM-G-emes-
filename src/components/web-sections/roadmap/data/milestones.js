@@ -4,7 +4,7 @@ export const milestones = [
     title: 'INICIO DE OBRA',
     description:
       'Preparación del terreno y comienzo de excavaciones. Obtención de permisos y habilitaciones necesarias.',
-    status: 'in-progress',
+    status: 'completed',
     images: [
       '/inicio/1.jpeg',
       '/inicio/2.jpeg',
@@ -20,15 +20,23 @@ export const milestones = [
     title: 'FUNDACIONES Y SUBSUELO',
     description:
       'Construcción de fundaciones y estructura principal. Hormigón armado y pilares de soporte.',
-    status: 'upcoming',
+    status: 'completed',
+    images: [
+      '/fundaciones/1.webp',
+      '/fundaciones/video.mp4',
+      '/fundaciones/2.webp',
+      '/fundaciones/3.webp',
+      '/fundaciones/4.webp',
+      '/fundaciones/5.webp'
+    ],
     progress: 100,
-    thumbnail: '/characteristics/pisos.png'
+    thumbnail: '/fundaciones/1.webp'
   },
   {
     id: 3,
     title: 'AVANCE ESTRUCTURA',
     description: 'Levantamiento de muros y estructura de pisos. Mampostería y losas de entrepisos.',
-    status: 'upcoming',
+    status: 'in-progress',
     progress: 65,
     thumbnail: '/characteristics/balcony.jpg'
   },

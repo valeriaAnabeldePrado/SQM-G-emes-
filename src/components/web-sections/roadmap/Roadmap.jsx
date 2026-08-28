@@ -15,6 +15,8 @@ import {
 
 gsap.registerPlugin(ScrollTrigger)
 
+const hasVideo = (media) => media.some((src) => /\.(mp4|webm|mov)$/i.test(src))
+
 const Roadmap = () => {
   const containerRef = useRef(null)
   const headerRef = useRef(null)
@@ -280,8 +282,13 @@ const Roadmap = () => {
                         onClick={() => openImageGallery(milestone.images, 0)}
                         className="inline-flex items-center gap-2 px-6 py-3 bg-[var(--color-one)] cursor-pointer text-white rounded-full hover:brightness-90 transition-all duration-300 font-medium"
                       >
-                        <MdPhotoLibrary size={18} />
-                        Ver fotos ({milestone.images.length})
+                        {hasVideo(milestone.images) ? (
+                          <MdPlayArrow size={20} />
+                        ) : (
+                          <MdPhotoLibrary size={18} />
+                        )}
+                        {hasVideo(milestone.images) ? 'Ver galería' : 'Ver fotos'} (
+                        {milestone.images.length})
                       </button>
                     </div>
                   )}

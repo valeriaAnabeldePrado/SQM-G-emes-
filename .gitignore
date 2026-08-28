@@ -22,3 +22,6 @@ dist-ssr
 *.njsproj
 *.sln
 *.sw?
+
+# Material original de obra (sin comprimir) - no se publica
+originales/

@@ -240,6 +240,8 @@ export function DepartmentDrawer({ selectedDepartment, isDrawerOpen, onClose }) 
               const departmentName = selectedDepartment.nombre || selectedDepartment.tipologia
               const message = `Hola! Quiero información del edificio Vivra Guemes y quería información del ${departmentName}`
               const whatsappURL = `https://wa.me/5493513470043?text=${encodeURIComponent(message)}`
+              // No es un <a>, así que el listener global de index.html no lo captura
+              window.gtag?.('event', 'whatsapp_click', { link_url: whatsappURL })
               window.open(whatsappURL, '_blank')
             }}
             style={{

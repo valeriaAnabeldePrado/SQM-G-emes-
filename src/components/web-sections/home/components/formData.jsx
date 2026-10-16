@@ -77,6 +77,9 @@ const ContactForm = () => {
       // Enviar email
       await emailjs.send(SERVICE_ID, TEMPLATE_ID, templateParams, PUBLIC_KEY)
 
+      // GA4: lead generado solo cuando el envío se completó con éxito
+      window.gtag?.('event', 'generate_lead', { form_name: 'contacto' })
+
       const successMsg = '¡Mensaje enviado correctamente! Te contactaremos pronto.'
       showToast(successMsg, 'success')
 

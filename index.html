@@ -92,6 +92,12 @@
       gtag('js', new Date());
 
       gtag('config', 'G-JL831RLN28');
+
+      // Clics a WhatsApp: todos los links a wa.me (botón flotante incluido)
+      document.addEventListener('click', function (e) {
+        var a = e.target.closest('a[href*="wa.me"]');
+        if (a) gtag('event', 'whatsapp_click', { link_url: a.href });
+      });
     </script>
   </head>
   <body>

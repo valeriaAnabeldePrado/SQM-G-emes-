@@ -8,23 +8,12 @@ const WhatsAppButton = () => {
   const message = 'Hola, estoy interesado en el edificio. ¿Me pueden enviar información?'
   const whatsappUrl = `https://wa.me/${phoneNumber}?text=${encodeURIComponent(message)}`
 
-  const handleClick = () => {
-    // Analytics o tracking opcional
-    if (typeof window !== 'undefined' && window.gtag) {
-      window.gtag('event', 'whatsapp_click', {
-        event_category: 'contact',
-        event_label: 'floating_button'
-      })
-    }
-  }
-
   return (
     <div className="fixed bottom-10 right-10 z-50 transform -translate-x-1/2">
       <a
         href={whatsappUrl}
         target="_blank"
         rel="noopener noreferrer"
-        onClick={handleClick}
         className={`
           flex items-center justify-center
            p-5

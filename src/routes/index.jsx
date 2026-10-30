@@ -1,3 +1,4 @@
+import { lazy, Suspense } from 'react'
 import { createBrowserRouter } from 'react-router-dom'
 import App from '../App.jsx'
 import Apartaments from '../components/web-sections/apartments/apartaments.jsx'
@@ -5,11 +6,19 @@ import ApartmentDetail from '../components/web-sections/apartments/ApartmentDeta
 import Roadmap from '../components/web-sections/roadmap/Roadmap.jsx'
 import Layout from '../components/layout/Layout.jsx'
 import NavBar from '../components/ui-components-generics/navBar/NavBar.jsx'
-import ScrollApartment from '../components/web-sections/inmersive/ScrollApartment.jsx'
 import ErrorBoundary from '../components/error/ErrorBoundary.jsx'
 import NotFound from '../components/error/NotFound.jsx'
-import NewBuild from '../components/web-sections/inmersive/build/newbuild.jsx'
 import Disponibilidad from '../components/web-sections/disponibilidad/Disponibilidad.jsx'
+
+// Carga diferida de las páginas 3D: three.js, los modelos y sus precargas solo se
+// descargan al entrar a cada una (antes el GLB del 3D viejo bajaba en todo el sitio)
+const Edificio3D = lazy(() => import('../components/web-sections/edificio-3d/Edificio3D.jsx'))
+const NewBuild = lazy(() => import('../components/web-sections/inmersive/build/newbuild.jsx'))
+const ScrollApartment = lazy(
+  () => import('../components/web-sections/inmersive/ScrollApartment.jsx')
+)
+
+const PageFallback = () => <div className="h-[100svh] w-full bg-[#d6dee4]" />
 
 export const router = createBrowserRouter([
   {
@@ -47,7 +56,9 @@ export const router = createBrowserRouter([
     element: (
       <Layout>
         <NavBar />
-        <ScrollApartment />
+        <Suspense fallback={<PageFallback />}>
+          <ScrollApartment />
+        </Suspense>
         {/* <ScrollApartmentOptimized /> */}
       </Layout>
     ),
@@ -57,7 +68,20 @@ export const router = createBrowserRouter([
     path: '/new',
     element: (
       <Layout>
-        <NewBuild />
+        <Suspense fallback={<PageFallback />}>
+          <NewBuild />
+        </Suspense>
+      </Layout>
+    ),
+    errorElement: <ErrorBoundary />
+  },
+  {
+    path: '/edificio-3d',
+    element: (
+      <Layout>
+        <Suspense fallback={<PageFallback />}>
+          <Edificio3D />
+        </Suspense>
       </Layout>
     ),
     errorElement: <ErrorBoundary />

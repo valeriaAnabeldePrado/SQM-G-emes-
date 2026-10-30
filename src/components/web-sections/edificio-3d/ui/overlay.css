@@ -1,0 +1,66 @@
+/* Entradas suaves de la interfaz del modelo 3D */
+@keyframes edificio-panel-in {
+  from {
+    opacity: 0;
+    transform: translateY(14px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+@keyframes edificio-fade-in {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+.edificio-panel-in {
+  animation: edificio-panel-in 0.38s cubic-bezier(0.2, 0.8, 0.2, 1) both;
+}
+.edificio-fade-in {
+  animation: edificio-fade-in 0.3s ease-out both;
+}
+@media (prefers-reduced-motion: reduce) {
+  .edificio-panel-in,
+  .edificio-fade-in {
+    animation: none;
+  }
+}
+
+/* Barra de la hora: degradado noche -> día -> atardecer -> noche */
+.edificio-time-range {
+  -webkit-appearance: none;
+  appearance: none;
+  height: 6px;
+  border-radius: 999px;
+  background: linear-gradient(
+    90deg,
+    #2b3a5c 0%,
+    #f3c7a2 8%,
+    #cfe3f1 30%,
+    #cfe3f1 62%,
+    #ffb06a 80%,
+    #3b3a4f 90%,
+    #1a2234 100%
+  );
+  cursor: pointer;
+}
+.edificio-time-range::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  background: #fff;
+  border: 2px solid #131f28;
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.25);
+}
+.edificio-time-range::-moz-range-thumb {
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  background: #fff;
+  border: 2px solid #131f28;
+}

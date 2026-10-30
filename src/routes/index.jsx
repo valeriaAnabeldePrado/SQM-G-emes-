@@ -9,6 +9,7 @@ import NavBar from '../components/ui-components-generics/navBar/NavBar.jsx'
 import ErrorBoundary from '../components/error/ErrorBoundary.jsx'
 import NotFound from '../components/error/NotFound.jsx'
 import Disponibilidad from '../components/web-sections/disponibilidad/Disponibilidad.jsx'
+import { LoadingScreen } from '../components/web-sections/edificio-3d/ui/LoadingScreen.jsx'
 
 // Carga diferida de las páginas 3D: three.js, los modelos y sus precargas solo se
 // descargan al entrar a cada una (antes el GLB del 3D viejo bajaba en todo el sitio)
@@ -19,6 +20,12 @@ const ScrollApartment = lazy(
 )
 
 const PageFallback = () => <div className="h-[100svh] w-full bg-[#d6dee4]" />
+// Mientras baja el código de la escena ya se ve la barra de carga
+const Edificio3DFallback = () => (
+  <div className="relative h-[100svh] w-full">
+    <LoadingScreen />
+  </div>
+)
 
 export const router = createBrowserRouter([
   {
@@ -79,7 +86,7 @@ export const router = createBrowserRouter([
     path: '/edificio-3d',
     element: (
       <Layout>
-        <Suspense fallback={<PageFallback />}>
+        <Suspense fallback={<Edificio3DFallback />}>
           <Edificio3D />
         </Suspense>
       </Layout>

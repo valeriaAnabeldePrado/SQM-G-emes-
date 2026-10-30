@@ -14,10 +14,14 @@ const VIEWS = [
   { id: 'aerea', label: 'Aérea' }
 ]
 
-/** Aviso de carga de texturas y cielo (al entrar y al cambiar de momento del día). */
+/**
+ * Aviso de carga del cielo y texturas al cambiar de momento del día (la carga
+ * inicial la cubre LoadingScreen). Las plantas se precargan en segundo plano
+ * sin trabar nada: esas no se avisan.
+ */
 function Loading() {
-  const { active, progress } = useProgress()
-  if (!active) return null
+  const { active, progress, item } = useProgress()
+  if (!active || item?.includes('/planos/')) return null
   return (
     <span className="pointer-events-none absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 rounded-full bg-white/85 px-4 py-2 text-xs text-darck shadow-sm backdrop-blur-md">
       Cargando modelo… {Math.round(progress)}%

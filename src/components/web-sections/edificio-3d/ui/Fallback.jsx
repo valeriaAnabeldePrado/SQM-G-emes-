@@ -6,6 +6,10 @@ const MESSAGES = {
     title: 'Tu navegador no puede mostrar el modelo 3D',
     text: 'Necesita WebGL 2. Probá con Chrome, Edge, Firefox o Safari actualizados, o activá la aceleración por hardware.'
   },
+  slow: {
+    title: 'Tu dispositivo va lento con el modelo 3D',
+    text: 'Para verlo fluido hace falta un equipo con aceleración gráfica. Podés verlo igual en calidad mínima, aunque se va a mover a saltos.'
+  },
   lost: {
     title: 'El modelo 3D se detuvo',
     text: 'El dispositivo liberó la memoria gráfica (pasa en algunos celulares). Recargá la página para verlo de nuevo.'
@@ -13,7 +17,7 @@ const MESSAGES = {
 }
 
 /** Alternativa sin 3D: el render de fachada y un mensaje claro. */
-export function Fallback({ reason }) {
+export function Fallback({ reason, onContinue }) {
   const { title, text } = MESSAGES[reason]
   return (
     <div className="relative flex h-screen h-[100svh] w-full items-end overflow-hidden bg-darck">
@@ -33,6 +37,15 @@ export function Fallback({ reason }) {
               className="rounded-full bg-darck px-4 py-2 text-xs text-white"
             >
               Recargar
+            </button>
+          ) : null}
+          {onContinue ? (
+            <button
+              type="button"
+              onClick={onContinue}
+              className="rounded-full bg-darck px-4 py-2 text-xs text-white"
+            >
+              Ver el 3D igual
             </button>
           ) : null}
           <Link to="/" className="rounded-full bg-darck/10 px-4 py-2 text-xs text-darck">

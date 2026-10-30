@@ -1,5 +1,6 @@
-import { memo, Suspense, useCallback, useMemo, useState } from 'react'
+import { memo, Suspense, useCallback, useEffect, useMemo, useState } from 'react'
 import { BakeShadows, Bvh } from '@react-three/drei'
+import { useThree } from '@react-three/fiber'
 import { Bloom, EffectComposer, N8AO, SMAA, ToneMapping } from '@react-three/postprocessing'
 import { ToneMappingMode } from 'postprocessing'
 import { MaterialsProvider } from '../architecture/Materials'
@@ -23,7 +24,7 @@ import { skyState } from './timeOfDay'
  * juntas, que es lo que más realismo da en arquitectura), bloom solo para las
  * luces de la noche, tone mapping ACES y SMAA (mucho más barato que MSAA).
  */
-function Effects({ ao, bloom }) {
+function Effects({ ao, bloom, smaa }) {
   return (
     <EffectComposer multisampling={0}>
       {ao ? (
@@ -43,9 +44,25 @@ function Effects({ ao, bloom }) {
         <></>
       )}
       <ToneMapping mode={ToneMappingMode.ACES_FILMIC} />
-      <SMAA />
+      {smaa ? <SMAA /> : <></>}
     </EffectComposer>
   )
+}
+
+/**
+ * Avisa cuando todo lo de su Suspense terminó de cargar, después del primer
+ * cuadro dibujado con eso (para que la pantalla de carga no deje ver un hueco).
+ */
+function ReadySignal({ onReady }) {
+  const invalidate = useThree((s) => s.invalidate)
+  useEffect(() => {
+    invalidate()
+    let frame = requestAnimationFrame(() => {
+      frame = requestAnimationFrame(onReady)
+    })
+    return () => cancelAnimationFrame(frame)
+  }, [invalidate, onReady])
+  return null
 }
 
 // Al mover la hora la escena se re-renderiza seguido: lo pesado solo cuando cambia
@@ -57,6 +74,8 @@ export function Scene({
   rigRef,
   isMobile,
   quality,
+  onTooSlow,
+  onReady,
   date,
   hour,
   floor,
@@ -69,10 +88,10 @@ export function Scene({
 }) {
   const [tier, setTier] = useState(quality.tier)
   const decline = useCallback(() => setTier((t) => Math.max(0, t - 1)), [])
-  const { dpr, ao } = QUALITY_TIERS[tier]
+  const { dpr, ao, far, smaa, shadow } = QUALITY_TIERS[tier]
   const preset = useMemo(() => skyState(date, hour), [date, hour])
-  // El bloom solo hace falta cuando hay luces encendidas, y no en calidad baja
-  const bloom = tier > 0 ? preset.night * 0.8 : 0
+  // El bloom solo hace falta cuando hay luces encendidas, y no en calidades bajas
+  const bloom = QUALITY_TIERS[tier].bloom ? preset.night * 0.8 : 0
   // Piso abierto: se recorta todo lo que está arriba de su losa, dentro del
   // volumen de la torre o del bloque de oficinas
   const open = getFloor(floor)
@@ -88,14 +107,19 @@ export function Scene({
 
   return (
     <>
-      <QualityMonitor enabled={!quality.forced && tier > 0} onDecline={decline} />
+      <QualityMonitor
+        enabled={!quality.forced}
+        lowest={tier === 0}
+        onDecline={decline}
+        onTooSlow={onTooSlow}
+      />
       <DynamicResolution dpr={dpr} />
       <CameraRig ref={rigRef} />
       <ViewCorridor />
       <Suspense fallback={null}>
         <SceneEnvironment preset={preset} />
         <MaterialsProvider night={preset.night} cut={cut}>
-          <Lighting preset={preset} shadowMapSize={isMobile ? 1024 : 2048} />
+          <Lighting preset={preset} shadowMapSize={isMobile ? shadow / 2 : shadow} />
           {/* BVH: el puntero sobre el edificio (hover de pisos) sale barato */}
           <Bvh firstHitOnly>
             <group
@@ -120,7 +144,7 @@ export function Scene({
               <MemoBuilding />
             </group>
           </Bvh>
-          <MemoUrbanContext night={preset.night} showFar={tier > 0} />
+          <MemoUrbanContext night={preset.night} showFar={far} />
         </MaterialsProvider>
         <MemoStreetLabels night={preset.night} />
         <FloorHighlight id={hoverFloor === floor ? null : hoverFloor} availability={availability} />
@@ -137,8 +161,9 @@ export function Scene({
         )}
         {/* La escena es estática: las sombras se calculan una sola vez por momento del día */}
         <BakeShadows />
-        <Effects ao={ao} bloom={bloom} />
+        <Effects ao={ao} bloom={bloom} smaa={smaa} />
         <Prewarm />
+        <ReadySignal onReady={onReady} />
       </Suspense>
     </>
   )

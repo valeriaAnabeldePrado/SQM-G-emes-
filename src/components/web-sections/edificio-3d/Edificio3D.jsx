@@ -1,11 +1,13 @@
 import { useCallback, useEffect, useRef, useState } from 'react'
 import { Canvas } from '@react-three/fiber'
+import { useProgress } from '@react-three/drei'
 import gsap from 'gsap'
 import { useAvailability } from './interiors/useAvailability'
 import { QUALITY_TIERS, initialQuality } from './scene/quality'
 import { Scene } from './scene/Scene'
 import { HOUR_RANGE, TIMES, initialSkyHour, skyState } from './scene/timeOfDay'
 import { Fallback } from './ui/Fallback'
+import { CODE_SHARE, LoadingScreen } from './ui/LoadingScreen'
 import { Overlay } from './ui/Overlay'
 
 /** WebGL 2 está en Chrome, Edge, Firefox y Safari 15+; sin él no hay post-procesado. */
@@ -95,7 +97,13 @@ export default function Edificio3D() {
     })
   }, [hour])
   const [isMobile] = useState(() => window.innerWidth < 768)
-  const [quality] = useState(initialQuality)
+  const [quality, setQuality] = useState(initialQuality)
+  // Equipo sin aceleración o que ni en calidad mínima mueve la escena
+  const [tooSlow, setTooSlow] = useState(() => quality.software)
+  const showAnyway = useCallback(() => {
+    setQuality({ tier: 0, forced: true, software: false })
+    setTooSlow(false)
+  }, [])
   const [webgl] = useState(supportsWebGL2)
   const [contextLost, setContextLost] = useState(false)
   // Piso abierto (todo lo de arriba se recorta) y unidad elegida en su planta
@@ -103,6 +111,10 @@ export default function Edificio3D() {
   const [unit, setUnit] = useState(null)
   const [hoverFloor, setHoverFloor] = useState(null)
   const availability = useAvailability()
+  // Carga inicial: texturas y cielo (useProgress) hasta que la escena dibuja
+  const { progress: assets } = useProgress()
+  const [ready, setReady] = useState(false)
+  const onReady = useCallback(() => setReady(true), [])
 
   const selectUnit = useCallback((next) => {
     setUnit(next)
@@ -129,6 +141,7 @@ export default function Edificio3D() {
 
   if (!webgl) return <Fallback reason="unsupported" />
   if (contextLost) return <Fallback reason="lost" />
+  if (tooSlow) return <Fallback reason="slow" onContinue={showAnyway} />
 
   return (
     <div className="relative h-screen h-[100svh] w-full overflow-hidden bg-[#d6dee4]">
@@ -156,6 +169,8 @@ export default function Edificio3D() {
           rigRef={rig}
           isMobile={isMobile}
           quality={quality}
+          onTooSlow={() => setTooSlow(true)}
+          onReady={onReady}
           date={TODAY}
           hour={hour}
           floor={floor}
@@ -182,6 +197,10 @@ export default function Edificio3D() {
         unit={unit}
         onUnit={setUnit}
         availability={availability}
+      />
+      <LoadingScreen
+        progress={Math.min(99, CODE_SHARE + ((100 - CODE_SHARE) * assets) / 100)}
+        done={ready}
       />
     </div>
   )

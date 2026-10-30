@@ -4,13 +4,15 @@ import { useFrame, useThree } from '@react-three/fiber'
 const IDLE_GAP = 250 // ms sin cuadros = la cámara estaba quieta, no cuenta
 const SAMPLES = 45
 const MIN_FPS = 28
+const UNUSABLE_FPS = 12
 
 /**
  * Baja de nivel si al mover la cámara la mediana de cuadros cae debajo de
- * MIN_FPS. Con frameloop "demand" solo se renderiza mientras algo se mueve, así
- * que los huecos largos entre cuadros se ignoran (no son lentitud).
+ * MIN_FPS; ya en el nivel más bajo, avisa (onTooSlow) si ni siquiera llega a
+ * UNUSABLE_FPS. Con frameloop "demand" solo se renderiza mientras algo se
+ * mueve, así que los huecos largos entre cuadros se ignoran (no son lentitud).
  */
-export function QualityMonitor({ enabled, onDecline }) {
+export function QualityMonitor({ enabled, lowest, onDecline, onTooSlow }) {
   const state = useRef({ last: 0, samples: [] })
   useFrame(() => {
     const now = performance.now()
@@ -22,7 +24,9 @@ export function QualityMonitor({ enabled, onDecline }) {
     if (s.samples.length < SAMPLES) return
     const median = [...s.samples].sort((a, b) => a - b)[SAMPLES >> 1]
     s.samples = []
-    if (median > 1000 / MIN_FPS) onDecline()
+    if (lowest) {
+      if (median > 1000 / UNUSABLE_FPS) onTooSlow()
+    } else if (median > 1000 / MIN_FPS) onDecline()
   })
   return null
 }

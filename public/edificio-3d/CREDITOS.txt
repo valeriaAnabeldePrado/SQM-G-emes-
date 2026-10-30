@@ -1,0 +1,6 @@
+Texturas y HDRI de Poly Haven (https://polyhaven.com), licencia CC0 (dominio público).
+- hormigon_*: concrete_wall_008 (color recalibrado al hormigón de los renders)
+- muro_*: granular_concrete
+- asfalto_*: asphalt_01
+- cielo.hdr: canary_wharf (1k)
+- piedra_*: stone_wall (recoloreada al gris rosado de los muros de La Cañada)

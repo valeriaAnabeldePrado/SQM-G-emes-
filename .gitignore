@@ -25,3 +25,7 @@ dist-ssr
 
 # Material original de obra (sin comprimir) - no se publica
 originales/
+
+# Python
+__pycache__/
+*.pyc

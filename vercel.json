@@ -6,7 +6,7 @@
       "destination": "/disponibilidad"
     },
     {
-      "source": "/(.*)",
+      "source": "/((?!api/).*)",
       "destination": "/index.html"
     }
   ]

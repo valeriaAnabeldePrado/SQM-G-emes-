@@ -307,4 +307,4 @@ export function Model({ onDepartmentClick, highlightedUnits = [] }) {
 }
 
 // Preload del modelo para mejor performance
-export const preloadModel = () => useGLTF.preload('/Untitled.glb')
+export const preloadModel = () => useGLTF.preload('/untitled.glb')

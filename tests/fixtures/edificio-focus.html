@@ -1,0 +1,60 @@
+<!doctype html>
+<html lang="es">
+  <meta charset="utf-8" />
+  <title>Verificación gráfica de enfoque VIVRA</title>
+  <body style="font: 16px system-ui; padding: 24px">
+    <h1>Visibilidad del entorno</h1>
+    <pre id="results">Verificando el shader real…</pre>
+    <script type="module">
+      import * as THREE from 'three'
+      import { addBuildingBounds } from '/src/components/web-sections/edificio-3d/architecture/buildingBounds.js'
+      import { corridor, createContextMaterial, withViewCorridor } from '/src/components/web-sections/edificio-3d/architecture/viewCorridor.js'
+
+      const output = document.querySelector('#results')
+      try {
+        const renderer = new THREE.WebGLRenderer({ antialias: false })
+        const target = new THREE.WebGLRenderTarget(16, 16)
+        const camera = new THREE.OrthographicCamera(-1, 1, 1, -1, 0.1, 50)
+        camera.position.z = 10
+        corridor.uCamPos.value.copy(camera.position)
+        corridor.uViewForward.value.set(0, 0, -1)
+        corridor.uViewRight.value.set(1, 0, 0)
+        corridor.uViewUp.value.set(0, 1, 0)
+        corridor.uFocusDistance.value = 10
+        const cases = [
+          { name: 'Un edificio delante se oculta', z: 4, visible: 0 },
+          { name: 'El lindero detallado conserva su volumen dentro del corredor', z: 4, visible: 256, neighbor: true },
+          { name: 'Detrás del objetivo, a 10 cm, permanece visible', z: -0.1, visible: 256 },
+          { name: 'Detrás del objetivo, a 1 m, permanece visible', z: -1, visible: 256 },
+          { name: 'Detrás del objetivo, a 3 m, permanece visible', z: -3, visible: 256 }
+        ]
+        const results = []
+        for (const { name, z, visible, neighbor } of cases) {
+          const geometry = new THREE.PlaneGeometry(2, 2).translate(0, 0, z)
+          addBuildingBounds(geometry, [{ min: [-1, -1, z - 1], max: [1, 1, z] }], 4)
+          const base = new THREE.MeshBasicMaterial({ color: '#ff0000' })
+          const material = neighbor ? createContextMaterial(base) : withViewCorridor(base)
+          const scene = new THREE.Scene()
+          scene.add(new THREE.Mesh(geometry, material))
+          renderer.setRenderTarget(target)
+          renderer.render(scene, camera)
+          const pixels = new Uint8Array(16 * 16 * 4)
+          renderer.readRenderTargetPixels(target, 0, 0, 16, 16, pixels)
+          let red = 0
+          for (let i = 0; i < pixels.length; i += 4) if (pixels[i] > 100) red++
+          results.push(`${red === visible ? 'PASS' : 'FAIL'} ${name}: ${red}/${visible} píxeles`)
+          geometry.dispose()
+          material.dispose()
+          if (material !== base) base.dispose()
+        }
+        renderer.setRenderTarget(null)
+        target.dispose()
+        renderer.dispose()
+        output.textContent = results.join('\n')
+        document.title = results.every((r) => r.startsWith('PASS')) ? 'PASS — enfoque VIVRA' : 'FAIL — enfoque VIVRA'
+      } catch (error) {
+        output.textContent = `ERROR: ${error.message}`
+      }
+    </script>
+  </body>
+</html>

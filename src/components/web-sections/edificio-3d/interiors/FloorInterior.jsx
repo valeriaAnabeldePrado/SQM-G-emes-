@@ -30,8 +30,7 @@ function centroid(points) {
 
 /**
  * Rectángulo de piso sobre la planta, de (px0, py0) a (px1, py1) en píxeles.
- * `uv` en metros (para la textura del solado) y `uv1` en la imagen (para la
- * máscara de madera, que sale de la misma planta).
+ * `uv` en metros para conservar el tamaño del cerámico en todos los pisos.
  */
 function floorQuad(plan, [px0, py0, px1, py1]) {
   const corners = [
@@ -49,13 +48,6 @@ function floorQuad(plan, [px0, py0, px1, py1]) {
   geometry.setAttribute(
     'uv',
     new THREE.BufferAttribute(new Float32Array(world.flatMap(([x, z]) => [z, x])), 2)
-  )
-  geometry.setAttribute(
-    'uv1',
-    new THREE.BufferAttribute(
-      new Float32Array(corners.flatMap(([px, py]) => [px / plan.width, 1 - py / plan.height])),
-      2
-    )
   )
   geometry.setIndex([0, 2, 1, 0, 3, 2])
   geometry.computeVertexNormals()
@@ -254,23 +246,19 @@ export function FloorInterior({ id, availability, selectedKey, onSelect }) {
     }
     if (floor.building === 'torre') buildFloorEdges(b, Number(floor.id))
     const furniture = buildFurniture(floor.plan, plan)
-    const wood = new THREE.CanvasTexture(plan.wood)
     // El solado queda dentro del volumen del edificio (la PB de oficinas incluye el patio)
     const [bx0, by0, bx1, by1] = plan.bounds
     const clipX0 = Math.max(bx0, plan.pixelAtZ(floor.box.zMin + 0.3))
     const clipX1 = Math.min(bx1, plan.pixelAtZ(floor.box.zMax))
-    const materials = createInteriorMaterials(wave, wood)
+    const materials = createInteriorMaterials(wave)
     return {
       wave,
       walls: buildBoxGeometries(b),
       furnitureBoxes: buildBoxGeometries(furniture.boxes),
       furnitureCylinders: furniture.cylinders,
-      // Losa real: porcelanato en todo el contorno y parquet donde la planta
-      // dibuja piso de madera
+      // Cerámico blanco continuo en toda la planta, sin superponer el rayado.
       tile: floorQuad(plan, [clipX0, by0, clipX1, by1]),
       balconies: unitFloors(catalog.units, plan),
-      wood: floorQuad(plan, [clipX0, 0, clipX1, plan.height]),
-      textures: [wood],
       materials
     }
   }, [plan, floor, catalog, center, radius])
@@ -281,8 +269,6 @@ export function FloorInterior({ id, availability, selectedKey, onSelect }) {
       Object.values(resources.furnitureCylinders).forEach((g) => g?.dispose())
       resources.tile.dispose()
       resources.balconies?.dispose()
-      resources.wood.dispose()
-      resources.textures.forEach((t) => t.dispose())
       Object.values(resources.materials).forEach((m) => {
         if (!m.userData.sharedMap) m.map?.dispose()
         m.dispose()
@@ -315,7 +301,6 @@ export function FloorInterior({ id, availability, selectedKey, onSelect }) {
   useLayoutEffect(() => {
     const floorFade = Math.min(1, reveal * 2.5)
     resources.materials.tile.opacity = floorFade
-    resources.materials.wood.opacity = floorFade
   }, [resources, reveal])
 
   const unitShown = (cx, cz) => unitReveal(reveal, [cx, cz], center, radius)
@@ -336,12 +321,6 @@ export function FloorInterior({ id, availability, selectedKey, onSelect }) {
           receiveShadow
         />
       ) : null}
-      <mesh
-        geometry={resources.wood}
-        material={resources.materials.wood}
-        position-y={y + 0.025}
-        receiveShadow
-      />
       <group position-y={y}>
         {[...resources.walls, ...resources.furnitureBoxes].map(([key, geometry]) => (
           <mesh

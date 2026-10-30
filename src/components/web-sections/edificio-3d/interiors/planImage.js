@@ -316,91 +316,6 @@ function maskToRects(mask, w, h) {
   return rects.filter(([x0, y0, x1, y1]) => Math.max(x1 - x0, y1 - y0) >= MIN_PIECE)
 }
 
-/** Suma de cada ventana (2r+1)² sobre una máscara 0/1, con tabla de sumas. */
-function windowSums(mask, w, h, r) {
-  const sums = new Uint32Array((w + 1) * (h + 1))
-  for (let y = 0; y < h; y++) {
-    let row = 0
-    for (let x = 0; x < w; x++) {
-      row += mask[y * w + x]
-      sums[(y + 1) * (w + 1) + x + 1] = sums[y * (w + 1) + x + 1] + row
-    }
-  }
-  return (x, y) => {
-    const x0 = Math.max(0, x - r)
-    const y0 = Math.max(0, y - r)
-    const x1 = Math.min(w, x + r + 1)
-    const y1 = Math.min(h, y + r + 1)
-    const total =
-      sums[y1 * (w + 1) + x1] -
-      sums[y0 * (w + 1) + x1] -
-      sums[y1 * (w + 1) + x0] +
-      sums[y0 * (w + 1) + x0]
-    return [total, (x1 - x0) * (y1 - y0)]
-  }
-}
-
-/** Dilatación (`grow`) o erosión de una máscara con un cuadrado de radio r. */
-function morph(mask, w, h, r, grow) {
-  const sum = windowSums(mask, w, h, r)
-  const out = new Uint8Array(w * h)
-  for (let y = 0; y < h; y++) {
-    for (let x = 0; x < w; x++) {
-      const [total, area] = sum(x, y)
-      out[y * w + x] = grow ? (total > 0 ? 1 : 0) : total === area ? 1 : 0
-    }
-  }
-  return out
-}
-
-/**
- * Máscara de parquet: donde la planta tiene el rayado beige de madera. Se mide
- * su densidad, se cierran los huecos que dejan muebles y textos (cierre
- * morfológico), se limpian motas sueltas y se suavizan los bordes. Fuera del
- * contorno de muros (balcones) no hay parquet.
- */
-function woodMask(data, w, h, [bx0, by0, bx1, by1]) {
-  const hatch = new Uint8Array(w * h)
-  for (let i = 0; i < w * h; i++) {
-    const r = data[i * 4]
-    const g = data[i * 4 + 1]
-    const b = data[i * 4 + 2]
-    hatch[i] = r > 225 && g > 215 && r - b > 10 ? 1 : 0
-  }
-  const density = windowSums(hatch, w, h, 6)
-  let wood = new Uint8Array(w * h)
-  for (let y = by0; y < by1; y++) {
-    for (let x = bx0; x < bx1; x++) {
-      const [total, area] = density(x, y)
-      wood[y * w + x] = total / area > 0.05 ? 1 : 0
-    }
-  }
-  // Cierra huecos de muebles, alfombras y textos (~0,45 m); los baños y
-  // cocinas con baldosa son más anchos y no se rellenan
-  wood = morph(morph(wood, w, h, 14, true), w, h, 14, false)
-  wood = morph(morph(wood, w, h, 3, false), w, h, 3, true) // saca motas
-
-  const canvas = document.createElement('canvas')
-  canvas.width = w
-  canvas.height = h
-  const ctx = canvas.getContext('2d')
-  const image = ctx.createImageData(w, h)
-  for (let i = 0; i < w * h; i++) {
-    const v = wood[i] ? 255 : 0
-    image.data[i * 4] = image.data[i * 4 + 1] = image.data[i * 4 + 2] = v
-    image.data[i * 4 + 3] = 255
-  }
-  ctx.putImageData(image, 0, 0)
-  // Bordes suaves (con alphaTest 0,5 quedan rectos y sin escalones)
-  const smooth = document.createElement('canvas')
-  smooth.width = w
-  smooth.height = h
-  const sctx = smooth.getContext('2d')
-  sctx.filter = 'blur(1.2px)'
-  sctx.drawImage(canvas, 0, 0)
-  return smooth
-}
-
 /**
  * Lee la planta y devuelve los muros en píxeles y la transformación a metros.
  * Escala: el alto de los muros en la imagen es el ancho del lote (11 m); la
@@ -463,7 +378,6 @@ export function readPlan(image, align) {
         : x0 - minX <= edge || maxX - x1 <= edge
     if (onPerimeter) windows.push({ ...o, kind: 'ventana', door: true })
   }
-  const wood = woodMask(data, w, h, [minX, minY, maxX, maxY])
   const pxPerMeter = (maxY - minY) / LOT.width
   const z0 = align.rear != null ? align.rear - (maxX - minX) / pxPerMeter : align.front
   const toWorld = (px, py) => [HALF - (py - minY) / pxPerMeter, z0 + (px - minX) / pxPerMeter]
@@ -476,7 +390,6 @@ export function readPlan(image, align) {
     walls,
     windows,
     bounds: [minX, minY, maxX, maxY],
-    pixelAtZ,
-    wood
+    pixelAtZ
   }
 }

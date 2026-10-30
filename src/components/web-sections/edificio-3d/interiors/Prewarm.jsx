@@ -21,14 +21,11 @@ export function Prewarm() {
 
   useEffect(() => {
     const wave = createBuildWave()
-    const mask = new THREE.CanvasTexture(document.createElement('canvas'))
     const materials = [
-      ...Object.values(createInteriorMaterials(wave, mask)),
+      ...Object.values(createInteriorMaterials(wave)),
       ...createOverlayMaterials()
     ]
     const geometry = new THREE.PlaneGeometry(0.01, 0.01)
-    // El solado lleva un segundo juego de UV (máscara de parquet)
-    geometry.setAttribute('uv1', geometry.attributes.uv.clone())
     const group = new THREE.Group()
     for (const material of materials) group.add(new THREE.Mesh(geometry, material))
     group.position.set(0, -500, 0)

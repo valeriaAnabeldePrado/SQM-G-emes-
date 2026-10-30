@@ -194,29 +194,3 @@ export function shutterTexture() {
     }
   })
 }
-
-/** Parquet de tablas de 20 cm con juntas desfasadas (1,2 x 1,2 m). */
-export function woodTexture() {
-  return canvasTexture(512, 512, 1.2, 1.2, (ctx, w, h) => {
-    const rand = seeded(53)
-    const planks = 6
-    const pw = w / planks
-    for (let i = 0; i < planks; i++) {
-      const offset = rand() * h
-      for (let k = -1; k < 2; k++) {
-        const t = rand()
-        ctx.fillStyle = `rgb(${176 + t * 26},${138 + t * 20},${100 + t * 14})`
-        ctx.fillRect(i * pw, offset + k * h * 0.66, pw, h * 0.66)
-        ctx.fillStyle = 'rgba(90,60,35,0.35)'
-        ctx.fillRect(i * pw, offset + k * h * 0.66, pw, 1.5)
-      }
-      ctx.fillStyle = 'rgba(80,55,30,0.4)'
-      ctx.fillRect(i * pw, 0, 1.2, h)
-      // vetas
-      for (let v = 0; v < 26; v++) {
-        ctx.fillStyle = `rgba(120,85,55,${0.05 + rand() * 0.08})`
-        ctx.fillRect(i * pw + rand() * pw, 0, 1, h)
-      }
-    }
-  })
-}

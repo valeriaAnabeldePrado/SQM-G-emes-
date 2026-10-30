@@ -1,5 +1,5 @@
 import * as THREE from 'three'
-import { tileTexture, woodTexture } from '../architecture/textures'
+import { tileTexture } from '../architecture/textures'
 import { withBuildWave } from './buildWave'
 import { createFurnitureMaterials } from './furniture'
 
@@ -8,14 +8,12 @@ import { createFurnitureMaterials } from './furniture'
  * (Prewarm): al salir de la misma función compilan exactamente los mismos
  * programas, así abrir un piso no compila nada.
  *   wave:     uniforms de la onda de construcción (muros y muebles crecen)
- *   woodMask: textura con la máscara de parquet (usa las UV de la imagen)
  */
-// Texturas de solado: se generan una vez y las comparten todos los pisos
-let floorTextures = null
-const sharedFloorTextures = () =>
-  (floorTextures ??= { tile: tileTexture('#d8d4cd'), wood: woodTexture() })
+// Un único cerámico blanco compartido: el rayado del plano no define materiales.
+let floorTexture = null
+const sharedFloorTexture = () => (floorTexture ??= tileTexture('#f4f4f1'))
 
-export function createInteriorMaterials(wave, woodMask) {
+export function createInteriorMaterials(wave) {
   const built = {
     wall: new THREE.MeshStandardMaterial({ color: '#f3f0ea', roughness: 0.9 }),
     cap: new THREE.MeshBasicMaterial({ color: '#3b3734' }),
@@ -34,26 +32,17 @@ export function createInteriorMaterials(wave, woodMask) {
     ...createFurnitureMaterials()
   }
   for (const material of Object.values(built)) withBuildWave(material, wave)
-  woodMask.channel = 1
   return {
     ...built,
     // El solado aparece con un fundido (no crece)
     tile: Object.assign(
       new THREE.MeshStandardMaterial({
-        map: sharedFloorTextures().tile,
+        map: sharedFloorTexture(),
         roughness: 0.45,
         transparent: true
       }),
       { userData: { sharedMap: true } }
-    ),
-    wood: new THREE.MeshStandardMaterial({
-      map: sharedFloorTextures().wood,
-      alphaMap: woodMask,
-      alphaTest: 0.5,
-      roughness: 0.6,
-      transparent: true,
-      userData: { sharedMap: true }
-    })
+    )
   }
 }
 

@@ -267,6 +267,62 @@ function carpentry(mask, data, w, h, scale) {
   return kept
 }
 
+/** Cierre morfológico k x k: tapa muescas y rendijas de menos de k px en los muros. */
+function closeMask(mask, w, h, k) {
+  const inverted = mask.map((v) => 1 - v)
+  return openMask(inverted, w, h, k).map((v) => 1 - v)
+}
+
+/**
+ * Conductos y nichos: recintos chicos cerrados casi del todo por muros, con el
+ * lado restante dibujado en línea fina (la tapa del pleno, el frente de un
+ * nicho). Al descartar las líneas finas quedaban como "U" abiertas y tabiques
+ * sueltos; se rellenan como volumen macizo. Los recintos que cierran muebles
+ * (inodoros, mesadas, mesas) no se tocan: su borde casi no toca muros.
+ */
+export function fillShafts(walls, data, w, h, scale) {
+  // Barrera: cualquier trazo dibujado (gris o negro), además de los muros
+  const barrier = new Uint8Array(w * h)
+  for (let i = 0; i < w * h; i++) {
+    const luma = (data[i * 4] + data[i * 4 + 1] + data[i * 4 + 2]) / 3
+    barrier[i] = walls[i] || (data[i * 4 + 3] > 200 && luma < 200) ? 1 : 0
+  }
+  const maxArea = 1.5 * scale * scale
+  const seen = new Uint8Array(w * h)
+  const filled = walls.slice()
+  const stack = []
+  const pixels = []
+  for (let start = 0; start < w * h; start++) {
+    if (barrier[start] || seen[start]) continue
+    seen[start] = 1
+    stack.push(start)
+    pixels.length = 0
+    let border = 0
+    let wallBorder = 0
+    let open = false
+    while (stack.length) {
+      const i = stack.pop()
+      pixels.push(i)
+      const x = i % w
+      if (x === 0 || x === w - 1 || i < w || i >= w * (h - 1)) open = true
+      for (const j of [x > 0 ? i - 1 : -1, x < w - 1 ? i + 1 : -1, i - w, i + w]) {
+        if (j < 0 || j >= w * h) continue
+        if (barrier[j]) {
+          border++
+          if (walls[j]) wallBorder++
+        } else if (!seen[j]) {
+          seen[j] = 1
+          stack.push(j)
+        }
+      }
+    }
+    if (open || pixels.length > maxArea || wallBorder < 0.65 * border) continue
+    for (const i of pixels) filled[i] = 1
+  }
+  // Las líneas finas que cerraban el recinto pasan a ser parte del volumen
+  return closeMask(filled, w, h, 3)
+}
+
 /** Cajas envolventes de las regiones conectadas (4-vecinos) de una máscara. */
 function components(mask, w, h) {
   const seen = new Uint8Array(w * h)
@@ -372,7 +428,8 @@ export function readPlan(image, align) {
   // Las carpinterías ya salieron de la máscara: ahora sí se descartan los
   // trazos de 2 px (muebles y placards), que de otro modo se extruían como
   // tabiques sueltos
-  const walls = maskToRects(openMask(mask, w, h, 3), w, h)
+  const solid = fillShafts(openMask(mask, w, h, 3), data, w, h, lotScale)
+  const walls = maskToRects(solid, w, h)
   const windows = [...openings.filter((o) => o.kind === 'ventana'), ...panes]
 
   let minX = w

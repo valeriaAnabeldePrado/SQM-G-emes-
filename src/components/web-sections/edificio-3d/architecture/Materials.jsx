@@ -6,6 +6,7 @@ import gsap from 'gsap'
 import { BUILDING_HEIGHT, HALF, TOWER } from '../buildings/vivra-guemes/config'
 import { createInteriorGlassMaterial } from './interiorGlass'
 import { corridor, withViewCorridor } from './viewCorridor'
+import { withWeathering } from './weathering'
 import { MaterialsContext } from './materialsContext'
 import {
   brickTexture,
@@ -75,20 +76,25 @@ function createMaterials(loaded) {
 
   return {
     // Hormigón visto liso de las bandas y cantos (foto de detalle)
-    concrete: std({
-      ...scanned.hormigon,
-      color: '#ffffff',
-      roughness: 0.82,
-      normalScale: new THREE.Vector2(0.8, 0.8)
-    }),
+    concrete: withWeathering(
+      std({
+        ...scanned.hormigon,
+        color: '#ffffff',
+        roughness: 0.82,
+        normalScale: new THREE.Vector2(0.8, 0.8)
+      })
+    ),
     // Muro entre ventanas: hormigón granulado gris, más oscuro que las bandas
-    block: std({
-      ...scanned.muro,
-      color: '#ffffff',
-      roughness: 0.92,
-      normalScale: new THREE.Vector2(0.7, 0.7)
-    }),
-    plaster: std({ ...scanned.hormigon, color: '#ece7de', roughness: 0.9 }),
+    block: withWeathering(
+      std({
+        ...scanned.muro,
+        color: '#ffffff',
+        roughness: 0.92,
+        normalScale: new THREE.Vector2(0.7, 0.7)
+      }),
+      0.7
+    ),
+    plaster: withWeathering(std({ ...scanned.hormigon, color: '#ece7de', roughness: 0.9 }), 0.6),
     groove: std({ color: '#6b6761', roughness: 0.9 }),
     lintel: std({ color: '#ecebe7', roughness: 0.5, metalness: 0.2 }),
     pipe: std({ color: '#a9abad', roughness: 0.4, metalness: 0.7 }),
@@ -138,13 +144,18 @@ function createMaterials(loaded) {
     deck: std({ map: deckMap, roughness: 0.8 }),
     patio: std({ map: patioMap, roughness: 0.85 }),
     water: std({
-      color: '#3b8db0',
+      color: '#2f7f9e',
       roughness: 0.04,
       metalness: 0.15,
-      emissive: '#0e3a4d',
+      emissive: '#0f4a5e',
       emissiveIntensity: 0.4
     }),
     grass: std({ color: '#6f8a4d', roughness: 1 }),
+    // Ropa tendida en los balcones
+    fabricWhite: std({ color: '#ecebe6', roughness: 0.95 }, { noShadow: true }),
+    fabricBlue: std({ color: '#5a7894', roughness: 0.95 }, { noShadow: true }),
+    fabricTerracotta: std({ color: '#b86b4b', roughness: 0.95 }, { noShadow: true }),
+    fabricSand: std({ color: '#d8c7a6', roughness: 0.95 }, { noShadow: true }),
     hedge: std({ color: '#55703f', roughness: 1 }),
     // Entorno
     sidewalk: std({ map: sidewalkMap, color: '#bab6ae', roughness: 0.92 }),
@@ -170,10 +181,13 @@ function createMaterials(loaded) {
     }),
     // Vecinos inmediatos (Street View): revoque beige con ventanas y aires
     // acondicionados, y edificio de balcones con pilares de ladrillo
-    beige: std({ ...scanned.hormigon, color: '#d6cdbd', roughness: 0.9 }),
-    cream: std({ ...scanned.hormigon, color: '#f1e9da', roughness: 0.9 }),
-    greyConcrete: std({ ...scanned.hormigon, color: '#bdbab4', roughness: 0.9 }),
-    rawConcrete: std({ ...scanned.muro, color: '#d8d4cc', roughness: 0.95 }),
+    beige: withWeathering(std({ ...scanned.hormigon, color: '#d6cdbd', roughness: 0.9 }), 0.9),
+    cream: withWeathering(std({ ...scanned.hormigon, color: '#f1e9da', roughness: 0.9 }), 0.9),
+    greyConcrete: withWeathering(
+      std({ ...scanned.hormigon, color: '#bdbab4', roughness: 0.9 }),
+      0.9
+    ),
+    rawConcrete: withWeathering(std({ ...scanned.muro, color: '#d8d4cc', roughness: 0.95 }), 0.9),
     shutter: std({ map: shutterTexture(), roughness: 0.55, metalness: 0.4 }),
     shutterWhite: std({ map: shutterTexture(), color: '#ffffff', roughness: 0.6 }),
     safetyMesh: Object.assign(
@@ -186,7 +200,10 @@ function createMaterials(loaded) {
       }),
       { userData: { noShadow: true } }
     ),
-    whitePlaster: std({ ...scanned.hormigon, color: '#f4f2ee', roughness: 0.9 }),
+    whitePlaster: withWeathering(
+      std({ ...scanned.hormigon, color: '#f4f2ee', roughness: 0.9 }),
+      0.9
+    ),
     brick: std({ map: brickTexture(), roughness: 0.9 }),
     redSteel: std({ color: '#b5462f', roughness: 0.55, metalness: 0.4 }),
     acUnit: std({ color: '#e8e8e6', roughness: 0.6 }),
@@ -227,12 +244,13 @@ function applyNight(materials, night) {
   corridor.uContextSaturation.value = 0.55 + night * 0.25
   materials.glassInterior.userData.uniforms.uNight.value = night
   // Las ventanas del barrio acompañan las luces de VIVRA sin competir con ellas.
-  materials.contextFacade.emissiveIntensity = night * 0.38
+  materials.contextFacade.emissiveIntensity = night * 0.3
   // De noche la ciudad lejana se apaga (el relleno ambiente es luz de cielo)
   materials.contextFar.emissiveIntensity = 0.45 * (1 - night * 0.85)
   materials.lampHead.emissiveIntensity = night * 9
   materials.lightPool.opacity = night * 0.85
-  materials.water.emissiveIntensity = 0.4 + night * 2.2
+  // Pileta con luz subacuática: brilla, pero sin volverse un rectángulo celeste plano
+  materials.water.emissiveIntensity = 0.4 + night * 0.5
 }
 
 const NO_CUT = 1e5

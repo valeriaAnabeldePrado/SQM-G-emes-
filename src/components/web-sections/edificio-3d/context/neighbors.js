@@ -4,7 +4,7 @@ import {
   addWallWithOpenings,
   addWindow
 } from '../architecture/generators'
-import { PANE_KIND } from '../architecture/interiorGlass'
+import { NEIGHBOR_PANE, PANE_KIND } from '../architecture/interiorGlass'
 import { HALF, LOT } from '../buildings/vivra-guemes/config'
 import contextData from './contextData.json'
 
@@ -140,7 +140,12 @@ function beigeNeighbor(b) {
         face,
         inward: 1,
         seed,
-        room: { roomFloor: y0, roomCeiling: y0 + floor - 0.2, depth: 3.5, kind: PANE_KIND.home }
+        room: {
+          roomFloor: y0,
+          roomCeiling: y0 + floor - 0.2,
+          depth: 3.5,
+          kind: PANE_KIND.home + NEIGHBOR_PANE
+        }
       })
       if (hash(n * 7.3 + k * 3.1) > 0.5) {
         const x = o.to + 0.12
@@ -204,7 +209,7 @@ function beigeNeighbor(b) {
           roomFloor: y0,
           roomCeiling: y0 + floor - 0.2,
           depth: 3.5,
-          kind: PANE_KIND.curtains,
+          kind: PANE_KIND.curtains + NEIGHBOR_PANE,
           seed: hash(n * 4.1 + k * 7 + 3) * 0.98
         }
       })
@@ -292,7 +297,7 @@ function balconyNeighbor(b) {
           roomFloor: y0,
           roomCeiling: y0 + floor - 0.25,
           depth: 4,
-          kind: PANE_KIND.home,
+          kind: PANE_KIND.home + NEIGHBOR_PANE,
           seed: hash(n * 5.7 + k * 11) * 0.98
         }
       })
@@ -320,7 +325,12 @@ function balconyNeighbor(b) {
           inward: -1,
           shutter: 'shutterWhite',
           seed: hash(n * 3.3 + k * 17 + 5) * 0.98,
-          room: { roomFloor: y0, roomCeiling: y0 + floor - 0.25, depth: 3.2, kind: PANE_KIND.home }
+          room: {
+            roomFloor: y0,
+            roomCeiling: y0 + floor - 0.25,
+            depth: 3.2,
+            kind: PANE_KIND.home + NEIGHBOR_PANE
+          }
         }
       )
     }
@@ -344,7 +354,7 @@ function peredoNeighbors(b) {
     roomFloor: y0,
     roomCeiling: y0 + floor - 0.2,
     depth: 3.5,
-    kind: PANE_KIND.home,
+    kind: PANE_KIND.home + NEIGHBOR_PANE,
     seed
   })
 

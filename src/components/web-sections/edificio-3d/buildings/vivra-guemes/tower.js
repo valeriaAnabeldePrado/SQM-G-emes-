@@ -28,7 +28,7 @@ import {
 } from './config'
 
 const WALL = 0.2
-const BANDED_FLOORS = 13 // P1-P13 con antepecho de hormigón; P14-P15 con baranda
+export const BANDED_FLOORS = 13 // P1-P13 con antepecho de hormigón; P14-P15 con baranda
 const CEILING = FLOOR_HEIGHT - SLAB
 
 /** Semilla estable por vano: misma habitación en cada carga. */

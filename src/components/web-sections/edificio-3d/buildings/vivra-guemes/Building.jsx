@@ -5,6 +5,8 @@ import { MergedBoxes } from '../../architecture/MergedBoxes'
 import { Panes } from '../../architecture/Panes'
 import { useMaterials } from '../../architecture/materialsContext'
 import { AMENITIES_HEIGHT, AMENITIES_LEVEL, FLOORS, TANK, TOWER, levelBase } from './config'
+import { BalconyPlants } from './BalconyPlants'
+import { buildBalconyLife } from './balconyLife'
 import { buildOffices, buildPatio } from './offices'
 import { buildTower } from './tower'
 
@@ -13,6 +15,7 @@ function buildBuilding() {
   buildTower(b)
   buildOffices(b)
   buildPatio(b)
+  buildBalconyLife(b)
   return b
 }
 
@@ -54,6 +57,7 @@ export default function Building() {
       <MergedBoxes list={list} />
       <Panes panes={list.panes} />
       <RoofTank />
+      <BalconyPlants />
     </group>
   )
 }

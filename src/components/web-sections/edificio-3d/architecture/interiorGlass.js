@@ -10,8 +10,11 @@ import { addBuildingBounds } from './buildingBounds.js'
  *
  * Tipos de paño (parte entera de la semilla):
  *   0 vivienda, 1 vivienda con cortinas corridas, 2 local, 3 oficina
+ * Sumando NEIGHBOR_PANE el paño es de un edificio vecino: de noche se encienden
+ * menos ambientes y más tenues, para que no compitan con VIVRA.
  */
 export const PANE_KIND = { home: 0, curtains: 1, shop: 2, office: 3 }
+export const NEIGHBOR_PANE = 4
 
 const VERTEX_HEAD = /* glsl */ `
 attribute vec2 aPaneUv;
@@ -47,6 +50,8 @@ vec3 paneInterior() {
   // hash no cambie de un píxel a otro
   float seed = floor(vPane.z * 4096.0 + 0.5) / 4096.0;
   float kind = floor(seed);
+  bool neighbor = kind > 3.5;
+  if (neighbor) kind -= 4.0;
   float s = fract(seed) + 0.013;
   float inward = vPane.w;
   float floorY = -vRoom.x;
@@ -95,21 +100,40 @@ vec3 paneInterior() {
   // De día la habitación se ve oscura contra el exterior; de noche se encienden
   // más ambientes y la luz artificial pasa a dominar
   float daylight = (0.05 + 0.17 * exp(-hit.z * 0.7)) * (1.0 - 0.9 * uNight);
-  float litChance = mix(0.78, 0.38, uNight);
+  float litChance = neighbor ? mix(0.86, 0.64, uNight) : mix(0.78, 0.38, uNight);
   float lit = (shop || office) ? 1.0 : step(litChance, paneHash(s * 21.7));
   vec3 lamp = vec3(1.0, 0.78, 0.52) * (shop ? 0.85 : office ? 0.3 : 0.5) * (1.0 + 0.25 * uNight);
+  if (neighbor) lamp *= 0.65;
   col *= daylight + lit * lamp;
 
-  // Cortinas de voile a los costados (o casi cerradas en el tipo 1)
+  // Cortinas y rollers de las viviendas, con un tono de tela por paño
   if (kind < 1.5) {
-    float amount = kind > 0.5 ? 0.38 + paneHash(s * 31.3) * 0.12 : (paneHash(s * 31.3) - 0.6) * 0.8;
-    if (amount > 0.0) {
-      vec3 pc = p + d * (0.12 / d.z);
-      float xs = pc.x / w + 0.5;
-      if (xs < amount || xs > 1.0 - amount) {
-        float folds = 0.88 + 0.12 * sin(pc.x * 9.0 + paneHash(s) * 6.0);
-        vec3 curtain = vec3(0.93, 0.88, 0.8) * folds * (0.5 * (1.0 - 0.85 * uNight) + lit * (0.35 + 0.15 * uNight));
-        col = mix(col, curtain, 0.86);
+    float tone = paneHash(s * 41.9);
+    vec3 fabric = tone < 0.45 ? vec3(0.95, 0.94, 0.91) : tone < 0.8 ? vec3(0.9, 0.83, 0.72) : vec3(0.68, 0.69, 0.7);
+    // La tela toma la luz de afuera y, si el ambiente está encendido, la de adentro
+    float glow = 0.5 * (1.0 - 0.85 * uNight) + lit * (0.35 + 0.15 * uNight);
+
+    // Voile a 12 cm del vidrio: casi cerrado en el tipo 1; si no, en parte de
+    // los paños, a ambos lados o corrido hacia uno solo
+    float pick = paneHash(s * 31.3);
+    float amount = kind > 0.5 ? 0.38 + pick * 0.12 : pick < 0.45 ? 0.12 + pick * 0.45 : 0.0;
+    float side = paneHash(s * 17.9);
+    vec3 pc = p + d * (0.12 / d.z);
+    float xs = pc.x / w + 0.5;
+    if ((xs < amount && side > 0.25) || (xs > 1.0 - amount && side < 0.75)) {
+      float folds = 0.88 + 0.12 * sin(pc.x * 9.0 + paneHash(s) * 6.0);
+      col = mix(col, fabric * folds * glow, 0.86);
+    }
+
+    // Roller pegado al vidrio, bajado desde arriba hasta una altura variable
+    if (paneHash(s * 53.1) < 0.25) {
+      float drop = 0.15 + paneHash(s * 61.7) * 0.55;
+      vec3 pr = p + d * (0.06 / d.z);
+      float below = pr.y / h - (1.0 - drop);
+      if (below > 0.0) {
+        // Barra de peso en el borde inferior
+        float hem = 0.7 + 0.3 * smoothstep(0.0, 0.025, below);
+        col = mix(col, fabric * 0.92 * glow * hem, 0.95);
       }
     }
   }
@@ -189,7 +213,11 @@ export function buildPaneGeometry(panes) {
   geometry.setAttribute('aPane', new THREE.BufferAttribute(pane, 4))
   geometry.setAttribute('aRoom', new THREE.BufferAttribute(room, 3))
   geometry.setIndex(new THREE.BufferAttribute(index, 1))
-  addBuildingBounds(geometry, panes.map((p) => p.building), 4)
+  addBuildingBounds(
+    geometry,
+    panes.map((p) => p.building),
+    4
+  )
   geometry.computeBoundingSphere()
   return geometry
 }

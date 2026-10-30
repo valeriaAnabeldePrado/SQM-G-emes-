@@ -21,11 +21,11 @@ function SkyDome({ sky, distance }) {
  * ciudad), así los reflejos coinciden con el cielo sin descargar nada más.
  */
 export function SceneEnvironment({ preset }) {
-  const { sky, environment, fog } = preset
+  const { sky, environment, fog, fogRange } = preset
   return (
     <>
       <SkyDome sky={sky} distance={4000} />
-      <fog attach="fog" args={[fog, 260, 780]} />
+      <fog attach="fog" args={[fog, ...fogRange]} />
       {environment.file ? (
         <Environment
           key="hdri"

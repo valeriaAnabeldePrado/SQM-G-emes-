@@ -73,15 +73,13 @@ export function sidewalkTexture() {
 /**
  * Fachada genérica para el contexto: 4 x 4 módulos de 3 x 3 m (12 x 12 m) con
  * revoque claro, línea de losa y un vano por módulo. Devuelve también el mapa
- * de ventanas encendidas para la noche (un 35 % al azar, para que no se note la
- * repetición).
+ * de ventanas encendidas para la noche.
  */
 export function facadeTextures() {
   const n = 4
   const size = 512
   const m = size / n
   const rand = seeded(23)
-  const lit = Array.from({ length: n * n }, () => rand() < 0.35)
   const color = canvasTexture(size, size, 12, 12, (ctx) => {
     ctx.fillStyle = '#e0e3e3'
     ctx.fillRect(0, 0, size, size)
@@ -99,17 +97,45 @@ export function facadeTextures() {
       }
     }
   })
-  const emissive = canvasTexture(size, size, 12, 12, (ctx) => {
+  // Ventanas de noche en un mosaico de 8 x 8 módulos (24 m, el doble que el
+  // color) para que la repetición no se lea. Pocas encendidas y desparejas:
+  // cálidas con cortina o sin ella, alguna blanca fría, alguna tenue de TV
+  const nightModules = n * 2
+  const emissive = canvasTexture(size * 2, size * 2, 24, 24, (ctx) => {
     ctx.fillStyle = '#000'
-    ctx.fillRect(0, 0, size, size)
-    lit.forEach((on, k) => {
-      if (!on) return
-      const x = (k % n) * m
-      const y = Math.floor(k / n) * m
-      const warm = 200 + Math.floor(rand() * 55)
-      ctx.fillStyle = `rgb(255,${warm},${Math.floor(warm * 0.62)})`
-      ctx.fillRect(x + m * 0.2, y + m * 0.22, m * 0.6, m * 0.5)
-    })
+    ctx.fillRect(0, 0, size * 2, size * 2)
+    for (let k = 0; k < nightModules * nightModules; k++) {
+      if (rand() > 0.2) continue
+      const x = (k % nightModules) * m + m * 0.2
+      const y = Math.floor(k / nightModules) * m + m * 0.22
+      const w = m * 0.6
+      const h = m * 0.5
+      const kind = rand()
+      const level = 0.35 + rand() * 0.65
+      const [r, g, b] =
+        kind < 0.62
+          ? [255, 196, 128]
+          : kind < 0.82
+            ? [255, 226, 178]
+            : kind < 0.93
+              ? [214, 228, 255]
+              : [120, 150, 255]
+      const tint = (a) => `rgba(${r},${g},${b},${a * level})`
+      // Más luz abajo (la lámpara y el reflejo en el piso que se ve por el vano)
+      const glow = ctx.createLinearGradient(0, y, 0, y + h)
+      glow.addColorStop(0, tint(0.55))
+      glow.addColorStop(1, tint(1))
+      ctx.fillStyle = glow
+      ctx.fillRect(x, y, w, h)
+      // Cortina o persiana a medio bajar en parte de las ventanas
+      if (rand() < 0.45) {
+        ctx.fillStyle = 'rgba(0,0,0,0.55)'
+        ctx.fillRect(x, y, w, h * (0.2 + rand() * 0.5))
+      }
+      // Parante de la carpintería
+      ctx.fillStyle = '#000'
+      ctx.fillRect(x + w / 2 - 2, y, 4, h)
+    }
   })
   return { color, emissive }
 }

@@ -80,16 +80,17 @@ export const TIMES = {
 
 export const HOUR_RANGE = [6, 23]
 
-/** Vista inicial: media tarde, ~1 h antes de la puesta (luz cálida y baja). */
-export const initialSkyHour = (date) => sunsetHour(date) - 0.9
+/** Vista inicial: el atardecer (la misma hora que el atajo). */
+export const initialSkyHour = (date) => TIMES.atardecer.hour(date)
 
 // Estados de referencia según la altura del sol (grados). Entre ellos se interpola.
 const KEYS = [
   {
     elevation: -8,
-    light: ['#9fb6de', 0.35],
-    hemisphere: ['#30456b', '#0b0d12', 0.2],
+    light: ['#9fb6de', 0.5],
+    hemisphere: ['#3b5482', '#10141c', 0.34],
     fog: '#1a2234',
+    fogRange: [110, 520],
     sky: [2, 3.2, 0.004, 0.7],
     envIntensity: 0.35,
     night: 1
@@ -97,8 +98,9 @@ const KEYS = [
   {
     elevation: -1,
     light: ['#a9b5d6', 0.25],
-    hemisphere: ['#5b5f86', '#1d1a1f', 0.24],
+    hemisphere: ['#5b5f86', '#1d1a1f', 0.28],
     fog: '#3b3a4f',
+    fogRange: [180, 680],
     sky: [4, 3, 0.006, 0.8],
     envIntensity: 0.45,
     night: 0.75
@@ -108,6 +110,7 @@ const KEYS = [
     light: ['#ff9a52', 1.6],
     hemisphere: ['#f0b48f', '#4f4038', 0.36],
     fog: '#cf9a80',
+    fogRange: [260, 780],
     sky: [10, 3, 0.008, 0.92],
     envIntensity: 0.7,
     night: 0.35
@@ -117,6 +120,7 @@ const KEYS = [
     light: ['#ffb06a', 2.8],
     hemisphere: ['#f3c7a2', '#5a4a3e', 0.42],
     fog: '#d7ab8f',
+    fogRange: [260, 780],
     sky: [9, 2.6, 0.007, 0.9],
     envIntensity: 0.85,
     night: 0.12
@@ -126,6 +130,7 @@ const KEYS = [
     light: ['#fff3e2', 2.7],
     hemisphere: ['#dce7f1', '#8f877b', 0.3],
     fog: '#d6dee4',
+    fogRange: [260, 780],
     sky: [6, 0.7, 0.004, 0.8],
     envIntensity: 0.7,
     night: 0
@@ -182,6 +187,7 @@ export function skyState(date, hour) {
       cityGlow: envKey === 'noche'
     },
     fog: mixColor(a.fog, b.fog, t),
+    fogRange: [mix(a.fogRange[0], b.fogRange[0], t), mix(a.fogRange[1], b.fogRange[1], t)],
     night: Math.round(mix(a.night, b.night, t) * 50) / 50
   }
 }

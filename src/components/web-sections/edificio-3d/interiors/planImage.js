@@ -1,4 +1,4 @@
-import { HALF, LOT } from '../buildings/vivra-guemes/config'
+import { HALF, LOT } from '../buildings/vivra-guemes/config.js'
 
 // Lectura de las plantas (las mismas PNG de /apartments). Los muros están
 // rellenos de gris claro (~186-191) con borde gris medio, y son más gruesos que
@@ -24,24 +24,41 @@ function wallMask(data, w, h) {
   return mask
 }
 
-/** Apertura morfológica 2x2: borra trazos de 1 px (mobiliario, cotas, rayado). */
-function openMask(mask, w, h) {
+/**
+ * Apertura morfológica k x k: borra trazos de menos de k px. Con k = 2 se van
+ * las líneas finas (cotas, rayado); con k = 3 también el mobiliario, la cama y
+ * los placards, que el plano dibuja en el mismo gris que los muros pero con
+ * trazo de 2 px (los muros miden 3 px o más).
+ */
+export function openMask(mask, w, h, k = 2) {
   const eroded = new Uint8Array(w * h)
-  for (let y = 0; y < h - 1; y++) {
-    for (let x = 0; x < w - 1; x++) {
-      const i = y * w + x
-      eroded[i] = mask[i] & mask[i + 1] & mask[i + w] & mask[i + w + 1]
+  for (let y = 0; y <= h - k; y++) {
+    for (let x = 0; x <= w - k; x++) {
+      let all = 1
+      for (let dy = 0; dy < k && all; dy++) {
+        for (let dx = 0; dx < k; dx++) {
+          if (!mask[(y + dy) * w + x + dx]) {
+            all = 0
+            break
+          }
+        }
+      }
+      eroded[y * w + x] = all
     }
   }
   const opened = new Uint8Array(w * h)
   for (let y = 0; y < h; y++) {
     for (let x = 0; x < w; x++) {
-      const i = y * w + x
-      opened[i] =
-        eroded[i] |
-        (x > 0 ? eroded[i - 1] : 0) |
-        (y > 0 ? eroded[i - w] : 0) |
-        (x > 0 && y > 0 ? eroded[i - w - 1] : 0)
+      let any = 0
+      for (let dy = 0; dy < k && !any; dy++) {
+        for (let dx = 0; dx < k; dx++) {
+          if (x - dx >= 0 && y - dy >= 0 && eroded[(y - dy) * w + x - dx]) {
+            any = 1
+            break
+          }
+        }
+      }
+      opened[y * w + x] = any
     }
   }
   return opened
@@ -352,7 +369,10 @@ export function readPlan(image, align) {
     for (let y = y0; y < y1; y++) mask.fill(1, y * w + x0, y * w + x1)
   }
   const panes = carpentry(mask, data, w, h, lotScale)
-  const walls = maskToRects(mask, w, h)
+  // Las carpinterías ya salieron de la máscara: ahora sí se descartan los
+  // trazos de 2 px (muebles y placards), que de otro modo se extruían como
+  // tabiques sueltos
+  const walls = maskToRects(openMask(mask, w, h, 3), w, h)
   const windows = [...openings.filter((o) => o.kind === 'ventana'), ...panes]
 
   let minX = w

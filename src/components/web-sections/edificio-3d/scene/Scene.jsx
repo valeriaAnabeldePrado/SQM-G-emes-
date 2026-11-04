@@ -17,7 +17,6 @@ import { Lighting } from './Lighting'
 import { DynamicResolution, QualityMonitor } from './Performance'
 import { QUALITY_TIERS } from './quality'
 import { SceneEnvironment } from './SceneEnvironment'
-import { ViewCorridor } from './ViewCorridor'
 import { skyState } from './timeOfDay'
 
 /**
@@ -118,7 +117,6 @@ export function Scene({
       />
       <DynamicResolution dpr={dpr} />
       <CameraRig ref={rigRef} onPlanTurn={onPlanTurn} />
-      <ViewCorridor />
       <Suspense fallback={null}>
         <SceneEnvironment preset={preset} />
         <MaterialsProvider night={preset.night} cut={cut}>

@@ -70,12 +70,13 @@ function createMaterials(loaded) {
 
   const std = (params, extra = {}) =>
     Object.assign(new THREE.MeshStandardMaterial(params), { userData: extra })
-  // Contexto urbano con corredor de visión (ver viewCorridor.js). Cerca: PBR
-  // como el resto (recibe la luz del cielo). Lejos: Lambert, más barato por
-  // píxel, con un relleno de luz ambiente en el emisivo.
-  const corridorStd = (params) => withViewCorridor(std(params), { clamp: true })
+  // Contexto urbano (ver viewCorridor.js): tono lavado y recorte del modo
+  // entorno bajo, sin calado, así los edificios no desaparecen al girar la
+  // cámara. Cerca: PBR como el resto (recibe la luz del cielo). Lejos:
+  // Lambert, más barato por píxel, con un relleno de luz ambiente en el emisivo.
+  const corridorStd = (params) => withViewCorridor(std(params), { fade: false, clamp: true })
   const corridorLambert = (params) =>
-    withViewCorridor(new THREE.MeshLambertMaterial(params), { clamp: true })
+    withViewCorridor(new THREE.MeshLambertMaterial(params), { fade: false, clamp: true })
 
   return {
     // Hormigón visto liso de las bandas y cantos (foto de detalle)

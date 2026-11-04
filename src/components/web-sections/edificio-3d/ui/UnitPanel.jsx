@@ -18,8 +18,33 @@ function Row({ label, value }) {
   )
 }
 
+/**
+ * Plano girado para que coincida con la vista 3D. Girado de costado, el ancho
+ * de la imagen pasa a ser su alto en pantalla: se limita al revés.
+ */
+function PlanImage({ src, alt, turn, onError }) {
+  const sideways = turn % 180 !== 0
+  return (
+    <div className="mt-3 flex h-56 items-center justify-center overflow-hidden rounded-lg bg-white">
+      <img
+        src={src}
+        alt={alt}
+        onError={onError}
+        style={{ transform: `rotate(${turn}deg)` }}
+        className={`object-contain transition-transform duration-500 ${
+          sideways ? 'max-h-[17rem] max-w-[13.5rem]' : 'max-h-56 max-w-full'
+        }`}
+      />
+    </div>
+  )
+}
+
 /** Ficha de la unidad elegida en la planta: estado, datos, plano y contacto. */
-export function UnitPanel({ unit, availability, onClose }) {
+// Las fichas de los deptos tienen Pueyrredón arriba y +x a la derecha; las de
+// oficinas usan la planta del piso entera, con Pueyrredón a la izquierda
+const baseTurn = (src) => (src.startsWith('/planos/') ? 90 : 0)
+
+export function UnitPanel({ unit, availability, planTurn = 0, onClose }) {
   const [planOk, setPlanOk] = useState(true)
   if (!unit) return null
 
@@ -62,11 +87,11 @@ export function UnitPanel({ unit, availability, onClose }) {
       </span>
 
       {info?.floorPlan && planOk ? (
-        <img
+        <PlanImage
           src={info.floorPlan}
           alt={`Plano de ${title}`}
+          turn={(planTurn + baseTurn(info.floorPlan)) % 360}
           onError={() => setPlanOk(false)}
-          className="mx-auto mt-3 max-h-56 w-auto rounded-lg bg-white object-contain"
         />
       ) : null}
 

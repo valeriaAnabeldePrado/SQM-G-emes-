@@ -8,7 +8,8 @@ import { readPlan } from './planImage'
 // para que abrir un piso no congele la transición de cámara.
 
 const cache = new Map()
-const keyOf = (url, align) => `${url}|${align.front ?? ''}|${align.rear ?? ''}`
+const keyOf = (url, align) =>
+  `${url}|${align.front ?? ''}|${align.rear ?? ''}|${align.bounds?.join(',') ?? ''}`
 
 export function cachedPlan(url, image, align) {
   const key = keyOf(url, align)

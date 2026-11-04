@@ -110,6 +110,11 @@ export default function Edificio3D() {
   const [floor, setFloor] = useState(null)
   const [unit, setUnit] = useState(null)
   const [hoverFloor, setHoverFloor] = useState(null)
+  // Entorno bajo: los edificios de alrededor bajan para ver mejor VIVRA
+  const [lowContext, setLowContext] = useState(false)
+  const toggleLowContext = useCallback(() => setLowContext((v) => !v), [])
+  // Giro del plano de la ficha para que coincida con la vista 3D (ver CameraRig)
+  const [planTurn, setPlanTurn] = useState(180)
   const availability = useAvailability()
   // Carga inicial: texturas y cielo (useProgress) hasta que la escena dibuja
   const { progress: assets } = useProgress()
@@ -180,6 +185,8 @@ export default function Edificio3D() {
           availability={availability}
           selectedUnit={unit}
           onSelectUnit={selectUnit}
+          lowContext={lowContext}
+          onPlanTurn={setPlanTurn}
         />
       </Canvas>
       <Overlay
@@ -197,6 +204,9 @@ export default function Edificio3D() {
         unit={unit}
         onUnit={setUnit}
         availability={availability}
+        lowContext={lowContext}
+        onToggleLowContext={toggleLowContext}
+        planTurn={planTurn}
       />
       <LoadingScreen
         progress={Math.min(99, CODE_SHARE + ((100 - CODE_SHARE) * assets) / 100)}

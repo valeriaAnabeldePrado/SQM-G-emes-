@@ -9,6 +9,7 @@ import { floorAtPoint, getFloor } from '../interiors/catalog'
 import { FloorHighlight } from '../interiors/FloorHighlight'
 import { FloorInterior } from '../interiors/FloorInterior'
 import { Prewarm } from '../interiors/Prewarm'
+import { SectionCap } from '../interiors/SectionCap'
 import { StreetLabels } from '../context/StreetLabels'
 import { UrbanContext } from '../context/UrbanContext'
 import { CameraRig } from './CameraRig'
@@ -84,7 +85,9 @@ export function Scene({
   onOpenFloor,
   availability,
   selectedUnit,
-  onSelectUnit
+  onSelectUnit,
+  lowContext,
+  onPlanTurn
 }) {
   const [tier, setTier] = useState(quality.tier)
   const decline = useCallback(() => setTier((t) => Math.max(0, t - 1)), [])
@@ -114,7 +117,7 @@ export function Scene({
         onTooSlow={onTooSlow}
       />
       <DynamicResolution dpr={dpr} />
-      <CameraRig ref={rigRef} />
+      <CameraRig ref={rigRef} onPlanTurn={onPlanTurn} />
       <ViewCorridor />
       <Suspense fallback={null}>
         <SceneEnvironment preset={preset} />
@@ -144,7 +147,9 @@ export function Scene({
               <MemoBuilding />
             </group>
           </Bvh>
-          <MemoUrbanContext night={preset.night} showFar={far} />
+          {/* Fuera del grupo con eventos: la tapa no cuenta para el hover de pisos */}
+          <SectionCap />
+          <MemoUrbanContext night={preset.night} showFar={far} low={lowContext} />
         </MaterialsProvider>
         <MemoStreetLabels night={preset.night} />
         <FloorHighlight id={hoverFloor === floor ? null : hoverFloor} availability={availability} />

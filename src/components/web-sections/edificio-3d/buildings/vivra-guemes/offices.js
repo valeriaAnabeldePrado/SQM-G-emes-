@@ -165,16 +165,26 @@ export function buildOffices(b) {
   }
 }
 
-/** Patios de PB entre la torre y las oficinas. */
+/**
+ * Patios de PB entre la torre y las oficinas. Los patios privados de los dptos
+ * de PB y el patio de oficinas no se comunican: torre y oficinas tienen
+ * ingresos separados por seguridad. En la planta los divide una línea corrida,
+ * sin paso, con una fila de arbustos de cada lado.
+ */
 export function buildPatio(b) {
   const z0 = TOWER.rearLow
   const z1 = z0 + PATIO.privateDepth
+  const wall = z1 + PATIO.wallThickness
+  const hedge = { depth: 0.6, height: 1.2 }
   b.add('patio', -INNER, INNER, 0, 0.03, z0, z1)
+  // Divisorio entre los dos patios privados
   b.add('block', -0.1, 0.1, 0, 1.8, z0, z1)
-  b.add('hedge', -INNER, -0.7, 0, 0.9, z1, z1 + 0.6)
-  b.add('hedge', 0.7, INNER, 0, 0.9, z1, z1 + 0.6)
-  b.add('grass', -INNER, INNER, 0, 0.03, z1 + 0.6, BACK)
-  b.add('patio', -0.6, 0.6, 0.03, 0.04, z1, BACK)
+  // Muro de punta a punta entre los patios privados y el de oficinas
+  b.add('plaster', -INNER, INNER, 0, PATIO.wallHeight, z1, wall)
+  b.add('hedge', -INNER, -0.1, 0, hedge.height, z1 - hedge.depth, z1)
+  b.add('hedge', 0.1, INNER, 0, hedge.height, z1 - hedge.depth, z1)
+  b.add('hedge', -INNER, INNER, 0, hedge.height, wall, wall + hedge.depth)
+  b.add('grass', -INNER, INNER, 0, 0.03, wall, BACK)
   // Muros divisorios de los patios con los vecinos
   for (const side of [-1, 1]) b.add('plaster', side * INNER, side * HALF, 0, 3, z0, BACK)
 }

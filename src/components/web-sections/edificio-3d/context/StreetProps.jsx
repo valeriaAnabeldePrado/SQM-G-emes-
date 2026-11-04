@@ -5,6 +5,7 @@ import { MergedBoxes } from '../architecture/MergedBoxes'
 import { useMaterials } from '../architecture/materialsContext'
 import { LOT } from '../buildings/vivra-guemes/config'
 import { CANAL, CANAL_HALF, CANAL_WALL, canalAxisX, canalZRange, onBridge } from './canal'
+import { plazaTrees } from './plaza.js'
 import { STREETS, distanceToRoads } from './streets'
 
 function seeded(seed) {
@@ -65,6 +66,9 @@ function treeLayout() {
       trees.push({ x, z, h: 5 + rand(), r: 1.6, rot: rand() * Math.PI })
     }
   }
+
+  // Plazoleta de Belgrano y Pueyrredón
+  trees.push(...plazaTrees(rand))
   return trees
 }
 

@@ -1,5 +1,5 @@
 import * as THREE from 'three'
-import { tileTexture } from '../architecture/textures'
+import { plankTexture } from '../architecture/textures'
 import { withBuildWave } from './buildWave'
 import { createFurnitureMaterials } from './furniture'
 
@@ -9,9 +9,10 @@ import { createFurnitureMaterials } from './furniture'
  * programas, así abrir un piso no compila nada.
  *   wave:     uniforms de la onda de construcción (muros y muebles crecen)
  */
-// Un único cerámico blanco compartido: el rayado del plano no define materiales.
+// Un único solado compartido, el porcelanato símil madera clara de los renders
+// del proyecto: el rayado del plano no define materiales.
 let floorTexture = null
-const sharedFloorTexture = () => (floorTexture ??= tileTexture('#f4f4f1'))
+const sharedFloorTexture = () => (floorTexture ??= plankTexture())
 
 export function createInteriorMaterials(wave) {
   const built = {

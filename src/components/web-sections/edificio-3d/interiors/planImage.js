@@ -455,6 +455,9 @@ export function readPlan(image, align) {
         : x0 - minX <= edge || maxX - x1 <= edge
     if (onPerimeter) windows.push({ ...o, kind: 'ventana', door: true })
   }
+  // Plantas con pocos muros gruesos (la terraza de oficinas): el contorno se
+  // fija a mano (ver catalog.js), si no la escala sale de un muro suelto
+  if (align.bounds) [minX, minY, maxX, maxY] = align.bounds
   const pxPerMeter = (maxY - minY) / LOT.width
   const z0 = align.rear != null ? align.rear - (maxX - minX) / pxPerMeter : align.front
   const toWorld = (px, py) => [HALF - (py - minY) / pxPerMeter, z0 + (px - minX) / pxPerMeter]

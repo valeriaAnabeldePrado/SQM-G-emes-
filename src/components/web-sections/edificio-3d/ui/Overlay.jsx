@@ -1,4 +1,5 @@
 import { useProgress } from '@react-three/drei'
+import { FiChevronsDown } from 'react-icons/fi'
 import { Link } from 'react-router-dom'
 import { STATUS } from '../interiors/status'
 import { getFloor } from '../interiors/catalog'
@@ -68,7 +69,10 @@ export function Overlay({
   onHoverFloor,
   unit,
   onUnit,
-  availability
+  availability,
+  lowContext,
+  onToggleLowContext,
+  planTurn
 }) {
   return (
     <>
@@ -113,6 +117,7 @@ export function Overlay({
         key={unit ? `${unit.floor}-${unit.letter}` : 'none'}
         unit={unit}
         availability={availability}
+        planTurn={planTurn}
         onClose={() => onUnit(null)}
       />
 
@@ -133,6 +138,23 @@ export function Overlay({
             {label}
           </button>
         ))}
+        <span aria-hidden="true" className="mx-0.5 my-1.5 w-px bg-darck/15" />
+        {/* Entorno bajo: los edificios de alrededor bajan para ver mejor VIVRA */}
+        <button
+          type="button"
+          onClick={onToggleLowContext}
+          aria-pressed={lowContext}
+          aria-label="Entorno bajo"
+          title={
+            lowContext ? 'Volver a la altura real del entorno' : 'Bajar los edificios de alrededor'
+          }
+          className={`flex items-center gap-1.5 rounded-full px-2.5 py-1.5 text-xs transition-colors md:px-4 md:text-sm ${
+            lowContext ? 'bg-darck text-white' : 'text-darck hover:bg-darck/10'
+          }`}
+        >
+          <FiChevronsDown aria-hidden="true" />
+          <span className="hidden whitespace-nowrap md:inline">Entorno bajo</span>
+        </button>
       </nav>
 
       {/* span y no p: App.css fija el tamaño de todos los <p> */}

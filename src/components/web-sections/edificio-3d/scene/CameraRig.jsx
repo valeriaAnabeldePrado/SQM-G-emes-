@@ -99,7 +99,20 @@ function fitPreset(preset, aspect) {
   }
 }
 
-export const CameraRig = forwardRef(function CameraRig(_, ref) {
+/**
+ * Giro (0, 90, 180 o 270 grados, horario) con el que hay que mostrar un plano
+ * dibujado con Pueyrredón arriba y +x a la derecha para que coincida con la
+ * vista: la dirección de la cámara sobre el suelo apunta hacia arriba en la
+ * pantalla.
+ */
+function planTurn(camera, target) {
+  const fx = target.x - camera.position.x
+  const fz = target.z - camera.position.z
+  const deg = THREE.MathUtils.radToDeg(Math.atan2(-fx, -fz))
+  return (((Math.round(deg / 90) * 90) % 360) + 360) % 360
+}
+
+export const CameraRig = forwardRef(function CameraRig({ onPlanTurn }, ref) {
   const camera = useThree((s) => s.camera)
   const size = useThree((s) => s.size)
   const invalidate = useThree((s) => s.invalidate)
@@ -238,7 +251,13 @@ export const CameraRig = forwardRef(function CameraRig(_, ref) {
       ctrl.target.copy(clamped)
     }
     if (camera.position.y < MIN_CAMERA_HEIGHT) camera.position.y = MIN_CAMERA_HEIGHT
-  }, [camera, regress])
+    // Orientación del plano de la ficha de la unidad (solo avisa al cambiar)
+    const turn = planTurn(camera, ctrl.target)
+    if (turn !== state.current.turn) {
+      state.current.turn = turn
+      onPlanTurn?.(turn)
+    }
+  }, [camera, regress, onPlanTurn])
 
   return (
     <OrbitControls

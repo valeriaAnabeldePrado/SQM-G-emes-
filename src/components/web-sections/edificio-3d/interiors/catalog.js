@@ -49,7 +49,12 @@ function towerFloor(n) {
     plan: towerPlan(n),
     // Borde de la planta hacia Pueyrredón (izquierda de la imagen): el de los
     // balcones, o la línea municipal en PB
-    align: { front: n === 0 ? 0 : n >= 14 ? -0.85 : -1.0 },
+    // En el 16 la pileta y el solárium no tienen muros gruesos: el primer muro
+    // del dibujo es el frente vidriado de los quinchos, que va donde está en
+    // el volumen modelado (tower.js)
+    align: {
+      front: amenities ? TOWER.amenities.enclosedFrom : n === 0 ? 0 : n >= 14 ? -0.85 : -1.0
+    },
     box: TOWER_BOX,
     amenities,
     // Planta alta de un dúplex del 14: en la planilla figura como piso 14
@@ -78,8 +83,9 @@ function officeFloor(k) {
     base: OFFICE_LEVELS[k],
     height: k === 0 ? OFFICES.groundHeight : OFFICES.floorHeight,
     plan: ['OF-PB', 'OF1', 'OF2', 'OF3'][k],
-    // Las plantas de oficinas terminan sobre la línea municipal de Peredo
-    align: { rear: LOT.depth },
+    // Las plantas de oficinas terminan sobre la línea municipal de Peredo. La
+    // terraza casi no tiene muros: su contorno (baranda y laterales) va fijo
+    align: k === 3 ? { rear: LOT.depth, bounds: [35, 27, 240, 351] } : { rear: LOT.depth },
     box: OFFICE_BOX,
     amenities: false,
     duplexUpper: false,

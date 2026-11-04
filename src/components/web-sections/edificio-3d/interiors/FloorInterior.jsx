@@ -10,6 +10,7 @@ import { createBuildWave } from './buildWave'
 import { floorCatalog } from './catalog'
 import { buildFurniture } from './furniture'
 import { createInteriorMaterials } from './interiorMaterials'
+import { insideCloset, layoutOf } from './layouts'
 import { cachedPlan } from './planCache'
 import { unitStatus } from './status'
 
@@ -212,7 +213,11 @@ export function FloorInterior({ id, availability, selectedKey, onSelect }) {
     wave.uBuildCenter.value = center
     wave.uBuildRadius.value = radius
     const b = createBoxList()
+    const layout = layoutOf(floor.plan)
     for (const [px0, py0, px1, py1] of plan.walls) {
+      // Las divisiones de los placares se detectan como muros: el placard se
+      // dibuja como mueble (layouts.js)
+      if (insideCloset(layout, [px0, py0, px1, py1])) continue
       const [xa, za] = plan.toWorld(px0, py0)
       const [xb, zb] = plan.toWorld(px1, py1)
       b.add('wall', xa, xb, 0, WALL_HEIGHT, za, zb)

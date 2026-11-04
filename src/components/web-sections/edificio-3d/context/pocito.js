@@ -104,6 +104,23 @@ function crane(b, { x, z, base, top, left, right }) {
   b.add('pocitoVoid', x + right - 4, x + right - 3.92, top - 15, top - 1, z - 0.04, z + 0.04)
 }
 
+/** Basamento: queda entero en el modo entorno bajo. */
+export function buildPocitoPodium() {
+  const b = createBoxList()
+  podium(b)
+  return b
+}
+
+/** Torres y grúas: en el modo entorno bajo se recortan y quedan dentro del basamento. */
+export function buildPocitoTowers() {
+  const b = createBoxList()
+  glazedTower(b)
+  unfinishedTower(b)
+  crane(b, { x: 197, z: 94, base: 102, top: 124, left: 15, right: 32 })
+  crane(b, { x: 168, z: 186, base: 85.5, top: 108, left: 12, right: 38 })
+  return b
+}
+
 export function buildPocito() {
   const b = createBoxList()
   podium(b)

@@ -4,11 +4,13 @@ import { createBoxList } from '../architecture/boxes'
 import { MergedBoxes } from '../architecture/MergedBoxes'
 import { useMaterials } from '../architecture/materialsContext'
 import { CANAL, CANAL_HALF, canalAxisX, canalZRange, onBridge } from './canal'
+import { PLAZA_LAMPS, PLAZA_LAMP_HEIGHT } from './plaza.js'
 import { STREETS, distanceToRoads } from './streets'
 
 const POLE_HEIGHT = 7.5
 const ARM = 1.4
 const POOL_SIZE = 11
+const PARK_POOL = 0.6 // los faroles de plaza son más bajos: iluminan menos piso
 
 /**
  * Faroles de las veredas. De noche se enciende el cabezal (emisivo + bloom) y
@@ -47,12 +49,26 @@ function lampLayout() {
       }
     }
   }
+  // Plazoleta de Belgrano y Pueyrredón
+  lamps.push(...PLAZA_LAMPS)
   return lamps
+}
+
+/** Farol de plaza: columna baja con el farol arriba, sin brazo. */
+function parkLamp(b, x, z) {
+  const top = PLAZA_LAMP_HEIGHT
+  b.add('lampPole', x - 0.06, x + 0.06, 0, top, z - 0.06, z + 0.06)
+  b.add('lampHead', x - 0.18, x + 0.18, top, top + 0.42, z - 0.18, z + 0.18)
+  b.add('lampPole', x - 0.24, x + 0.24, top + 0.42, top + 0.5, z - 0.24, z + 0.24)
 }
 
 function buildLamps(lamps) {
   const b = createBoxList()
-  for (const { x, z, dx, dz } of lamps) {
+  for (const { x, z, dx, dz, park } of lamps) {
+    if (park) {
+      parkLamp(b, x, z)
+      continue
+    }
     b.add('lampPole', x - 0.07, x + 0.07, 0, POLE_HEIGHT, z - 0.07, z + 0.07)
     const ex = x + dx * ARM
     const ez = z + dz * ARM
@@ -88,8 +104,9 @@ function LightPools({ lamps, visible }) {
   useEffect(() => () => geometry.dispose(), [geometry])
   useLayoutEffect(() => {
     const m = new THREE.Matrix4()
-    lamps.forEach(({ x, z, dx, dz }, i) => {
-      m.makeTranslation(x + dx * (ARM + 0.6), 0.04, z + dz * (ARM + 0.6))
+    lamps.forEach(({ x, z, dx, dz, park }, i) => {
+      const scale = park ? PARK_POOL : 1
+      m.makeScale(scale, 1, scale).setPosition(x + dx * (ARM + 0.6), 0.04, z + dz * (ARM + 0.6))
       ref.current.setMatrixAt(i, m)
     })
     ref.current.instanceMatrix.needsUpdate = true

@@ -51,6 +51,38 @@ export function tileTexture(base = '#77736d') {
   })
 }
 
+/**
+ * Porcelanato símil madera clara de 20 x 120 cm, trabado a un tercio (renders
+ * de los interiores), 2,4 x 2,4 m: tablas de tono apenas distinto con una veta
+ * suave y juntas finas.
+ */
+export function plankTexture() {
+  return canvasTexture(512, 512, 2.4, 2.4, (ctx, w, h) => {
+    const rand = seeded(71)
+    const rows = 12 // 0,2 m por tabla
+    const rh = h / rows
+    const pl = w / 2 // 1,2 m de largo
+    ctx.fillStyle = '#b9ad9c'
+    ctx.fillRect(0, 0, w, h)
+    for (let r = 0; r < rows; r++) {
+      const offset = ((r % 3) * pl) / 3
+      for (let c = -1; c < 3; c++) {
+        const x = c * pl + offset
+        const t = rand()
+        ctx.fillStyle = `rgb(${212 + t * 16},${203 + t * 14},${188 + t * 12})`
+        ctx.fillRect(x + 1, r * rh + 1, pl - 2, rh - 2)
+        // Veta: trazos largos y tenues a lo largo de la tabla
+        for (let k = 0; k < 7; k++) {
+          const y = r * rh + 3 + rand() * (rh - 6)
+          ctx.fillStyle = `rgba(120,100,80,${0.05 + rand() * 0.06})`
+          ctx.fillRect(x + rand() * pl * 0.3, y, pl * (0.4 + rand() * 0.6), 1)
+        }
+      }
+    }
+    speckle(ctx, w, h, rand, 4000, 0.05)
+  })
+}
+
 /** Vereda de baldosas grises de 40 x 40 cm (2 x 2 m). */
 export function sidewalkTexture() {
   return canvasTexture(512, 512, 2, 2, (ctx, w, h) => {
@@ -67,6 +99,74 @@ export function sidewalkTexture() {
       }
     }
     speckle(ctx, w, h, rand, 14000, 0.12)
+  })
+}
+
+/**
+ * Adoquín de hormigón rojo de 20 x 10 cm en espiga (plaza sobre Belgrano), 1,6 x 1,6 m.
+ * La espiga a 90° se repite con los vectores (1, 1) y (2, -2) en módulos de
+ * 10 cm, así que el mosaico cierra cada 16 módulos; el tono de cada adoquín
+ * sale de su posición dentro del mosaico para que coincida en los bordes.
+ */
+export function herringboneTexture() {
+  const cells = 16
+  const size = 512
+  const u = size / cells
+  return canvasTexture(size, size, 1.6, 1.6, (ctx) => {
+    ctx.fillStyle = '#8a6a5f' // junta de arena
+    ctx.fillRect(0, 0, size, size)
+    const wrap = (v) => ((v % cells) + cells) % cells
+    const tone = (x, y, kind) => {
+      const h = Math.sin(wrap(x) * 12.9898 + wrap(y) * 78.233 + kind * 37.7) * 43758.5453
+      return h - Math.floor(h)
+    }
+    const brick = (x, y, w, h, kind) => {
+      const t = tone(x, y, kind)
+      ctx.fillStyle = `rgb(${150 + t * 28},${92 + t * 20},${80 + t * 16})`
+      for (const dx of [-cells, 0, cells]) {
+        for (const dy of [-cells, 0, cells]) {
+          ctx.fillRect((x + dx) * u + 1.5, (y + dy) * u + 1.5, w * u - 3, h * u - 3)
+        }
+      }
+    }
+    for (let i = -cells; i <= cells; i++) {
+      for (let j = -cells / 2; j <= cells / 2; j++) {
+        const x = i + 2 * j
+        const y = i - 2 * j
+        if (x < -2 || x > cells || y < -3 || y > cells) continue
+        brick(x, y, 2, 1, 0)
+        brick(x, y + 1, 1, 2, 1)
+      }
+    }
+    speckle(ctx, size, size, seeded(53), 9000, 0.12)
+  })
+}
+
+/** Baldosa roja de vereda de 40 x 40 cm con 16 panes (2 x 2 m). */
+export function redTileTexture() {
+  return canvasTexture(512, 512, 2, 2, (ctx, w) => {
+    const rand = seeded(61)
+    const n = 5
+    const s = w / n
+    ctx.fillStyle = '#6e4a40'
+    ctx.fillRect(0, 0, w, w)
+    for (let i = 0; i < n; i++) {
+      for (let j = 0; j < n; j++) {
+        const t = rand()
+        const r = 150 + t * 22
+        const g = 92 + t * 14
+        const b = 80 + t * 12
+        ctx.fillStyle = `rgb(${r},${g},${b})`
+        ctx.fillRect(i * s + 1.5, j * s + 1.5, s - 3, s - 3)
+        // Panes: ranuras finas que dividen la baldosa en 4 x 4
+        ctx.fillStyle = `rgba(60,35,28,0.35)`
+        for (let k = 1; k < 4; k++) {
+          ctx.fillRect(i * s + (k * s) / 4 - 0.75, j * s + 2, 1.5, s - 4)
+          ctx.fillRect(i * s + 2, j * s + (k * s) / 4 - 0.75, s - 4, 1.5)
+        }
+      }
+    }
+    speckle(ctx, w, w, rand, 12000, 0.12)
   })
 }
 

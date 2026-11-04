@@ -3,7 +3,12 @@ import { buildBoxGeometries } from './boxes'
 import { useMaterials } from './materialsContext'
 
 /** Dibuja una lista de cajas (createBoxList) con un mesh por material. */
-export function MergedBoxes({ list, castShadow = true, receiveShadow = true }) {
+export function MergedBoxes({
+  list,
+  castShadow = true,
+  receiveShadow = true,
+  customDepthMaterial
+}) {
   const materials = useMaterials()
   const geometries = useMemo(() => buildBoxGeometries(list), [list])
   useEffect(() => () => geometries.forEach((geometry) => geometry.dispose()), [geometries])
@@ -16,6 +21,7 @@ export function MergedBoxes({ list, castShadow = true, receiveShadow = true }) {
         key={key}
         geometry={geometry}
         material={material}
+        customDepthMaterial={customDepthMaterial}
         castShadow={castShadow && shadows}
         receiveShadow={receiveShadow && shadows}
       />

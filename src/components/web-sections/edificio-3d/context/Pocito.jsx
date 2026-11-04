@@ -3,9 +3,9 @@ import * as THREE from 'three'
 import { MergedBoxes } from '../architecture/MergedBoxes'
 import { MaterialsContext } from '../architecture/materialsContext'
 import { withViewCorridor } from '../architecture/viewCorridor'
-import { buildPocito } from './pocito.js'
+import { buildPocitoPodium, buildPocitoTowers } from './pocito.js'
 
-function createMaterials() {
+function createMaterials(clamp) {
   const rough = (color) => new THREE.MeshStandardMaterial({ color, roughness: 0.88 })
   const materials = {
     pocitoStone: rough('#c5c0b3'),
@@ -15,7 +15,7 @@ function createMaterials() {
     pocitoCrane: new THREE.MeshLambertMaterial({ color: '#49768f' }),
     pocitoSoil: new THREE.MeshLambertMaterial({ color: '#ac9079' })
   }
-  for (const material of Object.values(materials)) withViewCorridor(material, { fade: false })
+  for (const material of Object.values(materials)) withViewCorridor(material, { fade: false, clamp })
   return materials
 }
 
@@ -38,23 +38,33 @@ function createSign() {
   return { material, geometry, map }
 }
 
-/** Hito del barrio: seis meshes opacos, sin sombras propias ni animación. */
+/**
+ * Hito del barrio: meshes opacos, sin sombras propias ni animación. En el modo
+ * entorno bajo las torres y las grúas se recortan a la altura del barrio y
+ * quedan escondidas dentro del basamento, que no se toca.
+ */
 export function Pocito() {
-  const list = useMemo(buildPocito, [])
-  const materials = useMemo(createMaterials, [])
+  const podium = useMemo(buildPocitoPodium, [])
+  const towers = useMemo(buildPocitoTowers, [])
+  const materials = useMemo(() => createMaterials(false), [])
+  const clamped = useMemo(() => createMaterials(true), [])
   const sign = useMemo(createSign, [])
   useEffect(() => () => {
     Object.values(materials).forEach((m) => m.dispose())
+    Object.values(clamped).forEach((m) => m.dispose())
     sign.material.dispose()
     sign.geometry.dispose()
     sign.map.dispose()
-  }, [materials, sign])
+  }, [materials, clamped, sign])
   return (
-    <MaterialsContext.Provider value={materials}>
-      <group name="pocito-social-life">
-        <MergedBoxes list={list} castShadow={false} receiveShadow={false} />
-        <mesh geometry={sign.geometry} material={sign.material} position={[154.89, 5.6, 122]} rotation-y={-Math.PI / 2} />
-      </group>
-    </MaterialsContext.Provider>
+    <group name="pocito-social-life">
+      <MaterialsContext.Provider value={materials}>
+        <MergedBoxes list={podium} castShadow={false} receiveShadow={false} />
+      </MaterialsContext.Provider>
+      <MaterialsContext.Provider value={clamped}>
+        <MergedBoxes list={towers} castShadow={false} receiveShadow={false} />
+      </MaterialsContext.Provider>
+      <mesh geometry={sign.geometry} material={sign.material} position={[154.89, 5.6, 122]} rotation-y={-Math.PI / 2} />
+    </group>
   )
 }

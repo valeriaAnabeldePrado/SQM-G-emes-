@@ -11,8 +11,10 @@ import { MaterialsContext } from './materialsContext'
 import {
   brickTexture,
   facadeTextures,
+  herringboneTexture,
   leavesTexture,
   lightPoolTexture,
+  redTileTexture,
   shutterTexture,
   sidewalkTexture,
   tileTexture
@@ -71,8 +73,9 @@ function createMaterials(loaded) {
   // Contexto urbano con corredor de visión (ver viewCorridor.js). Cerca: PBR
   // como el resto (recibe la luz del cielo). Lejos: Lambert, más barato por
   // píxel, con un relleno de luz ambiente en el emisivo.
-  const corridorStd = (params) => withViewCorridor(std(params))
-  const corridorLambert = (params) => withViewCorridor(new THREE.MeshLambertMaterial(params))
+  const corridorStd = (params) => withViewCorridor(std(params), { clamp: true })
+  const corridorLambert = (params) =>
+    withViewCorridor(new THREE.MeshLambertMaterial(params), { clamp: true })
 
   return {
     // Hormigón visto liso de las bandas y cantos (foto de detalle)
@@ -226,6 +229,18 @@ function createMaterials(loaded) {
       }),
       { userData: { noShadow: true } }
     ),
+    // Plazoleta Aníbal Montes (Belgrano y Pueyrredón): adoquín rojo en espiga,
+    // vereda de baldosa roja, canteros de tierra y juegos de colores
+    plazaPaving: (() => {
+      const map = herringboneTexture()
+      map.rotation = Math.PI / 4
+      return std({ map, roughness: 0.9 })
+    })(),
+    plazaTile: std({ map: redTileTexture(), roughness: 0.9 }),
+    soil: std({ color: '#6a5243', roughness: 1 }),
+    sand: std({ color: '#b39d76', roughness: 1 }),
+    playOrange: std({ color: '#e0601a', roughness: 0.5, metalness: 0.1 }),
+    playBlue: std({ color: '#2b55a8', roughness: 0.45, metalness: 0.35 }),
     trunk: new THREE.MeshLambertMaterial({ color: '#4f4034', emissive: '#2a221b' }),
     // Follaje con Lambert: mucho más barato por píxel que PBR, y las hojas se
     // superponen en muchas capas (es lo que más cuesta en las vistas peatonales)
@@ -283,6 +298,8 @@ export function MaterialsProvider({ night = 0, cut = null, children }) {
     for (const material of Object.values(created)) {
       material.clippingPlanes = cutPlanes
       material.clipIntersection = true
+      // Lo recortado tampoco proyecta sombra (pérgolas, pisos de arriba)
+      material.clipShadows = true
     }
     return created
   }, [loaded, cutPlanes])

@@ -126,8 +126,10 @@ export const OFFICES = {
   ]
 }
 
-// Patio entre la torre y las oficinas (PB): patios privados de 5,15 m y patio verde
-export const PATIO = { privateDepth: 5.2 }
+// Patio entre la torre y las oficinas (PB): patios privados de 5,15 m y patio
+// verde de las oficinas, separados por un muro corrido sin paso (torre y
+// oficinas tienen ingresos independientes por seguridad)
+export const PATIO = { privateDepth: 5.2, wallThickness: 0.15, wallHeight: 2.4 }
 
 /**
  * Pisos del edificio, pensado para futuras funciones (selección, resaltado,

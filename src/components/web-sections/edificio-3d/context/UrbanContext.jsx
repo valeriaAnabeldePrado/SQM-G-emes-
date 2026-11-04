@@ -155,8 +155,8 @@ const CONTEXT_MAX_HEIGHT = 130
 
 // Manzana de enfrente, entre Alvear, Pueyrredón, Belgrano y Fructuoso Rivera:
 // queda baja. Sus edificios (uno de 43 m pegado a la avenida) se interponían
-// entre la cámara y la fachada en las vistas General y Aérea, a medias
-// recortados por el corredor de visión, y confundían más de lo que ubicaban.
+// entre la cámara y la fachada en las vistas General y Aérea y confundían más
+// de lo que ubicaban.
 const FRONT_BLOCK = { x0: -32, x1: 73.5, z0: -83, z1: -16 }
 
 function centroidIn({ p }, { x0, x1, z0, z1 }) {
@@ -196,7 +196,7 @@ function extrudeFootprint(p, h, i, shed = false) {
  * Edificios del contexto extruidos (huellas de Overture con altura medida de
  * Google Open Buildings 2.5D, ver bake-heights.py): laterales con fachada
  * genérica (ventanas que se encienden de noche) y techos con tono propio.
- * Todo en dos meshes; los que tapan la vista se ocultan (viewCorridor.js).
+ * Todo en dos meshes; en el modo entorno bajo se recortan (viewCorridor.js).
  */
 
 function ContextBuildings({ showFar }) {

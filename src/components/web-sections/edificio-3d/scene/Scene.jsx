@@ -11,10 +11,10 @@ import { FloorHighlight } from '../interiors/FloorHighlight'
 import { FloorInterior } from '../interiors/FloorInterior'
 import { Prewarm } from '../interiors/Prewarm'
 import { SectionCap } from '../interiors/SectionCap'
-import { Satellite } from '../context/Satellite.jsx'
 import { StreetLabels } from '../context/StreetLabels'
 import { UrbanContext } from '../context/UrbanContext'
 import { CameraRig } from './CameraRig'
+import { FINAL_LAYERS } from './introFlight'
 import { Lighting } from './Lighting'
 import { DynamicResolution, QualityMonitor } from './Performance'
 import { QUALITY_TIERS } from './quality'
@@ -67,40 +67,29 @@ function ReadySignal({ onReady }) {
   return null
 }
 
-const SKY_DISTANCE = 4000 // domo del cielo fuera del vuelo (ver SceneEnvironment)
 const BASE_NEAR = 0.5
 const BASE_FAR = 3000 // mismos valores que la cámara del Canvas en Edificio3D
-const MAQUETTE_WASH = 0.5
 const POCITO_PODIUM = 8 // m: altura del basamento de Pocito (pocito.js)
 
 /**
  * Aplica las capas del vuelo de entrada (introFlight.js) a la escena: barrio
- * que crece y en tono maqueta, niebla y planos de la cámara que se alejan con
- * la altura, domo del cielo que envuelve a la cámara y foto satelital que se
- * desvanece sobre el barrio modelado. Con FINAL_LAYERS deja todo como siempre.
+ * que crece, niebla y planos de la cámara que se alejan con la altura. Con
+ * FINAL_LAYERS deja todo como siempre.
  */
-function useIntroLayers({ fogRange, lowContext, satellite, sky }) {
+function useIntroLayers({ fogRange, lowContext }) {
   const gl = useThree((s) => s.gl)
   const scene = useThree((s) => s.scene)
   const camera = useThree((s) => s.camera)
-  // Tono del barrio antes del vuelo: depende de la hora (ver applyNight)
-  const tone = useRef(null)
   const shadowHeight = useRef(null)
   const pocito = useRef(null)
   return useCallback(
     (layers, altitude) => {
-      tone.current ??= {
-        wash: corridor.uContextWash.value,
-        saturation: corridor.uContextSaturation.value
-      }
-      const { wash, saturation } = tone.current
-      corridor.uContextSaturation.value = saturation * (1 - layers.maquette)
-      corridor.uContextWash.value = wash + (MAQUETTE_WASH - wash) * layers.maquette
+      const final = layers === FINAL_LAYERS
       if (!lowContext) {
         corridor.uContextHeight.value = layers.contextHeight
         const last = shadowHeight.current
-        if (last == null || Math.abs(layers.contextHeight - last) > 5 || layers.maquette === 0) {
-          shadowHeight.current = layers.contextHeight
+        if (last == null || Math.abs(layers.contextHeight - last) > 5 || final) {
+          shadowHeight.current = final ? null : layers.contextHeight
           gl.shadowMap.needsUpdate = true
         }
       }
@@ -110,18 +99,12 @@ function useIntroLayers({ fogRange, lowContext, satellite, sky }) {
       }
       camera.near = Math.max(BASE_NEAR, altitude / 200)
       camera.far = Math.max(BASE_FAR, altitude * 10)
-      sky.current?.scale.setScalar(Math.max(SKY_DISTANCE, camera.far * 0.8))
-      satellite.current?.setMix(layers.satellite)
       // El basamento de Pocito no se recorta (ni con "Entorno bajo"): se esconde
-      // hasta que el barrio que crece lo alcanza, para que no flote sobre la foto
+      // hasta que el barrio que crece lo alcanza, para que no flote sobre el mapa
       pocito.current ??= scene.getObjectByName('pocito-social-life')
       if (pocito.current) pocito.current.visible = layers.contextHeight >= POCITO_PODIUM
-      if (layers.maquette === 0) {
-        tone.current = null
-        shadowHeight.current = null
-      }
     },
-    [gl, scene, camera, fogRange, lowContext, satellite, sky]
+    [gl, scene, camera, fogRange, lowContext]
   )
 }
 
@@ -160,15 +143,7 @@ export function Scene({
   const open = getFloor(floor)
   const cut = open ? { y: open.base + 0.03, ...open.box } : null
   const cutY = cut?.y ?? null
-  const satellite = useRef(null)
-  const sky = useRef(null)
-  const onIntroFrame = useIntroLayers({
-    fogRange: preset.fogRange,
-    lowContext,
-    satellite,
-    sky
-  })
-  // La foto carga con la escena (la pantalla de carga la espera) y se descarta al aterrizar
+  const onIntroFrame = useIntroLayers({ fogRange: preset.fogRange, lowContext })
   const flying = intro === 'pending' || intro === 'flying'
 
   // Piso bajo el puntero (lo que está por encima del corte no cuenta: está recortado)
@@ -190,8 +165,7 @@ export function Scene({
       <DynamicResolution dpr={dpr} />
       <CameraRig ref={rigRef} onPlanTurn={onPlanTurn} onIntroFrame={onIntroFrame} />
       <Suspense fallback={null}>
-        <SceneEnvironment preset={preset} skyRef={sky} />
-        {flying ? <Satellite ref={satellite} night={preset.night} /> : null}
+        <SceneEnvironment preset={preset} />
         <MaterialsProvider night={preset.night} cut={cut}>
           <Lighting preset={preset} shadowMapSize={isMobile ? shadow / 2 : shadow} />
           {/* BVH: el puntero sobre el edificio (hover de pisos) sale barato */}

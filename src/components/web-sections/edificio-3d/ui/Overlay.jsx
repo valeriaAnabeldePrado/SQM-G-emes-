@@ -1,7 +1,6 @@
 import { useProgress } from '@react-three/drei'
 import { FiChevronsDown } from 'react-icons/fi'
 import { Link } from 'react-router-dom'
-import { SATELLITE_CREDIT } from '../context/satellite.js'
 import { STATUS } from '../interiors/status'
 import { getFloor } from '../interiors/catalog'
 import { FloorPicker } from './FloorPicker'
@@ -189,7 +188,7 @@ export function Overlay({
           night > 0.5 ? 'text-white/60' : 'text-darck/60'
         }`}
       >
-        Modelo aproximado según planos y renders · © OpenStreetMap contributors · {SATELLITE_CREDIT}
+        Modelo aproximado según planos y renders · © OpenStreetMap contributors
       </span>
     </>
   )

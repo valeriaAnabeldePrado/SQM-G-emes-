@@ -3,6 +3,24 @@ import * as THREE from 'three'
 // Altura sin recorte del entorno (más alta que cualquier edificio de OSM)
 export const CONTEXT_FULL_HEIGHT = 1000
 
+/**
+ * Cuánto se apaga el barrio para que VIVRA destaque: 0 = colores del entorno
+ * (como antes), 1 = maqueta blanca. VIVRA no cambia.
+ */
+export const MAQUETTE = 0.6
+
+/**
+ * Lavado (hacia el color de la niebla) y saturación del barrio según la noche
+ * (0 = día, 1 = noche) y el nivel de maqueta. De noche el lavado baja: el
+ * barrio se oscurece y las luces de VIVRA destacan.
+ */
+export function contextTone(night, level = MAQUETTE) {
+  return {
+    wash: (0.14 + 0.36 * level) * (1 - night * 0.94),
+    saturation: (0.55 + night * 0.25) * (1 - level)
+  }
+}
+
 // Uniforms compartidos: solo cambian al mover la cámara o la hora del día.
 export const corridor = {
   uCamPos: { value: new THREE.Vector3() },
@@ -145,12 +163,14 @@ export function withViewCorridor(material, { fade = true, clamp = false, sink = 
         SINK_HEAD + shader.vertexShader.replace('#include <begin_vertex>', SINK_POSITION)
     }
     if (fade) {
-      shader.vertexShader = VERTEX_HEAD + shader.vertexShader.replace('#include <begin_vertex>', VERTEX_BODY)
-      shader.fragmentShader = 'varying float vContextCoverage;\n' + shader.fragmentShader
-        .replace('#include <clipping_planes_fragment>', FRAGMENT_COVERAGE)
+      shader.vertexShader =
+        VERTEX_HEAD + shader.vertexShader.replace('#include <begin_vertex>', VERTEX_BODY)
+      shader.fragmentShader =
+        'varying float vContextCoverage;\n' +
+        shader.fragmentShader.replace('#include <clipping_planes_fragment>', FRAGMENT_COVERAGE)
     }
-    shader.fragmentShader = FRAGMENT_HEAD + shader.fragmentShader
-      .replace('#include <opaque_fragment>', FRAGMENT_TONE)
+    shader.fragmentShader =
+      FRAGMENT_HEAD + shader.fragmentShader.replace('#include <opaque_fragment>', FRAGMENT_TONE)
   }
   material.customProgramCacheKey = () =>
     `${cacheKey}|view-corridor-v5:${fade ? 'fade' : 'solid'}:${clamp ? 'clamp' : sink ? 'sink' : 'full'}`

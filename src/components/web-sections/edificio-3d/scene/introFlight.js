@@ -3,10 +3,12 @@ import { LOT } from '../buildings/vivra-guemes/config.js'
 
 /**
  * Entrada tipo drone: arranca casi cenital a `startAltitude` con el norte
- * arriba, como un mapa; baja con la altura en escala logarítmica (como el zoom
- * de un mapa), se inclina en el último tramo y aterriza en la vista general.
+ * arriba, sobre el barrio modelado visto como un mapa (huellas planas); baja
+ * con la altura en escala logarítmica (como el zoom de un mapa), el barrio
+ * crece, se inclina en el último tramo y aterriza en la vista general.
+ * A 1.000 m todo lo que se ve está dentro del barrio modelado (±800 m).
  */
-export const INTRO = { duration: 8, startAltitude: 6000, startPolarDeg: 3, sweepDeg: 25 }
+export const INTRO = { duration: 5, startAltitude: 1000, startPolarDeg: 3, sweepDeg: 25 }
 
 /** Norte geográfico en el plano local (x, z) de la escena (ver bake-osm-context.py). */
 export const NORTH = [-0.3389946, -0.9407883]
@@ -50,7 +52,9 @@ export function introPose(t, home) {
   const radius = Math.exp(lerp(Math.log(startRadius), Math.log(homeRadius), k))
   const polar = lerp(startPolar, homePolar, smoothstep(0.55, 1, t))
   const azimuth =
-    startAzimuth + angleDelta(startAzimuth, homeAzimuth) * k + INTRO.sweepDeg * DEG * Math.sin(Math.PI * t)
+    startAzimuth +
+    angleDelta(startAzimuth, homeAzimuth) * k +
+    INTRO.sweepDeg * DEG * Math.sin(Math.PI * t)
 
   const position = [
     target[0] + radius * Math.sin(polar) * Math.sin(azimuth),
@@ -61,21 +65,16 @@ export function introPose(t, home) {
 }
 
 /**
- * Capas de la escena según la altura de la cámara y el avance del vuelo:
- *   satellite:     opacidad de la foto sobre el barrio modelado (1 arriba de 2.200 m,
- *                  0 abajo de 900 m: a 10 m por píxel, más cerca se ve borrosa)
- *   contextHeight: altura de corte del barrio (crece entre 1.500 y 300 m)
- *   maquette:      tono maqueta del barrio (se apaga en el último 15 %)
+ * Capas de la escena según la altura de la cámara:
+ *   contextHeight: altura de corte del barrio (crece entre 700 y 200 m)
  *   fogScale:      cuánto se aleja la niebla
  */
-export function introLayers(altitude, t) {
-  const rise = smoothstep(Math.log(1500), Math.log(300), Math.log(Math.max(altitude, 1)))
+export function introLayers(altitude) {
+  const rise = smoothstep(Math.log(700), Math.log(200), Math.log(Math.max(altitude, 1)))
   return {
-    satellite: smoothstep(900, 2200, altitude),
     contextHeight: rise >= 1 ? CONTEXT_FULL_HEIGHT : 120 * rise ** 3,
-    maquette: 1 - smoothstep(0.85, 1, t),
     fogScale: Math.max(1, altitude / 300)
   }
 }
 
-export const FINAL_LAYERS = introLayers(0, 1)
+export const FINAL_LAYERS = introLayers(0)

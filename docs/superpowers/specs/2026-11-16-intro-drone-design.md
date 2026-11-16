@@ -125,3 +125,28 @@ Se agrega la atribución de Sentinel-2 al texto del pie en `ui/Overlay.jsx`.
 - Cómo se alejan la niebla, el cielo y el plano lejano de la cámara durante el vuelo.
 - Qué hacer en la calidad más baja si el vuelo no llega a 30 cuadros por segundo
   (acortarlo o saltearlo).
+
+---
+
+## Revisión 2026-11-16: sin foto satelital, barrio en maqueta permanente
+
+Probado en el equipo del usuario: la foto Sentinel-2 se ve "rancia" al arrancar.
+Un video desde arriba se descarta (difícil de hacer coincidir con el modelo y pesado).
+
+### Enfoques considerados
+1. Vuelo corto sobre el mapa del modelo, sin foto.
+2. Sin vuelo, arrancar en el edificio con el barrio en tono maqueta siempre.
+3. **Elegido:** las dos juntas: vuelo corto sobre el mapa del modelo y, al aterrizar,
+   el barrio queda en tono maqueta para que VIVRA destaque.
+
+### Cambios sobre el diseño anterior
+- Se elimina la foto satelital: componente, imagen, script de horneado y crédito.
+- Vuelo de ~5 s desde ~1.000 m (dentro del barrio modelado de ±800 m: no hace falta
+  foto ni agrandar el cielo). El barrio arranca plano (huellas, como un mapa) y crece
+  entre ~700 y ~200 m.
+- El tono maqueta del barrio pasa a ser el aspecto normal de la escena, no solo del
+  vuelo. Un solo valor (`MAQUETTE`) regula cuánto se apaga: de gris suave a blanco
+  total, para ajustarlo mirándolo con el usuario. De noche el barrio se oscurece y
+  VIVRA queda iluminado.
+- VIVRA y sus materiales no cambian. Saltar, invitación y "reducir movimiento" quedan
+  como están.

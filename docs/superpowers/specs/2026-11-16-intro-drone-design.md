@@ -150,3 +150,12 @@ Un video desde arriba se descarta (difícil de hacer coincidir con el modelo y p
   VIVRA queda iluminado.
 - VIVRA y sus materiales no cambian. Saltar, invitación y "reducir movimiento" quedan
   como están.
+
+## Corrección de altura pedida por el usuario (2026-11-16)
+
+La torre de la manzana de enfrente sobre Pje. Ángelo de Peredo, contra Av. Julio A.
+Roca (contextData.json, índices 3812–3815, huella x −24…8, z 56…89, 43,2 m) tapaba
+las oficinas y asomaba detrás de VIVRA. Se bajó a 7 m (planta baja y un piso) en vez
+de borrarla, para que la manzana no quede vacía. Huellas y el resto del archivo sin
+cambios. Conservar esta corrección si se regenera el contexto geográfico (test
+`tests/context-heights.test.mjs`).

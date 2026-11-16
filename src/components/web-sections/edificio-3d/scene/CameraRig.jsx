@@ -52,14 +52,14 @@ const easeInOut = (t) => (t < 0.5 ? 4 * t * t * t : 1 - Math.pow(-2 * t + 2, 3) 
 
 /**
  * Animación por cuadros con su propio reloj: si un cuadro tarda (abrir un
- * piso puede trabar un instante), avanza como mucho 50 ms, así el vuelo no
+ * piso puede trabar un instante), avanza como mucho `maxStep` ms, así el vuelo no
  * salta al final y se ve completo.
  */
-function fly(duration, onFrame, onEnd, ease = easeInOut) {
+function fly(duration, onFrame, onEnd, { ease = easeInOut, maxStep = 50 } = {}) {
   let elapsed = 0
   let last = performance.now()
   let frame = requestAnimationFrame(function step(now) {
-    elapsed += Math.min(50, now - last)
+    elapsed += Math.min(maxStep, now - last)
     last = now
     const t = Math.min(1, elapsed / (duration * 1000))
     onFrame(ease(t))
@@ -267,7 +267,11 @@ export const CameraRig = forwardRef(function CameraRig({ onPlanTurn, onIntroFram
       if (freezeAt != null) return pose(freezeAt)
       pose(0)
       // Sin easing acá: introPose ya trae sus curvas
-      state.current.tween = fly(INTRO.duration, pose, finish, (t) => t)
+      state.current.tween = fly(INTRO.duration, pose, finish, {
+        ease: (t) => t,
+        // Reloj real: en equipos lentos el vuelo dura lo mismo, con menos cuadros
+        maxStep: 500
+      })
     },
     [apply, camera, invalidate]
   )

@@ -46,6 +46,7 @@ function introFreeze() {
   return Number.isNaN(value) ? undefined : Math.min(1, Math.max(0, value))
 }
 
+const INVITE_SECONDS = 5
 const PLAY_SPEED = 0.9 // horas por segundo al reproducir el día
 const TIME_TRANSITION = 2.6 // s
 
@@ -138,12 +139,44 @@ export default function Edificio3D() {
   const onReady = useCallback(() => setReady(true), [])
   // 'pending' (cargando) → 'flying' → 'done'; 'off' sin vuelo
   const [intro, setIntro] = useState(initialIntro)
+  // Al aterrizar, el selector de pisos invita a elegir unidad unos segundos
+  const [invite, setInvite] = useState(false)
+  const container = useRef(null)
 
   useEffect(() => {
     if (!ready || intro !== 'pending') return
     setIntro('flying')
-    rig.current?.playIntro({ freezeAt: introFreeze(), onEnd: () => setIntro('done') })
+    rig.current?.playIntro({
+      freezeAt: introFreeze(),
+      onEnd: () => {
+        setIntro('done')
+        setInvite(true)
+      }
+    })
   }, [ready, intro])
+
+  const skipIntro = useCallback(() => rig.current?.skipIntro(), [])
+
+  // Durante el vuelo, cualquier clic, arrastre, rueda o tecla lo saltea
+  useEffect(() => {
+    if (intro !== 'flying') return
+    const canvas = container.current?.querySelector('canvas')
+    canvas?.addEventListener('pointerdown', skipIntro)
+    window.addEventListener('wheel', skipIntro, { passive: true })
+    window.addEventListener('keydown', skipIntro)
+    return () => {
+      canvas?.removeEventListener('pointerdown', skipIntro)
+      window.removeEventListener('wheel', skipIntro)
+      window.removeEventListener('keydown', skipIntro)
+    }
+  }, [intro, skipIntro])
+
+  useEffect(() => {
+    if (!invite) return
+    const id = setTimeout(() => setInvite(false), INVITE_SECONDS * 1000)
+    return () => clearTimeout(id)
+  }, [invite])
+  const dismissInvite = useCallback(() => setInvite(false), [])
 
   const selectUnit = useCallback((next) => {
     setUnit(next)
@@ -173,7 +206,10 @@ export default function Edificio3D() {
   if (tooSlow) return <Fallback reason="slow" onContinue={showAnyway} />
 
   return (
-    <div className="relative h-screen h-[100svh] w-full overflow-hidden bg-[#d6dee4]">
+    <div
+      ref={container}
+      className="relative h-screen h-[100svh] w-full overflow-hidden bg-[#d6dee4]"
+    >
       <Canvas
         shadows
         frameloop="demand"
@@ -232,6 +268,10 @@ export default function Edificio3D() {
         lowContext={lowContext}
         onToggleLowContext={toggleLowContext}
         planTurn={planTurn}
+        intro={intro}
+        onSkipIntro={skipIntro}
+        invite={invite}
+        onInviteSeen={dismissInvite}
       />
       <LoadingScreen
         progress={Math.min(99, CODE_SHARE + ((100 - CODE_SHARE) * assets) / 100)}

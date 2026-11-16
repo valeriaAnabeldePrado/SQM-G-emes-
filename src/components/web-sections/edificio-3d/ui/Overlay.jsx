@@ -73,8 +73,15 @@ export function Overlay({
   availability,
   lowContext,
   onToggleLowContext,
-  planTurn
+  planTurn,
+  intro,
+  onSkipIntro,
+  invite,
+  onInviteSeen
 }) {
+  // Durante el vuelo de entrada solo quedan el título y "Saltar"
+  const flying = intro === 'flying'
+  const chrome = `transition-opacity duration-500 ${flying ? 'pointer-events-none opacity-0' : 'opacity-100'}`
   return (
     <>
       <Loading />
@@ -88,7 +95,10 @@ export function Overlay({
             Av. Pueyrredón 377 · Córdoba
           </span>
         </div>
-        <div className="pointer-events-auto flex w-full flex-col items-stretch gap-2 md:w-auto md:items-end">
+        <div
+          aria-hidden={flying}
+          className={`pointer-events-auto flex w-full flex-col items-stretch gap-2 md:w-auto md:items-end ${chrome}`}
+        >
           <button
             type="button"
             onClick={() => onView('general')}
@@ -112,6 +122,9 @@ export function Overlay({
         onFloor={onFloor}
         onHover={onHoverFloor}
         availability={availability}
+        hidden={flying}
+        invite={invite}
+        onInviteSeen={onInviteSeen}
       />
       {floor == null ? null : <FloorBar floor={floor} onExit={() => onFloor(null)} />}
       <UnitPanel
@@ -122,41 +135,53 @@ export function Overlay({
         onClose={() => onUnit(null)}
       />
 
-      <nav
-        aria-label="Vistas del edificio"
-        className="absolute bottom-36 left-1/2 flex -translate-x-1/2 gap-1 rounded-full bg-white/80 p-1 shadow-sm backdrop-blur-md md:bottom-8"
-      >
-        {VIEWS.map(({ id, label }) => (
-          <button
-            key={id}
-            type="button"
-            onClick={() => onView(id)}
-            aria-pressed={view === id}
-            className={`rounded-full px-3 py-1.5 text-xs transition-colors md:px-4 md:text-sm ${
-              view === id ? 'bg-darck text-white' : 'text-darck hover:bg-darck/10'
-            }`}
-          >
-            {label}
-          </button>
-        ))}
-        <span aria-hidden="true" className="mx-0.5 my-1.5 w-px bg-darck/15" />
-        {/* Entorno bajo: los edificios de alrededor bajan para ver mejor VIVRA */}
+      {flying ? (
         <button
           type="button"
-          onClick={onToggleLowContext}
-          aria-pressed={lowContext}
-          aria-label="Entorno bajo"
-          title={
-            lowContext ? 'Volver a la altura real del entorno' : 'Bajar los edificios de alrededor'
-          }
-          className={`flex items-center gap-1.5 rounded-full px-2.5 py-1.5 text-xs transition-colors md:px-4 md:text-sm ${
-            lowContext ? 'bg-darck text-white' : 'text-darck hover:bg-darck/10'
-          }`}
+          onClick={onSkipIntro}
+          className="absolute bottom-36 left-1/2 -translate-x-1/2 rounded-full bg-white/80 px-5 py-2 text-xs text-darck shadow-sm backdrop-blur-md transition-colors hover:bg-white md:bottom-8 md:text-sm"
         >
-          <FiChevronsDown aria-hidden="true" />
-          <span className="hidden whitespace-nowrap md:inline">Entorno bajo</span>
+          Saltar
         </button>
-      </nav>
+      ) : (
+        <nav
+          aria-label="Vistas del edificio"
+          className="absolute bottom-36 left-1/2 flex -translate-x-1/2 gap-1 rounded-full bg-white/80 p-1 shadow-sm backdrop-blur-md md:bottom-8"
+        >
+          {VIEWS.map(({ id, label }) => (
+            <button
+              key={id}
+              type="button"
+              onClick={() => onView(id)}
+              aria-pressed={view === id}
+              className={`rounded-full px-3 py-1.5 text-xs transition-colors md:px-4 md:text-sm ${
+                view === id ? 'bg-darck text-white' : 'text-darck hover:bg-darck/10'
+              }`}
+            >
+              {label}
+            </button>
+          ))}
+          <span aria-hidden="true" className="mx-0.5 my-1.5 w-px bg-darck/15" />
+          {/* Entorno bajo: los edificios de alrededor bajan para ver mejor VIVRA */}
+          <button
+            type="button"
+            onClick={onToggleLowContext}
+            aria-pressed={lowContext}
+            aria-label="Entorno bajo"
+            title={
+              lowContext
+                ? 'Volver a la altura real del entorno'
+                : 'Bajar los edificios de alrededor'
+            }
+            className={`flex items-center gap-1.5 rounded-full px-2.5 py-1.5 text-xs transition-colors md:px-4 md:text-sm ${
+              lowContext ? 'bg-darck text-white' : 'text-darck hover:bg-darck/10'
+            }`}
+          >
+            <FiChevronsDown aria-hidden="true" />
+            <span className="hidden whitespace-nowrap md:inline">Entorno bajo</span>
+          </button>
+        </nav>
+      )}
 
       {/* span y no p: App.css fija el tamaño de todos los <p> */}
       <span

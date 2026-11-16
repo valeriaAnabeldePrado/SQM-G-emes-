@@ -232,7 +232,7 @@ export const CameraRig = forwardRef(function CameraRig({ onPlanTurn, onIntroFram
   const playIntro = useCallback(
     ({ onEnd, freezeAt } = {}) => {
       const ctrl = controls.current
-      if (!ctrl) return
+      if (!ctrl) return false
       state.current.tween?.kill()
       state.current.tween = null
       state.current.view = 'general'
@@ -264,7 +264,10 @@ export const CameraRig = forwardRef(function CameraRig({ onPlanTurn, onIntroFram
         onEnd?.()
       }
       state.current.intro = { finish }
-      if (freezeAt != null) return pose(freezeAt)
+      if (freezeAt != null) {
+        pose(freezeAt)
+        return true
+      }
       pose(0)
       // Sin easing acá: introPose ya trae sus curvas
       state.current.tween = fly(INTRO.duration, pose, finish, {
@@ -272,14 +275,16 @@ export const CameraRig = forwardRef(function CameraRig({ onPlanTurn, onIntroFram
         // Reloj real: en equipos lentos el vuelo dura lo mismo, con menos cuadros
         maxStep: 500
       })
+      return true
     },
     [apply, camera, invalidate]
   )
   const skipIntro = useCallback(() => {
     const intro = state.current.intro
-    if (!intro) return
+    if (!intro) return false
     state.current.tween?.kill()
     intro.finish()
+    return true
   }, [])
 
   useImperativeHandle(

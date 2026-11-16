@@ -62,8 +62,11 @@ export const Satellite = forwardRef(function Satellite({ night = 0 }, ref) {
         geometry.dispose()
         material.dispose()
       }
+      // Solo se usa en el vuelo: se libera de la GPU y del caché de drei
+      map.dispose()
+      useTexture.clear(SATELLITE.url)
     },
-    [parts]
+    [parts, map]
   )
 
   useImperativeHandle(

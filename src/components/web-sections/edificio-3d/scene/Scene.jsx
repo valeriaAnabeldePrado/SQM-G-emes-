@@ -181,7 +181,8 @@ export function Scene({
   return (
     <>
       <QualityMonitor
-        enabled={!quality.forced}
+        // El vuelo de entrada es la vista más pesada (toda la ciudad): no cuenta
+        enabled={!quality.forced && !flying}
         lowest={tier === 0}
         onDecline={decline}
         onTooSlow={onTooSlow}

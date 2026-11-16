@@ -145,31 +145,50 @@ export default function Edificio3D() {
 
   useEffect(() => {
     if (!ready || intro !== 'pending') return
-    setIntro('flying')
-    rig.current?.playIntro({
+    const started = rig.current?.playIntro({
       freezeAt: introFreeze(),
       onEnd: () => {
         setIntro('done')
         setInvite(true)
       }
     })
+    // Si el vuelo no pudo arrancar, la interfaz no queda escondida
+    setIntro(started ? 'flying' : 'done')
   }, [ready, intro])
 
-  const skipIntro = useCallback(() => rig.current?.skipIntro(), [])
+  const skipIntro = useCallback(() => {
+    if (!rig.current?.skipIntro()) setIntro((i) => (i === 'flying' ? 'done' : i))
+  }, [])
 
   // Durante el vuelo, cualquier clic, arrastre, rueda o tecla lo saltea
   useEffect(() => {
     if (intro !== 'flying') return
-    const canvas = container.current?.querySelector('canvas')
-    canvas?.addEventListener('pointerdown', skipIntro)
     window.addEventListener('wheel', skipIntro, { passive: true })
     window.addEventListener('keydown', skipIntro)
     return () => {
-      canvas?.removeEventListener('pointerdown', skipIntro)
       window.removeEventListener('wheel', skipIntro)
       window.removeEventListener('keydown', skipIntro)
     }
   }, [intro, skipIntro])
+
+  // El toque que saltea el vuelo no llega a la escena: si no, al soltar sobre
+  // la torre (que ya está en la vista general) abriría un piso. Se corta en la
+  // captura, antes que los eventos de R3F y de OrbitControls.
+  const swallowClick = useRef(false)
+  const onPointerDownCapture = useCallback(
+    (e) => {
+      if (intro !== 'flying' || e.target.tagName !== 'CANVAS') return
+      e.stopPropagation()
+      swallowClick.current = true
+      skipIntro()
+    },
+    [intro, skipIntro]
+  )
+  const onClickCapture = useCallback((e) => {
+    if (!swallowClick.current) return
+    swallowClick.current = false
+    e.stopPropagation()
+  }, [])
 
   useEffect(() => {
     if (!invite) return
@@ -208,6 +227,8 @@ export default function Edificio3D() {
   return (
     <div
       ref={container}
+      onPointerDownCapture={onPointerDownCapture}
+      onClickCapture={onClickCapture}
       className="relative h-screen h-[100svh] w-full overflow-hidden bg-[#d6dee4]"
     >
       <Canvas

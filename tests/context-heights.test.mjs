@@ -8,20 +8,31 @@ const data = JSON.parse(
   )
 )
 
-// Torre de la manzana de enfrente sobre Peredo, contra Av. Julio A. Roca: tapaba
-// las oficinas y asomaba detrás de VIVRA. Corrección pedida por el usuario.
-const BEHIND_PEREDO = { x0: -25, x1: 9, z0: 55, z1: 90 }
-const LOW = 7 // m: planta baja y un piso
+// Edificios detrás de las oficinas, en la línea de vista desde VIVRA hacia Peredo:
+// tapaban las oficinas y asomaban detrás de la torre. Correcciones pedidas por el
+// usuario: quedan en planta baja y un piso.
+const LOW = 7 // m
+const BEHIND_OFFICES = [
+  // Manzana de enfrente sobre Peredo, contra Av. Julio A. Roca (43,2 m)
+  { name: 'tower across Peredo', x0: -25, x1: 9, z0: 55, z1: 90, volumes: 4 },
+  // Cruzando Roca, la siguiente (27,5 m) y la torre de atrás (43,2 m)
+  { name: 'building across Roca', x0: -15, x1: 12, z0: 97, z1: 131, volumes: 3 },
+  { name: 'tower behind it', x0: -15, x1: 1, z0: 131, z1: 150, volumes: 2 }
+]
 
-test('the tower across Peredo stays low', () => {
-  const inside = data.buildings.filter((b) => {
-    const xs = b.p.map((p) => p[0])
-    const zs = b.p.map((p) => p[1])
-    const cx = (Math.min(...xs) + Math.max(...xs)) / 2
-    const cz = (Math.min(...zs) + Math.max(...zs)) / 2
-    const { x0, x1, z0, z1 } = BEHIND_PEREDO
-    return cx > x0 && cx < x1 && cz > z0 && cz < z1
+const centroid = (b) => {
+  const xs = b.p.map((p) => p[0])
+  const zs = b.p.map((p) => p[1])
+  return [(Math.min(...xs) + Math.max(...xs)) / 2, (Math.min(...zs) + Math.max(...zs)) / 2]
+}
+
+for (const { name, x0, x1, z0, z1, volumes } of BEHIND_OFFICES) {
+  test(`${name} stays low`, () => {
+    const inside = data.buildings.filter((b) => {
+      const [cx, cz] = centroid(b)
+      return cx > x0 && cx < x1 && cz > z0 && cz < z1
+    })
+    assert.ok(inside.length >= volumes, 'the volumes must still exist')
+    for (const b of inside) assert.ok(b.h <= LOW, `height ${b.h}`)
   })
-  assert.ok(inside.length >= 4, 'the tower volumes must still exist')
-  for (const b of inside) assert.ok(b.h <= LOW, `height ${b.h}`)
-})
+}

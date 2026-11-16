@@ -159,3 +159,7 @@ las oficinas y asomaba detrás de VIVRA. Se bajó a 7 m (planta baja y un piso) 
 de borrarla, para que la manzana no quede vacía. Huellas y el resto del archivo sin
 cambios. Conservar esta corrección si se regenera el contexto geográfico (test
 `tests/context-heights.test.mjs`).
+
+Segunda corrección: cruzando Av. Julio A. Roca, en la misma línea de vista, el
+edificio de 27,5 m (índices 3816–3818) y la torre de 43,2 m detrás (4012–4013)
+también se bajaron a 7 m. Mismo test.

@@ -12,14 +12,16 @@ import { prewarmPlans } from './planCache'
  * construcción, vidrio y solados). Los programas quedan en caché de three.js
  * mientras estos materiales vivan, así que no se liberan.
  */
-export function Prewarm() {
+export function Prewarm({ enabled = true }) {
   const gl = useThree((s) => s.gl)
   const scene = useThree((s) => s.scene)
   const camera = useThree((s) => s.camera)
 
   useEffect(() => prewarmPlans((url) => useTexture.preload(url)), [])
 
+  // Espera a que termine la entrada tipo drone: compilar en medio del vuelo lo traba
   useEffect(() => {
+    if (!enabled) return
     const wave = createBuildWave()
     const materials = [
       ...Object.values(createInteriorMaterials(wave)),
@@ -56,7 +58,7 @@ export function Prewarm() {
       if (!done) scene.remove(group)
       // Los materiales se mantienen vivos a propósito (programas en caché)
     }
-  }, [gl, scene, camera])
+  }, [enabled, gl, scene, camera])
 
   return null
 }

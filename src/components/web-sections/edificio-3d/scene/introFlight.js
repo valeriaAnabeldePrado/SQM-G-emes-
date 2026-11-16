@@ -62,7 +62,8 @@ export function introPose(t, home) {
 
 /**
  * Capas de la escena según la altura de la cámara y el avance del vuelo:
- *   satellite:     opacidad de la foto sobre el barrio modelado (1 arriba de 600 m)
+ *   satellite:     opacidad de la foto sobre el barrio modelado (1 arriba de 2.200 m,
+ *                  0 abajo de 900 m: a 10 m por píxel, más cerca se ve borrosa)
  *   contextHeight: altura de corte del barrio (crece entre 1.500 y 300 m)
  *   maquette:      tono maqueta del barrio (se apaga en el último 15 %)
  *   fogScale:      cuánto se aleja la niebla
@@ -70,7 +71,7 @@ export function introPose(t, home) {
 export function introLayers(altitude, t) {
   const rise = smoothstep(Math.log(1500), Math.log(300), Math.log(Math.max(altitude, 1)))
   return {
-    satellite: smoothstep(250, 600, altitude),
+    satellite: smoothstep(900, 2200, altitude),
     contextHeight: rise >= 1 ? CONTEXT_FULL_HEIGHT : 120 * rise ** 3,
     maquette: 1 - smoothstep(0.85, 1, t),
     fogScale: Math.max(1, altitude / 300)

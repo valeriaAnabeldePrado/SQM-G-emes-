@@ -1,8 +1,9 @@
 import { Environment, Lightformer, Sky } from '@react-three/drei'
 
-function SkyDome({ sky, distance }) {
+function SkyDome({ sky, distance, skyRef }) {
   return (
     <Sky
+      ref={skyRef}
       distance={distance}
       sunPosition={sky.sun.toArray()}
       turbidity={sky.turbidity}
@@ -20,11 +21,11 @@ function SkyDome({ sky, distance }) {
  * se genera con el mismo cielo (más un suelo y, de noche, el resplandor de la
  * ciudad), así los reflejos coinciden con el cielo sin descargar nada más.
  */
-export function SceneEnvironment({ preset }) {
+export function SceneEnvironment({ preset, skyRef }) {
   const { sky, environment, fog, fogRange } = preset
   return (
     <>
-      <SkyDome sky={sky} distance={4000} />
+      <SkyDome sky={sky} distance={4000} skyRef={skyRef} />
       <fog attach="fog" args={[fog, ...fogRange]} />
       {environment.file ? (
         <Environment

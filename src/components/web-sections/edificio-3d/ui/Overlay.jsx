@@ -1,7 +1,7 @@
 import { useProgress } from '@react-three/drei'
 import { FiChevronsDown } from 'react-icons/fi'
 import { Link } from 'react-router-dom'
-import { SATELLITE_CREDIT } from '../context/satellite'
+import { SATELLITE_CREDIT } from '../context/satellite.js'
 import { STATUS } from '../interiors/status'
 import { getFloor } from '../interiors/catalog'
 import { FloorPicker } from './FloorPicker'

@@ -30,6 +30,22 @@ function initialHour() {
   return initialSkyHour(TODAY)
 }
 
+/**
+ * Entrada tipo drone: `?intro=no` o "reducir movimiento" del sistema la
+ * saltean. En desarrollo, `?intro=0.4` congela el vuelo en ese instante.
+ */
+function initialIntro() {
+  if (new URLSearchParams(window.location.search).get('intro') === 'no') return 'off'
+  if (window.matchMedia?.('(prefers-reduced-motion: reduce)').matches) return 'off'
+  return 'pending'
+}
+
+function introFreeze() {
+  if (!import.meta.env.DEV) return undefined
+  const value = Number.parseFloat(new URLSearchParams(window.location.search).get('intro'))
+  return Number.isNaN(value) ? undefined : Math.min(1, Math.max(0, value))
+}
+
 const PLAY_SPEED = 0.9 // horas por segundo al reproducir el día
 const TIME_TRANSITION = 2.6 // s
 
@@ -120,6 +136,14 @@ export default function Edificio3D() {
   const { progress: assets } = useProgress()
   const [ready, setReady] = useState(false)
   const onReady = useCallback(() => setReady(true), [])
+  // 'pending' (cargando) → 'flying' → 'done'; 'off' sin vuelo
+  const [intro, setIntro] = useState(initialIntro)
+
+  useEffect(() => {
+    if (!ready || intro !== 'pending') return
+    setIntro('flying')
+    rig.current?.playIntro({ freezeAt: introFreeze(), onEnd: () => setIntro('done') })
+  }, [ready, intro])
 
   const selectUnit = useCallback((next) => {
     setUnit(next)
@@ -187,6 +211,7 @@ export default function Edificio3D() {
           onSelectUnit={selectUnit}
           lowContext={lowContext}
           onPlanTurn={setPlanTurn}
+          intro={intro}
         />
       </Canvas>
       <Overlay

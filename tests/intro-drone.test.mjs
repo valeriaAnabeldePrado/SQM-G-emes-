@@ -75,6 +75,9 @@ test('layers: photo and maquette above, real neighborhood below', () => {
     maquette: 0,
     fogScale: 1
   })
-  const mid = introLayers(400, 0.7).satellite
+  // La foto (10 m por píxel) se va antes de verse borrosa: el barrio modelado la reemplaza
+  const mid = introLayers(1500, 0.4).satellite
   assert.ok(mid > 0 && mid < 1)
+  assert.equal(introLayers(800, 0.5).satellite, 0)
+  assert.equal(introLayers(2500, 0.3).satellite, 1)
 })

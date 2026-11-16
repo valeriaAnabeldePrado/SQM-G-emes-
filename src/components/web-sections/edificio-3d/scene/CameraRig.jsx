@@ -21,8 +21,8 @@ const PRESETS = {
   // Oficinas: en diagonal y algo alto sobre Peredo, como una foto de dron, con
   // la torre detrás (el barrio baja solo en esta vista, ver views.js)
   contrafrente: {
-    position: [-14, 26, LOT.depth + 29.5],
-    target: [0, 8, LOT.depth - 4.5],
+    position: [-14, 16, LOT.depth + 29.5],
+    target: [0, 7.5, LOT.depth - 4.5],
     fov: 60
   },
   aerea: { position: [30, 88, -78], target: [0, 23, 12], fov: 35 }

@@ -18,10 +18,11 @@ const MAX_PORTRAIT_FOV = 80
 const PRESETS = {
   // bannerOk.png: desde la vereda de enfrente, a la altura del peatón
   frente: { position: [0.6, 1.7, -15.2], target: [0, 12.5, 0], fov: 64 },
-  // frenteTwoOk.png: frente de oficinas desde la vereda de enfrente sobre Peredo
+  // Oficinas: en diagonal y algo alto sobre Peredo, como una foto de dron, con
+  // la torre detrás (el barrio baja solo en esta vista, ver views.js)
   contrafrente: {
-    position: [-0.5, 1.7, LOT.depth + 11.8],
-    target: [0, 9.5, LOT.depth - 4],
+    position: [-14, 26, LOT.depth + 29.5],
+    target: [0, 8, LOT.depth - 4.5],
     fov: 60
   },
   aerea: { position: [30, 88, -78], target: [0, 23, 12], fov: 35 }

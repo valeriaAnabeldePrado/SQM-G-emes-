@@ -1,5 +1,4 @@
 import React, { useState, useRef } from 'react'
-import emailjs from '@emailjs/browser'
 import Button from './button'
 
 const ContactForm = () => {
@@ -12,6 +11,8 @@ const ContactForm = () => {
 
   const [isSubmitting, setIsSubmitting] = useState(false)
   const toastTimer = useRef(null)
+  // Campo trampa: invisible para personas, los bots lo completan
+  const honeypotRef = useRef(null)
   const [toast, setToast] = useState({ visible: false, message: '', type: 'info' })
 
   const showToast = (message, type = 'info', duration = 4000) => {
@@ -47,11 +48,6 @@ const ContactForm = () => {
     }
 
     try {
-      // Configuración EmailJS desde variables de entorno (Vite)
-      const SERVICE_ID = import.meta.env.VITE_EMAILJS_SERVICE || 'service_sux1wqg'
-      const TEMPLATE_ID = import.meta.env.VITE_EMAILJS_TEMPLATE || 'template_25yviek'
-      const PUBLIC_KEY = import.meta.env.VITE_EMAILJS_PUBLIC || 'fcgrcFrPPV6ApVd1d'
-
       // extraer utm_source si existe
       let utm = ''
       try {
@@ -62,20 +58,19 @@ const ContactForm = () => {
         utm = ''
       }
 
-      // Construir payload que coincide con el template HTML
-      const templateParams = {
-        from_name: formData.nombre,
-        reply_to: formData.email,
-        phone: formData.telefono || '—',
-        message: formData.mensaje,
-        page: typeof window !== 'undefined' ? window.location.pathname : 'site',
-        utm_source: utm,
-        datetime: new Date().toLocaleString(),
-        to_email: 'vivraguemes@gmail.com'
-      }
-
-      // Enviar email
-      await emailjs.send(SERVICE_ID, TEMPLATE_ID, templateParams, PUBLIC_KEY)
+      // Enviar por la función propia (api/contacto.js): manda el lead a la
+      // casilla de la empresa y una confirmación al visitante
+      const res = await fetch('/api/contacto', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          ...formData,
+          website: honeypotRef.current?.value || '',
+          page: typeof window !== 'undefined' ? window.location.pathname : 'site',
+          utm_source: utm
+        })
+      })
+      if (!res.ok) throw new Error(`api/contacto respondió ${res.status}`)
 
       // GA4: lead generado solo cuando el envío se completó con éxito
       window.gtag?.('event', 'generate_lead', { form_name: 'contacto' })
@@ -151,6 +146,15 @@ const ContactForm = () => {
           rows={3}
           required
         ></textarea>{' '}
+        <input
+          ref={honeypotRef}
+          type="text"
+          name="website"
+          tabIndex={-1}
+          autoComplete="off"
+          aria-hidden="true"
+          className="absolute left-[-9999px] w-px h-px opacity-0"
+        />
         {/* Mensaje de estado (se muestra ahora como toast) */}
         <Button type="submit" className={'mt-4 min-note:mt-10 '} disabled={isSubmitting}>
           <p className="m-auto">{isSubmitting ? 'Enviando...' : 'Enviar formulario'}</p>

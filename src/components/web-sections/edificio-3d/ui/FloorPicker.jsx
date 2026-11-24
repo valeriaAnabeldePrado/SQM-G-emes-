@@ -33,7 +33,15 @@ function FloorButton({ floor, active, available, onFloor, onHover }) {
  * Columna a la derecha en escritorio, tira horizontal en celulares. Cada piso
  * muestra cuántas unidades disponibles tiene.
  */
-export function FloorPicker({ floor, onFloor, onHover, availability }) {
+export function FloorPicker({
+  floor,
+  onFloor,
+  onHover,
+  availability,
+  hidden = false,
+  invite = false,
+  onInviteSeen
+}) {
   const counts = useMemo(
     () =>
       Object.fromEntries(
@@ -46,29 +54,47 @@ export function FloorPicker({ floor, onFloor, onHover, availability }) {
     { title: 'Oficinas', floors: [...OFFICE_FLOORS].reverse() }
   ]
 
+  // La invitación se va con el primer gesto sobre un piso
+  const seen = (fn) => (value) => {
+    if (invite) onInviteSeen?.()
+    fn(value)
+  }
   return (
-    <div
-      role="group"
-      aria-label="Pisos"
-      className="pointer-events-auto absolute inset-x-3 bottom-48 flex gap-1 overflow-x-auto rounded-full bg-white/80 p-1 shadow-sm backdrop-blur-md md:inset-x-auto md:bottom-6 md:right-6 md:top-52 md:flex-col md:overflow-y-auto md:rounded-2xl"
-    >
-      {groups.map(({ title, floors }) => (
-        <div key={title} className="flex shrink-0 items-center gap-1 md:flex-col">
-          <span className="shrink-0 px-1 text-[9px] font-semibold uppercase tracking-wide text-darck/50">
-            {title}
-          </span>
-          {floors.map((f) => (
-            <FloorButton
-              key={f.id}
-              floor={f}
-              active={floor === f.id}
-              available={counts[f.id]}
-              onFloor={onFloor}
-              onHover={onHover}
-            />
-          ))}
-        </div>
-      ))}
-    </div>
+    <>
+      {invite ? (
+        <span
+          role="status"
+          className="pointer-events-none absolute bottom-60 left-1/2 -translate-x-1/2 animate-pulse whitespace-nowrap rounded-full bg-one px-4 py-2 text-xs font-medium text-white shadow-md md:bottom-auto md:left-auto md:right-24 md:top-52 md:translate-x-0 md:text-sm"
+        >
+          Elegí tu unidad
+        </span>
+      ) : null}
+      <div
+        role="group"
+        aria-label="Pisos"
+        aria-hidden={hidden}
+        className={`pointer-events-auto absolute inset-x-3 bottom-48 flex gap-1 overflow-x-auto rounded-full bg-white/80 p-1 shadow-sm backdrop-blur-md transition-opacity duration-500 md:inset-x-auto md:bottom-6 md:right-6 md:top-52 md:flex-col md:overflow-y-auto md:rounded-2xl ${
+          hidden ? 'pointer-events-none opacity-0' : 'opacity-100'
+        } ${invite ? 'ring-2 ring-one' : ''}`}
+      >
+        {groups.map(({ title, floors }) => (
+          <div key={title} className="flex shrink-0 items-center gap-1 md:flex-col">
+            <span className="shrink-0 px-1 text-[9px] font-semibold uppercase tracking-wide text-darck/50">
+              {title}
+            </span>
+            {floors.map((f) => (
+              <FloorButton
+                key={f.id}
+                floor={f}
+                active={floor === f.id}
+                available={counts[f.id]}
+                onFloor={seen(onFloor)}
+                onHover={seen(onHover)}
+              />
+            ))}
+          </div>
+        ))}
+      </div>
+    </>
   )
 }

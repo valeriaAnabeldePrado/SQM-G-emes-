@@ -6,6 +6,7 @@ import { useAvailability } from './interiors/useAvailability'
 import { QUALITY_TIERS, initialQuality } from './scene/quality'
 import { Scene } from './scene/Scene'
 import { HOUR_RANGE, TIMES, initialSkyHour, skyState } from './scene/timeOfDay'
+import { lowForView } from './scene/views'
 import { Fallback } from './ui/Fallback'
 import { CODE_SHARE, LoadingScreen } from './ui/LoadingScreen'
 import { Overlay } from './ui/Overlay'
@@ -30,6 +31,23 @@ function initialHour() {
   return initialSkyHour(TODAY)
 }
 
+/**
+ * Entrada tipo drone: `?intro=no` o "reducir movimiento" del sistema la
+ * saltean. En desarrollo, `?intro=0.4` congela el vuelo en ese instante.
+ */
+function initialIntro() {
+  if (new URLSearchParams(window.location.search).get('intro') === 'no') return 'off'
+  if (window.matchMedia?.('(prefers-reduced-motion: reduce)').matches) return 'off'
+  return 'pending'
+}
+
+function introFreeze() {
+  if (!import.meta.env.DEV) return undefined
+  const value = Number.parseFloat(new URLSearchParams(window.location.search).get('intro'))
+  return Number.isNaN(value) ? undefined : Math.min(1, Math.max(0, value))
+}
+
+const INVITE_SECONDS = 5
 const PLAY_SPEED = 0.9 // horas por segundo al reproducir el día
 const TIME_TRANSITION = 2.6 // s
 
@@ -111,8 +129,11 @@ export default function Edificio3D() {
   const [unit, setUnit] = useState(null)
   const [hoverFloor, setHoverFloor] = useState(null)
   // Entorno bajo: los edificios de alrededor bajan para ver mejor VIVRA
-  const [lowContext, setLowContext] = useState(false)
-  const toggleLowContext = useCallback(() => setLowContext((v) => !v), [])
+  // Alrededor de las oficinas baja solo (ver views.js); el botón lo invierte
+  // hasta cambiar de vista
+  const [lowOverride, setLowOverride] = useState(null)
+  const lowContext = lowOverride ?? lowForView(view)
+  const toggleLowContext = useCallback(() => setLowOverride(!lowContext), [lowContext])
   // Giro del plano de la ficha para que coincida con la vista 3D (ver CameraRig)
   const [planTurn, setPlanTurn] = useState(180)
   const availability = useAvailability()
@@ -120,6 +141,65 @@ export default function Edificio3D() {
   const { progress: assets } = useProgress()
   const [ready, setReady] = useState(false)
   const onReady = useCallback(() => setReady(true), [])
+  // 'pending' (cargando) → 'flying' → 'done'; 'off' sin vuelo
+  const [intro, setIntro] = useState(initialIntro)
+  // Al aterrizar, el selector de pisos invita a elegir unidad unos segundos
+  const [invite, setInvite] = useState(false)
+  const container = useRef(null)
+
+  useEffect(() => {
+    if (!ready || intro !== 'pending') return
+    const started = rig.current?.playIntro({
+      freezeAt: introFreeze(),
+      onEnd: () => {
+        setIntro('done')
+        setInvite(true)
+      }
+    })
+    // Si el vuelo no pudo arrancar, la interfaz no queda escondida
+    setIntro(started ? 'flying' : 'done')
+  }, [ready, intro])
+
+  const skipIntro = useCallback(() => {
+    if (!rig.current?.skipIntro()) setIntro((i) => (i === 'flying' ? 'done' : i))
+  }, [])
+
+  // Durante el vuelo, cualquier clic, arrastre, rueda o tecla lo saltea
+  useEffect(() => {
+    if (intro !== 'flying') return
+    window.addEventListener('wheel', skipIntro, { passive: true })
+    window.addEventListener('keydown', skipIntro)
+    return () => {
+      window.removeEventListener('wheel', skipIntro)
+      window.removeEventListener('keydown', skipIntro)
+    }
+  }, [intro, skipIntro])
+
+  // El toque que saltea el vuelo no llega a la escena: si no, al soltar sobre
+  // la torre (que ya está en la vista general) abriría un piso. Se corta en la
+  // captura, antes que los eventos de R3F y de OrbitControls.
+  const swallowClick = useRef(false)
+  const onPointerDownCapture = useCallback(
+    (e) => {
+      if (intro !== 'flying' || e.target.tagName !== 'CANVAS') return
+      e.stopPropagation()
+      swallowClick.current = true
+      skipIntro()
+    },
+    [intro, skipIntro]
+  )
+  const onClickCapture = useCallback((e) => {
+    if (!swallowClick.current) return
+    swallowClick.current = false
+    e.stopPropagation()
+  }, [])
+
+  useEffect(() => {
+    if (!invite) return
+    const id = setTimeout(() => setInvite(false), INVITE_SECONDS * 1000)
+    return () => clearTimeout(id)
+  }, [invite])
+  const dismissInvite = useCallback(() => setInvite(false), [])
 
   const selectUnit = useCallback((next) => {
     setUnit(next)
@@ -129,6 +209,7 @@ export default function Edificio3D() {
   const goTo = useCallback((next) => {
     setFloor(null)
     setUnit(null)
+    setLowOverride(null)
     setView(next)
     rig.current?.goTo(next)
   }, [])
@@ -138,6 +219,7 @@ export default function Edificio3D() {
       if (n == null) return goTo('general')
       setUnit(null)
       setFloor(n)
+      setLowOverride(null)
       setView(`piso:${n}`)
       rig.current?.goTo(`piso:${n}`)
     },
@@ -149,7 +231,12 @@ export default function Edificio3D() {
   if (tooSlow) return <Fallback reason="slow" onContinue={showAnyway} />
 
   return (
-    <div className="relative h-screen h-[100svh] w-full overflow-hidden bg-[#d6dee4]">
+    <div
+      ref={container}
+      onPointerDownCapture={onPointerDownCapture}
+      onClickCapture={onClickCapture}
+      className="relative h-screen h-[100svh] w-full overflow-hidden bg-[#d6dee4]"
+    >
       <Canvas
         shadows
         frameloop="demand"
@@ -187,6 +274,7 @@ export default function Edificio3D() {
           onSelectUnit={selectUnit}
           lowContext={lowContext}
           onPlanTurn={setPlanTurn}
+          intro={intro}
         />
       </Canvas>
       <Overlay
@@ -207,6 +295,10 @@ export default function Edificio3D() {
         lowContext={lowContext}
         onToggleLowContext={toggleLowContext}
         planTurn={planTurn}
+        intro={intro}
+        onSkipIntro={skipIntro}
+        invite={invite}
+        onInviteSeen={dismissInvite}
       />
       <LoadingScreen
         progress={Math.min(99, CODE_SHARE + ((100 - CODE_SHARE) * assets) / 100)}

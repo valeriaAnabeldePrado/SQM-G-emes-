@@ -5,7 +5,7 @@ import * as THREE from 'three'
 import gsap from 'gsap'
 import { BUILDING_HEIGHT, HALF, TOWER } from '../buildings/vivra-guemes/config'
 import { createInteriorGlassMaterial } from './interiorGlass'
-import { corridor, withViewCorridor } from './viewCorridor'
+import { MAQUETTE, contextTone, corridor, withViewCorridor } from './viewCorridor'
 import { withWeathering } from './weathering'
 import { MaterialsContext } from './materialsContext'
 import {
@@ -255,9 +255,18 @@ function createMaterials(loaded) {
 }
 
 /** Ajusta lo que se "enciende" con la noche (0 = día, 1 = noche). */
+/** Nivel de maqueta del barrio; en desarrollo, `?maqueta=0.3` lo pisa para comparar. */
+function maquetteLevel() {
+  if (!import.meta.env.DEV) return MAQUETTE
+  const value = Number.parseFloat(new URLSearchParams(window.location.search).get('maqueta'))
+  return Number.isNaN(value) ? MAQUETTE : Math.min(1, Math.max(0, value))
+}
+const MAQUETTE_LEVEL = maquetteLevel()
+
 function applyNight(materials, night) {
-  corridor.uContextWash.value = 0.14 * (1 - night * 0.94)
-  corridor.uContextSaturation.value = 0.55 + night * 0.25
+  const tone = contextTone(night, MAQUETTE_LEVEL)
+  corridor.uContextWash.value = tone.wash
+  corridor.uContextSaturation.value = tone.saturation
   materials.glassInterior.userData.uniforms.uNight.value = night
   // Las ventanas del barrio acompañan las luces de VIVRA sin competir con ellas.
   materials.contextFacade.emissiveIntensity = night * 0.3

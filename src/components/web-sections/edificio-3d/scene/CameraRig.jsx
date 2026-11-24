@@ -4,6 +4,7 @@ import { useThree } from '@react-three/fiber'
 import * as THREE from 'three'
 import { BUILDING_HEIGHT, LOT } from '../buildings/vivra-guemes/config'
 import { getFloor } from '../interiors/catalog'
+import { FINAL_LAYERS, INTRO, introLayers, introPose } from './introFlight'
 
 const HOME_FOV = 35
 // Vista general: casi frontal desde Pueyrredón, como el render de fachada,
@@ -17,10 +18,11 @@ const MAX_PORTRAIT_FOV = 80
 const PRESETS = {
   // bannerOk.png: desde la vereda de enfrente, a la altura del peatón
   frente: { position: [0.6, 1.7, -15.2], target: [0, 12.5, 0], fov: 64 },
-  // frenteTwoOk.png: frente de oficinas desde la vereda de enfrente sobre Peredo
+  // Oficinas: en diagonal y algo alto sobre Peredo, como una foto de dron, con
+  // la torre detrás (el barrio baja solo en esta vista, ver views.js)
   contrafrente: {
-    position: [-0.5, 1.7, LOT.depth + 11.8],
-    target: [0, 9.5, LOT.depth - 4],
+    position: [-14, 16, LOT.depth + 29.5],
+    target: [0, 7.5, LOT.depth - 4.5],
     fov: 60
   },
   aerea: { position: [30, 88, -78], target: [0, 23, 12], fov: 35 }
@@ -51,17 +53,17 @@ const easeInOut = (t) => (t < 0.5 ? 4 * t * t * t : 1 - Math.pow(-2 * t + 2, 3) 
 
 /**
  * Animación por cuadros con su propio reloj: si un cuadro tarda (abrir un
- * piso puede trabar un instante), avanza como mucho 50 ms, así el vuelo no
+ * piso puede trabar un instante), avanza como mucho `maxStep` ms, así el vuelo no
  * salta al final y se ve completo.
  */
-function fly(duration, onFrame, onEnd) {
+function fly(duration, onFrame, onEnd, { ease = easeInOut, maxStep = 50 } = {}) {
   let elapsed = 0
   let last = performance.now()
   let frame = requestAnimationFrame(function step(now) {
-    elapsed += Math.min(50, now - last)
+    elapsed += Math.min(maxStep, now - last)
     last = now
     const t = Math.min(1, elapsed / (duration * 1000))
-    onFrame(easeInOut(t))
+    onFrame(ease(t))
     if (t < 1) frame = requestAnimationFrame(step)
     else onEnd?.()
   })
@@ -112,13 +114,18 @@ function planTurn(camera, target) {
   return (((Math.round(deg / 90) * 90) % 360) + 360) % 360
 }
 
-export const CameraRig = forwardRef(function CameraRig({ onPlanTurn }, ref) {
+export const CameraRig = forwardRef(function CameraRig({ onPlanTurn, onIntroFrame }, ref) {
   const camera = useThree((s) => s.camera)
   const size = useThree((s) => s.size)
   const invalidate = useThree((s) => s.invalidate)
   const regress = useThree((s) => s.performance.regress)
   const controls = useRef(null)
   const state = useRef({ view: 'general', moved: false, tween: null })
+  // El vuelo de entrada recalcula el destino cada cuadro con el tamaño actual
+  const aspect = useRef(1)
+  aspect.current = size.width / size.height
+  const introFrame = useRef(onIntroFrame)
+  introFrame.current = onIntroFrame
 
   const resolve = useCallback(
     (view) => {
@@ -217,7 +224,75 @@ export const CameraRig = forwardRef(function CameraRig({ onPlanTurn }, ref) {
     [camera, invalidate]
   )
 
-  useImperativeHandle(ref, () => ({ goTo: (view) => apply(view, true), focus }), [apply, focus])
+  /**
+   * Entrada tipo drone (ver introFlight.js). Los controles se apagan mientras
+   * dura: su update() recorta la distancia a maxDistance. Cada cuadro avisa las
+   * capas (foto, barrio, niebla) con onIntroFrame. `freezeAt` (solo desarrollo)
+   * deja la cámara quieta en ese instante, para capturas.
+   */
+  const playIntro = useCallback(
+    ({ onEnd, freezeAt } = {}) => {
+      const ctrl = controls.current
+      if (!ctrl) return false
+      state.current.tween?.kill()
+      state.current.tween = null
+      state.current.view = 'general'
+      state.current.moved = false
+      state.current.flying = true
+      ctrl.enabled = false
+      let finished = false
+      const pose = (t) => {
+        const p = introPose(t, homeView(aspect.current))
+        camera.position.fromArray(p.position)
+        ctrl.target.fromArray(p.target)
+        camera.fov = p.fov
+        camera.lookAt(ctrl.target)
+        introFrame.current?.(introLayers(p.position[1], t), p.position[1])
+        camera.updateProjectionMatrix()
+        invalidate()
+      }
+      const finish = () => {
+        if (finished) return
+        finished = true
+        state.current.intro = null
+        state.current.tween = null
+        state.current.flying = false
+        ctrl.enabled = true
+        apply('general', false)
+        introFrame.current?.(FINAL_LAYERS, camera.position.y)
+        camera.updateProjectionMatrix()
+        invalidate()
+        onEnd?.()
+      }
+      state.current.intro = { finish }
+      if (freezeAt != null) {
+        pose(freezeAt)
+        return true
+      }
+      pose(0)
+      // Sin easing acá: introPose ya trae sus curvas
+      state.current.tween = fly(INTRO.duration, pose, finish, {
+        ease: (t) => t,
+        // Reloj real: en equipos lentos el vuelo dura lo mismo, con menos cuadros
+        maxStep: 500
+      })
+      return true
+    },
+    [apply, camera, invalidate]
+  )
+  const skipIntro = useCallback(() => {
+    const intro = state.current.intro
+    if (!intro) return false
+    state.current.tween?.kill()
+    intro.finish()
+    return true
+  }, [])
+
+  useImperativeHandle(
+    ref,
+    () => ({ goTo: (view) => apply(view, true), focus, playIntro, skipIntro }),
+    [apply, focus, playIntro, skipIntro]
+  )
 
   // Primer encuadre y reencuadre al cambiar el tamaño mientras no se haya movido la cámara
   useEffect(() => {

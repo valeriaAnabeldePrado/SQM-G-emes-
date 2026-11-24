@@ -6,6 +6,11 @@ import prettier from "eslint-plugin-prettier";
 
 export default [
   { ignores: ["dist"] },
+  // Funciones serverless y config de Vite corren en Node
+  {
+    files: ["api/**/*.js", "vite.config.js"],
+    languageOptions: { globals: globals.node },
+  },
   {
     files: ["**/*.{js,jsx}"],
     languageOptions: {

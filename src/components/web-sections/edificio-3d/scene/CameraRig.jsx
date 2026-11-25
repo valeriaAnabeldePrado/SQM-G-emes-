@@ -4,7 +4,8 @@ import { useThree } from '@react-three/fiber'
 import * as THREE from 'three'
 import { BUILDING_HEIGHT, LOT } from '../buildings/vivra-guemes/config'
 import { getFloor } from '../interiors/catalog'
-import { FINAL_LAYERS, INTRO, introLayers, introPose } from './introFlight'
+import { TOUR, tourPose } from './tour'
+import { ENTRY_VIEW } from './views'
 
 const HOME_FOV = 35
 // Vista general: casi frontal desde Pueyrredón, como el render de fachada,
@@ -18,12 +19,14 @@ const MAX_PORTRAIT_FOV = 80
 const PRESETS = {
   // bannerOk.png: desde la vereda de enfrente, a la altura del peatón
   frente: { position: [0.6, 1.7, -15.2], target: [0, 12.5, 0], fov: 64 },
-  // Oficinas: en diagonal y algo alto sobre Peredo, como una foto de dron, con
-  // la torre detrás (el barrio baja solo en esta vista, ver views.js)
+  // Oficinas (y vista de entrada): en diagonal y baja desde enfrente sobre
+  // Peredo, apenas por encima de la vereda, con la torre detrás. Las casas de
+  // enfrente no se dibujan (PEREDO_FRONT en UrbanContext): la cámara queda en
+  // su terreno.
   contrafrente: {
-    position: [-14, 16, LOT.depth + 29.5],
-    target: [0, 7.5, LOT.depth - 4.5],
-    fov: 60
+    position: [-9, 4.5, LOT.depth + 24],
+    target: [0, 9, LOT.depth - 3],
+    fov: 58
   },
   aerea: { position: [30, 88, -78], target: [0, 23, 12], fov: 35 }
 }
@@ -59,18 +62,26 @@ const easeInOut = (t) => (t < 0.5 ? 4 * t * t * t : 1 - Math.pow(-2 * t + 2, 3) 
 function fly(duration, onFrame, onEnd, { ease = easeInOut, maxStep = 50 } = {}) {
   let elapsed = 0
   let last = performance.now()
+  // onEnd corre una sola vez: cortar una animación que ya terminó (al empezar a
+  // arrastrar, por ejemplo) no la vuelve a cerrar
+  let ended = false
+  const end = () => {
+    if (ended) return
+    ended = true
+    onEnd?.()
+  }
   let frame = requestAnimationFrame(function step(now) {
     elapsed += Math.min(maxStep, now - last)
     last = now
     const t = Math.min(1, elapsed / (duration * 1000))
     onFrame(ease(t))
     if (t < 1) frame = requestAnimationFrame(step)
-    else onEnd?.()
+    else end()
   })
   return {
     kill: () => {
       cancelAnimationFrame(frame)
-      onEnd?.()
+      end()
     }
   }
 }
@@ -86,6 +97,13 @@ function homeView(aspect) {
     target: target.toArray(),
     fov: HOME_FOV
   }
+}
+
+/** Pose de cámara de una vista ('general', un preset o 'piso:<id>'). */
+function viewPose(view, aspect) {
+  if (view === 'general') return homeView(aspect)
+  if (view.startsWith('piso:')) return fitPreset(floorView(view.slice(5)), aspect)
+  return PRESETS[view] && fitPreset(PRESETS[view], aspect)
 }
 
 /**
@@ -114,28 +132,15 @@ function planTurn(camera, target) {
   return (((Math.round(deg / 90) * 90) % 360) + 360) % 360
 }
 
-export const CameraRig = forwardRef(function CameraRig({ onPlanTurn, onIntroFrame }, ref) {
+export const CameraRig = forwardRef(function CameraRig({ onPlanTurn }, ref) {
   const camera = useThree((s) => s.camera)
   const size = useThree((s) => s.size)
   const invalidate = useThree((s) => s.invalidate)
   const regress = useThree((s) => s.performance.regress)
   const controls = useRef(null)
-  const state = useRef({ view: 'general', moved: false, tween: null })
-  // El vuelo de entrada recalcula el destino cada cuadro con el tamaño actual
-  const aspect = useRef(1)
-  aspect.current = size.width / size.height
-  const introFrame = useRef(onIntroFrame)
-  introFrame.current = onIntroFrame
+  const state = useRef({ view: ENTRY_VIEW, moved: false, tween: null })
 
-  const resolve = useCallback(
-    (view) => {
-      const aspect = size.width / size.height
-      if (view === 'general') return homeView(aspect)
-      if (view.startsWith('piso:')) return fitPreset(floorView(view.slice(5)), aspect)
-      return PRESETS[view] && fitPreset(PRESETS[view], aspect)
-    },
-    [size]
-  )
+  const resolve = useCallback((view) => viewPose(view, size.width / size.height), [size])
 
   const apply = useCallback(
     (view, animate) => {
@@ -225,73 +230,61 @@ export const CameraRig = forwardRef(function CameraRig({ onPlanTurn, onIntroFram
   )
 
   /**
-   * Entrada tipo drone (ver introFlight.js). Los controles se apagan mientras
-   * dura: su update() recorta la distancia a maxDistance. Cada cuadro avisa las
-   * capas (foto, barrio, niebla) con onIntroFrame. `freezeAt` (solo desarrollo)
-   * deja la cámara quieta en ese instante, para capturas.
+   * Recorrido de entrada (ver tour.js): de las oficinas a la vista aérea. Si
+   * llega al final avisa con `onDone` para que la barra marque "Aérea".
+   * Cualquier interacción lo corta (stopTour) y la cámara queda donde estaba.
    */
-  const playIntro = useCallback(
-    ({ onEnd, freezeAt } = {}) => {
+  const playTour = useCallback(
+    ({ onDone } = {}) => {
       const ctrl = controls.current
-      if (!ctrl) return false
+      if (!ctrl) return
       state.current.tween?.kill()
-      state.current.tween = null
-      state.current.view = 'general'
-      state.current.moved = false
+      const aspect = size.width / size.height
+      const from = viewPose(ENTRY_VIEW, aspect)
+      const to = viewPose(TOUR.end, aspect)
+      const total = TOUR.hold + TOUR.duration
+      const holdUntil = TOUR.hold / total
+      let completed = false
       state.current.flying = true
-      ctrl.enabled = false
-      let finished = false
-      const pose = (t) => {
-        const p = introPose(t, homeView(aspect.current))
-        camera.position.fromArray(p.position)
-        ctrl.target.fromArray(p.target)
-        camera.fov = p.fov
-        camera.lookAt(ctrl.target)
-        introFrame.current?.(introLayers(p.position[1], t), p.position[1])
-        camera.updateProjectionMatrix()
-        invalidate()
-      }
-      const finish = () => {
-        if (finished) return
-        finished = true
-        state.current.intro = null
-        state.current.tween = null
-        state.current.flying = false
-        ctrl.enabled = true
-        apply('general', false)
-        introFrame.current?.(FINAL_LAYERS, camera.position.y)
-        camera.updateProjectionMatrix()
-        invalidate()
-        onEnd?.()
-      }
-      state.current.intro = { finish }
-      if (freezeAt != null) {
-        pose(freezeAt)
-        return true
-      }
-      pose(0)
-      // Sin easing acá: introPose ya trae sus curvas
-      state.current.tween = fly(INTRO.duration, pose, finish, {
-        ease: (t) => t,
-        // Reloj real: en equipos lentos el vuelo dura lo mismo, con menos cuadros
-        maxStep: 500
-      })
-      return true
+      state.current.touring = true
+      state.current.tween = fly(
+        total,
+        (t) => {
+          const k = easeInOut(Math.max(0, (t - holdUntil) / (1 - holdUntil)))
+          const p = tourPose(k, from, to)
+          camera.position.fromArray(p.position)
+          ctrl.target.fromArray(p.target)
+          camera.fov = p.fov
+          camera.updateProjectionMatrix()
+          ctrl.update()
+          invalidate()
+          completed = t >= 1
+        },
+        () => {
+          state.current.flying = false
+          state.current.touring = false
+          if (!completed) return
+          state.current.view = TOUR.end
+          state.current.moved = false
+          onDone?.(TOUR.end)
+        },
+        // Reloj casi real: en equipos lentos dura lo mismo, con menos cuadros
+        { ease: (t) => t, maxStep: 250 }
+      )
     },
-    [apply, camera, invalidate]
+    [camera, invalidate, size]
   )
-  const skipIntro = useCallback(() => {
-    const intro = state.current.intro
-    if (!intro) return false
+  const stopTour = useCallback(() => {
+    if (!state.current.touring) return
+    // Queda quieta donde está: un reencuadre por tamaño no la mueve
+    state.current.moved = true
     state.current.tween?.kill()
-    intro.finish()
-    return true
   }, [])
 
   useImperativeHandle(
     ref,
-    () => ({ goTo: (view) => apply(view, true), focus, playIntro, skipIntro }),
-    [apply, focus, playIntro, skipIntro]
+    () => ({ goTo: (view) => apply(view, true), focus, playTour, stopTour }),
+    [apply, focus, playTour, stopTour]
   )
 
   // Primer encuadre y reencuadre al cambiar el tamaño mientras no se haya movido la cámara

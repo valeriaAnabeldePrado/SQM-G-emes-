@@ -80,9 +80,6 @@ export const TIMES = {
 
 export const HOUR_RANGE = [6, 23]
 
-/** Vista inicial: el atardecer (la misma hora que el atajo). */
-export const initialSkyHour = (date) => TIMES.atardecer.hour(date)
-
 // Estados de referencia según la altura del sol (grados). Entre ellos se interpola.
 const KEYS = [
   {

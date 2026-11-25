@@ -38,7 +38,14 @@ function treeLayout() {
   street(pu.curbNorth - 1.0, range(-128, 9.5, 28), 9, 2.9)
   street(pe.curbNorth - 0.9, [-9, 9.5], 8, 2.6)
   street(pe.curbNorth - 0.9, [...range(19.5, 10, 10), ...range(-19, -10, 10)], 7.5, 2.4)
-  street(pe.curbSouth + 0.9, range(-95, 10, 20), 7, 2.3)
+  // Enfrente de las oficinas queda un claro: los de x = ±5 tapaban el frente
+  // en la vista Oficinas
+  street(
+    pe.curbSouth + 0.9,
+    range(-95, 10, 20).filter((x) => Math.abs(x) > LOT.width),
+    7,
+    2.3
+  )
 
   // Tipas de La Cañada: copas anchas que se cierran sobre el canal
   if (CANAL) {
@@ -166,45 +173,6 @@ function Trees() {
   )
 }
 
-// Autos estacionados para dar escala (el render de fachada muestra un sedán
-// blanco y una SUV negra frente al edificio).
-function buildCars() {
-  const b = createBoxList()
-  const pu = STREETS.pueyrredon
-  const pe = STREETS.peredo
-  const cars = [
-    { x: 8.5, z: pu.curbSouth - 1.0, paint: 'carPaintLight' },
-    { x: -8, z: pu.curbSouth - 1.0, paint: 'carPaintDark', tall: true },
-    { x: -26, z: pu.curbSouth - 1.0, paint: 'carPaintGrey' },
-    { x: 34, z: pu.curbNorth + 1.0, paint: 'carPaintLight' },
-    { x: -14, z: pu.curbNorth + 1.0, paint: 'carPaintGrey', tall: true },
-    { x: 18, z: (pu.curbNorth + pu.curbSouth) / 2 + 2.2, paint: 'carPaintDark' },
-    { x: -7, z: pe.curbNorth + 1.0, paint: 'carPaintGrey' },
-    { x: 10, z: pe.curbNorth + 1.0, paint: 'carPaintLight', tall: true }
-  ]
-  for (const { x, z, paint, tall } of cars) {
-    const len = tall ? 4.6 : 4.5
-    const body = tall ? 1.15 : 0.95
-    b.add(paint, x - len / 2, x + len / 2, -0.15 + 0.3, -0.15 + body, z - 0.9, z + 0.9)
-    b.add('carGlass', x - 1.2, x + 1.1, -0.15 + body, -0.15 + body + 0.5, z - 0.78, z + 0.78)
-    b.add(paint, x - 1.15, x + 1.05, -0.15 + body + 0.5, -0.15 + body + 0.56, z - 0.8, z + 0.8)
-    for (const dx of [-1.45, 1.4]) {
-      for (const dz of [-0.82, 0.82]) {
-        b.add(
-          'tire',
-          x + dx - 0.33,
-          x + dx + 0.33,
-          -0.15,
-          -0.15 + 0.66,
-          z + dz - 0.12,
-          z + dz + 0.12
-        )
-      }
-    }
-  }
-  return b
-}
-
 // Platea del lote a nivel de vereda: el edificio y los patios apoyan en y = 0
 function buildLotBase() {
   const b = createBoxList()
@@ -213,12 +181,10 @@ function buildLotBase() {
 }
 
 export function StreetProps() {
-  const cars = useMemo(buildCars, [])
   const lotBase = useMemo(buildLotBase, [])
   return (
     <>
       <Trees />
-      <MergedBoxes list={cars} />
       <MergedBoxes list={lotBase} castShadow={false} />
     </>
   )

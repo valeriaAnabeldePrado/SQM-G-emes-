@@ -19,14 +19,22 @@ export function buildOffices(b) {
 
   // Laterales de hormigón que suben por encima de la terraza
   for (const side of [-1, 1]) {
-    b.add('concrete', side * INNER, side * HALF, 0, terrace + OFFICES.sideWallExtra, BACK, FRONT)
+    b.add(
+      'officeConcrete',
+      side * INNER,
+      side * HALF,
+      0,
+      terrace + OFFICES.sideWallExtra,
+      BACK,
+      FRONT
+    )
   }
 
   // Marco de hormigón: cantos de losa sobre la fachada
   for (const y of [...ys.slice(1), terrace]) {
-    b.add('concrete', -INNER, INNER, y - 0.3, y, FRONT - FRAME, FRONT)
+    b.add('officeConcrete', -INNER, INNER, y - 0.3, y, FRONT - FRAME, FRONT)
   }
-  b.add('concrete', -INNER, INNER, terrace, terrace + 0.15, FRONT - FRAME, FRONT)
+  b.add('officeConcrete', -INNER, INNER, terrace, terrace + 0.15, FRONT - FRAME, FRONT)
 
   // PB vidriada con carpintería negra (local de oficinas con la escalera a la vista)
   addWindow(b, {
@@ -48,7 +56,7 @@ export function buildOffices(b) {
   for (let i = 0; i < 16; i++) {
     const y = i * 0.19
     b.add(
-      'concrete',
+      'officeConcrete',
       -INNER,
       -INNER + 1.1,
       y,
@@ -138,7 +146,7 @@ export function buildOffices(b) {
 
   // Terraza (ofiPisoTres: 10,70 x 6,00 m): baranda de barrotes claros, caja de
   // escalera y pérgola de listones entre los laterales (render frenteTwoOk)
-  b.add('concrete', -INNER, INNER, terrace - 0.3, terrace, BACK, FRONT - FRAME)
+  b.add('officeConcrete', -INNER, INNER, terrace - 0.3, terrace, BACK, FRONT - FRAME)
   b.add('deck', -INNER, INNER, terrace, terrace + 0.02, BACK, FRONT - FRAME)
   addRailing(b, {
     from: -INNER,
@@ -155,7 +163,7 @@ export function buildOffices(b) {
     plane: BACK + 0.05,
     material: 'railingLight'
   })
-  b.add('concrete', -INNER, -3.4, terrace, terrace + 2.6, BACK + 0.3, BACK + 3.9)
+  b.add('officeConcrete', -INNER, -3.4, terrace, terrace + 2.6, BACK + 0.3, BACK + 3.9)
   b.add('frameDark', -3.42, -3.38, terrace, terrace + 2.1, BACK + 1.5, BACK + 2.4)
   const pergola = terrace + 2.5
   for (const z of [BACK + 0.4, FRONT - 0.7])

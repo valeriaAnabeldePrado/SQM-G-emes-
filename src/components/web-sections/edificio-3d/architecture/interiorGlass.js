@@ -102,7 +102,9 @@ vec3 paneInterior() {
   float daylight = (0.05 + 0.17 * exp(-hit.z * 0.7)) * (1.0 - 0.9 * uNight);
   float litChance = neighbor ? mix(0.86, 0.64, uNight) : mix(0.78, 0.38, uNight);
   float lit = (shop || office) ? 1.0 : step(litChance, paneHash(s * 21.7));
-  vec3 lamp = vec3(1.0, 0.78, 0.52) * (shop ? 0.85 : office ? 0.3 : 0.5) * (1.0 + 0.25 * uNight);
+  // Las oficinas trabajan con la luz prendida: de día se ven cálidas detrás de
+  // los paneles, como el local de PB, y el bloque gana presencia frente al barrio
+  vec3 lamp = vec3(1.0, 0.78, 0.52) * (shop ? 0.85 : office ? 0.65 : 0.5) * (1.0 + 0.25 * uNight);
   if (neighbor) lamp *= 0.65;
   col *= daylight + lit * lamp;
 

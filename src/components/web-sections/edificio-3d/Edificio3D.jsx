@@ -5,8 +5,8 @@ import gsap from 'gsap'
 import { useAvailability } from './interiors/useAvailability'
 import { QUALITY_TIERS, initialQuality } from './scene/quality'
 import { Scene } from './scene/Scene'
-import { HOUR_RANGE, TIMES, initialSkyHour, skyState } from './scene/timeOfDay'
-import { lowForView } from './scene/views'
+import { HOUR_RANGE, TIMES, skyState } from './scene/timeOfDay'
+import { ENTRY_HOUR, ENTRY_VIEW } from './scene/views'
 import { Fallback } from './ui/Fallback'
 import { CODE_SHARE, LoadingScreen } from './ui/LoadingScreen'
 import { Overlay } from './ui/Overlay'
@@ -22,39 +22,24 @@ function supportsWebGL2() {
 
 const TODAY = new Date()
 
-/** Hora inicial: `?hora=dia|atardecer|noche` o `?hora=19.5`; si no, media tarde. */
+/** Hora inicial: `?hora=dia|atardecer|noche` o `?hora=19.5`; si no, ENTRY_HOUR. */
 function initialHour() {
   const requested = new URLSearchParams(window.location.search).get('hora')
   if (requested in TIMES) return TIMES[requested].hour(TODAY)
   const value = Number.parseFloat(requested)
   if (value >= HOUR_RANGE[0] && value <= HOUR_RANGE[1]) return value
-  return initialSkyHour(TODAY)
-}
-
-/**
- * Entrada tipo drone: `?intro=no` o "reducir movimiento" del sistema la
- * saltean. En desarrollo, `?intro=0.4` congela el vuelo en ese instante.
- */
-function initialIntro() {
-  if (new URLSearchParams(window.location.search).get('intro') === 'no') return 'off'
-  if (window.matchMedia?.('(prefers-reduced-motion: reduce)').matches) return 'off'
-  return 'pending'
-}
-
-function introFreeze() {
-  if (!import.meta.env.DEV) return undefined
-  const value = Number.parseFloat(new URLSearchParams(window.location.search).get('intro'))
-  return Number.isNaN(value) ? undefined : Math.min(1, Math.max(0, value))
+  return ENTRY_HOUR
 }
 
 const INVITE_SECONDS = 5
+const GUIDE_SECONDS = 7
 const PLAY_SPEED = 0.9 // horas por segundo al reproducir el día
 const TIME_TRANSITION = 2.6 // s
 
 /** Reconstrucción 3D procedural del edificio (ruta /edificio-3d). */
 export default function Edificio3D() {
   const rig = useRef(null)
-  const [view, setView] = useState('general')
+  const [view, setView] = useState(ENTRY_VIEW)
   const [hour, setHour] = useState(initialHour)
   const [playing, setPlaying] = useState(false)
   const hourTween = useRef(null)
@@ -128,12 +113,10 @@ export default function Edificio3D() {
   const [floor, setFloor] = useState(null)
   const [unit, setUnit] = useState(null)
   const [hoverFloor, setHoverFloor] = useState(null)
-  // Entorno bajo: los edificios de alrededor bajan para ver mejor VIVRA
-  // Alrededor de las oficinas baja solo (ver views.js); el botón lo invierte
-  // hasta cambiar de vista
-  const [lowOverride, setLowOverride] = useState(null)
-  const lowContext = lowOverride ?? lowForView(view)
-  const toggleLowContext = useCallback(() => setLowOverride(!lowContext), [lowContext])
+  // Entorno bajo: se arranca con los edificios de alrededor bajos (VIVRA a la
+  // vista) y "Generar entorno" los levanta a su altura real
+  const [lowContext, setLowContext] = useState(true)
+  const toggleLowContext = useCallback(() => setLowContext((low) => !low), [])
   // Giro del plano de la ficha para que coincida con la vista 3D (ver CameraRig)
   const [planTurn, setPlanTurn] = useState(180)
   const availability = useAvailability()
@@ -141,58 +124,57 @@ export default function Edificio3D() {
   const { progress: assets } = useProgress()
   const [ready, setReady] = useState(false)
   const onReady = useCallback(() => setReady(true), [])
-  // 'pending' (cargando) → 'flying' → 'done'; 'off' sin vuelo
-  const [intro, setIntro] = useState(initialIntro)
-  // Al aterrizar, el selector de pisos invita a elegir unidad unos segundos
+  // Al entrar, el selector de pisos invita a elegir unidad unos segundos
   const [invite, setInvite] = useState(false)
   const container = useRef(null)
-
   useEffect(() => {
-    if (!ready || intro !== 'pending') return
-    const started = rig.current?.playIntro({
-      freezeAt: introFreeze(),
-      onEnd: () => {
-        setIntro('done')
-        setInvite(true)
+    if (ready) setInvite(true)
+  }, [ready])
+
+  // Guía de gestos (girar, elegir un piso): al terminar el recorrido, hasta
+  // el primer toque o GUIDE_SECONDS
+  const [guide, setGuide] = useState(false)
+  useEffect(() => {
+    if (!guide) return
+    const hide = () => setGuide(false)
+    const id = setTimeout(hide, GUIDE_SECONDS * 1000)
+    window.addEventListener('pointerdown', hide, true)
+    window.addEventListener('wheel', hide, { capture: true, passive: true })
+    window.addEventListener('keydown', hide, true)
+    return () => {
+      clearTimeout(id)
+      window.removeEventListener('pointerdown', hide, true)
+      window.removeEventListener('wheel', hide, { capture: true })
+      window.removeEventListener('keydown', hide, true)
+    }
+  }, [guide])
+
+  // Al entrar la cámara gira de las oficinas a la vista aérea (ver tour.js),
+  // salvo con "reducir movimiento" del sistema. Cualquier toque, rueda o tecla
+  // (arrastrar, un piso, un botón, la hora) la deja quieta.
+  useEffect(() => {
+    if (!ready) return
+    if (window.matchMedia?.('(prefers-reduced-motion: reduce)').matches) {
+      setGuide(true)
+      return
+    }
+    rig.current?.playTour({
+      onDone: (view) => {
+        setView(view)
+        setGuide(true)
       }
     })
-    // Si el vuelo no pudo arrancar, la interfaz no queda escondida
-    setIntro(started ? 'flying' : 'done')
-  }, [ready, intro])
-
-  const skipIntro = useCallback(() => {
-    if (!rig.current?.skipIntro()) setIntro((i) => (i === 'flying' ? 'done' : i))
-  }, [])
-
-  // Durante el vuelo, cualquier clic, arrastre, rueda o tecla lo saltea
-  useEffect(() => {
-    if (intro !== 'flying') return
-    window.addEventListener('wheel', skipIntro, { passive: true })
-    window.addEventListener('keydown', skipIntro)
+    const stop = () => rig.current?.stopTour()
+    window.addEventListener('pointerdown', stop, true)
+    window.addEventListener('wheel', stop, { capture: true, passive: true })
+    window.addEventListener('keydown', stop, true)
     return () => {
-      window.removeEventListener('wheel', skipIntro)
-      window.removeEventListener('keydown', skipIntro)
+      stop()
+      window.removeEventListener('pointerdown', stop, true)
+      window.removeEventListener('wheel', stop, { capture: true })
+      window.removeEventListener('keydown', stop, true)
     }
-  }, [intro, skipIntro])
-
-  // El toque que saltea el vuelo no llega a la escena: si no, al soltar sobre
-  // la torre (que ya está en la vista general) abriría un piso. Se corta en la
-  // captura, antes que los eventos de R3F y de OrbitControls.
-  const swallowClick = useRef(false)
-  const onPointerDownCapture = useCallback(
-    (e) => {
-      if (intro !== 'flying' || e.target.tagName !== 'CANVAS') return
-      e.stopPropagation()
-      swallowClick.current = true
-      skipIntro()
-    },
-    [intro, skipIntro]
-  )
-  const onClickCapture = useCallback((e) => {
-    if (!swallowClick.current) return
-    swallowClick.current = false
-    e.stopPropagation()
-  }, [])
+  }, [ready])
 
   useEffect(() => {
     if (!invite) return
@@ -209,7 +191,6 @@ export default function Edificio3D() {
   const goTo = useCallback((next) => {
     setFloor(null)
     setUnit(null)
-    setLowOverride(null)
     setView(next)
     rig.current?.goTo(next)
   }, [])
@@ -219,7 +200,6 @@ export default function Edificio3D() {
       if (n == null) return goTo('general')
       setUnit(null)
       setFloor(n)
-      setLowOverride(null)
       setView(`piso:${n}`)
       rig.current?.goTo(`piso:${n}`)
     },
@@ -233,11 +213,12 @@ export default function Edificio3D() {
   return (
     <div
       ref={container}
-      onPointerDownCapture={onPointerDownCapture}
-      onClickCapture={onClickCapture}
       className="relative h-screen h-[100svh] w-full overflow-hidden bg-[#d6dee4]"
     >
       <Canvas
+        // Contexto de apilado propio: las letras de las unidades (Html) quedan
+        // debajo de la interfaz y no tapan las barras
+        style={{ zIndex: 0 }}
         shadows
         frameloop="demand"
         dpr={[1, QUALITY_TIERS[quality.tier].dpr]}
@@ -274,7 +255,6 @@ export default function Edificio3D() {
           onSelectUnit={selectUnit}
           lowContext={lowContext}
           onPlanTurn={setPlanTurn}
-          intro={intro}
         />
       </Canvas>
       <Overlay
@@ -295,9 +275,8 @@ export default function Edificio3D() {
         lowContext={lowContext}
         onToggleLowContext={toggleLowContext}
         planTurn={planTurn}
-        intro={intro}
-        onSkipIntro={skipIntro}
         invite={invite}
+        guide={guide}
         onInviteSeen={dismissInvite}
       />
       <LoadingScreen

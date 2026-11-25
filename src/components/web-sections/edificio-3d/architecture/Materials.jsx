@@ -88,6 +88,17 @@ function createMaterials(loaded) {
         normalScale: new THREE.Vector2(0.8, 0.8)
       })
     ),
+    // Oficinas sobre Peredo: hormigón visto más cálido y algo más oscuro que el
+    // de la torre (render frenteTwoOk), así el bloque se despega del barrio en
+    // maqueta, que es casi blanco
+    officeConcrete: withWeathering(
+      std({
+        ...scanned.hormigon,
+        color: '#cfc4b3',
+        roughness: 0.85,
+        normalScale: new THREE.Vector2(0.9, 0.9)
+      })
+    ),
     // Muro entre ventanas: hormigón granulado gris, más oscuro que las bandas
     block: withWeathering(
       std({
@@ -245,12 +256,7 @@ function createMaterials(loaded) {
     trunk: new THREE.MeshLambertMaterial({ color: '#4f4034', emissive: '#2a221b' }),
     // Follaje con Lambert: mucho más barato por píxel que PBR, y las hojas se
     // superponen en muchas capas (es lo que más cuesta en las vistas peatonales)
-    leaves: leavesMaterial(),
-    carPaintLight: std({ color: '#e7e7e5', roughness: 0.3, metalness: 0.5 }),
-    carPaintDark: std({ color: '#1c1d20', roughness: 0.3, metalness: 0.5 }),
-    carPaintGrey: std({ color: '#8d9196', roughness: 0.3, metalness: 0.5 }),
-    carGlass: std({ color: '#20262b', roughness: 0.1, metalness: 0.8 }),
-    tire: std({ color: '#151515', roughness: 0.9 })
+    leaves: leavesMaterial()
   }
 }
 

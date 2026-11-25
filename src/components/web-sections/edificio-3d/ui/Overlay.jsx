@@ -1,9 +1,10 @@
 import { useProgress } from '@react-three/drei'
-import { FiChevronsDown } from 'react-icons/fi'
+import { FiChevronsDown, FiLayers } from 'react-icons/fi'
 import { Link } from 'react-router-dom'
 import { STATUS } from '../interiors/status'
 import { getFloor } from '../interiors/catalog'
 import { FloorPicker } from './FloorPicker'
+import { GestureGuide } from './GestureGuide'
 import { TimeBar } from './TimeBar'
 import { UnitPanel } from './UnitPanel'
 import './overlay.css'
@@ -30,11 +31,15 @@ function Loading() {
   )
 }
 
-/** Barra del piso abierto: nombre, referencias de color y salida. */
+/**
+ * Barra del piso abierto: nombre, referencias de color y salida. Va abajo, sobre
+ * el selector de pisos (celulares) o sobre "Generar entorno" (escritorio):
+ * arriba quedaba encima de las unidades de la planta.
+ */
 function FloorBar({ floor, onExit }) {
   const { label } = getFloor(floor)
   return (
-    <div className="edificio-fade-in pointer-events-auto absolute left-1/2 top-[13.5rem] flex -translate-x-1/2 md:top-32 items-center gap-3 rounded-full bg-white/90 py-1.5 pl-4 pr-1.5 shadow-sm backdrop-blur-md md:top-6">
+    <div className="edificio-fade-in pointer-events-auto absolute bottom-[15.25rem] left-1/2 flex -translate-x-1/2 items-center gap-3 whitespace-nowrap rounded-full bg-white/90 py-1.5 pl-4 pr-1.5 shadow-sm backdrop-blur-md md:bottom-[8.75rem]">
       <span className="whitespace-nowrap text-sm font-medium text-darck">{label}</span>
       <span className="hidden items-center gap-3 text-[11px] text-darck/70 sm:flex">
         {[STATUS.disponible, STATUS.vendida].map(({ color, label: text }) => (
@@ -73,17 +78,14 @@ export function Overlay({
   lowContext,
   onToggleLowContext,
   planTurn,
-  intro,
-  onSkipIntro,
   invite,
-  onInviteSeen
+  onInviteSeen,
+  guide = false
 }) {
-  // Durante el vuelo de entrada solo quedan el título y "Saltar"
-  const flying = intro === 'flying'
-  const chrome = `transition-opacity duration-500 ${flying ? 'pointer-events-none opacity-0' : 'opacity-100'}`
   return (
     <>
       <Loading />
+      {guide && floor == null ? <GestureGuide /> : null}
       <header className="pointer-events-none absolute inset-x-0 top-0 flex flex-wrap items-start justify-between gap-2 p-4 md:flex-nowrap md:gap-3 md:p-6">
         <div className="pointer-events-auto rounded-2xl bg-white/80 px-4 py-3 shadow-sm backdrop-blur-md">
           <Link to="/" className="text-xs text-darck/60 transition-colors hover:text-one">
@@ -94,10 +96,7 @@ export function Overlay({
             Av. Pueyrredón 377 · Córdoba
           </span>
         </div>
-        <div
-          aria-hidden={flying}
-          className={`pointer-events-auto flex w-full flex-col items-stretch gap-2 md:w-auto md:items-end ${chrome}`}
-        >
+        <div className="pointer-events-auto flex w-full flex-col items-stretch gap-2 md:w-auto md:items-end">
           <button
             type="button"
             onClick={() => onView('general')}
@@ -121,7 +120,6 @@ export function Overlay({
         onFloor={onFloor}
         onHover={onHoverFloor}
         availability={availability}
-        hidden={flying}
         invite={invite}
         onInviteSeen={onInviteSeen}
       />
@@ -134,53 +132,44 @@ export function Overlay({
         onClose={() => onUnit(null)}
       />
 
-      {flying ? (
-        <button
-          type="button"
-          onClick={onSkipIntro}
-          className="absolute bottom-36 left-1/2 -translate-x-1/2 rounded-full bg-white/80 px-5 py-2 text-xs text-darck shadow-sm backdrop-blur-md transition-colors hover:bg-white md:bottom-8 md:text-sm"
-        >
-          Saltar
-        </button>
-      ) : (
-        <nav
-          aria-label="Vistas del edificio"
-          className="absolute bottom-36 left-1/2 flex -translate-x-1/2 gap-1 rounded-full bg-white/80 p-1 shadow-sm backdrop-blur-md md:bottom-8"
-        >
-          {VIEWS.map(({ id, label }) => (
-            <button
-              key={id}
-              type="button"
-              onClick={() => onView(id)}
-              aria-pressed={view === id}
-              className={`rounded-full px-3 py-1.5 text-xs transition-colors md:px-4 md:text-sm ${
-                view === id ? 'bg-darck text-white' : 'text-darck hover:bg-darck/10'
-              }`}
-            >
-              {label}
-            </button>
-          ))}
-          <span aria-hidden="true" className="mx-0.5 my-1.5 w-px bg-darck/15" />
-          {/* Entorno bajo: los edificios de alrededor bajan para ver mejor VIVRA */}
+      <nav
+        aria-label="Vistas del edificio"
+        className="absolute bottom-36 left-1/2 flex -translate-x-1/2 gap-1 rounded-full bg-white/80 p-1 shadow-sm backdrop-blur-md md:bottom-8"
+      >
+        {VIEWS.map(({ id, label }) => (
           <button
+            key={id}
             type="button"
-            onClick={onToggleLowContext}
-            aria-pressed={lowContext}
-            aria-label="Entorno bajo"
-            title={
-              lowContext
-                ? 'Volver a la altura real del entorno'
-                : 'Bajar los edificios de alrededor'
-            }
-            className={`flex items-center gap-1.5 rounded-full px-2.5 py-1.5 text-xs transition-colors md:px-4 md:text-sm ${
-              lowContext ? 'bg-darck text-white' : 'text-darck hover:bg-darck/10'
+            onClick={() => onView(id)}
+            aria-pressed={view === id}
+            className={`rounded-full px-3 py-1.5 text-xs transition-colors md:px-4 md:text-sm ${
+              view === id ? 'bg-darck text-white' : 'text-darck hover:bg-darck/10'
             }`}
           >
-            <FiChevronsDown aria-hidden="true" />
-            <span className="hidden whitespace-nowrap md:inline">Entorno bajo</span>
+            {label}
           </button>
-        </nav>
-      )}
+        ))}
+      </nav>
+
+      {/* Se arranca con el entorno bajo: "Generar entorno" levanta el barrio a
+          su altura real y "Bajar entorno" lo vuelve a bajar. En celulares va
+          debajo del encabezado (abajo están los pisos). */}
+      <button
+        type="button"
+        onClick={onToggleLowContext}
+        aria-pressed={!lowContext}
+        title={
+          lowContext
+            ? 'Levantar los edificios de alrededor a su altura real'
+            : 'Bajar los edificios de alrededor'
+        }
+        className={`edificio-fade-in absolute left-1/2 top-[13.5rem] -translate-x-1/2 flex items-center gap-2 whitespace-nowrap rounded-full px-5 py-2.5 text-sm font-medium shadow-md backdrop-blur-md transition-colors md:bottom-[5.5rem] md:top-auto ${
+          lowContext ? 'bg-one text-white hover:bg-one/90' : 'bg-white/85 text-darck hover:bg-white'
+        }`}
+      >
+        {lowContext ? <FiLayers aria-hidden="true" /> : <FiChevronsDown aria-hidden="true" />}
+        {lowContext ? 'Generar entorno' : 'Bajar entorno'}
+      </button>
 
       {/* span y no p: App.css fija el tamaño de todos los <p> */}
       <span

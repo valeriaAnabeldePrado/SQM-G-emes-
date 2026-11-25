@@ -1,10 +1,9 @@
-import { memo, Suspense, useCallback, useEffect, useMemo, useRef, useState } from 'react'
+import { memo, Suspense, useCallback, useEffect, useMemo, useState } from 'react'
 import { BakeShadows, Bvh } from '@react-three/drei'
 import { useThree } from '@react-three/fiber'
 import { Bloom, EffectComposer, N8AO, SMAA, ToneMapping } from '@react-three/postprocessing'
 import { ToneMappingMode } from 'postprocessing'
 import { MaterialsProvider } from '../architecture/Materials'
-import { corridor } from '../architecture/viewCorridor'
 import Building from '../buildings/vivra-guemes/Building'
 import { floorAtPoint, getFloor } from '../interiors/catalog'
 import { FloorHighlight } from '../interiors/FloorHighlight'
@@ -14,7 +13,6 @@ import { SectionCap } from '../interiors/SectionCap'
 import { StreetLabels } from '../context/StreetLabels'
 import { UrbanContext } from '../context/UrbanContext'
 import { CameraRig } from './CameraRig'
-import { FINAL_LAYERS } from './introFlight'
 import { Lighting } from './Lighting'
 import { DynamicResolution, QualityMonitor } from './Performance'
 import { QUALITY_TIERS } from './quality'
@@ -67,47 +65,6 @@ function ReadySignal({ onReady }) {
   return null
 }
 
-const BASE_NEAR = 0.5
-const BASE_FAR = 3000 // mismos valores que la cámara del Canvas en Edificio3D
-const POCITO_PODIUM = 8 // m: altura del basamento de Pocito (pocito.js)
-
-/**
- * Aplica las capas del vuelo de entrada (introFlight.js) a la escena: barrio
- * que crece, niebla y planos de la cámara que se alejan con la altura. Con
- * FINAL_LAYERS deja todo como siempre.
- */
-function useIntroLayers({ fogRange, lowContext }) {
-  const gl = useThree((s) => s.gl)
-  const scene = useThree((s) => s.scene)
-  const camera = useThree((s) => s.camera)
-  const shadowHeight = useRef(null)
-  const pocito = useRef(null)
-  return useCallback(
-    (layers, altitude) => {
-      const final = layers === FINAL_LAYERS
-      if (!lowContext) {
-        corridor.uContextHeight.value = layers.contextHeight
-        const last = shadowHeight.current
-        if (last == null || Math.abs(layers.contextHeight - last) > 5 || final) {
-          shadowHeight.current = final ? null : layers.contextHeight
-          gl.shadowMap.needsUpdate = true
-        }
-      }
-      if (scene.fog) {
-        scene.fog.near = fogRange[0] * layers.fogScale
-        scene.fog.far = fogRange[1] * layers.fogScale
-      }
-      camera.near = Math.max(BASE_NEAR, altitude / 200)
-      camera.far = Math.max(BASE_FAR, altitude * 10)
-      // El basamento de Pocito no se recorta (ni con "Entorno bajo"): se esconde
-      // hasta que el barrio que crece lo alcanza, para que no flote sobre el mapa
-      pocito.current ??= scene.getObjectByName('pocito-social-life')
-      if (pocito.current) pocito.current.visible = layers.contextHeight >= POCITO_PODIUM
-    },
-    [gl, scene, camera, fogRange, lowContext]
-  )
-}
-
 // Al mover la hora la escena se re-renderiza seguido: lo pesado solo cuando cambia
 const MemoBuilding = memo(Building)
 const MemoUrbanContext = memo(UrbanContext)
@@ -129,8 +86,7 @@ export function Scene({
   selectedUnit,
   onSelectUnit,
   lowContext,
-  onPlanTurn,
-  intro = 'off'
+  onPlanTurn
 }) {
   const [tier, setTier] = useState(quality.tier)
   const decline = useCallback(() => setTier((t) => Math.max(0, t - 1)), [])
@@ -143,8 +99,6 @@ export function Scene({
   const open = getFloor(floor)
   const cut = open ? { y: open.base + 0.03, ...open.box } : null
   const cutY = cut?.y ?? null
-  const onIntroFrame = useIntroLayers({ fogRange: preset.fogRange, lowContext })
-  const flying = intro === 'pending' || intro === 'flying'
 
   // Piso bajo el puntero (lo que está por encima del corte no cuenta: está recortado)
   const floorUnder = (e) => {
@@ -156,14 +110,13 @@ export function Scene({
   return (
     <>
       <QualityMonitor
-        // El vuelo de entrada es la vista más pesada (toda la ciudad): no cuenta
-        enabled={!quality.forced && !flying}
+        enabled={!quality.forced}
         lowest={tier === 0}
         onDecline={decline}
         onTooSlow={onTooSlow}
       />
       <DynamicResolution dpr={dpr} />
-      <CameraRig ref={rigRef} onPlanTurn={onPlanTurn} onIntroFrame={onIntroFrame} />
+      <CameraRig ref={rigRef} onPlanTurn={onPlanTurn} />
       <Suspense fallback={null}>
         <SceneEnvironment preset={preset} />
         <MaterialsProvider night={preset.night} cut={cut}>
@@ -212,7 +165,7 @@ export function Scene({
         {/* La escena es estática: las sombras se calculan una sola vez por momento del día */}
         <BakeShadows />
         <Effects ao={ao} bloom={bloom} smaa={smaa} />
-        <Prewarm enabled={!flying} />
+        <Prewarm />
         <ReadySignal onReady={onReady} />
       </Suspense>
     </>

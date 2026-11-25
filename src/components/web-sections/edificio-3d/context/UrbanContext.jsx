@@ -1,4 +1,4 @@
-import { useEffect, useMemo } from 'react'
+import { useEffect, useMemo, useRef } from 'react'
 import { useThree } from '@react-three/fiber'
 import gsap from 'gsap'
 import * as THREE from 'three'
@@ -96,7 +96,10 @@ function Neighbors() {
     const keys = new Set([...list.items.map((item) => item.material), 'glassInterior'])
     return Object.fromEntries([...keys].map((key) => [key, createContextMaterial(materials[key])]))
   }, [materials, list])
-  useEffect(() => () => Object.values(contextMaterials).forEach((m) => m.dispose()), [contextMaterials])
+  useEffect(
+    () => () => Object.values(contextMaterials).forEach((m) => m.dispose()),
+    [contextMaterials]
+  )
   return (
     <MaterialsContext.Provider value={contextMaterials}>
       <group name="linderos">
@@ -159,6 +162,11 @@ const CONTEXT_MAX_HEIGHT = 130
 // de lo que ubicaban.
 const FRONT_BLOCK = { x0: -32, x1: 73.5, z0: -83, z1: -16 }
 
+// Casas de enfrente de las oficinas, del otro lado de Peredo (PB y un piso):
+// no se dibujan. La vista Oficinas, que es la de entrada, mira desde su
+// terreno, a la altura de la vereda.
+const PEREDO_FRONT = { x0: -25, x1: 9, z0: 53, z1: 90 }
+
 function centroidIn({ p }, { x0, x1, z0, z1 }) {
   const x = p.reduce((sum, v) => sum + v[0], 0) / p.length
   const z = p.reduce((sum, v) => sum + v[1], 0) / p.length
@@ -184,10 +192,14 @@ function extrudeFootprint(p, h, i, shed = false) {
   extruded.translate(0, GROUND, 0)
   const [caps, walls] = splitGroups(extruded)
   extruded.computeBoundingBox()
-  const bounds = { min: extruded.boundingBox.min.toArray(), max: extruded.boundingBox.max.toArray() }
+  const bounds = {
+    min: extruded.boundingBox.min.toArray(),
+    max: extruded.boundingBox.max.toArray()
+  }
   paint(walls, FACADE_TONES[i % FACADE_TONES.length])
   paint(caps, shed ? SHED_ROOF : ROOF_TONES[(i * 7) % ROOF_TONES.length])
-  for (const part of [caps, walls]) addBuildingBounds(part, [bounds], part.getAttribute('position').count)
+  for (const part of [caps, walls])
+    addBuildingBounds(part, [bounds], part.getAttribute('position').count)
   extruded.dispose()
   return [caps, walls]
 }
@@ -209,6 +221,7 @@ function ContextBuildings({ showFar }) {
     const groups = new Map()
     contextData.buildings.forEach((building, i) => {
       if (replacesPocitoVolume(building) || insidePlaza(building)) return
+      if (centroidIn(building, PEREDO_FRONT)) return
       const { p, far } = building
       const h = displayHeight(building)
       const { area, cx, cz } = footprint(p)
@@ -269,13 +282,23 @@ function ContextBuildings({ showFar }) {
 // se mueven durante la mayor parte de la animación y no solo al final
 const RANGE = CONTEXT_MAX_HEIGHT - LOW_HEIGHT
 const heightAt = (p) => LOW_HEIGHT + RANGE * p ** 3
-const progressAt = (h) => Math.cbrt(Math.max(0, Math.min(h, CONTEXT_MAX_HEIGHT) - LOW_HEIGHT) / RANGE)
+const progressAt = (h) =>
+  Math.cbrt(Math.max(0, Math.min(h, CONTEXT_MAX_HEIGHT) - LOW_HEIGHT) / RANGE)
 
 function useContextHeight(low) {
   const gl = useThree((s) => s.gl)
   const invalidate = useThree((s) => s.invalidate)
+  const mounted = useRef(false)
   useEffect(() => {
     const uniform = corridor.uContextHeight
+    // Al entrar el barrio ya está como corresponde, sin animación
+    if (!mounted.current) {
+      mounted.current = true
+      uniform.value = low ? LOW_HEIGHT : CONTEXT_FULL_HEIGHT
+      gl.shadowMap.needsUpdate = true
+      invalidate()
+      return
+    }
     if (!low && uniform.value >= CONTEXT_FULL_HEIGHT) return
     const state = { p: progressAt(uniform.value) }
     const refresh = () => {

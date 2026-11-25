@@ -1,6 +1,8 @@
 /**
- * Vistas en las que el barrio baja solo ("Entorno bajo" automático): el bloque
- * de oficinas sobre Peredo queda encajonado entre las torres vecinas, que lo
- * tapan tanto desde la calle como desde arriba.
+ * Vista en la que aterriza el vuelo de entrada: las oficinas desde Peredo, con
+ * la torre detrás.
  */
-export const lowForView = (view) => view === 'contrafrente' || view.startsWith('piso:of')
+export const ENTRY_VIEW = 'contrafrente'
+
+/** Hora de entrada (sin `?hora=`): las 18, sol bajo y cálido con las oficinas encendidas. */
+export const ENTRY_HOUR = 18
